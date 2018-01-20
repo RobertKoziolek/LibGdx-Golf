@@ -7,10 +7,4 @@ import lombok.ToString;
 public class Impulse implements Component {
     public float x = 0.0f;
     public float y = 0.0f;
-
-    public void clear(){
-        x = 0.0f;
-        y = 0.0f;
-    }
-
 }
