@@ -1,4 +1,4 @@
-package com.robcio.golf;
+package com.robcio.golf.utils;
 
 import com.badlogic.gdx.Gdx;
 import lombok.AccessLevel;
