@@ -20,7 +20,7 @@ import com.robcio.golf.listener.BallListener;
 import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.RenderSystem;
 import com.robcio.golf.utils.Log;
-import com.robcio.golf.utils.TextureManager;
+import com.robcio.golf.utils.Textures;
 import com.robcio.golf.world.BodyFactory;
 
 public class MainClass extends Game {
@@ -29,7 +29,7 @@ public class MainClass extends Game {
     public static final int HEIGHT = (int) (9 * PPM);
     public static final String TITLE = "Golf z Tibii";
 
-        private SpriteBatch batch;
+    private SpriteBatch batch;
     private OrthographicCamera camera;
     private AssetManager assets;
 
@@ -48,30 +48,35 @@ public class MainClass extends Game {
         b2dr = new Box2DDebugRenderer();
 
 //        assets = new AssetManager();
+
+        world = BodyFactory.getWorld();
         createBoundaries();
+        createEntities();
+        Log.i("World body count", Integer.toString(world.getBodyCount()));
     }
 
-    private void createBoundaries() {
-        world = BodyFactory.getWorld();
+    private void createEntities() {
         engine = new Engine();
-        engine.addEntityListener(Family.all(Renderable.class, Box2dBody.class).get(), new BallListener());
-        new Wall(Position.of(WIDTH / 2, 50), Dimension.of(WIDTH, 10));
-        new Wall(Position.of(WIDTH / 2, HEIGHT - 50), Dimension.of(WIDTH, 10));
-        new Wall(Position.of(50, HEIGHT / 2), Dimension.of(10, HEIGHT));
-        new Wall(Position.of(WIDTH - 50, HEIGHT / 2), Dimension.of(10, HEIGHT));
+        engine.addEntityListener(Family.all(Renderable.class, Box2dBody.class).get(), new BallListener(world));
+        engine.addSystem(new ImpulseSystem(1.5f));
+        engine.addSystem(new RenderSystem(batch));
 
-
+        for (int i = 0; i < 41; ++i) {
+            engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
+        }
         BodyFactory.createBox(200, 200, 50, 99, false, false, 2, 3);
         BodyFactory.createBox(211, 400, 140, 49, false, false, 2, 3);
         BodyFactory.createBox(773, 500, 50, 89, false, false, 2, 3);
         BodyFactory.createBox(473, 500, 50, 49, false, false, 2, 3);
-        for (int i = 0; i < 41; ++i)
-            engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
+    }
 
-        engine.addSystem(new ImpulseSystem(1.5f));
-        engine.addSystem(new RenderSystem(batch));
+    private void createBoundaries() {
+        new Wall(Position.of(WIDTH / 2, 9), Dimension.of(WIDTH, 10));
+        new Wall(Position.of(WIDTH / 2, HEIGHT - 9), Dimension.of(WIDTH, 10));
+        new Wall(Position.of(9, HEIGHT / 2), Dimension.of(10, HEIGHT));
+        new Wall(Position.of(WIDTH - 9, HEIGHT / 2), Dimension.of(10, HEIGHT));
 
-        Log.i("World body count", Integer.toString(world.getBodyCount()));
+        new Wall(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(10, HEIGHT - 300));
     }
 
     @Override
@@ -94,7 +99,7 @@ public class MainClass extends Game {
     @Override
     public void dispose() {
         batch.dispose();
-        TextureManager.clear();
+        Textures.clear();
         Log.i("Disposing");
     }
 }

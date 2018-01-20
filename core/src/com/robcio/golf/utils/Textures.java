@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class TextureManager {
+public class Textures {
     final private static Map<String, Texture> textures = new HashMap();
 
     public static Texture get(final String path) {
