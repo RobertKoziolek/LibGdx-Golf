@@ -13,4 +13,8 @@ public class Maths {
     public static float nextFloat() {
         return random.nextFloat();
     }
+
+    public static float radiansToDegrees(final float angle) {
+        return angle * 57.2958f;
+    }
 }

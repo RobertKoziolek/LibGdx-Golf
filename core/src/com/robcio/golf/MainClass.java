@@ -1,7 +1,6 @@
 package com.robcio.golf;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -10,13 +9,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
-import com.robcio.golf.component.Renderable;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.entity.Wall;
-import com.robcio.golf.listener.BallListener;
+import com.robcio.golf.listener.SpriteAssigner;
 import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.RenderSystem;
 import com.robcio.golf.utils.Log;
@@ -57,7 +54,7 @@ public class MainClass extends Game {
 
     private void createEntities() {
         engine = new Engine();
-        engine.addEntityListener(Family.all(Renderable.class, Box2dBody.class).get(), new BallListener(world));
+        engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner(world));
         engine.addSystem(new ImpulseSystem(1.5f));
         engine.addSystem(new RenderSystem(batch));
 

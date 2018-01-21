@@ -12,6 +12,7 @@ import com.robcio.golf.MainClass;
 import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Renderable;
+import com.robcio.golf.utils.Maths;
 
 public class RenderSystem extends IteratingSystem {
     final private ComponentMapper<Box2dBody> b2dm = ComponentMapper.getFor(Box2dBody.class);
@@ -42,7 +43,7 @@ public class RenderSystem extends IteratingSystem {
         position.x = bodyPosition.x * MainClass.PPM;
         position.y = bodyPosition.y * MainClass.PPM;
         sprite.setPosition(position.x - radius, position.y - radius);
-        sprite.setRotation(body.getAngle()*57.2958f);
+        sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.draw(batch);
     }
 }
