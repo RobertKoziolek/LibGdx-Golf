@@ -1,4 +1,4 @@
-package com.robcio.golf.listener;
+package com.robcio.golf.listener.entity;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -13,22 +13,13 @@ import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Renderable;
 
 public class SpriteAssigner implements EntityListener {
-    final public static Family family = Family.all(Renderable.class, Box2dBody.class, Dimension.class).get();
+    final public static Family family = Family.all(Renderable.class, Dimension.class).get();
 
-    final private ComponentMapper<Box2dBody> b2dm = ComponentMapper.getFor(Box2dBody.class);
     final private ComponentMapper<Renderable> rm = ComponentMapper.getFor(Renderable.class);
     final private ComponentMapper<Dimension> dm = ComponentMapper.getFor(Dimension.class);
 
-    final private World world;
-
-    public SpriteAssigner(final World world){
-        this.world = world;
-    }
-
     @Override
     public void entityAdded(Entity entity) {
-        final Body body = b2dm.get(entity).body;
-        if (body == null) throw new IllegalStateException("Box2d body cannot be null");
         final Sprite sprite = rm.get(entity).sprite;
         final Dimension dimension = dm.get(entity);
 
@@ -38,7 +29,6 @@ public class SpriteAssigner implements EntityListener {
 
     @Override
     public void entityRemoved(Entity entity) {
-        final Body body = b2dm.get(entity).body;
-        world.destroyBody(body);
+        //nothing to do here
     }
 }

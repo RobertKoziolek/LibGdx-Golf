@@ -12,8 +12,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.Ball;
+import com.robcio.golf.entity.Hole;
 import com.robcio.golf.entity.Wall;
-import com.robcio.golf.listener.SpriteAssigner;
+import com.robcio.golf.listener.box2d.HoleBallListener;
+import com.robcio.golf.listener.entity.Box2DBodyRemover;
+import com.robcio.golf.listener.entity.SpriteAssigner;
 import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.RenderSystem;
 import com.robcio.golf.utils.Log;
@@ -38,6 +41,7 @@ public class MainClass extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
+        batch.enableBlending();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 16, 9);
@@ -47,6 +51,7 @@ public class MainClass extends Game {
 //        assets = new AssetManager();
 
         world = BodyFactory.getWorld();
+        world.setContactListener(new HoleBallListener());
         createBoundaries();
         createEntities();
         Log.i("World body count", Integer.toString(world.getBodyCount()));
@@ -54,13 +59,19 @@ public class MainClass extends Game {
 
     private void createEntities() {
         engine = new Engine();
-        engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner(world));
+        engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner());
+        engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(world));
         engine.addSystem(new ImpulseSystem(1.5f));
         engine.addSystem(new RenderSystem(batch));
 
-        for (int i = 0; i < 41; ++i) {
+        for (int i = 0; i < 55; ++i) {
             engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
         }
+
+        engine.addEntity(new Hole(Position.of(50, 150), Dimension.of(30)));
+        engine.addEntity(new Hole(Position.of(350, 350), Dimension.of(30)));
+        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(30)));
+
         BodyFactory.createBox(200, 200, 50, 99, false, false, 2, 3);
         BodyFactory.createBox(211, 400, 140, 49, false, false, 2, 3);
         BodyFactory.createBox(773, 500, 50, 89, false, false, 2, 3);
@@ -68,6 +79,7 @@ public class MainClass extends Game {
     }
 
     private void createBoundaries() {
+        //TODO popatrzyc na EdgeShape czy nie lepszy do tego
         new Wall(Position.of(WIDTH / 2, 9), Dimension.of(WIDTH, 10));
         new Wall(Position.of(WIDTH / 2, HEIGHT - 9), Dimension.of(WIDTH, 10));
         new Wall(Position.of(9, HEIGHT / 2), Dimension.of(10, HEIGHT));
@@ -78,7 +90,7 @@ public class MainClass extends Game {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0.6f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         update(Gdx.graphics.getDeltaTime());

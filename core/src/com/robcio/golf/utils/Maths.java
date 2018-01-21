@@ -1,5 +1,6 @@
 package com.robcio.golf.utils;
 
+import com.badlogic.gdx.math.MathUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,6 @@ public class Maths {
     }
 
     public static float radiansToDegrees(final float angle) {
-        return angle * 57.2958f;
+        return angle * MathUtils.radiansToDegrees;
     }
 }

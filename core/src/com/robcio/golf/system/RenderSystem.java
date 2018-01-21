@@ -14,6 +14,7 @@ import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Renderable;
 import com.robcio.golf.utils.Maths;
 
+//TODO po dodaniu wiekszej ilosci obiektow do rysowania nalezy rozdzielic czesc zmieniajaca pozycje i tu zostawic samo draw(batch)
 public class RenderSystem extends IteratingSystem {
     final private ComponentMapper<Box2dBody> b2dm = ComponentMapper.getFor(Box2dBody.class);
     final private ComponentMapper<Renderable> rm = ComponentMapper.getFor(Renderable.class);
