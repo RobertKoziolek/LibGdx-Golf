@@ -9,6 +9,9 @@ import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Textures {
+    final public static String GOLFBALL = "golfball.png";
+    final public static String HOLE = "hole.png";
+
     final private static Map<String, Texture> textures = new HashMap();
 
     public static Texture get(final String path) {

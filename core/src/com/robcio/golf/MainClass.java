@@ -21,6 +21,7 @@ import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.RenderSystem;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Textures;
+import com.robcio.golf.world.BodyDestroyer;
 import com.robcio.golf.world.BodyFactory;
 
 public class MainClass extends Game {
@@ -36,6 +37,7 @@ public class MainClass extends Game {
     private Box2DDebugRenderer b2dr;
 
     private World world;
+    private BodyDestroyer bodyDestroyer;
     private Engine engine;
 
     @Override
@@ -50,17 +52,19 @@ public class MainClass extends Game {
 
 //        assets = new AssetManager();
 
+        engine = new Engine();
         world = BodyFactory.getWorld();
-        world.setContactListener(new HoleBallListener());
+        bodyDestroyer = new BodyDestroyer(world);
+
+        world.setContactListener(new HoleBallListener(engine));
         createBoundaries();
         createEntities();
         Log.i("World body count", Integer.toString(world.getBodyCount()));
     }
 
     private void createEntities() {
-        engine = new Engine();
         engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner());
-        engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(world));
+        engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(bodyDestroyer));
         engine.addSystem(new ImpulseSystem(1.5f));
         engine.addSystem(new RenderSystem(batch));
 
@@ -103,6 +107,7 @@ public class MainClass extends Game {
     private void update(final float deltaTime) {
         world.step(1 / 60f, 6, 2);
         engine.update(deltaTime);
+        bodyDestroyer.clear();
     }
 
     @Override
