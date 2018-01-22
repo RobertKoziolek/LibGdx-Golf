@@ -24,7 +24,6 @@ public class Box2DBodyRemover implements EntityListener {
         //nothing to do here
     }
 
-    //TODO to trzeba stestowac kiedys czy poprawnie sie wykonuje
     @Override
     public void entityRemoved(Entity entity) {
         final Body body = b2dm.get(entity).body;

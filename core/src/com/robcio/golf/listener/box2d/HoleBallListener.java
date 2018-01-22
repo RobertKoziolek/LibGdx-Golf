@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
+import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.utils.Log;
 import lombok.AllArgsConstructor;
 
@@ -25,12 +26,11 @@ public class HoleBallListener implements ContactListener {
         final Map<Integer, Entity> map = new HashMap<>(2);
         map.put(entityA.flags, entityA);
         map.put(entityB.flags, entityB);
-        if (map.containsKey(0)) return;
+        if (map.containsKey(EntityFlags.NONE.getId())) return;
 
-        if (map.containsKey(1) && map.containsKey(2)) {
-            final Entity ballEntity = map.get(1);
+        if (map.containsKey(EntityFlags.BALL.getId()) && map.containsKey(EntityFlags.HOLE.getId())) {
+            final Entity ballEntity = map.get(EntityFlags.BALL.getId());
             engine.removeEntity(ballEntity);
-            Log.i("Collision", "Ball went into the hole");
         }
     }
 

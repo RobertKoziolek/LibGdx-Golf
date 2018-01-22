@@ -22,11 +22,10 @@ public class ImpulseSystem extends IntervalIteratingSystem {
 
     @Override
     protected void processEntity(Entity entity) {
-        final Impulse impulse = im.get(entity);
-        impulse.x = Maths.nextFloat() * 200 - 100;
-        impulse.y = Maths.nextFloat() * 200 - 100;
+        final float x = Maths.nextFloat() * 200 - 100;
+        final float y = Maths.nextFloat() * 200 - 100;
 
         final Box2dBody box2dBody = b2dm.get(entity);
-        box2dBody.body.applyForceToCenter(new Vector2(impulse.x, impulse.y), true);
+        box2dBody.body.applyForceToCenter(new Vector2(x, y), true);
     }
 }

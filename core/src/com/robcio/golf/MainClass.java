@@ -72,24 +72,26 @@ public class MainClass extends Game {
             engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
         }
 
-        engine.addEntity(new Hole(Position.of(50, 150), Dimension.of(30)));
-        engine.addEntity(new Hole(Position.of(350, 350), Dimension.of(30)));
-        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(30)));
+        engine.addEntity(new Hole(Position.of(50, 150), Dimension.of(16)));
+        engine.addEntity(new Hole(Position.of(350, 350), Dimension.of(16)));
+        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(16)));
 
-        BodyFactory.createBox(200, 200, 50, 99, false, false, 2, 3);
-        BodyFactory.createBox(211, 400, 140, 49, false, false, 2, 3);
-        BodyFactory.createBox(773, 500, 50, 89, false, false, 2, 3);
-        BodyFactory.createBox(473, 500, 50, 49, false, false, 2, 3);
+        BodyFactory.createBox(Position.of(200, 200), Dimension.of(50, 99), false, false, 2, 3);
+        BodyFactory.createBox(Position.of(211, 400), Dimension.of(140, 49), false, false, 2, 3);
+        BodyFactory.createBox(Position.of(773, 500), Dimension.of(50, 89), false, false, 2, 3);
+        BodyFactory.createBox(Position.of(473, 500), Dimension.of(50, 49), false, false, 2, 3);
     }
 
     private void createBoundaries() {
         //TODO popatrzyc na EdgeShape czy nie lepszy do tego
-        new Wall(Position.of(WIDTH / 2, 9), Dimension.of(WIDTH, 10));
-        new Wall(Position.of(WIDTH / 2, HEIGHT - 9), Dimension.of(WIDTH, 10));
-        new Wall(Position.of(9, HEIGHT / 2), Dimension.of(10, HEIGHT));
-        new Wall(Position.of(WIDTH - 9, HEIGHT / 2), Dimension.of(10, HEIGHT));
+        new Wall(Position.of(WIDTH / 2, 9), Dimension.of(WIDTH, 9));
+        new Wall(Position.of(WIDTH / 2, HEIGHT - 9), Dimension.of(WIDTH, 9));
+        new Wall(Position.of(9, HEIGHT / 2), Dimension.of(9, HEIGHT));
+        new Wall(Position.of(WIDTH - 9, HEIGHT / 2), Dimension.of(9, HEIGHT));
 
-        new Wall(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(10, HEIGHT - 300));
+        new Wall(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(9, HEIGHT - 299));
+        new Wall(Position.of(WIDTH / 2 - 299, HEIGHT / 2), Dimension.of(9, HEIGHT - 299));
+        new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 9));
     }
 
     @Override
@@ -114,6 +116,7 @@ public class MainClass extends Game {
     public void dispose() {
         batch.dispose();
         Textures.clear();
+        world.dispose();
         Log.i("Disposing");
     }
 }

@@ -8,6 +8,7 @@ import com.robcio.golf.component.Position;
 
 import static com.robcio.golf.MainClass.PPM;
 
+//TODO World wyciagnac gdzies indziej, tu powinno nastepowac tylko tworzenie obiektow box2d
 public class BodyFactory {
     private final static float gravity = 0f;
     private final static boolean doSleep = false;
@@ -23,37 +24,31 @@ public class BodyFactory {
         return world;
     }
 
-
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
                                  boolean isRotationFixed, int cbits, int mbits) {
-        return createBox((int) position.x, (int) position.y, (int) dimension.width, (int) dimension.height, isStatic, isRotationFixed, cbits, mbits);
-    }
-
-    public static Body createBox(int x, int y, int width, int height, boolean isStatic,
-                                 boolean canRotate, int cbits, int mbits) {
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width / PPM / 2, height / PPM / 2);
+        shape.setAsBox(dimension.width / PPM / 2, dimension.height / PPM / 2);
 
-        return getBody(x, y, shape, isStatic, canRotate, (short) cbits, (short) mbits);
+        return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
     public static Body createCircular(Position position, Dimension dimension, boolean isStatic,
                                       boolean isRotationFixed, int cbits, int mbits) {
         if (dimension.isSquare()) {
-            return createCircle((int) position.x, (int) position.y, (int) dimension.width, isStatic, isRotationFixed, cbits, mbits);
+            return createCircle(position, dimension.width, isStatic, isRotationFixed, cbits, mbits);
         } else {
-            return createOval((int) position.x, (int) position.y, (int) dimension.width, (int) dimension.height, isStatic, isRotationFixed, cbits, mbits);
+            return createOval(position, dimension.width, dimension.height, isStatic, isRotationFixed, cbits, mbits);
         }
     }
 
-    private static Body createCircle(int x, int y, int radius, boolean isStatic, boolean canRotate, int cbits,
+    private static Body createCircle(Position position, float radius, boolean isStatic, boolean isRotationFixed, int cbits,
                                      int mbits) {
         CircleShape shape = new CircleShape();
         shape.setRadius(radius / PPM);
-        return getBody(x, y, shape, isStatic, canRotate, (short) cbits, (short) mbits);
+        return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
-    private static Body createOval(int x, int y, float radius1, float radius2, boolean isStatic, boolean canRotate,
+    private static Body createOval(Position position, float radius1, float radius2, boolean isStatic, boolean isRotationFixed,
                                    int cbits, int mbits) {
         PolygonShape shape = new PolygonShape();
         Vector2 vertices[] = new Vector2[8];
@@ -71,14 +66,13 @@ public class BodyFactory {
         vertices[6].set(0, -radius2);
         vertices[7].set(dent * -radius1, dent * -radius2);
         shape.set(vertices);
-        return getBody(x, y, shape, isStatic, canRotate, (short) cbits, (short) mbits);
+        return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
-    private static Body getBody(int x, int y, Shape shape, boolean isStatic, boolean canRotate, short cbits,
-                                short mbits) {
+    private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, int cbits, int mbits) {
         BodyDef bodyDef = new BodyDef();
-        bodyDef.fixedRotation = canRotate;
-        bodyDef.position.set(x / PPM, y / PPM);
+        bodyDef.fixedRotation = isRotationFixed;
+        bodyDef.position.set(position.x / PPM, position.y / PPM);
         if (isStatic) {
             bodyDef.type = BodyType.StaticBody;
         } else {
@@ -87,8 +81,8 @@ public class BodyFactory {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1.0f;
-        fixtureDef.filter.categoryBits = cbits;
-        fixtureDef.filter.maskBits = mbits;
+        fixtureDef.filter.categoryBits = (short) cbits;
+        fixtureDef.filter.maskBits = (short) mbits;
         Body tmpBody = world.createBody(bodyDef);
         tmpBody.createFixture(fixtureDef);
         shape.dispose();

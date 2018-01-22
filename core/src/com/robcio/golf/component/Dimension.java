@@ -9,8 +9,8 @@ public class Dimension implements Component {
     public float width = 0.0f;
     public float height = 0.0f;
 
-    public static Dimension of(final float x, final float y) {
-        return new Dimension(x, y);
+    public static Dimension of(final float width, final float height) {
+        return new Dimension(width, height);
     }
 
     public static Dimension of(final float r) {
