@@ -1,4 +1,4 @@
-package com.robcio.golf.listener.box2d;
+package com.robcio.golf.listener;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -11,29 +11,21 @@ import java.util.Map;
 
 public class Box2DContactListener implements ContactListener {
 
-    final private Engine engine;
+    final private BodyListenerRegistrar registrar;
 
-    final private HoleListener holeListener;
-    final private BowlListener bowlListener;
-    final private BumperListener bumperListener;
-
-    public Box2DContactListener(final Engine engine){
-        this.engine = engine;
-        this.holeListener = new HoleListener(engine);
-        this.bowlListener = new BowlListener(engine);
-        this.bumperListener = new BumperListener(engine);
+    public Box2DContactListener(final Engine engine) {
+        this.registrar = new BodyListenerRegistrar(engine);
     }
 
     @Override
     public void beginContact(Contact contact) {
         final Map<Integer, Body> map = getIntegerBodyMap(contact);
         if (map == null) return;
-        if (map.containsKey(EntityFlags.NONE.getId())) return;
 
-        if (ContainsFlags(map, EntityFlags.BALL, EntityFlags.HOLE)) {
-            holeListener.beginContact(map);
-        } else if (ContainsFlags(map, EntityFlags.BALL, EntityFlags.BOWL)) {
-            bowlListener.beginContact(map);
+        for (BodyListener listener : registrar.getListeners()) {
+            if (containsFlags(map, listener.getEntityFlagsA(), listener.getEntityFlagsB())) {
+                listener.beginContact(map);
+            }
         }
     }
 
@@ -41,9 +33,11 @@ public class Box2DContactListener implements ContactListener {
     public void endContact(Contact contact) {
         final Map<Integer, Body> map = getIntegerBodyMap(contact);
         if (map == null) return;
-        if (map.containsKey(EntityFlags.NONE.getId())) return;
-        if (ContainsFlags(map, EntityFlags.BALL, EntityFlags.BUMPER)) {
-            bumperListener.beginContact(map);
+
+        for (BodyListener listener : registrar.getListeners()) {
+            if (containsFlags(map, listener.getEntityFlagsA(), listener.getEntityFlagsB())) {
+                listener.endContact(map);
+            }
         }
     }
 
@@ -67,10 +61,11 @@ public class Box2DContactListener implements ContactListener {
         final Map<Integer, Body> map = new HashMap<>(2);
         map.put(entityA.flags, bodyA);
         map.put(entityB.flags, bodyB);
+        if (map.containsKey(EntityFlags.NONE.getId())) return null;
         return map;
     }
 
-    private boolean ContainsFlags(final Map<Integer, Body> map, final EntityFlags flagA, final EntityFlags flagB) {
+    private boolean containsFlags(final Map<Integer, Body> map, final EntityFlags flagA, final EntityFlags flagB) {
         return map.containsKey(flagA.getId()) && map.containsKey(flagB.getId());
     }
 }

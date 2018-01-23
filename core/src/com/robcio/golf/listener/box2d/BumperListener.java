@@ -8,18 +8,26 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.Force;
 import com.robcio.golf.component.Renderable;
 import com.robcio.golf.enumeration.EntityFlags;
+import com.robcio.golf.listener.BodyListener;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Map;
 
-@AllArgsConstructor
-class BumperListener {
+@Getter
+public class BumperListener implements BodyListener {
+
+    private final EntityFlags entityFlagsA = EntityFlags.BUMPER;
+    private final EntityFlags entityFlagsB = EntityFlags.BALL;
 
     final private ComponentMapper<Force> fm = ComponentMapper.getFor(Force.class);
 
-    final private Engine engine;
+    public void beginContact(final Map<Integer, Body> map) {
+        //nothing to do here
+    }
 
-    void beginContact(final Map<Integer, Body> map) {
+    @Override
+    public void endContact(Map<Integer, Body> map) {
         final Body ball = map.get(EntityFlags.BALL.getId());
         final Body bumper = map.get(EntityFlags.BUMPER.getId());
         final Entity entity = (Entity) bumper.getUserData();

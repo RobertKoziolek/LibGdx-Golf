@@ -14,7 +14,7 @@ import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Force;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.*;
-import com.robcio.golf.listener.box2d.Box2DContactListener;
+import com.robcio.golf.listener.Box2DContactListener;
 import com.robcio.golf.listener.entity.Box2DBodyRemover;
 import com.robcio.golf.listener.entity.SpriteAssigner;
 import com.robcio.golf.system.ImpulseSystem;
@@ -23,7 +23,6 @@ import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Textures;
 import com.robcio.golf.world.BodyDestroyer;
 import com.robcio.golf.world.BodyFactory;
-import lombok.AllArgsConstructor;
 
 public class MainClass extends Game {
     public static final float PPM = 64;
@@ -85,7 +84,7 @@ public class MainClass extends Game {
 //        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(16)));
 
         engine.addEntity(new Bowl(Position.of(800, 350), Dimension.of(25)));
-        engine.addEntity(new Hole(Position.of(800, 350), Dimension.of(2)));
+        engine.addEntity(new Hole(Position.of(800, 350), Dimension.of(0.5f)));
 
         engine.addEntity(new Bumper(Position.of(200, 400), Dimension.of(30), Force.of(55)));
         engine.addEntity(new Bumper(Position.of(200, 300), Dimension.of(30), Force.of(55)));
