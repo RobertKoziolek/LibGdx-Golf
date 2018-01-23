@@ -17,6 +17,8 @@ import com.robcio.golf.entity.*;
 import com.robcio.golf.listener.Box2DContactListener;
 import com.robcio.golf.listener.entity.Box2DBodyRemover;
 import com.robcio.golf.listener.entity.SpriteAssigner;
+import com.robcio.golf.registrar.EntityListenerRegistrar;
+import com.robcio.golf.registrar.EntitySystemRegistrar;
 import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.RenderSystem;
 import com.robcio.golf.utils.Log;
@@ -64,17 +66,15 @@ public class MainClass extends Game {
         bodyDestroyer = new BodyDestroyer(world);
 
         world.setContactListener(new Box2DContactListener(engine));
+        new EntityListenerRegistrar(engine, bodyDestroyer);
+        new EntitySystemRegistrar(engine, batch);
+
         createBoundaries();
         createEntities();
         Log.i("World body count", Integer.toString(world.getBodyCount()));
     }
 
     private void createEntities() {
-        engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner());
-        engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(bodyDestroyer));
-        engine.addSystem(new ImpulseSystem(3.5f));
-        engine.addSystem(new RenderSystem(batch));
-
         for (int i = 0; i < 55; ++i) {
             engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
         }
