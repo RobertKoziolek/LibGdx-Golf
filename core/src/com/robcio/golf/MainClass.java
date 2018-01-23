@@ -19,14 +19,14 @@ import com.robcio.golf.listener.input.InputCatcher;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;
 import com.robcio.golf.utils.Log;
+import com.robcio.golf.utils.Maths;
 import com.robcio.golf.utils.Textures;
 import com.robcio.golf.world.BodyDestroyer;
 import com.robcio.golf.world.BodyFactory;
 
 public class MainClass extends Game {
-    public static final float PPM = 64;
-    public static final int WIDTH = (int) (16 * PPM);
-    public static final int HEIGHT = (int) (9 * PPM);
+    public static final int WIDTH = (int) (16 * Maths.PPM);
+    public static final int HEIGHT = (int) (9 * Maths.PPM);
     public static final String TITLE = "Golf z Tibii";
 
     private SpriteBatch batch;
@@ -51,8 +51,8 @@ public class MainClass extends Game {
         batch.enableBlending();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 16, 9);
-//        batch.setProjectionMatrix(camera.combined);
+        camera.setToOrtho(true, WIDTH, HEIGHT);
+        batch.setProjectionMatrix(camera.combined);
         b2dr = new Box2DDebugRenderer();
 
 //        assets = new AssetManager();
@@ -74,7 +74,7 @@ public class MainClass extends Game {
     }
 
     private void createEntities() {
-        for (int i = 0; i < 1; ++i) {
+        for (int i = 0; i < 61; ++i) {
             engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
         }
 
@@ -142,7 +142,7 @@ public class MainClass extends Game {
 
 //        batch.begin();
 //        batch.end();
-        if (DEBUG)b2dr.render(world, camera.combined);
+        if (DEBUG)b2dr.render(world, camera.combined.scl(Maths.PPM));
     }
 
     private void update(final float deltaTime) {

@@ -9,6 +9,7 @@ import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.utils.Log;
+import com.robcio.golf.utils.Maths;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -35,11 +36,7 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        final Vector3 realCoords = camera.unproject(new Vector3(screenX, screenY, 0f));
-        final int x = (int) (realCoords.x * MainClass.PPM);
-        final int y = (int) (realCoords.y * MainClass.PPM);
-        Log.i(String.format("Touched at %d, %d", x, y));
-        engine.addEntity(new Ball(Position.of(x, y), Dimension.of(15)));
+        engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
         return false;
     }
 
@@ -50,11 +47,7 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        final Vector3 realCoords = camera.unproject(new Vector3(screenX, screenY, 0f));
-        final int x = (int) (realCoords.x * MainClass.PPM);
-        final int y = (int) (realCoords.y * MainClass.PPM);
-        Log.i(String.format("Touched at %d, %d", x, y));
-        engine.addEntity(new Ball(Position.of(x, y), Dimension.of(15)));
+        engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
         return false;
     }
 
@@ -66,5 +59,13 @@ public class InputCatcher implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    private Position getUnprojectedPosition(final int screenX, final int screenY){
+        final Vector3 realCoords = camera.unproject(new Vector3(screenX, screenY, 0f));
+        final int x = (int) (realCoords.x);
+        final int y = (int) (realCoords.y);
+        Log.e(String.format("Unprojected for %d, %d", x, y));
+        return Position.of(x, y);
     }
 }

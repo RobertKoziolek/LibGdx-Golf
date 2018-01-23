@@ -5,8 +5,8 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
+import com.robcio.golf.utils.Maths;
 
-import static com.robcio.golf.MainClass.PPM;
 
 //TODO World wyciagnac gdzies indziej, tu powinno nastepowac tylko tworzenie obiektow box2d
 public class BodyFactory {
@@ -20,7 +20,7 @@ public class BodyFactory {
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
                                  boolean isRotationFixed, int cbits, int mbits) {
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(dimension.width / PPM / 2, dimension.height / PPM / 2);
+        shape.setAsBox(dimension.width / Maths.PPM / 2, dimension.height / Maths.PPM / 2);
 
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
@@ -38,7 +38,7 @@ public class BodyFactory {
                                      int cbits,
                                      int mbits) {
         CircleShape shape = new CircleShape();
-        shape.setRadius(radius / PPM);
+        shape.setRadius(radius / Maths.PPM);
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
@@ -49,8 +49,8 @@ public class BodyFactory {
         Vector2 vertices[] = new Vector2[8];
         for (int i = 0; i < 8; ++i)
             vertices[i] = new Vector2();
-        radius1 /= PPM;
-        radius2 /= PPM;
+        radius1 /= Maths.PPM;
+        radius2 /= Maths.PPM;
         float dent = 0.7f;
         vertices[0].set(-radius1, 0);
         vertices[1].set(dent * -radius1, dent * radius2);
@@ -68,7 +68,7 @@ public class BodyFactory {
                                 int mbits) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = isRotationFixed;
-        bodyDef.position.set(position.x / PPM, position.y / PPM);
+        bodyDef.position.set(position.x / Maths.PPM, position.y / Maths.PPM);
         if (isStatic) {
             bodyDef.type = BodyType.StaticBody;
         } else {

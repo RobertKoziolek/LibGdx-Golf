@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.MainClass;
 import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Renderable;
@@ -47,11 +46,11 @@ public class RenderSystem extends SortedIteratingSystem {
         final Sprite sprite = rm.get(entity).sprite;
         final Body body = b2dm.get(entity).body;
         final Position position = pm.get(entity);
-        final float radius = body.getFixtureList().get(0).getShape().getRadius() * MainClass.PPM;
+        final float radius = body.getFixtureList().get(0).getShape().getRadius() * Maths.PPM;
 
         final Vector2 bodyPosition = body.getPosition();
-        position.x = bodyPosition.x * MainClass.PPM;
-        position.y = bodyPosition.y * MainClass.PPM;
+        position.x = bodyPosition.x * Maths.PPM;
+        position.y = bodyPosition.y * Maths.PPM;
         sprite.setPosition(position.x - radius, position.y - radius);
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.draw(batch);
