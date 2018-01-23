@@ -5,8 +5,6 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
-import lombok.Setter;
-import lombok.Singular;
 
 import static com.robcio.golf.MainClass.PPM;
 

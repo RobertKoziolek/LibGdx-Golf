@@ -2,7 +2,6 @@ package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.robcio.golf.component.*;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.utils.Textures;

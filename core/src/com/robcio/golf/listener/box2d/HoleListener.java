@@ -2,17 +2,13 @@ package com.robcio.golf.listener.box2d;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
-import com.robcio.golf.utils.Log;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @AllArgsConstructor
 @Getter
