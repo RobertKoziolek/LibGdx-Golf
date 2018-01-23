@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum EntityFlags {
-    NONE(0), BALL(1), HOLE(2);
+    NONE(0), BALL(1), HOLE(2), BOWL(3), BUMPER(4);
     private int id;
 }

@@ -11,6 +11,7 @@ import java.util.Map;
 public class Textures {
     final public static String GOLFBALL = "golfball.png";
     final public static String HOLE = "hole.png";
+    final public static String BUMPER = "bumper.png";
 
     final private static Map<String, Texture> textures = new HashMap();
 
@@ -25,7 +26,7 @@ public class Textures {
         }
     }
 
-    public static void clear(){
+    public static void dispose(){
         for (Texture texture : textures.values()){
             texture.dispose();
         }

@@ -5,23 +5,18 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
+import lombok.Setter;
+import lombok.Singular;
 
 import static com.robcio.golf.MainClass.PPM;
 
 //TODO World wyciagnac gdzies indziej, tu powinno nastepowac tylko tworzenie obiektow box2d
 public class BodyFactory {
-    private final static float gravity = 0f;
-    private final static boolean doSleep = false;
-    private static World world = new World(new Vector2(0, gravity), doSleep);
+    private static World world;
 
-    public static World getWorld() {
-        return world;
-    }
-
-    public static World getClearWorld() {
-        world.dispose();
-        world = new World(new Vector2(0, gravity), doSleep);
-        return world;
+    public static void setWorld(final World world) {
+        if (BodyFactory.world != null) throw new IllegalStateException("World cannot be set twice");
+        BodyFactory.world = world;
     }
 
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
@@ -41,14 +36,16 @@ public class BodyFactory {
         }
     }
 
-    private static Body createCircle(Position position, float radius, boolean isStatic, boolean isRotationFixed, int cbits,
+    private static Body createCircle(Position position, float radius, boolean isStatic, boolean isRotationFixed,
+                                     int cbits,
                                      int mbits) {
         CircleShape shape = new CircleShape();
         shape.setRadius(radius / PPM);
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
-    private static Body createOval(Position position, float radius1, float radius2, boolean isStatic, boolean isRotationFixed,
+    private static Body createOval(Position position, float radius1, float radius2, boolean isStatic,
+                                   boolean isRotationFixed,
                                    int cbits, int mbits) {
         PolygonShape shape = new PolygonShape();
         Vector2 vertices[] = new Vector2[8];
@@ -69,7 +66,8 @@ public class BodyFactory {
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
-    private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, int cbits, int mbits) {
+    private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, int cbits,
+                                int mbits) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = isRotationFixed;
         bodyDef.position.set(position.x / PPM, position.y / PPM);

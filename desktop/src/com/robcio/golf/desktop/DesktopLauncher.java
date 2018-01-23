@@ -11,6 +11,12 @@ public class DesktopLauncher {
 		config.width= MainClass.WIDTH;
 		config.height= MainClass.HEIGHT;
 		config.title=MainClass.TITLE;
-		new LwjglApplication(new MainClass(), config);
+		final boolean debug;
+		if (arg.length<1){
+			debug = false;
+		} else{
+			debug = Boolean.parseBoolean(arg[0]);
+		}
+		new LwjglApplication(new MainClass(debug), config);
 	}
 }
