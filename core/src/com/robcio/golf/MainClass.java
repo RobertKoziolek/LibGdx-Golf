@@ -15,12 +15,9 @@ import com.robcio.golf.component.Force;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.*;
 import com.robcio.golf.listener.Box2DContactListener;
-import com.robcio.golf.listener.entity.Box2DBodyRemover;
-import com.robcio.golf.listener.entity.SpriteAssigner;
+import com.robcio.golf.listener.input.InputCatcher;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;
-import com.robcio.golf.system.ImpulseSystem;
-import com.robcio.golf.system.RenderSystem;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Textures;
 import com.robcio.golf.world.BodyDestroyer;
@@ -71,11 +68,13 @@ public class MainClass extends Game {
 
         createBoundaries();
         createEntities();
+
+        Gdx.input.setInputProcessor(new InputCatcher(camera, engine));
         Log.i("World body count", Integer.toString(world.getBodyCount()));
     }
 
     private void createEntities() {
-        for (int i = 0; i < 55; ++i) {
+        for (int i = 0; i < 1; ++i) {
             engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
         }
 
@@ -83,17 +82,43 @@ public class MainClass extends Game {
 //        engine.addEntity(new Hole(Position.of(350, 350), Dimension.of(16)));
 //        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(16)));
 
-        engine.addEntity(new Bowl(Position.of(800, 350), Dimension.of(25)));
-        engine.addEntity(new Hole(Position.of(800, 350), Dimension.of(0.5f)));
+        addHole(Position.of(400, 500));
+        addHole(Position.of(700, 500));
+        addHole(Position.of(999, 500));
+        addHole(Position.of(55, 500));
+        addHole(Position.of(400, 100));
+        addHole(Position.of(700, 100));
+        addHole(Position.of(999, 100));
+        addHole(Position.of(55, 100));
 
-        engine.addEntity(new Bumper(Position.of(200, 400), Dimension.of(30), Force.of(55)));
-        engine.addEntity(new Bumper(Position.of(200, 300), Dimension.of(30), Force.of(55)));
-        engine.addEntity(new Bumper(Position.of(200, 200), Dimension.of(30), Force.of(55)));
+        final Force force = Force.of(55);
+        final Dimension bumperDimension = Dimension.of(20);
+
+        engine.addEntity(new Bumper(Position.of(200, 500), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(200, 400), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(200, 300), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(200, 200), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(200, 100), bumperDimension, force));
+
+        engine.addEntity(new Bumper(Position.of(300, 150), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(300, 250), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(300, 350), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(300, 450), bumperDimension, force));
+
+        engine.addEntity(new Bumper(Position.of(100, 150), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(100, 250), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(100, 350), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(100, 450), bumperDimension, force));
 
 //        BodyFactory.createBox(Position.of(200, 200), Dimension.of(50, 99), false, false, 2, 3);
 //        BodyFactory.createBox(Position.of(211, 400), Dimension.of(140, 49), false, false, 2, 3);
 //        BodyFactory.createCircular(Position.of(773, 500), Dimension.of(50, 89), false, false, 2, 3);
 //        BodyFactory.createCircular(Position.of(473, 500), Dimension.of(50, 50), false, false, 2, 3);
+    }
+
+    private void addHole(final Position position) {
+        engine.addEntity(new Bowl(position, Dimension.of(25)));
+        engine.addEntity(new Hole(position, Dimension.of(0.5f)));
     }
 
     private void createBoundaries() {
