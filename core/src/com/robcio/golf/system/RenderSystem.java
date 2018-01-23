@@ -3,7 +3,7 @@ package com.robcio.golf.system;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.ashley.systems.SortedIteratingSystem;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -14,18 +14,27 @@ import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Renderable;
 import com.robcio.golf.utils.Maths;
 
+import java.util.Comparator;
+
 //TODO po dodaniu wiekszej ilosci obiektow do rysowania nalezy rozdzielic czesc zmieniajaca pozycje i tu zostawic samo draw(batch)
-public class RenderSystem extends IteratingSystem {
+public class RenderSystem extends SortedIteratingSystem {
     final private ComponentMapper<Box2dBody> b2dm = ComponentMapper.getFor(Box2dBody.class);
     final private ComponentMapper<Renderable> rm = ComponentMapper.getFor(Renderable.class);
     final private ComponentMapper<Position> pm = ComponentMapper.getFor(Position.class);
     final private SpriteBatch batch;
 
     public RenderSystem(final SpriteBatch batch) {
-        super(Family.all(Box2dBody.class, Renderable.class, Position.class).get());
+        super(Family.all(Box2dBody.class, Renderable.class, Position.class).get(), new ZComparator());
         this.batch = batch;
     }
+    private static class ZComparator implements Comparator<Entity> {
+        private ComponentMapper<Renderable> rm = ComponentMapper.getFor(Renderable.class);
 
+        @Override
+        public int compare(Entity e1, Entity e2) {
+            return (int)Math.signum(rm.get(e1).z - rm.get(e2).z);
+        }
+    }
     @Override
     public void update(float deltaTime) {
         batch.begin();

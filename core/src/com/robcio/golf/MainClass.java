@@ -84,8 +84,8 @@ public class MainClass extends Game {
 //        engine.addEntity(new Hole(Position.of(350, 350), Dimension.of(16)));
 //        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(16)));
 
-        engine.addEntity(new Bowl(Position.of(800, 350), Dimension.of(40)));
-        engine.addEntity(new Hole(Position.of(800, 350), Dimension.of(10)));
+        engine.addEntity(new Bowl(Position.of(800, 350), Dimension.of(25)));
+        engine.addEntity(new Hole(Position.of(800, 350), Dimension.of(2)));
 
         engine.addEntity(new Bumper(Position.of(200, 400), Dimension.of(30), Force.of(55)));
         engine.addEntity(new Bumper(Position.of(200, 300), Dimension.of(30), Force.of(55)));
