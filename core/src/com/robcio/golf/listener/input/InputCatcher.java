@@ -4,12 +4,9 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
-import com.robcio.golf.MainClass;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.Ball;
-import com.robcio.golf.utils.Log;
-import com.robcio.golf.utils.Maths;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -63,9 +60,6 @@ public class InputCatcher implements InputProcessor {
 
     private Position getUnprojectedPosition(final int screenX, final int screenY){
         final Vector3 realCoords = camera.unproject(new Vector3(screenX, screenY, 0f));
-        final int x = (int) (realCoords.x);
-        final int y = (int) (realCoords.y);
-        Log.e(String.format("Unprojected for %d, %d", x, y));
-        return Position.of(x, y);
+        return Position.of(realCoords.x, realCoords.y);
     }
 }

@@ -31,7 +31,7 @@ public class MainClass extends Game {
 
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private AssetManager assets;
+//    private AssetManager assets;
 
     private Box2DDebugRenderer b2dr;
 
@@ -47,20 +47,22 @@ public class MainClass extends Game {
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        batch.enableBlending();
+        b2dr = new Box2DDebugRenderer();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(true, WIDTH, HEIGHT);
+
+        batch = new SpriteBatch();
+        batch.enableBlending();
         batch.setProjectionMatrix(camera.combined);
-        b2dr = new Box2DDebugRenderer();
 
 //        assets = new AssetManager();
 
-        engine = new Engine();
         world = new World(new Vector2(0f, 0f), false);
         BodyFactory.setWorld(world);
         bodyDestroyer = new BodyDestroyer(world);
+
+        engine = new Engine();
 
         world.setContactListener(new Box2DContactListener(engine));
         new EntityListenerRegistrar(engine, bodyDestroyer);
@@ -91,7 +93,7 @@ public class MainClass extends Game {
         addHole(Position.of(999, 100));
         addHole(Position.of(55, 100));
 
-        final Force force = Force.of(55);
+        final Force force =  Force.of(55);
         final Dimension bumperDimension = Dimension.of(20);
 
         engine.addEntity(new Bumper(Position.of(200, 500), bumperDimension, force));

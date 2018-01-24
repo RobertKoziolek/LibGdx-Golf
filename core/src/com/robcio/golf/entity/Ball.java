@@ -8,6 +8,7 @@ import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.utils.Textures;
 import com.robcio.golf.world.BodyFactory;
 
+//TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
 public class Ball extends Entity {
 
     public Ball(final Position position, final Dimension dimension) {

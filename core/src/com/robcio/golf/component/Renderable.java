@@ -14,6 +14,7 @@ public class Renderable implements Component {
     public static Renderable of(final String path) {
         return of(path, 10);
     }
+
     public static Renderable of(final String path, final int z) {
         final Renderable renderable = new Renderable();
         renderable.sprite = new Sprite(Textures.get(path));

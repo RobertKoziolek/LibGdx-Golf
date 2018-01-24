@@ -8,7 +8,6 @@ import com.robcio.golf.component.Position;
 import com.robcio.golf.utils.Maths;
 
 
-//TODO World wyciagnac gdzies indziej, tu powinno nastepowac tylko tworzenie obiektow box2d
 public class BodyFactory {
     private static World world;
 
