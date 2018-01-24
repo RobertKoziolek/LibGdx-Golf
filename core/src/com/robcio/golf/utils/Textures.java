@@ -9,6 +9,7 @@ import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Textures {
+    final private static String directory = "texture/";
     final public static String GOLFBALL = "golfball.png";
     final public static String HOLE = "hole.png";
     final public static String BUMPER = "bumper.png";
@@ -16,7 +17,9 @@ public class Textures {
 
     final private static Map<String, Texture> textures = new HashMap();
 
-    public static Texture get(final String path) {
+    //TODO do napisania lepiej
+    public static Texture get(String path) {
+        path = directory + path;
         if (textures.containsKey(path)){
             return textures.get(path);
         }

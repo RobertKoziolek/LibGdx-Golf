@@ -15,7 +15,6 @@ import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
 public class InBowlSystem extends IteratingSystem {
-    private ImmutableArray<Entity> entities;
 
     public InBowlSystem() {
         super(Family.all(InBowl.class, Box2dBody.class).get());

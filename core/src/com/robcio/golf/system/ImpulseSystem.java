@@ -12,6 +12,8 @@ import com.robcio.golf.utils.Maths;
 
 public class ImpulseSystem extends IntervalIteratingSystem {
 
+    private boolean processing = true;
+
     public ImpulseSystem(final float interval) {
         super(Family.all(Impulse.class, Box2dBody.class).get(), interval);
     }
@@ -23,5 +25,10 @@ public class ImpulseSystem extends IntervalIteratingSystem {
 
         final Box2dBody box2dBody = Mapper.box2dBody.get(entity);
         box2dBody.body.applyForceToCenter(new Vector2(x, y), true);
+    }
+
+    public void change() {
+        processing = !processing;
+        setProcessing(processing);
     }
 }

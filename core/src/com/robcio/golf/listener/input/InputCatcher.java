@@ -13,14 +13,25 @@ import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Impulse;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.Ball;
-import lombok.AllArgsConstructor;
+import com.robcio.golf.system.AttractionSystem;
+import com.robcio.golf.utils.Log;
+import com.robcio.golf.utils.Maths;
 
-@AllArgsConstructor
 public class InputCatcher implements InputProcessor {
 
     private final OrthographicCamera camera;
 
     private final Engine engine;
+
+    private final AttractionSystem attractionSystem;
+
+    private boolean creating = true;
+
+    public InputCatcher(OrthographicCamera camera, Engine engine) {
+        this.camera = camera;
+        this.engine = engine;
+        this.attractionSystem = engine.getSystem(AttractionSystem.class);
+    }
 
     @Override
     public boolean keyDown(int keycode) {
@@ -45,21 +56,29 @@ public class InputCatcher implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (pointer > 0) {
             removeBalls();
-        } else {
+        } else if (creating) {
             engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+        } else {
+            attractionSystem.setProcessing(true);
         }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            attractionSystem.setProcessing(false);
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        if (pointer == 0) {
+        if (creating && pointer == 0) {
             engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+        } else {
+            final Position position = getUnprojectedPosition(screenX, screenY);
+            attractionSystem.position.x = position.x/ Maths.PPM;
+            attractionSystem.position.y = position.y/ Maths.PPM;
+
         }
         return false;
     }
@@ -85,5 +104,13 @@ public class InputCatcher implements InputProcessor {
         for (Entity entity : entities) {
             engine.removeEntity(entity);
         }
+    }
+
+    int anInt = 0;
+
+    public void changeBehaviour() {
+        this.creating = !creating;
+        attractionSystem.setProcessing(true);
+        Log.i("c" + creating + ++anInt);
     }
 }
