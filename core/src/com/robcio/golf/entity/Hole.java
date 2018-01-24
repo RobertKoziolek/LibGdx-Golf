@@ -17,6 +17,7 @@ public class Hole extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
-        add(Renderable.of(Textures.HOLE, 15));
+        //TODO cos z tym trzeba zrobic zeby to jednak bylo autonomicznie holem bez wspolpracy z bowlem
+//        add(Renderable.of(Textures.HOLE, 15));
     }
 }

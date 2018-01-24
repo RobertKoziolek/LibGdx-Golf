@@ -24,13 +24,9 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.C){
+        if (keycode == Input.Keys.C) {
             //TODO czemu nie usuwa wszystkich tylko czesc?
-            final ImmutableArray<Entity> entities = engine
-                    .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
-            for (Entity entity : entities){
-                engine.removeEntity(entity);
-            }
+            removeBalls();
         }
         return false;
     }
@@ -47,7 +43,11 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+        if (pointer > 0) {
+            removeBalls();
+        } else {
+            engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+        }
         return false;
     }
 
@@ -58,7 +58,9 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+        if (pointer == 0) {
+            engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+        }
         return false;
     }
 
@@ -72,8 +74,16 @@ public class InputCatcher implements InputProcessor {
         return false;
     }
 
-    private Position getUnprojectedPosition(final int screenX, final int screenY){
+    private Position getUnprojectedPosition(final int screenX, final int screenY) {
         final Vector3 realCoords = camera.unproject(new Vector3(screenX, screenY, 0f));
         return Position.of(realCoords.x, realCoords.y);
+    }
+
+    private void removeBalls() {
+        final ImmutableArray<Entity> entities = engine
+                .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
+        for (Entity entity : entities) {
+            engine.removeEntity(entity);
+        }
     }
 }

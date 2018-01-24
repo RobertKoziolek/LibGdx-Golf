@@ -88,26 +88,26 @@ public class MainClass extends Game {
         addHole(Position.of(55, 500));
         addHole(Position.of(400, 100));
         addHole(Position.of(55, 100));
-        engine.addEntity(new Bowl(Position.of(700, 300), Dimension.of(199)));
+        engine.addEntity(new Bowl(Position.of(700, 300), Dimension.of(199), Textures.BOWL));
 
-        final Force force =  Force.of(55);
+        final Force bumperForce =  Force.of(55);
         final Dimension bumperDimension = Dimension.of(20);
 
-        engine.addEntity(new Bumper(Position.of(200, 500), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(200, 400), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(200, 300), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(200, 200), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(200, 100), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(200, 500), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(200, 400), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(200, 300), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(200, 200), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(200, 100), bumperDimension, bumperForce));
 
-        engine.addEntity(new Bumper(Position.of(300, 150), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(300, 250), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(300, 350), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(300, 450), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(300, 150), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(300, 250), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(300, 350), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(300, 450), bumperDimension, bumperForce));
 
-        engine.addEntity(new Bumper(Position.of(100, 150), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(100, 250), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(100, 350), bumperDimension, force));
-        engine.addEntity(new Bumper(Position.of(100, 450), bumperDimension, force));
+        engine.addEntity(new Bumper(Position.of(100, 150), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(100, 250), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(100, 350), bumperDimension, bumperForce));
+        engine.addEntity(new Bumper(Position.of(100, 450), bumperDimension, bumperForce));
 
 //        BodyFactory.createBox(Position.of(200, 200), Dimension.of(50, 99), false, false, 2, 3);
 //        BodyFactory.createBox(Position.of(211, 400), Dimension.of(140, 49), false, false, 2, 3);
@@ -116,7 +116,7 @@ public class MainClass extends Game {
     }
 
     private void addHole(final Position position) {
-        engine.addEntity(new Bowl(position, Dimension.of(25)));
+        engine.addEntity(new Bowl(position, Dimension.of(25), Textures.HOLE));
         engine.addEntity(new Hole(position, Dimension.of(0.5f)));
     }
 

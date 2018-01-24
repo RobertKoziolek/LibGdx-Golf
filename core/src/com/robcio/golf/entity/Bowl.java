@@ -12,7 +12,7 @@ import com.robcio.golf.world.BodyFactory;
 
 public class Bowl extends Entity {
 
-    public Bowl(final Position position, final Dimension dimension) {
+    public Bowl(final Position position, final Dimension dimension, final String texture) {
         final Body body = BodyFactory.createCircular(position, dimension, true, true, 4, 2);
 
         body.setUserData(this);
@@ -22,6 +22,6 @@ public class Bowl extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
-        add(Renderable.of(Textures.BOWL, 5));
+        add(Renderable.of(texture, 5));
     }
 }
