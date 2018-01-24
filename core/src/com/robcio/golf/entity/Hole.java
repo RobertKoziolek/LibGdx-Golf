@@ -17,6 +17,6 @@ public class Hole extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
-        add(Renderable.of(Textures.HOLE, 30));
+        add(Renderable.of(Textures.HOLE, 15));
     }
 }

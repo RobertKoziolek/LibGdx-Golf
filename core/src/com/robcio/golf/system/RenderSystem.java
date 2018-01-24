@@ -17,6 +17,7 @@ import java.util.Comparator;
 
 //TODO po dodaniu wiekszej ilosci obiektow do rysowania nalezy rozdzielic czesc zmieniajaca pozycje i tu zostawic samo draw(batch)
 public class RenderSystem extends SortedIteratingSystem {
+
     final private SpriteBatch batch;
 
     public RenderSystem(final SpriteBatch batch) {

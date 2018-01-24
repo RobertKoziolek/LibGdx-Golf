@@ -22,6 +22,6 @@ public class Bowl extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
-        add(Renderable.of(Textures.HOLE));
+        add(Renderable.of(Textures.BOWL, 5));
     }
 }

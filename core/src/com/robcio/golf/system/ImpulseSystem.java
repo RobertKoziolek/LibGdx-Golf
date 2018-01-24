@@ -11,7 +11,6 @@ import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
 public class ImpulseSystem extends IntervalIteratingSystem {
-    private ImmutableArray<Entity> entities;
 
     public ImpulseSystem(final float interval) {
         super(Family.all(Impulse.class, Box2dBody.class).get(), interval);

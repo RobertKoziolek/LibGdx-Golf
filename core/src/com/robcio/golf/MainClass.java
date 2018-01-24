@@ -76,7 +76,7 @@ public class MainClass extends Game {
     }
 
     private void createEntities() {
-        for (int i = 0; i < 61; ++i) {
+        for (int i = 0; i < 1; ++i) {
             engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
         }
 
@@ -85,13 +85,10 @@ public class MainClass extends Game {
 //        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(16)));
 
         addHole(Position.of(400, 500));
-        addHole(Position.of(700, 500));
-        addHole(Position.of(999, 500));
         addHole(Position.of(55, 500));
         addHole(Position.of(400, 100));
-        addHole(Position.of(700, 100));
-        addHole(Position.of(999, 100));
         addHole(Position.of(55, 100));
+        engine.addEntity(new Bowl(Position.of(700, 300), Dimension.of(199)));
 
         final Force force =  Force.of(55);
         final Dimension bumperDimension = Dimension.of(20);

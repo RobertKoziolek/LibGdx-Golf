@@ -12,6 +12,7 @@ public class Textures {
     final public static String GOLFBALL = "golfball.png";
     final public static String HOLE = "hole.png";
     final public static String BUMPER = "bumper.png";
+    final public static String BOWL = "bowl.png";
 
     final private static Map<String, Texture> textures = new HashMap();
 

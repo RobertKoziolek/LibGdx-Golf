@@ -1,10 +1,16 @@
 package com.robcio.golf.listener.input;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
+import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Dimension;
+import com.robcio.golf.component.Impulse;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.Ball;
 import lombok.AllArgsConstructor;
@@ -18,6 +24,14 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.C){
+            //TODO czemu nie usuwa wszystkich tylko czesc?
+            final ImmutableArray<Entity> entities = engine
+                    .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
+            for (Entity entity : entities){
+                engine.removeEntity(entity);
+            }
+        }
         return false;
     }
 
