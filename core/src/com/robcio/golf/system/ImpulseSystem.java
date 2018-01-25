@@ -28,8 +28,9 @@ public class ImpulseSystem extends IntervalIteratingSystem {
         box2dBody.body.applyForceToCenter(new Vector2(x, y), true);
     }
 
-    public void change() {
+    public boolean change() {
         processing = !processing;
         setProcessing(processing);
+        return processing;
     }
 }

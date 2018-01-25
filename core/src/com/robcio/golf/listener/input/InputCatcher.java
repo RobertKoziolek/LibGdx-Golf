@@ -50,6 +50,8 @@ public class InputCatcher implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (creating) {
             engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+        } else {
+            setAttractionPoint(screenX, screenY);
         }
         return false;
     }
@@ -64,10 +66,7 @@ public class InputCatcher implements InputProcessor {
         if (creating && pointer == 0) {
             engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
         } else {
-            final Position position = getUnprojectedPosition(screenX, screenY);
-            position.x = position.x / Maths.PPM;
-            position.y = position.y / Maths.PPM;
-            Attracted.position = position;
+            setAttractionPoint(screenX, screenY);
         }
         return false;
     }
@@ -87,8 +86,16 @@ public class InputCatcher implements InputProcessor {
         return Position.of(realCoords.x, realCoords.y);
     }
 
-    public void changeBehaviour() {
+    public boolean changeBehaviour() {
         this.creating = !creating;
         attractionSystem.setProcessing(!creating);
+        return creating;
+    }
+
+    private void setAttractionPoint(int screenX, int screenY) {
+        final Position position = getUnprojectedPosition(screenX, screenY);
+        position.x = position.x / Maths.PPM;
+        position.y = position.y / Maths.PPM;
+        Attracted.position = position;
     }
 }

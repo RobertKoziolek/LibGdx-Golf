@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -38,41 +39,47 @@ public class StageController extends Stage {
         font32 = loadFont();
         skin = loadSkin(assets, font32);
 
-        addButton("Creation/Attraction", new ClickListener() {
+        final TextButton leftClickButton = addButton("Creation/Attraction");
+        leftClickButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                inputCatcher.changeBehaviour();
+                final boolean creating = inputCatcher.changeBehaviour();
+                leftClickButton.setText(creating ? "Attraction" : "Creation");
             }
         });
-        addButton("Impulse on/off", new ClickListener() {
+        final TextButton impulseButton = addButton("Impulse on/off");
+        impulseButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                engine.getSystem(ImpulseSystem.class).change();
+                final boolean impulseOn = engine.getSystem(ImpulseSystem.class).change();
+                impulseButton.setText(impulseOn ? "Impulse off" : "Impulse on");
             }
         });
-        addButton("Clear balls", new ClickListener() {
+        final ImmutableArray<Entity> entities = engine
+                .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
+        final Button clearBallsButton = addButton("Clear balls");
+        clearBallsButton.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //TODO czemu nie usuwa wszystkich tylko czesc?
-                final ImmutableArray<Entity> entities = engine
-                        .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
+                //TODO czemu nie usuwa wszystkich tylko polowe?
                 for (Entity entity : entities) {
                     engine.removeEntity(entity);
                 }
             }
         });
+
     }
 
-    private void addButton(final String text, final ClickListener clickListener) {
+    private TextButton addButton(final String text) {
         final int index = getActors().size;
         final TextButton button = new TextButton(text, skin);
         final float width = MainClass.WIDTH / numberOfButtonsInRow();
         final float height = MainClass.HEIGHT / 12;
         button.setSize(width, height);
-        button.setPosition(width + width * ((index -1 ) % numberOfButtonsInRow()),
+        button.setPosition(width + width * ((index - 1) % numberOfButtonsInRow()),
                            MainClass.HEIGHT - height);
-        button.addListener(clickListener);
         addActor(button);
+        return button;
     }
 
     private int numberOfButtonsInRow() {
