@@ -8,13 +8,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
-import com.robcio.golf.component.Box2dBody;
-import com.robcio.golf.component.Dimension;
-import com.robcio.golf.component.Impulse;
-import com.robcio.golf.component.Position;
+import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.system.AttractionSystem;
 import com.robcio.golf.utils.Log;
+import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
 public class InputCatcher implements InputProcessor {
@@ -35,10 +33,6 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.C) {
-            //TODO czemu nie usuwa wszystkich tylko czesc?
-            removeBalls();
-        }
         return false;
     }
 
@@ -54,19 +48,14 @@ public class InputCatcher implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if (pointer > 0) {
-            removeBalls();
-        } else if (creating) {
+        if (creating) {
             engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
-        } else {
-            attractionSystem.setProcessing(true);
         }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-            attractionSystem.setProcessing(false);
         return false;
     }
 
@@ -76,9 +65,9 @@ public class InputCatcher implements InputProcessor {
             engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
         } else {
             final Position position = getUnprojectedPosition(screenX, screenY);
-            attractionSystem.position.x = position.x/ Maths.PPM;
-            attractionSystem.position.y = position.y/ Maths.PPM;
-
+            position.x = position.x / Maths.PPM;
+            position.y = position.y / Maths.PPM;
+            Attracted.position = position;
         }
         return false;
     }
@@ -98,19 +87,8 @@ public class InputCatcher implements InputProcessor {
         return Position.of(realCoords.x, realCoords.y);
     }
 
-    private void removeBalls() {
-        final ImmutableArray<Entity> entities = engine
-                .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
-        for (Entity entity : entities) {
-            engine.removeEntity(entity);
-        }
-    }
-
-    int anInt = 0;
-
     public void changeBehaviour() {
         this.creating = !creating;
-        attractionSystem.setProcessing(true);
-        Log.i("c" + creating + ++anInt);
+        attractionSystem.setProcessing(!creating);
     }
 }

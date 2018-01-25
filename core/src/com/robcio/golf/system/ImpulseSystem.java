@@ -12,10 +12,11 @@ import com.robcio.golf.utils.Maths;
 
 public class ImpulseSystem extends IntervalIteratingSystem {
 
-    private boolean processing = true;
+    private boolean processing = false;
 
     public ImpulseSystem(final float interval) {
         super(Family.all(Impulse.class, Box2dBody.class).get(), interval);
+        setProcessing(processing);
     }
 
     @Override

@@ -21,6 +21,7 @@ public class Ball extends Entity {
         fixture.setDensity(0.4f);
 
         add(position);
+        add(new Attracted());
         add(dimension);
         add(new Box2dBody(body));
         add(new Impulse());
