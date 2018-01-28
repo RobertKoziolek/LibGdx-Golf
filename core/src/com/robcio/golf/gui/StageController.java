@@ -16,11 +16,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.robcio.golf.MainClass;
 import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Impulse;
 import com.robcio.golf.listener.input.InputCatcher;
 import com.robcio.golf.system.ImpulseSystem;
+import com.robcio.golf.utils.Log;
+
+import static com.robcio.golf.MainClass.HEIGHT;
+import static com.robcio.golf.MainClass.WIDTH;
+
 
 public class StageController extends Stage {
 
@@ -57,8 +61,9 @@ public class StageController extends Stage {
         });
         final ImmutableArray<Entity> entities = engine
                 .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
+        Log.i("pilkow jest " + entities.size());
         final Button clearBallsButton = addButton("Clear balls");
-        clearBallsButton.addListener( new ClickListener() {
+        clearBallsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //TODO czemu nie usuwa wszystkich tylko polowe?
@@ -73,11 +78,11 @@ public class StageController extends Stage {
     private TextButton addButton(final String text) {
         final int index = getActors().size;
         final TextButton button = new TextButton(text, skin);
-        final float width = MainClass.WIDTH / numberOfButtonsInRow();
-        final float height = MainClass.HEIGHT / 12;
+        final float width = WIDTH / numberOfButtonsInRow();
+        final float height = HEIGHT / 12;
         button.setSize(width, height);
         button.setPosition(width + width * ((index - 1) % numberOfButtonsInRow()),
-                           MainClass.HEIGHT - height);
+                           HEIGHT - height);
         addActor(button);
         return button;
     }
