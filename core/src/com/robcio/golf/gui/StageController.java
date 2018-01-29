@@ -11,9 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.robcio.golf.component.Box2dBody;
@@ -43,7 +41,10 @@ public class StageController extends Stage {
         assets = new AssetManager();
         font32 = loadFont();
         skin = loadSkin(font32);
+        setUp();
+    }
 
+    private void setUp() {
         final TextButton leftClickButton = addButton("Creation/Attraction");
         leftClickButton.addListener(new ClickListener() {
             @Override
@@ -73,7 +74,16 @@ public class StageController extends Stage {
                 }
             }
         });
-
+        final Table table = new Table(skin);
+        table.add(leftClickButton).row();
+        table.add(impulseButton).row();
+        table.add(clearBallsButton).row();
+        final ScrollPane debugPane = new ScrollPane(table, skin);
+        debugPane.setSize(WIDTH/3, HEIGHT / 12);
+        debugPane.setScrollingDisabled(true, false);
+        debugPane.setupFadeScrollBars(0f, 0f);
+        debugPane.setupOverscroll(15, 10, 55);
+        addActor(debugPane);
     }
 
     private TextButton addButton(final String text) {
@@ -84,7 +94,6 @@ public class StageController extends Stage {
         button.setSize(width, height);
         button.setPosition(width + width * ((index - 1) % numberOfButtonsInRow()),
                            HEIGHT - height);
-        addActor(button);
         return button;
     }
 
