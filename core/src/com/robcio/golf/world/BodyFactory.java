@@ -6,10 +6,15 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.utils.Maths;
+import lombok.Getter;
 
-
+@Getter
 public class BodyFactory {
     private static World world;
+
+    public static World getWorld() {
+        return world;
+    }
 
     public static void setWorld(final World world) {
         if (BodyFactory.world != null) throw new IllegalStateException("World cannot be set twice");

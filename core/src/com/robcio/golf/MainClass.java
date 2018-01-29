@@ -4,22 +4,19 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.robcio.golf.component.Dimension;
-import com.robcio.golf.component.Force;
-import com.robcio.golf.component.Position;
-import com.robcio.golf.entity.*;
 import com.robcio.golf.gui.StageController;
 import com.robcio.golf.listener.Box2DContactListener;
 import com.robcio.golf.listener.input.InputCatcher;
 import com.robcio.golf.map.Map;
+import com.robcio.golf.map.TestMap;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;
 import com.robcio.golf.utils.Log;
@@ -39,6 +36,7 @@ public class MainClass extends Game {
     private StageController stageController;
 
     private Box2DDebugRenderer b2dr;
+    private OrthogonalTiledMapRenderer tmr;
 
     private World world;
     private BodyDestroyer bodyDestroyer;
@@ -56,7 +54,7 @@ public class MainClass extends Game {
         b2dr = new Box2DDebugRenderer();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(true, WIDTH, HEIGHT);
+        camera.setToOrtho(false, WIDTH, HEIGHT);
 
         batch = new SpriteBatch();
         batch.enableBlending();
@@ -72,7 +70,11 @@ public class MainClass extends Game {
         new EntityListenerRegistrar(engine, bodyDestroyer);
         new EntitySystemRegistrar(engine, batch);
 
-        new Map(engine);
+//        new TestMap(engine);
+        final Map map = new Map(engine);
+        tmr = new OrthogonalTiledMapRenderer(map.getTiledMap());
+        tmr.setView(camera);
+
 
         final InputCatcher inputCatcher = new InputCatcher(camera, engine);
 
@@ -87,10 +89,14 @@ public class MainClass extends Game {
         Gdx.gl.glClearColor(0, 0.6f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+
+        tmr.render();
+
         update(Gdx.graphics.getDeltaTime());
 
 //        batch.begin();
 //        batch.end();
+
         if (DEBUG)b2dr.render(world, camera.combined.scl(Maths.PPM));
 
         stageController.draw();
@@ -109,6 +115,7 @@ public class MainClass extends Game {
         Textures.dispose();
         world.dispose();
         stageController.dispose();
+        tmr.dispose();
         Log.i("Disposing");
     }
 }

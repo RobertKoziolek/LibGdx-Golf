@@ -1,92 +1,109 @@
 package com.robcio.golf.map;
 
 import com.badlogic.ashley.core.Engine;
-import com.robcio.golf.component.Dimension;
-import com.robcio.golf.component.Force;
-import com.robcio.golf.component.Position;
-import com.robcio.golf.entity.*;
-import com.robcio.golf.utils.Textures;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.EllipseMapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Ellipse;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
+import com.robcio.golf.entity.Ball;
+import com.robcio.golf.entity.Bowl;
+import com.robcio.golf.entity.Bumper;
+import com.robcio.golf.entity.Wall;
+import com.robcio.golf.utils.Log;
+import com.robcio.golf.utils.Maths;
 
-import static com.robcio.golf.MainClass.HEIGHT;
-import static com.robcio.golf.MainClass.WIDTH;
-
-//IDEA sloneczna mapa moze miec poruszajacy sie w bok cien chmury
 public class Map {
+    private static final String mapPath = "map/map.tmx";
 
     private final Engine engine;
+    private TiledMap tiledMap;
 
-    public Map(final Engine engine){
+    public Map(final Engine engine) {
         this.engine = engine;
-        createBoundaries();
-        createHoles();
-        createBalls();
-        createBowls();
-        createBoxes();
-        createBumpers();
+
+        this.tiledMap = new TmxMapLoader().load(mapPath);
+        parseTileMapLayerCollisions(this.tiledMap.getLayers().get("coll").getObjects());
+        parseTileMapBallObjects(this.tiledMap.getLayers().get("ball").getObjects());
     }
 
-    private void createBoxes() {
-        engine.addEntity(new Box(Position.of(700,50), Dimension.of(40,40)));
-        engine.addEntity(new Box(Position.of(700,50), Dimension.of(50,50)));
-        engine.addEntity(new Box(Position.of(700,50), Dimension.of(30,30)));
-        engine.addEntity(new Box(Position.of(700,50), Dimension.of(30,30)));
-        engine.addEntity(new Box(Position.of(700,50), Dimension.of(30,30)));
-    }
-
-    private void createBowls() {
-        engine.addEntity(new Bowl(Position.of(700, 300), Dimension.of(199), Textures.BOWL));
-    }
-
-    private void createHoles() {
-        addHole(Position.of(400, 500));
-        addHole(Position.of(55, 500));
-        addHole(Position.of(400, 100));
-        addHole(Position.of(55, 100));
-    }
-
-    private void createBalls() {
-        for (int i = 0; i < 1; ++i) {
-            engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(30)));
+    private void parseTileMapBallObjects(final MapObjects mapObjects) {
+        for (final MapObject object : mapObjects) {
+            if (object instanceof EllipseMapObject) {
+                final Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
+                ellipse.x += ellipse.width / 2;
+                ellipse.y += ellipse.height / 2;
+                final String type = (String) object.getProperties().get("type");
+                switch (type) {
+                    case "bowl":
+                        engine.addEntity(new Bowl(ellipse));
+                        break;
+                    case "ball":
+                        engine.addEntity(new Ball(ellipse));
+                        break;
+                    case "bumper":
+                        engine.addEntity(new Bumper(ellipse));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Map has an unknown object type");
+                }
+            }
         }
     }
 
-    private void createBumpers() {
-        final Force bumperForce =  Force.of(55);
-        final Dimension bumperDimension = Dimension.of(40);
-
-        engine.addEntity(new Bumper(Position.of(200, 500), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(200, 400), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(200, 300), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(200, 200), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(200, 100), bumperDimension, bumperForce));
-
-        engine.addEntity(new Bumper(Position.of(300, 150), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(300, 250), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(300, 350), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(300, 450), bumperDimension, bumperForce));
-
-        engine.addEntity(new Bumper(Position.of(100, 150), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(100, 250), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(100, 350), bumperDimension, bumperForce));
-        engine.addEntity(new Bumper(Position.of(100, 450), bumperDimension, bumperForce));
+    private void parseTileMapLayerCollisions(final MapObjects mapObjects) {
+        for (MapObject object : mapObjects) {
+            Shape shape;
+            if (object instanceof PolygonMapObject) {
+                shape = createPolygon(getWorldVertices((PolygonMapObject) object));
+            } else if (object instanceof PolylineMapObject) {
+                shape = createPolyLine(getWorldVertices((PolylineMapObject) object));
+            } else {
+                continue;
+            }
+            engine.addEntity(new Wall(shape));
+            shape.dispose();
+        }
     }
 
-    private void addHole(final Position position) {
-        engine.addEntity(new Bowl(position, Dimension.of(50), Textures.HOLE));
-        engine.addEntity(new Hole(position, Dimension.of(1f)));
+    private static Shape createPolygon(final Vector2[] worldVertices) {
+        final PolygonShape shape = new PolygonShape();
+        shape.set(worldVertices);
+        return shape;
     }
 
-    private void createBoundaries() {
-        //TODO popatrzyc na EdgeShape czy nie lepszy do tego
-        engine.addEntity(new Wall(Position.of(WIDTH / 2, 0), Dimension.of(WIDTH, 9)));
-        engine.addEntity(new Wall(Position.of(WIDTH / 2, HEIGHT - 39), Dimension.of(WIDTH, 9)));
-        engine.addEntity(new Wall(Position.of(0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
-        engine.addEntity(new Wall(Position.of(WIDTH - 0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
+    private static ChainShape createPolyLine(final Vector2[] worldVertices) {
+        final ChainShape shape = new ChainShape();
+        shape.createChain(worldVertices);
+        return shape;
+    }
 
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 299, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 9)));
+    private Vector2[] getWorldVertices(final PolylineMapObject object) {
+        final float[] vertices = object.getPolyline().getTransformedVertices();
+        return getWorldVertices(vertices);
+    }
 
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 229)));
+    private Vector2[] getWorldVertices(final PolygonMapObject object) {
+        final float[] vertices = object.getPolygon().getTransformedVertices();
+        return getWorldVertices(vertices);
+    }
+
+    private Vector2[] getWorldVertices(final float[] vertices) {
+        final Vector2[] worldVertices = new Vector2[vertices.length / 2];
+        for (int i = 0; i < worldVertices.length; ++i) {
+            worldVertices[i] = new Vector2(vertices[i * 2] / Maths.PPM, vertices[i * 2 + 1] / Maths.PPM);
+        }
+        return worldVertices;
+    }
+
+    public TiledMap getTiledMap() {
+        return tiledMap;
     }
 }

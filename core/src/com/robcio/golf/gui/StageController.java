@@ -94,7 +94,7 @@ public class StageController extends Stage {
 
     private BitmapFont loadFont() {
         return new BitmapFont(Gdx.files.internal("font/modak32.fnt"), Gdx.files.internal("font/modak32.png"),
-                              true);
+                              false);
     }
 
     private Skin loadSkin(final BitmapFont font32) {

@@ -1,6 +1,7 @@
 package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.robcio.golf.component.*;
@@ -27,5 +28,9 @@ public class Ball extends Entity {
         add(new Box2dBody(body));
         add(new Impulse());
         add(Renderable.of(Textures.GOLFBALL, 20));
+    }
+
+    public Ball(final Ellipse ellipse) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height));
     }
 }

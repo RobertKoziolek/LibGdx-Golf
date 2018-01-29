@@ -1,6 +1,7 @@
 package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.*;
 import com.robcio.golf.enumeration.Bits;
@@ -10,7 +11,7 @@ import com.robcio.golf.world.BodyFactory;
 
 public class Bumper extends Entity {
 
-    public Bumper(final Position position, final Dimension dimension, final Force force) {
+    public Bumper(final Position position, final Dimension dimension) {
         final Body body = BodyFactory
                 .createCircular(position, dimension, true, true, Bits.C.BALL_MANIPULANT, Bits.M.FREE_OBJECT_WILL_HIT);
 
@@ -19,8 +20,12 @@ public class Bumper extends Entity {
 
         add(position);
         add(dimension);
-        add(force);
+        add(Force.of(55));
         add(new Box2dBody(body));
         add(Renderable.of(Textures.BUMPER));
+    }
+
+    public Bumper(final Ellipse ellipse) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height));
     }
 }

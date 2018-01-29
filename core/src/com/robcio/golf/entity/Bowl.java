@@ -1,6 +1,7 @@
 package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Dimension;
@@ -14,7 +15,8 @@ import com.robcio.golf.world.BodyFactory;
 public class Bowl extends Entity {
 
     public Bowl(final Position position, final Dimension dimension, final String texture) {
-        final Body body = BodyFactory.createCircular(position, dimension, true, true, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
+        final Body body = BodyFactory
+                .createCircular(position, dimension, true, true, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
 
         body.setUserData(this);
         body.getFixtureList().get(0).setSensor(true);
@@ -24,5 +26,9 @@ public class Bowl extends Entity {
         add(dimension);
         add(new Box2dBody(body));
         add(Renderable.of(texture, 5));
+    }
+
+    public Bowl(final Ellipse ellipse) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), Textures.BOWL);
     }
 }
