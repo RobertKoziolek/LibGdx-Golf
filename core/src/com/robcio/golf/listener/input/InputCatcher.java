@@ -49,7 +49,7 @@ public class InputCatcher implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (creating) {
-            engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+            engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(30)));
         } else {
             setAttractionPoint(screenX, screenY);
         }
@@ -64,7 +64,7 @@ public class InputCatcher implements InputProcessor {
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         if (creating && pointer == 0) {
-            engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(15)));
+            engine.addEntity(new Ball(getUnprojectedPosition(screenX, screenY), Dimension.of(30)));
         } else {
             setAttractionPoint(screenX, screenY);
         }

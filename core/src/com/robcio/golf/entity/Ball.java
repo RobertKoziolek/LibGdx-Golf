@@ -12,7 +12,7 @@ import com.robcio.golf.world.BodyFactory;
 public class Ball extends Entity {
 
     public Ball(final Position position, final Dimension dimension) {
-        final Body body = BodyFactory.createCircular(position, dimension, false, false, 2, 7);
+        final Body body = BodyFactory.createCircular(position, dimension, false, false, 2, 15);
         body.setUserData(this);
         flags = EntityFlags.BALL.getId();
 

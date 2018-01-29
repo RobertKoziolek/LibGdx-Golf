@@ -27,9 +27,9 @@ public class BodyFactory {
     public static Body createCircular(Position position, Dimension dimension, boolean isStatic,
                                       boolean isRotationFixed, int cbits, int mbits) {
         if (dimension.isSquare()) {
-            return createCircle(position, dimension.width, isStatic, isRotationFixed, cbits, mbits);
+            return createCircle(position, dimension.width / Maths.PPM / 2, isStatic, isRotationFixed, cbits, mbits);
         } else {
-            return createOval(position, dimension.width, dimension.height, isStatic, isRotationFixed, cbits, mbits);
+            return createOval(position, dimension.width / Maths.PPM / 2, dimension.height / Maths.PPM / 2, isStatic, isRotationFixed, cbits, mbits);
         }
     }
 
@@ -37,7 +37,7 @@ public class BodyFactory {
                                      int cbits,
                                      int mbits) {
         CircleShape shape = new CircleShape();
-        shape.setRadius(radius / Maths.PPM);
+        shape.setRadius(radius);
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
@@ -48,8 +48,6 @@ public class BodyFactory {
         Vector2 vertices[] = new Vector2[8];
         for (int i = 0; i < 8; ++i)
             vertices[i] = new Vector2();
-        radius1 /= Maths.PPM;
-        radius2 /= Maths.PPM;
         float dent = 0.7f;
         vertices[0].set(-radius1, 0);
         vertices[1].set(dent * -radius1, dent * radius2);

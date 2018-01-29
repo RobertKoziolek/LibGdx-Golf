@@ -37,7 +37,6 @@ public class MainClass extends Game {
     private OrthographicCamera camera;
 
     private StageController stageController;
-    private AssetManager assets;
 
     private Box2DDebugRenderer b2dr;
 
@@ -54,7 +53,6 @@ public class MainClass extends Game {
     //TODO ogarnac ten syf
     @Override
     public void create() {
-        assets = new AssetManager();
         b2dr = new Box2DDebugRenderer();
 
         camera = new OrthographicCamera();
@@ -78,7 +76,7 @@ public class MainClass extends Game {
 
         final InputCatcher inputCatcher = new InputCatcher(camera, engine);
 
-        stageController = new StageController(new FillViewport(WIDTH, HEIGHT, camera), assets, inputCatcher, engine);
+        stageController = new StageController(new FillViewport(WIDTH, HEIGHT, camera), inputCatcher, engine);
         final InputMultiplexer multiplexer = new InputMultiplexer(stageController, inputCatcher);
         Gdx.input.setInputProcessor(multiplexer);
         Log.i("World body count", Integer.toString(world.getBodyCount()));

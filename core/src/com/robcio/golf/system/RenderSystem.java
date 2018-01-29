@@ -11,6 +11,7 @@ import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Renderable;
+import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
@@ -30,7 +31,7 @@ public class RenderSystem extends SortedIteratingSystem {
     private static class ZComparator implements Comparator<Entity> {
         @Override
         public int compare(Entity e1, Entity e2) {
-            return (int)Math.signum(Mapper.renderable.get(e1).z - Mapper.renderable.get(e2).z);
+            return (int) Math.signum(Mapper.renderable.get(e1).z - Mapper.renderable.get(e2).z);
         }
     }
 
@@ -46,12 +47,14 @@ public class RenderSystem extends SortedIteratingSystem {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Mapper.position.get(entity);
-        final float radius = Mapper.dimension.get(entity).width;
+        float radius = Mapper.dimension.get(entity).width / 2;
+        float radius2 = Mapper.dimension.get(entity).height / 2;
 
         final Vector2 bodyPosition = body.getPosition();
         position.x = bodyPosition.x * Maths.PPM;
         position.y = bodyPosition.y * Maths.PPM;
-        sprite.setPosition(position.x - radius, position.y - radius);
+
+        sprite.setPosition(position.x - radius, position.y - radius2);
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.draw(batch);
     }

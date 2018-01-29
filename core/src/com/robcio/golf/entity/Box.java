@@ -7,18 +7,15 @@ import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.utils.Textures;
 import com.robcio.golf.world.BodyFactory;
 
-public class Bumper extends Entity {
+public class Box extends Entity {
 
-    public Bumper(final Position position, final Dimension dimension, final Force force) {
-        final Body body = BodyFactory.createCircular(position, dimension, true, true, 4, 10);
-
+    public Box(final Position position, final Dimension dimension){
+        final Body body = BodyFactory.createBox(position, dimension, false, false, 8, 11);
         body.setUserData(this);
-        flags = EntityFlags.BUMPER.getId();
-
+        add(new Box2dBody(body));
         add(position);
         add(dimension);
-        add(force);
-        add(new Box2dBody(body));
-        add(Renderable.of(Textures.BUMPER));
+        add(Renderable.of(Textures.BOX));
+        add(new Impulse());
     }
 }

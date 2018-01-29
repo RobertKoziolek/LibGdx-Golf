@@ -14,6 +14,8 @@ public class Textures {
     final public static String HOLE = "hole.png";
     final public static String BUMPER = "bumper.png";
     final public static String BOWL = "bowl.png";
+    final public static String WALL = "wall.png";
+    final public static String BOX = "box.png";
 
     final private static Map<String, Texture> textures = new HashMap();
 

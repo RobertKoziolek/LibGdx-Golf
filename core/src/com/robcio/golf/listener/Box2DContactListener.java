@@ -55,8 +55,14 @@ public class Box2DContactListener implements ContactListener {
     private Map<Integer, Body> getIntegerBodyMap(final Contact contact) {
         final Body bodyA = contact.getFixtureA().getBody();
         final Body bodyB = contact.getFixtureB().getBody();
-        final Entity entityA = (Entity) bodyA.getUserData();
-        final Entity entityB = (Entity) bodyB.getUserData();
+        final Entity entityA;
+        final Entity entityB;
+        try {
+            entityA = (Entity) bodyA.getUserData();
+            entityB = (Entity) bodyB.getUserData();
+        } catch (final ClassCastException e) {
+            return null;
+        }
         if (entityA == null || entityB == null) return null;
 
         final Map<Integer, Body> map = new HashMap<>(2);

@@ -32,16 +32,17 @@ public class StageController extends Stage {
     final private BitmapFont font32;
     final private InputCatcher inputCatcher;
     final private Engine engine;
+    final AssetManager assets;
 
     public StageController(final Viewport viewport,
-                           final AssetManager assets,
                            final InputCatcher inputCatcher,
                            final Engine engine) {
         super(viewport);
         this.inputCatcher = inputCatcher;
         this.engine = engine;
+        assets = new AssetManager();
         font32 = loadFont();
-        skin = loadSkin(assets, font32);
+        skin = loadSkin(font32);
 
         final TextButton leftClickButton = addButton("Creation/Attraction");
         leftClickButton.addListener(new ClickListener() {
@@ -96,7 +97,7 @@ public class StageController extends Stage {
                               true);
     }
 
-    private Skin loadSkin(final AssetManager assets, final BitmapFont font32) {
+    private Skin loadSkin(final BitmapFont font32) {
         assets.load("ui/uiskin.atlas", TextureAtlas.class);
         assets.finishLoading();
         final Skin skin = new Skin(assets.get("ui/uiskin.atlas", TextureAtlas.class));
@@ -110,5 +111,6 @@ public class StageController extends Stage {
         super.dispose();
         skin.dispose();
         font32.dispose();
+        assets.dispose();
     }
 }

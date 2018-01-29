@@ -10,6 +10,7 @@ import com.robcio.golf.utils.Textures;
 import static com.robcio.golf.MainClass.HEIGHT;
 import static com.robcio.golf.MainClass.WIDTH;
 
+//IDEA sloneczna mapa moze miec poruszajacy sie w bok cien chmury
 public class Map {
 
     private final Engine engine;
@@ -17,27 +18,41 @@ public class Map {
     public Map(final Engine engine){
         this.engine = engine;
         createBoundaries();
-        createEntities();
+        createHoles();
+        createBalls();
+        createBowls();
+        createBoxes();
+        createBumpers();
     }
 
+    private void createBoxes() {
+        engine.addEntity(new Box(Position.of(700,50), Dimension.of(40,40)));
+        engine.addEntity(new Box(Position.of(700,50), Dimension.of(50,50)));
+        engine.addEntity(new Box(Position.of(700,50), Dimension.of(30,30)));
+        engine.addEntity(new Box(Position.of(700,50), Dimension.of(30,30)));
+        engine.addEntity(new Box(Position.of(700,50), Dimension.of(30,30)));
+    }
 
-    private void createEntities() {
-        for (int i = 0; i < 1; ++i) {
-            engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(15)));
-        }
+    private void createBowls() {
+        engine.addEntity(new Bowl(Position.of(700, 300), Dimension.of(199), Textures.BOWL));
+    }
 
-//        engine.addEntity(new Hole(Position.of(50, 150), Dimension.of(16)));
-//        engine.addEntity(new Hole(Position.of(350, 350), Dimension.of(16)));
-//        engine.addEntity(new Hole(Position.of(600, 450), Dimension.of(16)));
-
+    private void createHoles() {
         addHole(Position.of(400, 500));
         addHole(Position.of(55, 500));
         addHole(Position.of(400, 100));
         addHole(Position.of(55, 100));
-        engine.addEntity(new Bowl(Position.of(700, 300), Dimension.of(199), Textures.BOWL));
+    }
 
+    private void createBalls() {
+        for (int i = 0; i < 1; ++i) {
+            engine.addEntity(new Ball(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(30)));
+        }
+    }
+
+    private void createBumpers() {
         final Force bumperForce =  Force.of(55);
-        final Dimension bumperDimension = Dimension.of(20);
+        final Dimension bumperDimension = Dimension.of(40);
 
         engine.addEntity(new Bumper(Position.of(200, 500), bumperDimension, bumperForce));
         engine.addEntity(new Bumper(Position.of(200, 400), bumperDimension, bumperForce));
@@ -54,27 +69,24 @@ public class Map {
         engine.addEntity(new Bumper(Position.of(100, 250), bumperDimension, bumperForce));
         engine.addEntity(new Bumper(Position.of(100, 350), bumperDimension, bumperForce));
         engine.addEntity(new Bumper(Position.of(100, 450), bumperDimension, bumperForce));
-
-//        BodyFactory.createBox(Position.of(200, 200), Dimension.of(50, 99), false, false, 2, 3);
-//        BodyFactory.createBox(Position.of(211, 400), Dimension.of(140, 49), false, false, 2, 3);
-//        BodyFactory.createCircular(Position.of(773, 500), Dimension.of(50, 89), false, false, 2, 3);
-//        BodyFactory.createCircular(Position.of(473, 500), Dimension.of(50, 50), false, false, 2, 3);
     }
 
     private void addHole(final Position position) {
-        engine.addEntity(new Bowl(position, Dimension.of(25), Textures.HOLE));
-        engine.addEntity(new Hole(position, Dimension.of(0.5f)));
+        engine.addEntity(new Bowl(position, Dimension.of(50), Textures.HOLE));
+        engine.addEntity(new Hole(position, Dimension.of(1f)));
     }
 
     private void createBoundaries() {
         //TODO popatrzyc na EdgeShape czy nie lepszy do tego
-        new Wall(Position.of(WIDTH / 2, 0), Dimension.of(WIDTH, 9));
-        new Wall(Position.of(WIDTH / 2, HEIGHT - 39), Dimension.of(WIDTH, 9));
-        new Wall(Position.of(0, HEIGHT / 2), Dimension.of(9, HEIGHT));
-        new Wall(Position.of(WIDTH - 0, HEIGHT / 2), Dimension.of(9, HEIGHT));
+        engine.addEntity(new Wall(Position.of(WIDTH / 2, 0), Dimension.of(WIDTH, 9)));
+        engine.addEntity(new Wall(Position.of(WIDTH / 2, HEIGHT - 39), Dimension.of(WIDTH, 9)));
+        engine.addEntity(new Wall(Position.of(0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
+        engine.addEntity(new Wall(Position.of(WIDTH - 0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
 
-//        new Wall(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(9, HEIGHT - 299));
-//        new Wall(Position.of(WIDTH / 2 - 299, HEIGHT / 2), Dimension.of(9, HEIGHT - 299));
-//        new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 9));
+//        engine.addEntity(new Wall(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
+//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 299, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
+//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 9)));
+
+//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 229)));
     }
 }
