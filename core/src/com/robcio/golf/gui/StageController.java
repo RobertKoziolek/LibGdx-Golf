@@ -79,7 +79,7 @@ public class StageController extends Stage {
         table.add(impulseButton).row();
         table.add(clearBallsButton).row();
         final ScrollPane debugPane = new ScrollPane(table, skin);
-        debugPane.setSize(WIDTH/3, HEIGHT / 12);
+        debugPane.setSize(WIDTH/3, HEIGHT / 10);
         debugPane.setScrollingDisabled(true, false);
         debugPane.setupFadeScrollBars(0f, 0f);
         debugPane.setupOverscroll(15, 10, 55);

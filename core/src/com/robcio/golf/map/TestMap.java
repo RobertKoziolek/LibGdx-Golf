@@ -80,15 +80,15 @@ public class TestMap {
 
     private void createBoundaries() {
         //TODO popatrzyc na EdgeShape czy nie lepszy do tego
-        engine.addEntity(new Wall(Position.of(WIDTH / 2, 0), Dimension.of(WIDTH, 9)));
-        engine.addEntity(new Wall(Position.of(WIDTH / 2, HEIGHT - 39), Dimension.of(WIDTH, 9)));
-        engine.addEntity(new Wall(Position.of(0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
-        engine.addEntity(new Wall(Position.of(WIDTH - 0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
+        engine.addEntity(new Obstacle(Position.of(WIDTH / 2, 0), Dimension.of(WIDTH, 9)));
+        engine.addEntity(new Obstacle(Position.of(WIDTH / 2, HEIGHT - 39), Dimension.of(WIDTH, 9)));
+        engine.addEntity(new Obstacle(Position.of(0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
+        engine.addEntity(new Obstacle(Position.of(WIDTH - 0, HEIGHT / 2), Dimension.of(9, HEIGHT)));
 
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 299, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 9)));
+//        engine.addEntity(new Obstacle(Position.of(WIDTH / 2, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
+//        engine.addEntity(new Obstacle(Position.of(WIDTH / 2 - 299, HEIGHT / 2), Dimension.of(9, HEIGHT - 299)));
+//        engine.addEntity(new Obstacle(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 9)));
 
-//        engine.addEntity(new Wall(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 229)));
+//        engine.addEntity(new Obstacle(Position.of(WIDTH / 2 - 149, HEIGHT / 2 + 99), Dimension.of(299, 229)));
     }
 }

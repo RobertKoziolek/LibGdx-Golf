@@ -16,7 +16,6 @@ import com.robcio.golf.gui.StageController;
 import com.robcio.golf.listener.Box2DContactListener;
 import com.robcio.golf.listener.input.InputCatcher;
 import com.robcio.golf.map.Map;
-import com.robcio.golf.map.TestMap;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;
 import com.robcio.golf.utils.Log;
@@ -35,8 +34,8 @@ public class MainClass extends Game {
 
     private StageController stageController;
 
-    private Box2DDebugRenderer b2dr;
-    private OrthogonalTiledMapRenderer tmr;
+    private Box2DDebugRenderer box2DDebugRenderer;
+    private OrthogonalTiledMapRenderer mapRenderer;
 
     private World world;
     private BodyDestroyer bodyDestroyer;
@@ -51,7 +50,7 @@ public class MainClass extends Game {
     //TODO ogarnac ten syf
     @Override
     public void create() {
-        b2dr = new Box2DDebugRenderer();
+        box2DDebugRenderer = new Box2DDebugRenderer();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, WIDTH, HEIGHT);
@@ -72,8 +71,8 @@ public class MainClass extends Game {
 
 //        new TestMap(engine);
         final Map map = new Map(engine);
-        tmr = new OrthogonalTiledMapRenderer(map.getTiledMap());
-        tmr.setView(camera);
+        mapRenderer = new OrthogonalTiledMapRenderer(map.getTiledMap());
+        mapRenderer.setView(camera);
 
 
         final InputCatcher inputCatcher = new InputCatcher(camera, engine);
@@ -90,14 +89,14 @@ public class MainClass extends Game {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
-        tmr.render();
 
         update(Gdx.graphics.getDeltaTime());
+        mapRenderer.render();
 
 //        batch.begin();
 //        batch.end();
 
-        if (DEBUG)b2dr.render(world, camera.combined.scl(Maths.PPM));
+        if (DEBUG) box2DDebugRenderer.render(world, camera.combined.scl(Maths.PPM));
 
         stageController.draw();
     }
@@ -115,7 +114,7 @@ public class MainClass extends Game {
         Textures.dispose();
         world.dispose();
         stageController.dispose();
-        tmr.dispose();
+        mapRenderer.dispose();
         Log.i("Disposing");
     }
 }

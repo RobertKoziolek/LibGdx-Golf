@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="27">
+<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="37">
  <tileset firstgid="1" source="golf.tsx"/>
- <layer name="tile" width="16" height="9" opacity="0.9">
+ <layer name="tile" width="16" height="9">
   <data encoding="csv">
 0,0,0,0,10,1,1,11,0,0,0,0,0,0,10,1,
 0,0,2,3,0,10,11,0,0,0,0,0,0,0,0,10,
@@ -15,38 +15,20 @@
 </data>
  </layer>
  <objectgroup name="coll">
-  <object id="5" x="256" y="0">
-   <polygon points="0,0 256,0 128,128"/>
+  <object id="31" x="0" y="0">
+   <polyline points="0,0 256,0 384,128 512,0 896,0 1024,128 1024,512 960,576 384,576 320,512 64,512 0,448 0,0"/>
   </object>
-  <object id="6" x="192" y="64">
-   <polygon points="0,0 -64,64 0,128 64,64"/>
+  <object id="32" x="128" y="128">
+   <polyline points="0,0 64,-64 128,0 64,64 0,0"/>
   </object>
-  <object id="7" x="128" y="320">
-   <polygon points="0,0 192,0 192,64 128,128 64,128 0,64"/>
+  <object id="33" x="128" y="320">
+   <polyline points="0,0 192,0 192,64 128,128 64,128 0,64 0,0"/>
   </object>
-  <object id="9" x="448" y="256">
-   <polygon points="0,0 0,64 64,128 64,64"/>
+  <object id="35" x="448" y="256">
+   <polyline points="0,0 0,64 64,128 64,64 0,0"/>
   </object>
-  <object id="10" x="704" y="320">
-   <polygon points="0,0 64,64 64,-64"/>
-  </object>
-  <object id="11" x="768" y="256">
-   <polygon points="0,0 128,-128 64,-128 0,-64"/>
-  </object>
-  <object id="12" x="960" y="576">
-   <polygon points="0,0 64,-64 64,0"/>
-  </object>
-  <object id="13" x="896" y="0">
-   <polygon points="0,0 128,0 128,128"/>
-  </object>
-  <object id="14" x="0" y="0">
-   <polyline points="0,0 1024,0 1024,576 0,576 0,0"/>
-  </object>
-  <object id="16" x="0" y="448">
-   <polygon points="0,0 64,64 64,128 0,128"/>
-  </object>
-  <object id="17" x="64" y="512">
-   <polygon points="0,0 256,0 320,64 0,64"/>
+  <object id="36" x="768" y="384">
+   <polyline points="0,0 -64,-64 0,-128 0,-192 64,-256 128,-256 0,-128 0,0"/>
   </object>
  </objectgroup>
  <objectgroup name="ball">

@@ -6,9 +6,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.utils.Maths;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BodyFactory {
     private static World world;
 
@@ -23,7 +25,7 @@ public class BodyFactory {
 
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
                                  boolean isRotationFixed, int cbits, int mbits) {
-        PolygonShape shape = new PolygonShape();
+        final PolygonShape shape = new PolygonShape();
         shape.setAsBox(dimension.width / Maths.PPM / 2, dimension.height / Maths.PPM / 2);
 
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
@@ -41,7 +43,7 @@ public class BodyFactory {
     private static Body createCircle(Position position, float radius, boolean isStatic, boolean isRotationFixed,
                                      int cbits,
                                      int mbits) {
-        CircleShape shape = new CircleShape();
+        final CircleShape shape = new CircleShape();
         shape.setRadius(radius);
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
@@ -49,11 +51,11 @@ public class BodyFactory {
     private static Body createOval(Position position, float radius1, float radius2, boolean isStatic,
                                    boolean isRotationFixed,
                                    int cbits, int mbits) {
-        PolygonShape shape = new PolygonShape();
-        Vector2 vertices[] = new Vector2[8];
+        final PolygonShape shape = new PolygonShape();
+        final Vector2 vertices[] = new Vector2[8];
         for (int i = 0; i < 8; ++i)
             vertices[i] = new Vector2();
-        float dent = 0.7f;
+        final float dent = 0.7f;
         vertices[0].set(-radius1, 0);
         vertices[1].set(dent * -radius1, dent * radius2);
         vertices[2].set(0, radius2);
@@ -68,22 +70,24 @@ public class BodyFactory {
 
     private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, int cbits,
                                 int mbits) {
-        BodyDef bodyDef = new BodyDef();
+        final BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = isRotationFixed;
         bodyDef.position.set(position.x / Maths.PPM, position.y / Maths.PPM);
-        if (isStatic) {
-            bodyDef.type = BodyType.StaticBody;
-        } else {
-            bodyDef.type = BodyType.DynamicBody;
-        }
-        FixtureDef fixtureDef = new FixtureDef();
+        bodyDef.type = isStatic ? BodyType.StaticBody : BodyType.DynamicBody;
+
+        final FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1.0f;
         fixtureDef.filter.categoryBits = (short) cbits;
         fixtureDef.filter.maskBits = (short) mbits;
-        Body tmpBody = world.createBody(bodyDef);
+
+        final Body tmpBody = createBody(bodyDef);
         tmpBody.createFixture(fixtureDef);
         shape.dispose();
         return tmpBody;
+    }
+
+    public static Body createBody(BodyDef def) {
+        return world.createBody(def);
     }
 }

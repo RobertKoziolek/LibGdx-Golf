@@ -54,8 +54,8 @@ public class RenderSystem extends SortedIteratingSystem {
         position.x = bodyPosition.x * Maths.PPM;
         position.y = bodyPosition.y * Maths.PPM;
 
-        sprite.setPosition(position.x - radius, position.y - radius2);
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
+        sprite.setPosition(position.x - radius, position.y - radius2);
         sprite.draw(batch);
     }
 }

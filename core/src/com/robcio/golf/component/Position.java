@@ -1,6 +1,7 @@
 package com.robcio.golf.component;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.math.Vector2;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -12,4 +13,5 @@ public class Position implements Component {
     public static Position of(final float x, final float y){
         return new Position(x, y);
     }
+
 }
