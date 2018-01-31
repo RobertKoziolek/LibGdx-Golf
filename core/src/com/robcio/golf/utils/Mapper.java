@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mapper {
 
-    final public static ComponentMapper<Attracted> attracted = ComponentMapper.getFor(Attracted.class);
+    final public static ComponentMapper<Selected> attracted = ComponentMapper.getFor(Selected.class);
     final public static ComponentMapper<Box2dBody> box2dBody = ComponentMapper.getFor(Box2dBody.class);
     final public static ComponentMapper<Dimension> dimension = ComponentMapper.getFor(Dimension.class);
     final public static ComponentMapper<Force> force = ComponentMapper.getFor(Force.class);

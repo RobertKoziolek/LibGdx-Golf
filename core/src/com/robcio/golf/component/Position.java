@@ -14,4 +14,9 @@ public class Position implements Component {
         return new Position(x, y);
     }
 
+    public static float distance(final Position position1, final Position position2) {
+        final float x = position1.x - position2.x;
+        final float y = position1.y - position2.y;
+        return (float)Math.sqrt(x * x + y * y);
+    }
 }

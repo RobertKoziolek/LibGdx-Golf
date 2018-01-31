@@ -69,6 +69,9 @@ public class Map {
                     case "box":
                         engine.addEntity(new Box(rectangle));
                         break;
+                    case "obstacle":
+                        engine.addEntity(new Obstacle(rectangle));
+                        break;
                     default:
                         throw new IllegalArgumentException(String.format("Map has an unknown Rectangle object type '%s'", type));
                 }

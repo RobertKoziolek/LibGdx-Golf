@@ -45,12 +45,12 @@ public class StageController extends Stage {
     }
 
     private void setUp() {
-        final TextButton leftClickButton = addButton("Creation/Attraction");
+        final TextButton leftClickButton = addButton("Creation/Selection");
         leftClickButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 final boolean creating = inputCatcher.changeBehaviour();
-                leftClickButton.setText(creating ? "Attraction" : "Creation");
+                leftClickButton.setText(creating ? "Selection" : "Creation");
             }
         });
         final TextButton impulseButton = addButton("Impulse on/off");

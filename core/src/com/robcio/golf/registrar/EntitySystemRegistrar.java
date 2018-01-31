@@ -3,13 +3,10 @@ package com.robcio.golf.registrar;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.robcio.golf.listener.entity.Box2DBodyRemover;
-import com.robcio.golf.listener.entity.SpriteAssigner;
-import com.robcio.golf.system.AttractionSystem;
+import com.robcio.golf.system.SelectionSystem;
 import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.InBowlSystem;
 import com.robcio.golf.system.RenderSystem;
-import com.robcio.golf.world.BodyDestroyer;
 
 
 public class EntitySystemRegistrar {
@@ -18,6 +15,6 @@ public class EntitySystemRegistrar {
         engine.addSystem(new ImpulseSystem(1.0f));
         engine.addSystem(new RenderSystem(batch));
         engine.addSystem(new InBowlSystem());
-        engine.addSystem(new AttractionSystem());
+        engine.addSystem(new SelectionSystem());
     }
 }

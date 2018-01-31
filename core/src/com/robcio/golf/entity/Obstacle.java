@@ -1,6 +1,7 @@
 package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -21,5 +22,9 @@ public class Obstacle extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
+    }
+
+    public Obstacle(final Rectangle rectangle) {
+        this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height));
     }
 }
