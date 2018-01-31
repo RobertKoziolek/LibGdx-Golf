@@ -25,7 +25,7 @@ public class InBowlSystem extends IteratingSystem {
         final Body ball = Mapper.box2dBody.get(entity).body;
         final InBowl inBowl = Mapper.inBowl.get(entity);
         final Vector2 bowlCenter = inBowl.bowlCenter;
-        final float bowlRadius = inBowl.bowlDimension.width/Maths.PPM;
+        final float bowlRadius = inBowl.bowlDimension.width/Maths.PPM/2;
         final float ballRadius = Mapper.dimension.get(entity).width/2/Maths.PPM;
 
         Vector2 distance = new Vector2(0f, 0f);
@@ -42,7 +42,7 @@ public class InBowlSystem extends IteratingSystem {
         if (vecSum < 0) {
             ball.setLinearVelocity(ball.getLinearVelocity().scl(0.97f));
             ball.setAngularVelocity(ball.getAngularVelocity() * 0.97f);
-        } else if (finalDistance < bowlRadius - ballRadius - bowlRadius/12){
+        } else if (finalDistance < bowlRadius - ballRadius - bowlRadius/24){
             distance = new Vector2(distance.x * (vecSum) * force * finalDistance,
                                    distance.y * (vecSum) * force * finalDistance);
             ball.applyForceToCenter(distance, true);
