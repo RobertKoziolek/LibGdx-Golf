@@ -22,9 +22,9 @@ public class InputCatcher implements InputProcessor {
 
     private final SelectionSystem selectionSystem;
 
-    private boolean creating = false;
+    private boolean creating = true;
 
-    public InputCatcher(OrthographicCamera camera, Engine engine) {
+    public InputCatcher(final OrthographicCamera camera, final Engine engine) {
         this.camera = camera;
         this.engine = engine;
         this.selectionSystem = engine.getSystem(SelectionSystem.class);

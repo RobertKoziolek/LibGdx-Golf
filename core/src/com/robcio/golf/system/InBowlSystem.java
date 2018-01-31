@@ -28,13 +28,13 @@ public class InBowlSystem extends IteratingSystem {
         final float bowlRadius = inBowl.bowlDimension.width/Maths.PPM;
         final float ballRadius = Mapper.dimension.get(entity).width/2/Maths.PPM;
 
-        //TODO przejrzec czy tu nie ma bubli
         Vector2 distance = new Vector2(0f, 0f);
         distance.add(ball.getPosition());
         distance.sub(bowlCenter);
         float finalDistance = distance.len();
         distance = new Vector2(-distance.x, -distance.y);
 
+        //TODO zbalansowac sile aby wielkosc bowla odzwierciedlala jak mocno cos wpada
         float vecSum = Math.abs(distance.x) + Math.abs(distance.y);
         vecSum = vecSum - bowlRadius/2;
         final int force = 1;

@@ -18,7 +18,6 @@ import com.robcio.golf.utils.Maths;
 
 import java.util.Comparator;
 
-//TODO po dodaniu wiekszej ilosci obiektow do rysowania nalezy rozdzielic czesc zmieniajaca pozycje i tu zostawic samo draw(batch)
 public class RenderSystem extends SortedIteratingSystem {
 
     final private SpriteBatch batch;
@@ -42,6 +41,7 @@ public class RenderSystem extends SortedIteratingSystem {
         batch.end();
     }
 
+    //TODO moze ten angle wyciagnac do pozycji?
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
@@ -49,10 +49,6 @@ public class RenderSystem extends SortedIteratingSystem {
         final Position position = Mapper.position.get(entity);
         float radius = Mapper.dimension.get(entity).width / 2;
         float radius2 = Mapper.dimension.get(entity).height / 2;
-
-        final Vector2 bodyPosition = body.getPosition();
-        position.x = bodyPosition.x * Maths.PPM;
-        position.y = bodyPosition.y * Maths.PPM;
 
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.setPosition(position.x - radius, position.y - radius2);

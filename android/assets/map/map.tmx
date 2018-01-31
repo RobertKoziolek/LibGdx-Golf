@@ -32,7 +32,7 @@
   </object>
  </objectgroup>
  <objectgroup name="entity">
-  <object id="18" type="bowl" x="529" y="363" width="192" height="192">
+  <object id="18" type="bowl" x="448" y="384" width="336" height="336">
    <ellipse/>
   </object>
   <object id="20" type="ball" x="606" y="358" width="30" height="30">
