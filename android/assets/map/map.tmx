@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="37">
+<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="47">
  <tileset firstgid="1" source="golf.tsx"/>
  <layer name="tile" width="16" height="9">
   <data encoding="csv">
@@ -31,7 +31,7 @@
    <polyline points="0,0 -64,-64 0,-128 0,-192 64,-256 128,-256 0,-128 0,0"/>
   </object>
  </objectgroup>
- <objectgroup name="ball">
+ <objectgroup name="entity">
   <object id="18" type="bowl" x="529" y="363" width="192" height="192">
    <ellipse/>
   </object>
@@ -48,6 +48,19 @@
    <ellipse/>
   </object>
   <object id="26" type="bumper" x="25" y="112" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="37" type="box" x="576" y="64" width="39" height="35"/>
+  <object id="39" type="box" x="673" y="85" width="49" height="34"/>
+  <object id="40" type="box" x="477" y="132" width="69" height="50"/>
+  <object id="41" type="box" x="333" y="130" width="106" height="68"/>
+  <object id="42" type="box" x="54" y="242" width="39" height="24"/>
+  <object id="43" type="box" x="666" y="44" width="147" height="19"/>
+  <object id="44" type="box" x="865" y="60" width="66" height="54"/>
+  <object id="45" type="hole" x="924" y="480" width="50" height="50">
+   <ellipse/>
+  </object>
+  <object id="46" type="hole" x="77" y="428" width="50" height="50">
    <ellipse/>
   </object>
  </objectgroup>

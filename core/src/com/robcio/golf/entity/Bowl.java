@@ -28,7 +28,7 @@ public class Bowl extends Entity {
         add(Renderable.of(texture, 5));
     }
 
-    public Bowl(final Ellipse ellipse) {
-        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), Textures.BOWL);
+    public Bowl(final Ellipse ellipse, final String texture) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), texture);
     }
 }

@@ -1,6 +1,7 @@
 package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.*;
 import com.robcio.golf.enumeration.Bits;
@@ -20,5 +21,9 @@ public class Box extends Entity {
         add(dimension);
         add(Renderable.of(Textures.BOX));
         add(new Impulse());
+    }
+
+    public Box(final Rectangle rectangle) {
+        this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height));
     }
 }

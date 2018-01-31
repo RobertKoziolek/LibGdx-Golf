@@ -6,19 +6,21 @@ import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Ellipse;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
-import com.robcio.golf.entity.Ball;
-import com.robcio.golf.entity.Bowl;
-import com.robcio.golf.entity.Bumper;
-import com.robcio.golf.entity.Wall;
+import com.robcio.golf.component.Dimension;
+import com.robcio.golf.component.Position;
+import com.robcio.golf.entity.*;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
+import com.robcio.golf.utils.Textures;
 
 public class Map {
     private static final String mapPath = "map/map.tmx";
@@ -31,7 +33,7 @@ public class Map {
 
         this.tiledMap = new TmxMapLoader().load(mapPath);
         parseTileMapLayerCollisions(this.tiledMap.getLayers().get("coll").getObjects());
-        parseTileMapBallObjects(this.tiledMap.getLayers().get("ball").getObjects());
+        parseTileMapBallObjects(this.tiledMap.getLayers().get("entity").getObjects());
     }
 
     private void parseTileMapBallObjects(final MapObjects mapObjects) {
@@ -43,7 +45,7 @@ public class Map {
                 final String type = (String) object.getProperties().get("type");
                 switch (type) {
                     case "bowl":
-                        engine.addEntity(new Bowl(ellipse));
+                        engine.addEntity(new Bowl(ellipse, Textures.BOWL));
                         break;
                     case "ball":
                         engine.addEntity(new Ball(ellipse));
@@ -51,8 +53,24 @@ public class Map {
                     case "bumper":
                         engine.addEntity(new Bumper(ellipse));
                         break;
+                    case "hole":
+                        engine.addEntity(new Bowl(ellipse, Textures.HOLE));
+                        engine.addEntity(new Hole(Position.of(ellipse.x, ellipse.y), Dimension.of(1f)));
+                        break;
                     default:
-                        throw new IllegalArgumentException("Map has an unknown object type");
+                        throw new IllegalArgumentException(String.format("Map has an unknown Ellipse object type '%s'", type));
+                }
+            } else if (object instanceof RectangleMapObject) {
+                final Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                rectangle.x += rectangle.width / 2;
+                rectangle.y += rectangle.height / 2;
+                final String type = (String) object.getProperties().get("type");
+                switch (type) {
+                    case "box":
+                        engine.addEntity(new Box(rectangle));
+                        break;
+                    default:
+                        throw new IllegalArgumentException(String.format("Map has an unknown Rectangle object type '%s'", type));
                 }
             }
         }
