@@ -9,10 +9,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
+import com.robcio.golf.enumeration.MouseMode;
 import com.robcio.golf.system.SelectionSystem;
-import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static com.robcio.golf.enumeration.MouseMode.MOVING;
 
 public class InputCatcher implements InputProcessor {
 
@@ -20,14 +26,13 @@ public class InputCatcher implements InputProcessor {
 
     private final Engine engine;
 
-    private final SelectionSystem selectionSystem;
-
-    private boolean creating = true;
+    private ArrayList<MouseMode> mouseModes;
 
     public InputCatcher(final OrthographicCamera camera, final Engine engine) {
         this.camera = camera;
         this.engine = engine;
-        this.selectionSystem = engine.getSystem(SelectionSystem.class);
+        mouseModes = new ArrayList<>();
+        Collections.addAll(mouseModes, MouseMode.values());
     }
 
     @Override
@@ -48,38 +53,51 @@ public class InputCatcher implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         final Position unprojectedPosition = getUnprojectedPosition(screenX, screenY);
-        if (creating) {
-            engine.addEntity(new Ball(unprojectedPosition, Dimension.of(30)));
-        } else {
-            final ImmutableArray<Entity> entities = engine
-                    .getEntitiesFor(Family.all(Position.class).exclude(Selected.class).get());
-            for (final Entity entity : entities) {
-                final Position position = Mapper.position.get(entity);
-                if (Position.distance(unprojectedPosition, position) < 30f) {
-                    setSelectionPoint(screenX, screenY);
-                    entity.add(new Selected());
-                    return true;
+        switch (getCurrentMouseMode()) {
+            case CREATING:
+                engine.addEntity(new Ball(unprojectedPosition, Dimension.of(30)));
+                return true;
+            case MOVING:
+                final ImmutableArray<Entity> entities = engine
+                        .getEntitiesFor(Family.all(Position.class).exclude(Selected.class).get());
+                for (final Entity entity : entities) {
+                    final Position position = Mapper.position.get(entity);
+                    if (Position.distance(unprojectedPosition, position) < 30f) {
+                        setSelectionPoint(screenX, screenY);
+                        entity.add(new Selected());
+                        return true;
+                    }
                 }
-            }
+                break;
+            default:
+                //nothing to do here
         }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if (!creating) {
-            final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selected.class).get());
-            for (final Entity entity : entities) {
-                entity.remove(Selected.class);
-            }
+        switch (getCurrentMouseMode()) {
+            case MOVING:
+                final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selected.class).get());
+                for (final Entity entity : entities) {
+                    entity.remove(Selected.class);
+                }
+                return true;
+            default:
+                //nothing to do here
         }
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        if (!creating) {
-            setSelectionPoint(screenX, screenY);
+        switch (getCurrentMouseMode()) {
+            case MOVING:
+                setSelectionPoint(screenX, screenY);
+                return true;
+            default:
+                //nothing to do here
         }
         return false;
     }
@@ -99,10 +117,11 @@ public class InputCatcher implements InputProcessor {
         return Position.of(realCoords.x, realCoords.y);
     }
 
-    public boolean changeBehaviour() {
-        this.creating = !creating;
-        selectionSystem.setProcessing(!creating);
-        return creating;
+    public String changeMouseMode() {
+        final MouseMode last = mouseModes.get(mouseModes.size() - 1);
+        mouseModes.remove(last);
+        mouseModes.add(0, last);
+        return last.getTooltip();
     }
 
     private void setSelectionPoint(int screenX, int screenY) {
@@ -110,5 +129,9 @@ public class InputCatcher implements InputProcessor {
         position.x = position.x / Maths.PPM;
         position.y = position.y / Maths.PPM;
         Selected.position = position;
+    }
+
+    public MouseMode getCurrentMouseMode() {
+        return mouseModes.get(0);
     }
 }

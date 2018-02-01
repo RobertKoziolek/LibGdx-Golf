@@ -45,12 +45,12 @@ public class StageController extends Stage {
     }
 
     private void setUp() {
-        final TextButton leftClickButton = addButton("Creation/Selection");
+        final TextButton leftClickButton = addButton("Mouse mode");
         leftClickButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                final boolean creating = inputCatcher.changeBehaviour();
-                leftClickButton.setText(creating ? "Selection" : "Creation");
+                final String mouseModeTooltip = inputCatcher.changeMouseMode();
+                leftClickButton.setText(mouseModeTooltip);
             }
         });
         final TextButton impulseButton = addButton("Impulse on/off");
@@ -79,7 +79,7 @@ public class StageController extends Stage {
         table.add(impulseButton).row();
         table.add(clearBallsButton).row();
         final ScrollPane debugPane = new ScrollPane(table, skin);
-        debugPane.setSize(WIDTH/3, HEIGHT / 10);
+        debugPane.setSize(WIDTH / 3, HEIGHT / 10);
         debugPane.setScrollingDisabled(true, false);
         debugPane.setupFadeScrollBars(0f, 0f);
         debugPane.setupOverscroll(15, 10, 55);
