@@ -13,6 +13,7 @@ public class SelectionSystem extends IteratingSystem {
 
     public SelectionSystem() {
         super(Family.all(Selected.class, Box2dBody.class).get());
+        setProcessing(false);
     }
 
     @Override

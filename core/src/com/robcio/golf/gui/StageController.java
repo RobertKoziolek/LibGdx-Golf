@@ -45,7 +45,7 @@ public class StageController extends Stage {
     }
 
     private void setUp() {
-        final TextButton leftClickButton = addButton(inputCatcher.changeMouseMode());
+        final TextButton leftClickButton = addButton(inputCatcher.getCurrentMouseMode().getTooltip());
         leftClickButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

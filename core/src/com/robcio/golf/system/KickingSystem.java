@@ -16,6 +16,7 @@ public class KickingSystem extends IteratingSystem {
 
     public KickingSystem() {
         super(Family.all(Selected.class, Box2dBody.class).get());
+        setProcessing(false);
     }
 
     @Override

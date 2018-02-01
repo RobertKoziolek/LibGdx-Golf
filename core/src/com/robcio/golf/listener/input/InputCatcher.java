@@ -126,7 +126,6 @@ public class InputCatcher implements InputProcessor {
         return Position.of(realCoords.x, realCoords.y);
     }
 
-    //TODO mialem tu raz buga, zbadac czemu
     public String changeMouseMode() {
         changeMouseSystemProcessing(getCurrentMouseMode(), false);
         final MouseMode last = mouseModes.get(mouseModes.size() - 1);
@@ -152,7 +151,7 @@ public class InputCatcher implements InputProcessor {
         Selected.position = position;
     }
 
-    private MouseMode getCurrentMouseMode() {
+    public MouseMode getCurrentMouseMode() {
         return mouseModes.get(0);
     }
 }
