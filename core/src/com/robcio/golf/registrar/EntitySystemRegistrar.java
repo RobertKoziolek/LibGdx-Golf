@@ -13,6 +13,7 @@ public class EntitySystemRegistrar {
         engine.addSystem(new PositionSynchronizationSystem());
         engine.addSystem(new InBowlSystem());
         engine.addSystem(new SelectionSystem());
+        engine.addSystem(new KickingSystem());
         engine.addSystem(new RenderSystem(batch));
     }
 }

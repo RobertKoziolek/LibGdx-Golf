@@ -32,7 +32,7 @@ public class InBowlSystem extends IteratingSystem {
         distance.add(ball.getPosition());
         distance.sub(bowlCenter);
         float finalDistance = distance.len();
-        distance = new Vector2(-distance.x, -distance.y);
+        distance = distance.scl(-1f);
 
         //TODO zbalansowac sile aby wielkosc bowla odzwierciedlala jak mocno cos wpada
         float vecSum = Math.abs(distance.x) + Math.abs(distance.y);

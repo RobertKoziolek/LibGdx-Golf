@@ -2,6 +2,7 @@ package com.robcio.golf.listener.input;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.InputProcessor;
@@ -10,13 +11,17 @@ import com.badlogic.gdx.math.Vector3;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.enumeration.MouseMode;
+import com.robcio.golf.system.ImpulseSystem;
+import com.robcio.golf.system.KickingSystem;
 import com.robcio.golf.system.SelectionSystem;
+import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 import static com.robcio.golf.enumeration.MouseMode.MOVING;
 
@@ -58,6 +63,7 @@ public class InputCatcher implements InputProcessor {
                 engine.addEntity(new Ball(unprojectedPosition, Dimension.of(30)));
                 return true;
             case MOVING:
+            case KICKING:
                 final ImmutableArray<Entity> entities = engine
                         .getEntitiesFor(Family.all(Position.class).exclude(Selected.class).get());
                 for (final Entity entity : entities) {
@@ -78,6 +84,8 @@ public class InputCatcher implements InputProcessor {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         switch (getCurrentMouseMode()) {
+            case KICKING:
+                engine.getSystem(ImpulseSystem.class).update(9f);
             case MOVING:
                 final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selected.class).get());
                 for (final Entity entity : entities) {
@@ -93,6 +101,7 @@ public class InputCatcher implements InputProcessor {
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         switch (getCurrentMouseMode()) {
+            case KICKING:
             case MOVING:
                 setSelectionPoint(screenX, screenY);
                 return true;
@@ -117,11 +126,23 @@ public class InputCatcher implements InputProcessor {
         return Position.of(realCoords.x, realCoords.y);
     }
 
+    //TODO mialem tu raz buga, zbadac czemu
     public String changeMouseMode() {
+        changeMouseSystemProcessing(getCurrentMouseMode(), false);
         final MouseMode last = mouseModes.get(mouseModes.size() - 1);
         mouseModes.remove(last);
         mouseModes.add(0, last);
+        changeMouseSystemProcessing(last, true);
+        Log.i("Changed mouse mode to " + last.getTooltip());
         return last.getTooltip();
+    }
+
+    private void changeMouseSystemProcessing(final MouseMode currentMouseMode, final boolean processing) {
+        final Class<? extends EntitySystem> systemClass = currentMouseMode.getSystemClass();
+        if (systemClass != null) {
+            final EntitySystem system = engine.getSystem(systemClass);
+            system.setProcessing(processing);
+        }
     }
 
     private void setSelectionPoint(int screenX, int screenY) {
@@ -131,7 +152,7 @@ public class InputCatcher implements InputProcessor {
         Selected.position = position;
     }
 
-    public MouseMode getCurrentMouseMode() {
+    private MouseMode getCurrentMouseMode() {
         return mouseModes.get(0);
     }
 }

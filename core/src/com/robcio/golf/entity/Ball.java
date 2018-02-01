@@ -25,7 +25,6 @@ public class Ball extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
-        add(new Impulse());
         add(Renderable.of(Textures.GOLFBALL, 20));
     }
 

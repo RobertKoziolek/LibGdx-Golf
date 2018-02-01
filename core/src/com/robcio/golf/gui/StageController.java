@@ -45,20 +45,12 @@ public class StageController extends Stage {
     }
 
     private void setUp() {
-        final TextButton leftClickButton = addButton("Mouse mode");
+        final TextButton leftClickButton = addButton(inputCatcher.changeMouseMode());
         leftClickButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 final String mouseModeTooltip = inputCatcher.changeMouseMode();
                 leftClickButton.setText(mouseModeTooltip);
-            }
-        });
-        final TextButton impulseButton = addButton("Impulse on/off");
-        impulseButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                final boolean impulseOn = engine.getSystem(ImpulseSystem.class).change();
-                impulseButton.setText(impulseOn ? "Impulse off" : "Impulse on");
             }
         });
         final ImmutableArray<Entity> entities = engine
@@ -75,8 +67,7 @@ public class StageController extends Stage {
             }
         });
         final Table table = new Table(skin);
-        table.add(leftClickButton).row();
-        table.add(impulseButton).row();
+        table.add(leftClickButton);
         table.add(clearBallsButton).row();
         final ScrollPane debugPane = new ScrollPane(table, skin);
         debugPane.setSize(WIDTH / 3, HEIGHT / 10);

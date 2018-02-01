@@ -20,7 +20,6 @@ public class Box extends Entity {
         add(position);
         add(dimension);
         add(Renderable.of(Textures.BOX));
-        add(new Impulse());
     }
 
     public Box(final Rectangle rectangle) {
