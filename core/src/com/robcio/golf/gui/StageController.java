@@ -14,8 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.robcio.golf.component.Box2dBody;
-import com.robcio.golf.component.Impulse;
+import com.robcio.golf.component.*;
+import com.robcio.golf.entity.Ball;
 import com.robcio.golf.listener.input.InputCatcher;
 import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.utils.Log;
@@ -54,15 +54,18 @@ public class StageController extends Stage {
             }
         });
         final ImmutableArray<Entity> entities = engine
-                .getEntitiesFor(Family.all(Impulse.class, Box2dBody.class).get());
+                .getEntitiesFor(Family.all(Position.class, Dimension.class, Renderable.class, Box2dBody.class).get());
         Log.i("pilkow jest " + entities.size());
         final Button clearBallsButton = addButton("Clear balls");
         clearBallsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //TODO czemu nie usuwa wszystkich tylko polowe?
-                for (Entity entity : entities) {
-                    engine.removeEntity(entity);
+                //TODO czemu nie usuwa wszystkich tylko polowe? to bedzie problem jak beda sie tworzyc nowe rzeczy
+                //TODO wraz z pilkami, ale tez player nie bedzie mial mozliwosci usuwania
+                for (final Entity entity : entities) {
+                    if (entity instanceof Ball) {
+                        engine.removeEntity(entity);
+                    }
                 }
             }
         });
