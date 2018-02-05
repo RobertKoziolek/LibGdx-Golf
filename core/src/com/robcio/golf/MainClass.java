@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -15,12 +16,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.robcio.golf.enumeration.ScreenId;
 import com.robcio.golf.gui.game.GameScreen;
 import com.robcio.golf.gui.game.StageController;
 import com.robcio.golf.listener.Box2DContactListener;
 import com.robcio.golf.map.Map;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;
+import com.robcio.golf.registrar.ScreenRegistrar;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
 import com.robcio.golf.utils.Textures;
@@ -65,6 +68,7 @@ public class MainClass extends Game {
         batch.enableBlending();
         batch.setProjectionMatrix(camera.combined);
 
+        //TODO world i engine do wspolnej klasy bo w sumie tak pracuja, fasada here sie przyda
         world = new World(new Vector2(0f, 0f), false);
         BodyFactory.setWorld(world);
         bodyDestroyer = new BodyDestroyer(world);
@@ -75,10 +79,12 @@ public class MainClass extends Game {
         new EntityListenerRegistrar(engine, bodyDestroyer);
         new EntitySystemRegistrar(engine, batch);
 
-        final GameScreen gameScreen = new GameScreen(world, engine, bodyDestroyer, camera);
-        setScreen(gameScreen);
+        final ScreenRegistrar screenRegistrar = new ScreenRegistrar(world, engine, bodyDestroyer, camera);
 
-        final InputMultiplexer multiplexer = new InputMultiplexer(gameScreen.getInputs());
+        setScreen(screenRegistrar.get(ScreenId.GAME));
+
+        final InputMultiplexer multiplexer = new InputMultiplexer(screenRegistrar.getCurrent().getInputs());
+
         Gdx.input.setInputProcessor(multiplexer);
         Log.i("World body count", Integer.toString(world.getBodyCount()));
     }

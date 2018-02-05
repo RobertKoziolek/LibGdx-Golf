@@ -19,7 +19,7 @@ public abstract class AbstractScreen implements Screen {
 //    protected Color backgroundColor = Color.GREEN;
 
     public AbstractScreen(final Camera camera) {
-        if (camera == null) throw new IllegalStateException("Screen cannot be initialized with camera as null");
+        if (camera == null) throw new IllegalStateException("ScreenId cannot be initialized with camera as null");
         this.stage = new Stage(new FitViewport(MainClass.WIDTH, MainClass.HEIGHT, camera));
     }
 

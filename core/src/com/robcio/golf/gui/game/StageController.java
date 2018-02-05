@@ -5,11 +5,12 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.robcio.golf.MainClass;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
@@ -25,10 +26,10 @@ public class StageController extends Stage {
     final private GameInputCatcher gameInputCatcher;
     final private Engine engine;
 
-    public StageController(final Viewport viewport,
+    public StageController(final Camera camera,
                            final GameInputCatcher gameInputCatcher,
                            final Engine engine) {
-        super(viewport);
+        super(new FillViewport(WIDTH, HEIGHT, camera));
         this.gameInputCatcher = gameInputCatcher;
         this.engine = engine;
         setUp();
