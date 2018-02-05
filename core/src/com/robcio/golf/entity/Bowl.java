@@ -9,12 +9,12 @@ import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Renderable;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.utils.Textures;
+import com.robcio.golf.enumeration.TextureId;
 import com.robcio.golf.world.BodyFactory;
 
 public class Bowl extends Entity {
 
-    public Bowl(final Position position, final Dimension dimension, final String texture) {
+    public Bowl(final Position position, final Dimension dimension, final TextureId textureId) {
         final Body body = BodyFactory
                 .createCircular(position, dimension, true, true, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
 
@@ -25,10 +25,10 @@ public class Bowl extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
-        add(Renderable.of(texture, 5));
+        add(Renderable.of(textureId, 5));
     }
 
-    public Bowl(final Ellipse ellipse, final String texture) {
-        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), texture);
+    public Bowl(final Ellipse ellipse, final TextureId textureId) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), textureId);
     }
 }

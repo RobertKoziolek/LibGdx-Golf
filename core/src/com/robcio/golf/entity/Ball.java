@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.robcio.golf.component.*;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.utils.Textures;
+import com.robcio.golf.enumeration.TextureId;
 import com.robcio.golf.world.BodyFactory;
 
 //TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
@@ -25,7 +25,7 @@ public class Ball extends Entity {
         add(position);
         add(dimension);
         add(new Box2dBody(body));
-        add(Renderable.of(Textures.GOLFBALL, 20));
+        add(Renderable.of(TextureId.GOLFBALL, 20));
     }
 
     public Ball(final Ellipse ellipse) {

@@ -35,9 +35,9 @@ public abstract class Box2dScreen extends AbstractScreen {
 
         box2DDebugRenderer = new Box2DDebugRenderer();
         mapRenderer = new OrthogonalTiledMapRenderer(map.getTiledMap());
-        if (camera instanceof OrthographicCamera) {
+        try {
             mapRenderer.setView((OrthographicCamera) camera);
-        } else {
+        } catch(final ClassCastException e) {
             throw new IllegalArgumentException("Camera must be orthographic");
         }
     }
@@ -46,7 +46,6 @@ public abstract class Box2dScreen extends AbstractScreen {
     public void render(final float delta) {
         Gdx.gl.glClearColor(0, 0.6f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
         update(delta);
         mapRenderer.render();
 

@@ -15,6 +15,7 @@ import com.robcio.golf.MainClass;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.listener.input.GameInputCatcher;
+import com.robcio.golf.utils.Assets;
 import com.robcio.golf.utils.Log;
 
 import static com.robcio.golf.MainClass.HEIGHT;
@@ -60,10 +61,10 @@ public class StageController extends Stage {
                 }
             }
         });
-        final Table table = new Table(MainClass.skin);
+        final Table table = new Table(Assets.getSkin());
         table.add(leftClickButton);
         table.add(clearBallsButton).row();
-        final ScrollPane debugPane = new ScrollPane(table, MainClass.skin);
+        final ScrollPane debugPane = new ScrollPane(table, Assets.getSkin());
         debugPane.setSize(WIDTH / 3, HEIGHT / 10);
         debugPane.setScrollingDisabled(true, false);
         debugPane.setupFadeScrollBars(0f, 0f);
@@ -73,7 +74,7 @@ public class StageController extends Stage {
 
     private TextButton addButton(final String text) {
         final int index = getActors().size;
-        final TextButton button = new TextButton(text, MainClass.skin);
+        final TextButton button = new TextButton(text, Assets.getSkin());
         final float width = WIDTH / numberOfButtonsInRow();
         final float height = HEIGHT / 12;
         button.setSize(width, height);

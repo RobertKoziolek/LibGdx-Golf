@@ -18,9 +18,8 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.*;
-import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
-import com.robcio.golf.utils.Textures;
+import com.robcio.golf.enumeration.TextureId;
 
 public class Map {
     private static final String mapPath = "map/map.tmx";
@@ -45,7 +44,7 @@ public class Map {
                 final String type = (String) object.getProperties().get("type");
                 switch (type) {
                     case "bowl":
-                        engine.addEntity(new Bowl(ellipse, Textures.BOWL));
+                        engine.addEntity(new Bowl(ellipse, TextureId.BOWL));
                         break;
                     case "ball":
                         engine.addEntity(new Ball(ellipse));
@@ -54,7 +53,7 @@ public class Map {
                         engine.addEntity(new Bumper(ellipse));
                         break;
                     case "hole":
-                        engine.addEntity(new Bowl(ellipse, Textures.HOLE));
+                        engine.addEntity(new Bowl(ellipse, TextureId.HOLE));
                         engine.addEntity(new Hole(Position.of(ellipse.x, ellipse.y), Dimension.of(1f)));
                         break;
                     default:

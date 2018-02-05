@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.*;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.utils.Textures;
+import com.robcio.golf.enumeration.TextureId;
 import com.robcio.golf.world.BodyFactory;
 
 public class Bumper extends Entity {
@@ -22,7 +22,7 @@ public class Bumper extends Entity {
         add(dimension);
         add(Force.of(55));
         add(new Box2dBody(body));
-        add(Renderable.of(Textures.BUMPER));
+        add(Renderable.of(TextureId.BUMPER));
     }
 
     public Bumper(final Ellipse ellipse) {
