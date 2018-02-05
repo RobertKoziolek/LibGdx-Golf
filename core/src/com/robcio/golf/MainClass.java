@@ -30,45 +30,66 @@ public class MainClass extends Game {
     private SpriteBatch batch;
     private OrthographicCamera camera;
 
+    private Engine engine;
     private World world;
     private BodyDestroyer bodyDestroyer;
-    private Engine engine;
 
+    private ScreenRegistrar screenRegistrar;
 
-    public MainClass(final boolean isDebugOn){
+    public MainClass(final boolean isDebugOn) {
         DEBUG = isDebugOn;
     }
 
-    //TODO ogarnac ten syf
     @Override
     public void create() {
         Assets.initialize();
+        initializeCamera();
+        initializeBatch();
+        initializeEngine();
+        initializeWorld();
+        initializeRegistrars();
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, WIDTH, HEIGHT);
+        //TODO zalaczanie screenow kiedy sie ich pojawi wiecej
+        {
+            setScreen(screenRegistrar.get(ScreenId.GAME));
+            setUpInput();
+        }
 
+        Log.i("World body count", Integer.toString(world.getBodyCount()));
+    }
+
+    private void setUpInput() {
+        final InputMultiplexer multiplexer = new InputMultiplexer(screenRegistrar.getCurrent().getInputs());
+        Gdx.input.setInputProcessor(multiplexer);
+    }
+
+    private void initializeRegistrars() {
+        new EntityListenerRegistrar(engine, bodyDestroyer);
+        new EntitySystemRegistrar(engine, batch);
+        screenRegistrar = new ScreenRegistrar(world, engine, bodyDestroyer, camera);
+    }
+
+    private void initializeEngine() {
+        engine = new Engine();
+    }
+
+    //TODO world i engine do wspolnej klasy bo w sumie tak pracuja, fasada here sie przyda
+    private void initializeWorld() {
+        world = new World(new Vector2(0f, 0f), false);
+        world.setContactListener(new Box2DContactListener(engine));
+        BodyFactory.setWorld(world);
+        bodyDestroyer = new BodyDestroyer(world);
+    }
+
+    private void initializeBatch() {
         batch = new SpriteBatch();
         batch.enableBlending();
         batch.setProjectionMatrix(camera.combined);
+    }
 
-        //TODO world i engine do wspolnej klasy bo w sumie tak pracuja, fasada here sie przyda
-        world = new World(new Vector2(0f, 0f), false);
-        BodyFactory.setWorld(world);
-        bodyDestroyer = new BodyDestroyer(world);
-
-        engine = new Engine();
-
-        world.setContactListener(new Box2DContactListener(engine));
-        new EntityListenerRegistrar(engine, bodyDestroyer);
-        new EntitySystemRegistrar(engine, batch);
-        final ScreenRegistrar screenRegistrar = new ScreenRegistrar(world, engine, bodyDestroyer, camera);
-
-        setScreen(screenRegistrar.get(ScreenId.GAME));
-
-        final InputMultiplexer multiplexer = new InputMultiplexer(screenRegistrar.getCurrent().getInputs());
-
-        Gdx.input.setInputProcessor(multiplexer);
-        Log.i("World body count", Integer.toString(world.getBodyCount()));
+    private void initializeCamera() {
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, WIDTH, HEIGHT);
     }
 
     @Override
