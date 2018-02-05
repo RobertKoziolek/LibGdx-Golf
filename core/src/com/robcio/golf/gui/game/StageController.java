@@ -11,12 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.robcio.golf.MainClass;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.utils.Assets;
-import com.robcio.golf.utils.Log;
 
 import static com.robcio.golf.MainClass.HEIGHT;
 import static com.robcio.golf.MainClass.WIDTH;
@@ -27,9 +25,9 @@ public class StageController extends Stage {
     final private GameInputCatcher gameInputCatcher;
     final private Engine engine;
 
-    public StageController(final Camera camera,
-                           final GameInputCatcher gameInputCatcher,
-                           final Engine engine) {
+    StageController(final Camera camera,
+                    final GameInputCatcher gameInputCatcher,
+                    final Engine engine) {
         super(new FillViewport(WIDTH, HEIGHT, camera));
         this.gameInputCatcher = gameInputCatcher;
         this.engine = engine;
@@ -47,7 +45,6 @@ public class StageController extends Stage {
         });
         final ImmutableArray<Entity> entities = engine
                 .getEntitiesFor(Family.all(Position.class, Dimension.class, Renderable.class, Box2dBody.class).get());
-        Log.i("pilkow jest " + entities.size());
         final Button clearBallsButton = addButton("Clear balls");
         clearBallsButton.addListener(new ClickListener() {
             @Override

@@ -49,13 +49,14 @@ public class MainClass extends Game {
         initializeWorld();
         initializeRegistrars();
 
-        //TODO zalaczanie screenow kiedy sie ich pojawi wiecej
-        {
-            setScreen(screenRegistrar.get(ScreenId.GAME));
-            setUpInput();
-        }
+        setScreen(ScreenId.MENU);
 
         Log.i("World body count", Integer.toString(world.getBodyCount()));
+    }
+
+    public void setScreen(final ScreenId screenId){
+        setScreen(screenRegistrar.get(screenId));
+        setUpInput();
     }
 
     private void setUpInput() {
@@ -66,7 +67,7 @@ public class MainClass extends Game {
     private void initializeRegistrars() {
         new EntityListenerRegistrar(engine, bodyDestroyer);
         new EntitySystemRegistrar(engine, batch);
-        screenRegistrar = new ScreenRegistrar(world, engine, bodyDestroyer, camera);
+        screenRegistrar = new ScreenRegistrar(this, world, engine, bodyDestroyer, camera);
     }
 
     private void initializeEngine() {
