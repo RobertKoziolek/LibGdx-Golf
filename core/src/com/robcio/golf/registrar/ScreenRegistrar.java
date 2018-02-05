@@ -38,4 +38,10 @@ public class ScreenRegistrar {
         if (current == null) throw new IllegalStateException("Current screen cannot be null");
         return current;
     }
+
+    public void dispose() {
+        for (final AbstractScreen screen : map.values()){
+            screen.dispose();
+        }
+    }
 }

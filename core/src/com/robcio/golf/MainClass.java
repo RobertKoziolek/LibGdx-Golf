@@ -101,6 +101,7 @@ public class MainClass extends Game {
 
     @Override
     public void dispose() {
+        screenRegistrar.dispose();
         batch.dispose();
         world.dispose();
         Assets.dispose();
