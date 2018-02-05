@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.robcio.golf.component.*;
@@ -25,15 +26,15 @@ import java.util.Objects;
 
 import static com.robcio.golf.enumeration.MouseMode.MOVING;
 
-public class InputCatcher implements InputProcessor {
+public class GameInputCatcher implements InputProcessor {
 
-    private final OrthographicCamera camera;
+    private final Camera camera;
 
     private final Engine engine;
 
     private ArrayList<MouseMode> mouseModes;
 
-    public InputCatcher(final OrthographicCamera camera, final Engine engine) {
+    public GameInputCatcher(final Camera camera, final Engine engine) {
         this.camera = camera;
         this.engine = engine;
         mouseModes = new ArrayList<>();
@@ -132,7 +133,7 @@ public class InputCatcher implements InputProcessor {
         mouseModes.remove(last);
         mouseModes.add(0, last);
         changeMouseSystemProcessing(last, true);
-        Log.i("Changed mouse mode to " + last.getTooltip());
+        Log.i("Mouse mode", last.getTooltip());
         return last.getTooltip();
     }
 

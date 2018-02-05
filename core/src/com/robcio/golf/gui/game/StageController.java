@@ -1,23 +1,19 @@
-package com.robcio.golf.gui;
+package com.robcio.golf.gui.game;
 
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.robcio.golf.MainClass;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
-import com.robcio.golf.listener.input.InputCatcher;
-import com.robcio.golf.system.ImpulseSystem;
+import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.utils.Log;
 
 import static com.robcio.golf.MainClass.HEIGHT;
@@ -26,30 +22,24 @@ import static com.robcio.golf.MainClass.WIDTH;
 
 public class StageController extends Stage {
 
-    final private Skin skin;
-    final private BitmapFont font32;
-    final private InputCatcher inputCatcher;
+    final private GameInputCatcher gameInputCatcher;
     final private Engine engine;
-    final AssetManager assets;
 
     public StageController(final Viewport viewport,
-                           final InputCatcher inputCatcher,
+                           final GameInputCatcher gameInputCatcher,
                            final Engine engine) {
         super(viewport);
-        this.inputCatcher = inputCatcher;
+        this.gameInputCatcher = gameInputCatcher;
         this.engine = engine;
-        assets = new AssetManager();
-        font32 = loadFont();
-        skin = loadSkin(font32);
         setUp();
     }
 
     private void setUp() {
-        final TextButton leftClickButton = addButton(inputCatcher.getCurrentMouseMode().getTooltip());
+        final TextButton leftClickButton = addButton(gameInputCatcher.getCurrentMouseMode().getTooltip());
         leftClickButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                final String mouseModeTooltip = inputCatcher.changeMouseMode();
+                final String mouseModeTooltip = gameInputCatcher.changeMouseMode();
                 leftClickButton.setText(mouseModeTooltip);
             }
         });
@@ -69,10 +59,10 @@ public class StageController extends Stage {
                 }
             }
         });
-        final Table table = new Table(skin);
+        final Table table = new Table(MainClass.skin);
         table.add(leftClickButton);
         table.add(clearBallsButton).row();
-        final ScrollPane debugPane = new ScrollPane(table, skin);
+        final ScrollPane debugPane = new ScrollPane(table, MainClass.skin);
         debugPane.setSize(WIDTH / 3, HEIGHT / 10);
         debugPane.setScrollingDisabled(true, false);
         debugPane.setupFadeScrollBars(0f, 0f);
@@ -82,7 +72,7 @@ public class StageController extends Stage {
 
     private TextButton addButton(final String text) {
         final int index = getActors().size;
-        final TextButton button = new TextButton(text, skin);
+        final TextButton button = new TextButton(text, MainClass.skin);
         final float width = WIDTH / numberOfButtonsInRow();
         final float height = HEIGHT / 12;
         button.setSize(width, height);
@@ -95,25 +85,8 @@ public class StageController extends Stage {
         return 3;
     }
 
-    private BitmapFont loadFont() {
-        return new BitmapFont(Gdx.files.internal("font/modak32.fnt"), Gdx.files.internal("font/modak32.png"),
-                              false);
-    }
-
-    private Skin loadSkin(final BitmapFont font32) {
-        assets.load("ui/uiskin.atlas", TextureAtlas.class);
-        assets.finishLoading();
-        final Skin skin = new Skin(assets.get("ui/uiskin.atlas", TextureAtlas.class));
-        skin.add("default-font", font32);
-        skin.load(Gdx.files.internal("ui/uiskin.json"));
-        return skin;
-    }
-
     @Override
     public void dispose() {
         super.dispose();
-        skin.dispose();
-        font32.dispose();
-        assets.dispose();
     }
 }

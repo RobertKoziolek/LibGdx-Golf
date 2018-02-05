@@ -1,0 +1,39 @@
+package com.robcio.golf.gui.game;
+
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.robcio.golf.gui.Box2dScreen;
+import com.robcio.golf.listener.input.GameInputCatcher;
+import com.robcio.golf.map.Map;
+import com.robcio.golf.world.BodyDestroyer;
+
+import static com.robcio.golf.MainClass.HEIGHT;
+import static com.robcio.golf.MainClass.WIDTH;
+
+public class GameScreen extends Box2dScreen {
+
+    final private StageController stageController;
+    final private GameInputCatcher gameInputCatcher;
+
+    public GameScreen(final World world, final Engine engine, final BodyDestroyer bodyDestroyer, final Camera camera) {
+        super(world, engine, bodyDestroyer, camera, new Map(engine));
+        gameInputCatcher = new GameInputCatcher(camera, engine);
+        stageController = new StageController(new FillViewport(WIDTH, HEIGHT, camera), gameInputCatcher, engine);
+
+        setStage(stageController);
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public InputProcessor[] getInputs(){
+        return new InputProcessor[]{stageController, gameInputCatcher};
+    }
+}
