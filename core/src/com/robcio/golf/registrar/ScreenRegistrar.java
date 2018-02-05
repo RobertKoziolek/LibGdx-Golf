@@ -23,8 +23,10 @@ public class ScreenRegistrar {
                            final BodyDestroyer bodyDestroyer,
                            final Camera camera) {
         map = new HashMap<>();
-        map.put(ScreenId.GAME, new GameScreen(world, engine, bodyDestroyer, camera));
-        map.put(ScreenId.MENU, new Menu(mainClass, camera));
+
+        final GameScreen gameScreen = new GameScreen(world, engine, bodyDestroyer, camera);
+        map.put(ScreenId.GAME, gameScreen);
+        map.put(ScreenId.MENU, new Menu(mainClass, camera, gameScreen));
     }
 
     public AbstractScreen get(final ScreenId screenId) {

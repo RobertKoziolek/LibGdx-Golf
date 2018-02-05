@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.robcio.golf.map.Map;
-import com.robcio.golf.utils.Log;
+import com.robcio.golf.enumeration.MapId;
+import com.robcio.golf.map.MapReader;
 import com.robcio.golf.utils.Maths;
 import com.robcio.golf.world.BodyDestroyer;
 
@@ -24,22 +24,29 @@ public abstract class Box2dScreen extends AbstractScreen {
 
     private final Box2DDebugRenderer box2DDebugRenderer;
     private final OrthogonalTiledMapRenderer mapRenderer;
+    private final MapReader mapReader;
 
     public Box2dScreen(final World world, final Engine engine, final BodyDestroyer bodyDestroyer, final Camera camera,
-                       final Map map) {
+                       final MapReader mapReader) {
         super();
         this.world = world;
         this.engine = engine;
         this.bodyDestroyer = bodyDestroyer;
         this.camera = camera;
+        this.mapReader = mapReader;
 
         box2DDebugRenderer = new Box2DDebugRenderer();
-        mapRenderer = new OrthogonalTiledMapRenderer(map.getTiledMap());
+        mapRenderer = new OrthogonalTiledMapRenderer(mapReader.getCurrentMap());
         try {
             mapRenderer.setView((OrthographicCamera) camera);
-        } catch(final ClassCastException e) {
+        } catch (final ClassCastException e) {
             throw new IllegalArgumentException("Camera must be orthographic");
         }
+    }
+
+    public void setMap(final MapId map) {
+        mapReader.load(map);
+        mapRenderer.setMap(mapReader.getCurrentMap());
     }
 
     @Override

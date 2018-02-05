@@ -18,21 +18,28 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.*;
+import com.robcio.golf.enumeration.MapId;
 import com.robcio.golf.utils.Maths;
 import com.robcio.golf.enumeration.TextureId;
 
-public class Map {
-    private static final String mapPath = "map/map.tmx";
+public class MapReader {
 
     private final Engine engine;
-    private TiledMap tiledMap;
+    private final TmxMapLoader loader;
+    private TiledMap current;
 
-    public Map(final Engine engine) {
+    public MapReader(final Engine engine) {
         this.engine = engine;
+        this.loader = new TmxMapLoader();
+        load(MapId.EMPTY);
+    }
 
-        this.tiledMap = new TmxMapLoader().load(mapPath);
-        parseTileMapLayerCollisions(this.tiledMap.getLayers().get("coll").getObjects());
-        parseTileMapBallObjects(this.tiledMap.getLayers().get("entity").getObjects());
+    public void load(final MapId map) {
+        this.current = loader.load("map/" + map.getFilename());
+        if (map != MapId.EMPTY) {
+            parseTileMapLayerCollisions(this.current.getLayers().get("coll").getObjects());
+            parseTileMapBallObjects(this.current.getLayers().get("entity").getObjects());
+        }
     }
 
     private void parseTileMapBallObjects(final MapObjects mapObjects) {
@@ -57,7 +64,8 @@ public class Map {
                         engine.addEntity(new Hole(Position.of(ellipse.x, ellipse.y), Dimension.of(1f)));
                         break;
                     default:
-                        throw new IllegalArgumentException(String.format("Map has an unknown Ellipse object type '%s'", type));
+                        throw new IllegalArgumentException(
+                                String.format("MapReader has an unknown Ellipse object type '%s'", type));
                 }
             } else if (object instanceof RectangleMapObject) {
                 final Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
@@ -72,7 +80,8 @@ public class Map {
                         engine.addEntity(new Obstacle(rectangle));
                         break;
                     default:
-                        throw new IllegalArgumentException(String.format("Map has an unknown Rectangle object type '%s'", type));
+                        throw new IllegalArgumentException(
+                                String.format("MapReader has an unknown Rectangle object type '%s'", type));
                 }
             }
         }
@@ -123,7 +132,7 @@ public class Map {
         return worldVertices;
     }
 
-    public TiledMap getTiledMap() {
-        return tiledMap;
+    public TiledMap getCurrentMap() {
+        return current;
     }
 }
