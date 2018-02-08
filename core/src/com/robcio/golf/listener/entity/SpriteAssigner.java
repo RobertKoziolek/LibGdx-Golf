@@ -19,7 +19,7 @@ public class SpriteAssigner implements EntityListener {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
         final Dimension dimension = Mapper.dimension.get(entity);
 
-        sprite.setOrigin(dimension.width / 2, dimension.height / 2);
+        sprite.setOrigin(dimension.getRadius1(), dimension.getRadius2());
         sprite.setSize(dimension.width, dimension.height);
     }
 

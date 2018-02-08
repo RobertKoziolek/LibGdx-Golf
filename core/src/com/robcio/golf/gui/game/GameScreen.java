@@ -15,7 +15,7 @@ public class GameScreen extends Box2dScreen {
     final private GameInputCatcher gameInputCatcher;
 
     public GameScreen(final World world, final Engine engine, final BodyDestroyer bodyDestroyer, final Camera camera) {
-        super(world, engine, bodyDestroyer, camera, new MapReader(engine));
+        super(world, engine, bodyDestroyer, camera);
         gameInputCatcher = new GameInputCatcher(camera, engine);
         stageController = new StageController(camera, gameInputCatcher, engine);
 

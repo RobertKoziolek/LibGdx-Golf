@@ -26,7 +26,7 @@ public class BodyFactory {
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
                                  boolean isRotationFixed, int cbits, int mbits) {
         final PolygonShape shape = new PolygonShape();
-        shape.setAsBox(dimension.width / Maths.PPM / 2, dimension.height / Maths.PPM / 2);
+        shape.setAsBox(dimension.getRadius1() / Maths.PPM, dimension.getRadius2() / Maths.PPM);
 
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
@@ -34,9 +34,9 @@ public class BodyFactory {
     public static Body createCircular(Position position, Dimension dimension, boolean isStatic,
                                       boolean isRotationFixed, int cbits, int mbits) {
         if (dimension.isSquare()) {
-            return createCircle(position, dimension.width / Maths.PPM / 2, isStatic, isRotationFixed, cbits, mbits);
+            return createCircle(position, dimension.getRadius1() / Maths.PPM, isStatic, isRotationFixed, cbits, mbits);
         } else {
-            return createOval(position, dimension.width / Maths.PPM / 2, dimension.height / Maths.PPM / 2, isStatic, isRotationFixed, cbits, mbits);
+            return createOval(position, dimension.getRadius1() / Maths.PPM, dimension.getRadius2() / Maths.PPM, isStatic, isRotationFixed, cbits, mbits);
         }
     }
 
@@ -81,10 +81,10 @@ public class BodyFactory {
         fixtureDef.filter.categoryBits = (short) cbits;
         fixtureDef.filter.maskBits = (short) mbits;
 
-        final Body tmpBody = createBody(bodyDef);
-        tmpBody.createFixture(fixtureDef);
+        final Body body = createBody(bodyDef);
+        body.createFixture(fixtureDef);
         shape.dispose();
-        return tmpBody;
+        return body;
     }
 
     public static Body createBody(BodyDef def) {

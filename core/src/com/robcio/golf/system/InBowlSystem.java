@@ -25,8 +25,8 @@ public class InBowlSystem extends IteratingSystem {
         final Body ball = Mapper.box2dBody.get(entity).body;
         final InBowl inBowl = Mapper.inBowl.get(entity);
         final Vector2 bowlCenter = inBowl.bowlCenter;
-        final float bowlRadius = inBowl.bowlDimension.width/Maths.PPM/2;
-        final float ballRadius = Mapper.dimension.get(entity).width/2/Maths.PPM;
+        final float bowlRadius = inBowl.bowlDimension.getRadius1()/Maths.PPM;
+        final float ballRadius = Mapper.dimension.get(entity).getRadius2()/Maths.PPM;
 
         Vector2 distance = new Vector2(0f, 0f);
         distance.add(ball.getPosition());

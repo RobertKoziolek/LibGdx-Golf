@@ -47,8 +47,9 @@ public class RenderSystem extends SortedIteratingSystem {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Mapper.position.get(entity);
-        float radius = Mapper.dimension.get(entity).width / 2;
-        float radius2 = Mapper.dimension.get(entity).height / 2;
+
+        float radius = Mapper.dimension.get(entity).getRadius1();
+        float radius2 = Mapper.dimension.get(entity).getRadius2();
 
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.setPosition(position.x - radius, position.y - radius2);

@@ -17,11 +17,12 @@ import static com.robcio.golf.MainClass.WIDTH;
 
 public class Menu extends AbstractScreen {
 
+    //TODO mozna wywalic do stagecontrollera jak w przypadku gamescreena
     public Menu(final MainClass mainClass, final Camera camera, final GameScreen gameScreen) {
         super(camera);
 
         int position = HEIGHT / 2 - HEIGHT / 9;
-        final int step = HEIGHT / 9;
+        final int step = HEIGHT / 7;
         for (final MapId map : MapId.values()) {
             if (map == MapId.EMPTY) continue;
             final Button button = new TextButton(map.getName(), Assets.getSkin());

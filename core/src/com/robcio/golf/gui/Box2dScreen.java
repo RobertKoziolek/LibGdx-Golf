@@ -26,14 +26,14 @@ public abstract class Box2dScreen extends AbstractScreen {
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final MapReader mapReader;
 
-    public Box2dScreen(final World world, final Engine engine, final BodyDestroyer bodyDestroyer, final Camera camera,
-                       final MapReader mapReader) {
+    public Box2dScreen(final World world, final Engine engine, final BodyDestroyer bodyDestroyer, final Camera camera) {
         super();
         this.world = world;
         this.engine = engine;
         this.bodyDestroyer = bodyDestroyer;
         this.camera = camera;
-        this.mapReader = mapReader;
+
+        this.mapReader = new MapReader(engine);
 
         box2DDebugRenderer = new Box2DDebugRenderer();
         mapRenderer = new OrthogonalTiledMapRenderer(mapReader.getCurrentMap());

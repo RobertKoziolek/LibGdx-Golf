@@ -19,6 +19,7 @@ import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.*;
 import com.robcio.golf.enumeration.MapId;
+import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
 import com.robcio.golf.enumeration.TextureId;
 
@@ -35,6 +36,7 @@ public class MapReader {
     }
 
     public void load(final MapId map) {
+        Log.i("Map loading", map.getName());
         this.current = loader.load("map/" + map.getFilename());
         if (map != MapId.EMPTY) {
             parseTileMapLayerCollisions(this.current.getLayers().get("coll").getObjects());

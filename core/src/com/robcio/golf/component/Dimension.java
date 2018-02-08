@@ -20,4 +20,12 @@ public class Dimension implements Component {
     public boolean isSquare() {
         return (Math.abs(width - height) < 0.005f);
     }
+
+    //TODO moze nie radiusONE tylko cos innego
+    public float getRadius1(){
+        return width/2f;
+    }
+    public float getRadius2(){
+        return height/2f;
+    }
 }
