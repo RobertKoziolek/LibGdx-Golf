@@ -51,7 +51,8 @@ public class MainClass extends Game {
 
         setScreen(ScreenId.MENU);
 
-        Log.i("World body count", Integer.toString(world.getBodyCount()));
+        //TODO moze sie zmienic jesli w menu ma byc fizyka
+        Log.i("World body count *should be 0 now", Integer.toString(world.getBodyCount()));
     }
 
     public void setScreen(final ScreenId screenId){
@@ -76,7 +77,7 @@ public class MainClass extends Game {
 
     //TODO world i engine do wspolnej klasy bo w sumie tak pracuja, fasada here sie przyda
     private void initializeWorld() {
-        world = new World(new Vector2(0f, 0f), false);
+        world = new World(Vector2.Zero.cpy(), false);
         world.setContactListener(new Box2DContactListener(engine));
         BodyFactory.setWorld(world);
         bodyDestroyer = new BodyDestroyer(world);

@@ -48,6 +48,7 @@ public class BodyFactory {
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
+    //TODO byc moze nalezaloby zwiekszyc ilosc verticesow w zaleznosci od wielkosci, bo kanciaste jest strasznie
     private static Body createOval(Position position, float radius1, float radius2, boolean isStatic,
                                    boolean isRotationFixed,
                                    int cbits, int mbits) {

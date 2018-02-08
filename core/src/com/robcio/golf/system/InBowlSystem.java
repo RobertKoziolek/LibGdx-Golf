@@ -40,12 +40,12 @@ public class InBowlSystem extends IteratingSystem {
     }
 
     private void dampVelocities(final Body body) {
-        body.setLinearVelocity(body.getLinearVelocity().scl(0.97f));
-        body.setAngularVelocity(body.getAngularVelocity() * 0.97f);
+        body.setLinearVelocity(body.getLinearVelocity().scl(0.975f));
+        body.setAngularVelocity(body.getAngularVelocity() * 0.975f);
     }
 
-    private Vector2 getDistance(Vector2 bowlCenter, Vector2 ballPosition) {
-        Vector2 distance = Maths.getDistance(bowlCenter, ballPosition);
+    private Vector2 getDistance(final Vector2 vector1, final Vector2 vector2) {
+        Vector2 distance = Maths.getDistance(vector1, vector2);
         return Maths.inverse(distance);
     }
 

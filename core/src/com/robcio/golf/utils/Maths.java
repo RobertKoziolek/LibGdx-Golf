@@ -23,7 +23,7 @@ public class Maths {
 
     //TODO kolejnosc ma znaczenie, pomyslec czy to ma sens
     public static Vector2 getDistance(final Vector2 vector1, final Vector2 vector2) {
-        Vector2 distance = new Vector2(0f, 0f);
+        Vector2 distance = Vector2.Zero.cpy();
         distance.add(vector1);
         distance.sub(vector2);
         return distance;

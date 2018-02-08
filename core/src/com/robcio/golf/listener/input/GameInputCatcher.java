@@ -39,6 +39,7 @@ public class GameInputCatcher implements InputProcessor {
         this.engine = engine;
         mouseModes = new ArrayList<>();
         Collections.addAll(mouseModes, MouseMode.values());
+        changeMouseSystemProcessing(getCurrentMouseMode(), true);
     }
 
     @Override
@@ -59,6 +60,7 @@ public class GameInputCatcher implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         final Position unprojectedPosition = getUnprojectedPosition(screenX, screenY);
+        //TODO tu raczej dodac jakis state pattern, zwlaszcza jesli ma tego byc wiecej
         switch (getCurrentMouseMode()) {
             case CREATING:
                 engine.addEntity(new Ball(unprojectedPosition, Dimension.of(30)));

@@ -7,10 +7,12 @@ import com.robcio.golf.component.Force;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
 import com.robcio.golf.utils.Mapper;
+import com.robcio.golf.utils.Maths;
 import lombok.Getter;
 
 import java.util.Map;
 
+//TODO jesli pilka uderzy z mala energia to sie przykleja i nie ma endContact ;c
 @Getter
 public class BumperListener implements BodyListener {
 
@@ -28,14 +30,9 @@ public class BumperListener implements BodyListener {
         final Entity entity = (Entity) bumper.getUserData();
         final Force force = Mapper.force.get(entity);
 
-        Vector2 distance = new Vector2(0f, 0f);
-        distance.add(ball.getPosition());
-        distance.sub(bumper.getPosition());
-        float finalDistance = distance.len();
+        final Vector2 distance = Maths.getDistance(ball.getPosition(), bumper.getPosition());
+        final float finalDistance = distance.len();
 
-        float vecSum = Math.abs(distance.x) + Math.abs(distance.y);
-        distance = new Vector2(distance.x * (1 / vecSum) * force.value / finalDistance,
-                               distance.y * (1 / vecSum) * force.value / finalDistance);
-        ball.applyForceToCenter(distance, true);
+        ball.applyForceToCenter(distance.scl((1 / Maths.getVectorSum(distance)) * force.value / finalDistance), true);
     }
 }

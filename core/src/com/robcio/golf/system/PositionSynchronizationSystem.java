@@ -12,6 +12,7 @@ import com.robcio.golf.component.Box2dBody;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Renderable;
+import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
@@ -29,9 +30,7 @@ public class PositionSynchronizationSystem extends IteratingSystem {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Mapper.position.get(entity);
 
-        final Vector2 bodyPosition = body.getPosition().scl(Maths.PPM);
-        position.x = bodyPosition.x;
-        position.y = bodyPosition.y;
-
+        final Vector2 scaledPosition = body.getPosition().cpy().scl(Maths.PPM);
+        position.set(scaledPosition);
     }
 }
