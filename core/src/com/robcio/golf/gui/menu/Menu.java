@@ -18,10 +18,11 @@ import static com.robcio.golf.MainClass.WIDTH;
 public class Menu extends AbstractScreen {
 
     //TODO mozna wywalic do stagecontrollera jak w przypadku gamescreena
+    //TODO jakies ruchome tlo z tylu, moze jako dekorator do ekranow?
     public Menu(final MainClass mainClass, final Camera camera, final GameScreen gameScreen) {
         super(camera);
 
-        int position = HEIGHT / 2 - HEIGHT / 9;
+        int position = HEIGHT / 2 - HEIGHT / 6;
         final int step = HEIGHT / 7;
         for (final MapId map : MapId.values()) {
             if (map == MapId.EMPTY) continue;

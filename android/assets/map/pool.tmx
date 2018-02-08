@@ -37,31 +37,31 @@
   </object>
   <object id="62" type="ball" x="654" y="224" width="30" height="30">
    <properties>
-    <property name="ballType" value="BLACK"/>
+    <property name="ballType" value="RED"/>
    </properties>
    <ellipse/>
   </object>
   <object id="63" type="ball" x="654" y="256" width="30" height="30">
    <properties>
-    <property name="ballType" value="BLACK"/>
+    <property name="ballType" value="RED"/>
    </properties>
    <ellipse/>
   </object>
   <object id="64" type="ball" x="682" y="241" width="30" height="30">
    <properties>
-    <property name="ballType" value="BLACK"/>
+    <property name="ballType" value="GREEN"/>
    </properties>
    <ellipse/>
   </object>
   <object id="65" type="ball" x="682" y="209" width="30" height="30">
    <properties>
-    <property name="ballType" value="BLACK"/>
+    <property name="ballType" value="GREEN"/>
    </properties>
    <ellipse/>
   </object>
   <object id="66" type="ball" x="682" y="273" width="30" height="30">
    <properties>
-    <property name="ballType" value="BLACK"/>
+    <property name="ballType" value="GREEN"/>
    </properties>
    <ellipse/>
   </object>
