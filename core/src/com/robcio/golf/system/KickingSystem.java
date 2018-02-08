@@ -11,6 +11,7 @@ import com.robcio.golf.component.Impulse;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.component.Selected;
 import com.robcio.golf.utils.Mapper;
+import com.robcio.golf.utils.Maths;
 
 public class KickingSystem extends IteratingSystem {
 
@@ -24,9 +25,7 @@ public class KickingSystem extends IteratingSystem {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Selected.position;
 
-        Vector2 impulse =  new Vector2(0f, 0f);
-        impulse.add(body.getPosition());
-        impulse.sub(new Vector2(position.x, position.y));
+        final Vector2 impulse = Maths.getDistance(body.getPosition(), new Vector2(position.x, position.y));
 
         entity.add(new Impulse(impulse.scl(MathUtils.clamp(impulse.len()*9f, 0f, 20f))));
     }

@@ -11,15 +11,22 @@ import com.robcio.golf.utils.Mapper;
 
 public class SelectionSystem extends IteratingSystem {
 
+    private Position position;
+
     public SelectionSystem() {
         super(Family.all(Selected.class, Box2dBody.class).get());
         setProcessing(false);
     }
 
     @Override
+    public void update(final float deltaTime){
+        position = Selected.position;
+        super.update(deltaTime);
+    }
+
+    @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final Body body = Mapper.box2dBody.get(entity).body;
-        final Position position = Selected.position;
         body.setTransform(position.x, position.y, body.getAngle());
         body.setLinearVelocity(Vector2.Zero);
         body.setAngularVelocity(0f);

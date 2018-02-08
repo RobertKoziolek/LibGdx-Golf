@@ -29,9 +29,9 @@ public class PositionSynchronizationSystem extends IteratingSystem {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Mapper.position.get(entity);
 
-        final Vector2 bodyPosition = body.getPosition();
-        position.x = bodyPosition.x * Maths.PPM;
-        position.y = bodyPosition.y * Maths.PPM;
+        final Vector2 bodyPosition = body.getPosition().scl(Maths.PPM);
+        position.x = bodyPosition.x;
+        position.y = bodyPosition.y;
 
     }
 }
