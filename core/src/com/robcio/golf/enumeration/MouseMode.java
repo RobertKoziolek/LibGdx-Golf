@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum MouseMode {
-    CREATING("Creating", null), MOVING("Moving", SelectionSystem.class), KICKING("Kicking", KickingSystem.class);
+    KICKING("Kicking", KickingSystem.class), CREATING("Creating", null), MOVING("Moving", SelectionSystem.class);
 
     final private String tooltip;
     final private Class<? extends EntitySystem> systemClass;

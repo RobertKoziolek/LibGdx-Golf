@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
+import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.MouseMode;
 import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.KickingSystem;
@@ -63,23 +64,33 @@ public class GameInputCatcher implements InputProcessor {
         //TODO tu raczej dodac jakis state pattern, zwlaszcza jesli ma tego byc wiecej
         switch (getCurrentMouseMode()) {
             case CREATING:
-                engine.addEntity(new Ball(unprojectedPosition, Dimension.of(30)));
+                engine.addEntity(new Ball(unprojectedPosition, Dimension.of(30), BallType.WHITE));
                 return true;
             case MOVING:
+                final Family moveFamily = Family.all(Position.class).exclude(Selected.class).get();
+                if (select(screenX, screenY, unprojectedPosition, moveFamily)) return true;
+                break;
             case KICKING:
-                final ImmutableArray<Entity> entities = engine
-                        .getEntitiesFor(Family.all(Position.class).exclude(Selected.class).get());
-                for (final Entity entity : entities) {
-                    final Position position = Mapper.position.get(entity);
-                    if (Position.distance(unprojectedPosition, position) < 30f) {
-                        setSelectionPoint(screenX, screenY);
-                        entity.add(new Selected());
-                        return true;
-                    }
-                }
+                final Family kickFamily = Family.all(Position.class, Kickable.class).exclude(Selected.class).get();
+                if (select(screenX, screenY, unprojectedPosition, kickFamily)) return true;
                 break;
             default:
                 //nothing to do here
+        }
+        return false;
+    }
+
+    private boolean select(final int screenX, final int screenY, final Position unprojectedPosition,
+                           final Family family) {
+        final ImmutableArray<Entity> moveEntities = engine
+                .getEntitiesFor(family);
+        for (final Entity entity : moveEntities) {
+            final Position position = Mapper.position.get(entity);
+            if (Position.distance(unprojectedPosition, position) < 30f) {
+                setSelectionPoint(screenX, screenY);
+                entity.add(new Selected());
+                return true;
+            }
         }
         return false;
     }

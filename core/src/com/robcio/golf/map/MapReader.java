@@ -18,6 +18,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.entity.*;
+import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.MapId;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
@@ -56,7 +57,7 @@ public class MapReader {
                         engine.addEntity(new Bowl(ellipse, TextureId.BOWL));
                         break;
                     case "ball":
-                        engine.addEntity(new Ball(ellipse));
+                        engine.addEntity(new Ball(ellipse, getBallType(object)));
                         break;
                     case "bumper":
                         engine.addEntity(new Bumper(ellipse));
@@ -87,6 +88,18 @@ public class MapReader {
                 }
             }
         }
+    }
+
+    private BallType getBallType(final MapObject object) {
+        final Object ballTypeProperty = object.getProperties().get("ballType");
+        if(ballTypeProperty != null){
+            final String ballTypeString = ballTypeProperty.toString();
+            final BallType ballType = BallType.valueOf(ballTypeString);
+            if (ballType == null) throw new IllegalArgumentException("Ball type is not supported");
+            return ballType;
+        }
+
+        return BallType.WHITE;
     }
 
     private void parseTileMapLayerCollisions(final MapObjects mapObjects) {

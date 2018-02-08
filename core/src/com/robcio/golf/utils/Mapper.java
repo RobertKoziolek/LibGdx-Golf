@@ -16,5 +16,6 @@ public class Mapper {
     final public static ComponentMapper<InBowl> inBowl = ComponentMapper.getFor(InBowl.class);
     final public static ComponentMapper<Position> position = ComponentMapper.getFor(Position.class);
     final public static ComponentMapper<Renderable> renderable = ComponentMapper.getFor(Renderable.class);
+    final public static ComponentMapper<Tinted> tinted = ComponentMapper.getFor(Tinted.class);
 
 }
