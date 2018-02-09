@@ -10,6 +10,7 @@ import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
+import com.robcio.golf.utils.Log;
 import com.robcio.golf.world.BodyFactory;
 
 //TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
@@ -28,6 +29,10 @@ public class Ball extends Entity {
         final Fixture fixture = body.getFixtureList().get(0);
         fixture.setRestitution(0.5f);
         fixture.setDensity(0.4f);
+
+        //TODO bardzo potrzebny damping predkosci, plywaja po stole
+        //TODO moze na mape inny damping? 
+        body.setLinearDamping(0.2f);
 
         add(position);
         add(dimension);
