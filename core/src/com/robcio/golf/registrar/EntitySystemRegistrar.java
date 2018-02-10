@@ -9,7 +9,7 @@ import com.robcio.golf.system.*;
 public class EntitySystemRegistrar {
 
     public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch) {
-        engine.addSystem(new ImpulseSystem(1.0f));
+        engine.addSystem(new ImpulseSystem());
         engine.addSystem(new PositionSynchronizationSystem());
         engine.addSystem(new InBowlSystem());
         engine.addSystem(new SelectionSystem());

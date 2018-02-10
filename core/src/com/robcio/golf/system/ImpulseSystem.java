@@ -13,7 +13,7 @@ import com.robcio.golf.utils.Maths;
 
 public class ImpulseSystem extends IteratingSystem {
 
-    public ImpulseSystem(final float interval) {
+    public ImpulseSystem() {
         super(Family.all(Impulse.class, Box2dBody.class).get());
         setProcessing(false);
     }
