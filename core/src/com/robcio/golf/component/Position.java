@@ -2,6 +2,7 @@ package com.robcio.golf.component;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.Vector2;
+import com.robcio.golf.utils.Maths;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
