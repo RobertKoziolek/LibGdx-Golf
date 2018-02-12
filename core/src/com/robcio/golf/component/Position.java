@@ -3,6 +3,7 @@ package com.robcio.golf.component;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.Vector2;
 import com.robcio.golf.utils.Maths;
+import javafx.geometry.Pos;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -24,5 +25,9 @@ public class Position implements Component {
         final float x = position1.x - position2.x;
         final float y = position1.y - position2.y;
         return (float) Math.sqrt(x * x + y * y);
+    }
+
+    public static Position toBox2D(final Position position) {
+        return Position.of(position.x / Maths.PPM, position.y / Maths.PPM);
     }
 }

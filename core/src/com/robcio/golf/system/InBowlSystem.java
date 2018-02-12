@@ -19,8 +19,10 @@ public class InBowlSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         final Body ball = Mapper.box2dBody.get(entity).body;
         final InBowl inBowl = Mapper.inBowl.get(entity);
-        final float bowlRadius = inBowl.bowlDimension.getRadius1() / Maths.PPM;
-        final float ballRadius = Mapper.dimension.get(entity).getRadius2() / Maths.PPM;
+        final Dimension bowlDimension = Dimension.radiusToBox2D(inBowl.bowlDimension);
+        final Dimension ballDimension = Dimension.radiusToBox2D(Mapper.dimension.get(entity));
+        final float bowlRadius = bowlDimension.width;
+        final float ballRadius = ballDimension.width;
 
         final Vector2 distance = getDistance(ball.getPosition(), inBowl.bowlCenter);
 

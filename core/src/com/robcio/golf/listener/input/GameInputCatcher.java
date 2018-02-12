@@ -160,9 +160,7 @@ public class GameInputCatcher implements InputProcessor {
 
     private void setSelectionPoint(int screenX, int screenY) {
         final Position position = getUnprojectedPosition(screenX, screenY);
-        position.x = position.x / Maths.PPM;
-        position.y = position.y / Maths.PPM;
-        Selected.position = position;
+        Selected.position = Position.toBox2D(position);
     }
 
     public MouseMode getCurrentMouseMode() {

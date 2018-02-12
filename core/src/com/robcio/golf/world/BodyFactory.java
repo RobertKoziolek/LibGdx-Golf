@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.robcio.golf.component.Dimension;
 import com.robcio.golf.component.Position;
 import com.robcio.golf.utils.Maths;
+import javafx.geometry.Pos;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,17 +27,19 @@ public class BodyFactory {
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
                                  boolean isRotationFixed, int cbits, int mbits) {
         final PolygonShape shape = new PolygonShape();
-        shape.setAsBox(dimension.getRadius1() / Maths.PPM, dimension.getRadius2() / Maths.PPM);
+        dimension = Dimension.radiusToBox2D(dimension);
+        shape.setAsBox(dimension.width, dimension.height);
 
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
     public static Body createCircular(Position position, Dimension dimension, boolean isStatic,
                                       boolean isRotationFixed, int cbits, int mbits) {
+        dimension = Dimension.radiusToBox2D(dimension);
         if (dimension.isSquare()) {
-            return createCircle(position, dimension.getRadius1() / Maths.PPM, isStatic, isRotationFixed, cbits, mbits);
+            return createCircle(position, dimension.width, isStatic, isRotationFixed, cbits, mbits);
         } else {
-            return createOval(position, dimension.getRadius1() / Maths.PPM, dimension.getRadius2() / Maths.PPM, isStatic, isRotationFixed, cbits, mbits);
+            return createOval(position, dimension.width, dimension.height, isStatic, isRotationFixed, cbits, mbits);
         }
     }
 
@@ -73,7 +76,8 @@ public class BodyFactory {
                                 int mbits) {
         final BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = isRotationFixed;
-        bodyDef.position.set(position.x / Maths.PPM, position.y / Maths.PPM);
+        position = Position.toBox2D(position);
+        bodyDef.position.set(position.x, position.y);
         bodyDef.type = isStatic ? BodyType.StaticBody : BodyType.DynamicBody;
 
         final FixtureDef fixtureDef = new FixtureDef();

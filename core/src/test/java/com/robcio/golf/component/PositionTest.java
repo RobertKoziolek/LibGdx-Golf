@@ -1,6 +1,7 @@
 package com.robcio.golf.component;
 
 import com.badlogic.gdx.math.Vector2;
+import com.robcio.golf.utils.Maths;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -35,5 +36,21 @@ public class PositionTest {
         final float distance = Position.distance(positionA, positionB);
 
         assertThat(distance).isNotZero();
+    }
+
+    @Test
+    public void shouldConvertToBox2dCorrectly() {
+        final Position position = Position.of(18f, 20f);
+        final Position box2dPosition = Position.toBox2D(position);
+
+        assertThat(position).isNotNull();
+        assertThat(box2dPosition).isNotNull();
+
+        assertThat(position).isNotEqualTo(box2dPosition);
+
+        assertThat(position.x).isEqualTo(18f);
+        assertThat(position.y).isEqualTo(20f);
+        assertThat(box2dPosition.x).isEqualTo(18f / Maths.PPM);
+        assertThat(box2dPosition.y).isEqualTo(20f / Maths.PPM);
     }
 }

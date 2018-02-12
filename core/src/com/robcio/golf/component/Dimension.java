@@ -1,6 +1,7 @@
 package com.robcio.golf.component;
 
 import com.badlogic.ashley.core.Component;
+import com.robcio.golf.utils.Maths;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -27,5 +28,13 @@ public class Dimension implements Component {
     }
     public float getRadius2(){
         return height/2f;
+    }
+
+    public static Dimension toBox2D(final Dimension dimension) {
+        return Dimension.of(dimension.width / Maths.PPM, dimension.height / Maths.PPM);
+    }
+
+    public static Dimension radiusToBox2D(final Dimension dimension) {
+        return Dimension.of(dimension.getRadius1() / Maths.PPM, dimension.getRadius2() / Maths.PPM);
     }
 }

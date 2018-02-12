@@ -92,7 +92,7 @@ public class MapReader {
 
     private BallType getBallType(final MapObject object) {
         final Object ballTypeProperty = object.getProperties().get("ballType");
-        if(ballTypeProperty != null){
+        if (ballTypeProperty != null) {
             final String ballTypeString = ballTypeProperty.toString();
             final BallType ballType = BallType.valueOf(ballTypeString);
             if (ballType == null) throw new IllegalArgumentException("Ball type is not supported");
@@ -142,7 +142,8 @@ public class MapReader {
     private Vector2[] getWorldVertices(final float[] vertices) {
         final Vector2[] worldVertices = new Vector2[vertices.length / 2];
         for (int i = 0; i < worldVertices.length; ++i) {
-            worldVertices[i] = new Vector2(vertices[i * 2] / Maths.PPM, vertices[i * 2 + 1] / Maths.PPM);
+            final Vector2 vector = new Vector2(vertices[i * 2], vertices[i * 2 + 1]);
+            worldVertices[i] = vector.scl(1f / Maths.PPM);
         }
         return worldVertices;
     }
