@@ -15,6 +15,8 @@ public class Box extends Entity {
                 .createBox(position, dimension, false, false, Bits.C.FREE_OBJECT, Bits.M.FREE_OBJECT_WILL_HIT);
         body.setUserData(this);
         body.getFixtureList().get(0).setDensity(2f);
+        body.setLinearDamping(0.99f);
+        body.setAngularDamping(0.99f);
         add(new Box2dBody(body));
         add(position);
         add(dimension);

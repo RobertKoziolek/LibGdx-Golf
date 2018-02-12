@@ -41,7 +41,7 @@ public class RenderSystem extends SortedIteratingSystem {
 
     //TODO moze ten angle wyciagnac do pozycji?
     @Override
-    protected void processEntity(Entity entity, float deltaTime) {
+    protected void processEntity(final Entity entity, final float deltaTime) {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Mapper.position.get(entity);
@@ -52,5 +52,13 @@ public class RenderSystem extends SortedIteratingSystem {
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.setPosition(position.x - radius, position.y - radius2);
         sprite.draw(batch);
+
+        final Selected selected = Mapper.selected.get(entity);
+        if (selected == null) return;
+        final Sprite selection = selected.sprite;
+        if (selection == null) return;
+        selection.setPosition(position.x - radius/2, position.y - radius2/2);
+        selection.setRotation(selection.getRotation() + 5f);
+        selection.draw(batch);
     }
 }

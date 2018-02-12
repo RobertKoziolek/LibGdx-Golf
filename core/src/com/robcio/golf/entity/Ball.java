@@ -16,10 +16,6 @@ import com.robcio.golf.world.BodyFactory;
 //TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
 public class Ball extends Entity {
 
-    public Ball(final Position position, final Dimension dimension) {
-        this(position, dimension, BallType.WHITE);
-    }
-
     public Ball(final Position position, final Dimension dimension, final BallType ballType) {
         final Body body = BodyFactory
                 .createCircular(position, dimension, false, false, Bits.C.BALL, Bits.M.BALL_WILL_HIT);
@@ -32,7 +28,8 @@ public class Ball extends Entity {
 
         //TODO bardzo potrzebny damping predkosci, plywaja po stole
         //TODO moze na mape inny damping? 
-        body.setLinearDamping(0.2f);
+        body.setLinearDamping(0.3f);
+        body.setAngularDamping(0.3f);
 
         add(position);
         add(dimension);

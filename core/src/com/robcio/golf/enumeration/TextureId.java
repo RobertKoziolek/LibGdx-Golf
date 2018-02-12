@@ -13,6 +13,12 @@ import java.util.Map;
 @Getter
 public enum TextureId {
 
-    GOLFBALL("golfball.png"), HOLE("hole.png"), BUMPER("bumper.png"), BOWL("bowl.png"), BOX("box.png");
+    GOLFBALL("golfball.png"),
+    HOLE("hole.png"),
+    BUMPER("bumper.png"),
+    BOWL("bowl.png"),
+    BOX("box.png"),
+    STAR("star.png");
+
     private String filename;
 }

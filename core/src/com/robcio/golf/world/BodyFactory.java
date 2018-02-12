@@ -25,7 +25,7 @@ public class BodyFactory {
     }
 
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
-                                 boolean isRotationFixed, int cbits, int mbits) {
+                                 boolean isRotationFixed, short cbits, short mbits) {
         final PolygonShape shape = new PolygonShape();
         dimension = Dimension.radiusToBox2D(dimension);
         shape.setAsBox(dimension.width, dimension.height);
@@ -34,7 +34,7 @@ public class BodyFactory {
     }
 
     public static Body createCircular(Position position, Dimension dimension, boolean isStatic,
-                                      boolean isRotationFixed, int cbits, int mbits) {
+                                      boolean isRotationFixed, short cbits, short mbits) {
         dimension = Dimension.radiusToBox2D(dimension);
         if (dimension.isSquare()) {
             return createCircle(position, dimension.width, isStatic, isRotationFixed, cbits, mbits);
@@ -44,8 +44,8 @@ public class BodyFactory {
     }
 
     private static Body createCircle(Position position, float radius, boolean isStatic, boolean isRotationFixed,
-                                     int cbits,
-                                     int mbits) {
+                                     short cbits,
+                                     short mbits) {
         final CircleShape shape = new CircleShape();
         shape.setRadius(radius);
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
@@ -54,7 +54,7 @@ public class BodyFactory {
     //TODO byc moze nalezaloby zwiekszyc ilosc verticesow w zaleznosci od wielkosci, bo kanciaste jest strasznie
     private static Body createOval(Position position, float radius1, float radius2, boolean isStatic,
                                    boolean isRotationFixed,
-                                   int cbits, int mbits) {
+                                   short cbits, short mbits) {
         final PolygonShape shape = new PolygonShape();
         final Vector2 vertices[] = new Vector2[8];
         for (int i = 0; i < 8; ++i)
@@ -72,8 +72,8 @@ public class BodyFactory {
         return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
     }
 
-    private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, int cbits,
-                                int mbits) {
+    private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, short cbits,
+                                short mbits) {
         final BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = isRotationFixed;
         position = Position.toBox2D(position);
@@ -83,8 +83,8 @@ public class BodyFactory {
         final FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1.0f;
-        fixtureDef.filter.categoryBits = (short) cbits;
-        fixtureDef.filter.maskBits = (short) mbits;
+        fixtureDef.filter.categoryBits = cbits;
+        fixtureDef.filter.maskBits = mbits;
 
         final Body body = createBody(bodyDef);
         body.createFixture(fixtureDef);
