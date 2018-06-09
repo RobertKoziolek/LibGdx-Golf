@@ -1,6 +1,7 @@
 package com.robcio.golf.map;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
@@ -29,11 +30,13 @@ public class MapReader {
     private final Engine engine;
     private final TmxMapLoader loader;
     private TiledMap current;
+    private final EntityFactory entityFactory;
 
     public MapReader(final Engine engine) {
         this.engine = engine;
         this.loader = new TmxMapLoader();
         load(MapId.EMPTY);
+        this.entityFactory = new EntityFactory();
     }
 
     public void load(final MapId map) {
@@ -47,59 +50,9 @@ public class MapReader {
 
     private void parseTileMapBallObjects(final MapObjects mapObjects) {
         for (final MapObject object : mapObjects) {
-            if (object instanceof EllipseMapObject) {
-                final Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-                ellipse.x += ellipse.width / 2;
-                ellipse.y += ellipse.height / 2;
-                final String type = (String) object.getProperties().get("type");
-                switch (type) {
-                    case "bowl":
-                        engine.addEntity(new Bowl(ellipse, TextureId.BOWL));
-                        break;
-                    case "ball":
-                        engine.addEntity(new Ball(ellipse, getBallType(object)));
-                        break;
-                    case "bumper":
-                        engine.addEntity(new Bumper(ellipse));
-                        break;
-                    case "hole":
-                        engine.addEntity(new Bowl(ellipse, TextureId.HOLE));
-                        engine.addEntity(new Hole(Position.of(ellipse.x, ellipse.y), Dimension.of(1f)));
-                        break;
-                    default:
-                        throw new IllegalArgumentException(
-                                String.format("MapReader has an unknown Ellipse object type '%s'", type));
-                }
-            } else if (object instanceof RectangleMapObject) {
-                final Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
-                rectangle.x += rectangle.width / 2;
-                rectangle.y += rectangle.height / 2;
-                final String type = (String) object.getProperties().get("type");
-                switch (type) {
-                    case "box":
-                        engine.addEntity(new Box(rectangle));
-                        break;
-                    case "obstacle":
-                        engine.addEntity(new Obstacle(rectangle));
-                        break;
-                    default:
-                        throw new IllegalArgumentException(
-                                String.format("MapReader has an unknown Rectangle object type '%s'", type));
-                }
-            }
+            final Entity entity = entityFactory.create(object);
+            engine.addEntity(entity);
         }
-    }
-
-    private BallType getBallType(final MapObject object) {
-        final Object ballTypeProperty = object.getProperties().get("ballType");
-        if (ballTypeProperty != null) {
-            final String ballTypeString = ballTypeProperty.toString();
-            final BallType ballType = BallType.valueOf(ballTypeString);
-            if (ballType == null) throw new IllegalArgumentException("Ball type is not supported");
-            return ballType;
-        }
-
-        return BallType.WHITE;
     }
 
     private void parseTileMapLayerCollisions(final MapObjects mapObjects) {
