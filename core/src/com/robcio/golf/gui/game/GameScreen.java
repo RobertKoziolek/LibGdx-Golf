@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.physics.box2d.World;
 import com.robcio.golf.gui.Box2dScreen;
 import com.robcio.golf.listener.input.GameInputCatcher;
-import com.robcio.golf.map.MapReader;
 import com.robcio.golf.world.BodyDestroyer;
 
 public class GameScreen extends Box2dScreen {

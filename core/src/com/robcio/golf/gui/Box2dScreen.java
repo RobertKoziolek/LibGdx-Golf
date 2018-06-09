@@ -36,7 +36,7 @@ public abstract class Box2dScreen extends AbstractScreen {
         this.mapReader = new MapReader(engine);
 
         box2DDebugRenderer = new Box2DDebugRenderer();
-        mapRenderer = new OrthogonalTiledMapRenderer(mapReader.getCurrentMap());
+        mapRenderer = new OrthogonalTiledMapRenderer(mapReader.getCurrent());
         try {
             mapRenderer.setView((OrthographicCamera) camera);
         } catch (final ClassCastException e) {
@@ -45,8 +45,9 @@ public abstract class Box2dScreen extends AbstractScreen {
     }
 
     public void setMap(final MapId map) {
+        //TODO jesli bedzie jakis powrot do menu nalezoloby czyscic pozostalosci po poprzednio zaladowanej mapie
         mapReader.load(map);
-        mapRenderer.setMap(mapReader.getCurrentMap());
+        mapRenderer.setMap(mapReader.getCurrent());
     }
 
     @Override

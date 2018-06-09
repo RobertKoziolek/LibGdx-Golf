@@ -22,9 +22,7 @@ import java.util.Collections;
 public class GameInputCatcher implements InputProcessor {
 
     private final Camera camera;
-
     private final Engine engine;
-
     private ArrayList<MouseMode> mouseModes;
 
     public GameInputCatcher(final Camera camera, final Engine engine) {
