@@ -10,10 +10,10 @@ import com.robcio.golf.component.*;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
-public class KickingSystem extends IteratingSystem {
+public class KickToSystem extends IteratingSystem {
 
-    public KickingSystem() {
-        super(Family.all(Selected.class, Kickable.class, Box2dBody.class).get());
+    public KickToSystem() {
+        super(Family.all(Kickable.class, Box2dBody.class).get());
         setProcessing(false);
     }
 
@@ -22,9 +22,11 @@ public class KickingSystem extends IteratingSystem {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Selected.position;
 
-        final Vector2 impulse = Maths.getDistance(body.getPosition(), new Vector2(position.x, position.y));
-
+        final Vector2 impulse = Maths.getDistance(new Vector2(position.x, position.y), body.getPosition());
+        if (!Mapper.selected.has(entity)) {
+            entity.add(new Selected());
+        }
         //TODO moze trzeba bedzie uzyc logarytmicznej funkcji log() w celu wyrownania sily, dodac wizualizacje
-        entity.add(new Impulse(impulse.scl(MathUtils.clamp(impulse.len()*9f, 0f, 20f))));
+        entity.add(new Impulse(impulse.scl(MathUtils.clamp(impulse.len() * 9f, 8f, 20f))));
     }
 }

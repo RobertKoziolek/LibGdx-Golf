@@ -11,6 +11,7 @@ import com.robcio.golf.MainClass;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
@@ -18,8 +19,7 @@ public abstract class AbstractScreen implements Screen {
     private Stage stage;
 //    protected Color backgroundColor = Color.GREEN;
 
-    public AbstractScreen(final Camera camera) {
-        if (camera == null) throw new IllegalStateException("ScreenId cannot be initialized with camera as null");
+    public AbstractScreen(@NonNull final Camera camera) {
         this.stage = new Stage(new FitViewport(MainClass.WIDTH, MainClass.HEIGHT, camera));
     }
 
@@ -65,9 +65,8 @@ public abstract class AbstractScreen implements Screen {
         stage.dispose();
     }
 
-    protected final void setStage(final Stage stage) {
+    protected final void setStage(@NonNull final Stage stage) {
         if (this.stage != null) throw new IllegalStateException("Cannot set another stage to a screen");
-        if (stage == null) throw new IllegalArgumentException("Cannot set stage to null");
         this.stage = stage;
     }
 

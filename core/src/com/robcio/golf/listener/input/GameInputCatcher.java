@@ -7,25 +7,17 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.robcio.golf.component.*;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.MouseMode;
 import com.robcio.golf.system.ImpulseSystem;
-import com.robcio.golf.system.KickingSystem;
-import com.robcio.golf.system.SelectionSystem;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
-import com.robcio.golf.utils.Maths;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Objects;
-
-import static com.robcio.golf.enumeration.MouseMode.MOVING;
 
 public class GameInputCatcher implements InputProcessor {
 
@@ -68,12 +60,14 @@ public class GameInputCatcher implements InputProcessor {
                 return true;
             case MOVING:
                 final Family moveFamily = Family.all(Position.class).exclude(Selected.class).get();
-                if (select(screenX, screenY, unprojectedPosition, moveFamily)) return true;
+                if (select(screenX, screenY, unprojectedPosition, moveFamily, true)) return true;
                 break;
+            case KICKTO:
             case KICKING:
                 final Family kickFamily = Family.all(Position.class, Kickable.class).exclude(Selected.class).get();
-                if (select(screenX, screenY, unprojectedPosition, kickFamily)) return true;
+                if (select(screenX, screenY, unprojectedPosition, kickFamily, true)) return true;
                 break;
+//                break;
             default:
                 //nothing to do here
         }
@@ -81,7 +75,7 @@ public class GameInputCatcher implements InputProcessor {
     }
 
     private boolean select(final int screenX, final int screenY, final Position unprojectedPosition,
-                           final Family family) {
+                           final Family family, final boolean selectOne) {
         final ImmutableArray<Entity> moveEntities = engine
                 .getEntitiesFor(family);
         for (final Entity entity : moveEntities) {
@@ -89,7 +83,7 @@ public class GameInputCatcher implements InputProcessor {
             if (Position.distance(unprojectedPosition, position) < 30f) {
                 setSelectionPoint(screenX, screenY);
                 entity.add(new Selected());
-                return true;
+                if (selectOne) return true;
             }
         }
         return false;
@@ -99,6 +93,7 @@ public class GameInputCatcher implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         switch (getCurrentMouseMode()) {
             case KICKING:
+            case KICKTO:
                 engine.getSystem(ImpulseSystem.class).update(9f);
             case MOVING:
                 final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selected.class).get());
@@ -116,6 +111,7 @@ public class GameInputCatcher implements InputProcessor {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         switch (getCurrentMouseMode()) {
             case KICKING:
+            case KICKTO:
             case MOVING:
                 setSelectionPoint(screenX, screenY);
                 return true;

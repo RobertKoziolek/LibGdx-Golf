@@ -12,8 +12,9 @@ public class EntitySystemRegistrar {
         engine.addSystem(new ImpulseSystem());
         engine.addSystem(new PositionSynchronizationSystem());
         engine.addSystem(new InBowlSystem());
-        engine.addSystem(new SelectionSystem());
+        engine.addSystem(new MoveSystem());
         engine.addSystem(new KickingSystem());
+        engine.addSystem(new KickToSystem());
         engine.addSystem(new RenderSystem(batch));
     }
 }

@@ -9,11 +9,11 @@ import com.robcio.golf.component.*;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 
-public class SelectionSystem extends IteratingSystem {
+public class MoveSystem extends IteratingSystem {
 
     private Position position;
 
-    public SelectionSystem() {
+    public MoveSystem() {
         super(Family.all(Selected.class, Box2dBody.class).get());
         setProcessing(false);
     }

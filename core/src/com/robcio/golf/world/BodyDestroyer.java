@@ -3,6 +3,7 @@ package com.robcio.golf.world;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -19,8 +20,7 @@ public class BodyDestroyer {
         bodiesToDestroy.clear();
     }
 
-    public void destroy(final Body body) {
-        if (body == null) throw new IllegalArgumentException("Body scheduled to destroy cannot be null");
+    public void destroy(@NonNull final Body body) {
         bodiesToDestroy.add(body);
     }
 

@@ -21,6 +21,7 @@ public class Box extends Entity {
         add(position);
         add(dimension);
         add(Renderable.of(TextureId.BOX));
+        add(new Kickable());
     }
 
     public Box(final Rectangle rectangle) {

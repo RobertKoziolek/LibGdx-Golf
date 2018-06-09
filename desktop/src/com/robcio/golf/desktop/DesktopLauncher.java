@@ -2,7 +2,6 @@ package com.robcio.golf.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.robcio.golf.MainClass;
 
 public class DesktopLauncher {

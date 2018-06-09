@@ -19,8 +19,9 @@ public class SelectIndicatorAssigner implements EntityListener {
         final Sprite sprite = new Sprite(Assets.Textures.get(TextureId.STAR));
         final Dimension dimension = Mapper.dimension.get(entity);
 
-        sprite.setOrigin(dimension.getRadius1() / 2f, dimension.getRadius2() / 2f);
-        sprite.setSize(dimension.width / 2f, dimension.height / 2f);
+        final float radius = Math.min(dimension.getRadius1(), dimension.getRadius2());
+        sprite.setOrigin(radius / 2f, radius / 2f);
+        sprite.setSize(radius, radius);
 
         Mapper.selected.get(entity).sprite = sprite;
     }
