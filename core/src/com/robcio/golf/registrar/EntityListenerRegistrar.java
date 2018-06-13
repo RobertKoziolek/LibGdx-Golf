@@ -2,10 +2,7 @@ package com.robcio.golf.registrar;
 
 
 import com.badlogic.ashley.core.Engine;
-import com.robcio.golf.listener.entity.Box2DBodyRemover;
-import com.robcio.golf.listener.entity.SelectIndicatorAssigner;
-import com.robcio.golf.listener.entity.SpriteAssigner;
-import com.robcio.golf.listener.entity.Tinter;
+import com.robcio.golf.listener.entity.*;
 import com.robcio.golf.world.BodyDestroyer;
 
 
@@ -15,6 +12,7 @@ public class EntityListenerRegistrar {
         engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner());
         engine.addEntityListener(SelectIndicatorAssigner.family, new SelectIndicatorAssigner());
         engine.addEntityListener(Tinter.family, new Tinter());
+        engine.addEntityListener(EntityRemover.family, new EntityRemover(engine));
         engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(bodyDestroyer));
     }
 }

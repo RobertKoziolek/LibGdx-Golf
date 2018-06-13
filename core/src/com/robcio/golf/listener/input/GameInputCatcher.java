@@ -91,18 +91,26 @@ public class GameInputCatcher implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         switch (getCurrentMouseMode()) {
             case KICKING:
+                engine.getSystem(ImpulseSystem.class).update(100f);
+                removeSelectedStatus();
+                return true;
             case KICKTO:
-                engine.getSystem(ImpulseSystem.class).update(9f);
+                engine.getSystem(ImpulseSystem.class).update(100f);
+                return true;
             case MOVING:
-                final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selected.class).get());
-                for (final Entity entity : entities) {
-                    entity.remove(Selected.class);
-                }
+                removeSelectedStatus();
                 return true;
             default:
                 //nothing to do here
         }
         return false;
+    }
+
+    private void removeSelectedStatus() {
+        final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selected.class).get());
+        for (final Entity entity : entities) {
+            entity.remove(Selected.class);
+        }
     }
 
     @Override

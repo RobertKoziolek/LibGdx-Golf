@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.*;
+import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
@@ -25,8 +26,11 @@ public class KickToSystem extends IteratingSystem {
         final Vector2 impulse = Maths.getDistance(new Vector2(position.x, position.y), body.getPosition());
         if (!Mapper.selected.has(entity)) {
             entity.add(new Selected());
+            Log.i("tibia");
         }
         //TODO moze trzeba bedzie uzyc logarytmicznej funkcji log() w celu wyrownania sily, dodac wizualizacje
-        entity.add(new Impulse(impulse.scl(MathUtils.clamp(impulse.len() * 9f, 8f, 20f))));
+        if (Mapper.selected.has(entity)) {
+            entity.add(new Impulse(impulse.scl(MathUtils.clamp(impulse.len() * 9f, 8f, 20f))));
+        }
     }
 }
