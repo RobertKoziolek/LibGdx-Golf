@@ -14,8 +14,8 @@ public class Box2DContactListener implements ContactListener {
 
     final private BodyListenerRegistrar registrar;
 
-    public Box2DContactListener(final Engine engine) {
-        this.registrar = new BodyListenerRegistrar(engine);
+    public Box2DContactListener() {
+        this.registrar = new BodyListenerRegistrar();
     }
 
     @Override

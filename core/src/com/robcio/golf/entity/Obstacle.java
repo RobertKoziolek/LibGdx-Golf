@@ -3,12 +3,9 @@ package com.robcio.golf.entity;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.Shape;
-import com.robcio.golf.component.Box2dBody;
-import com.robcio.golf.component.Dimension;
-import com.robcio.golf.component.Position;
+import com.robcio.golf.component.structure.Box2dBody;
+import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.world.BodyFactory;
 

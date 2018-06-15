@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.Box2dBody;
+import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.world.BodyDestroyer;
 import lombok.AllArgsConstructor;

@@ -5,8 +5,9 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.*;
-import com.robcio.golf.utils.Log;
+import com.robcio.golf.component.flag.Selected;
+import com.robcio.golf.component.structure.Box2dBody;
+import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.utils.Mapper;
 
 public class MoveSystem extends IteratingSystem {

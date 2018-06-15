@@ -2,7 +2,9 @@ package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.*;
+import com.robcio.golf.component.structure.Box2dBody;
+import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.world.BodyFactory;

@@ -5,9 +5,9 @@ import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.robcio.golf.component.Dimension;
-import com.robcio.golf.component.Renderable;
-import com.robcio.golf.component.Tinted;
+import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.flag.Renderable;
+import com.robcio.golf.component.structure.Tinted;
 import com.robcio.golf.utils.Mapper;
 
 public class Tinter implements EntityListener {

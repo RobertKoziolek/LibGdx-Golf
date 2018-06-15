@@ -1,5 +1,6 @@
 package com.robcio.golf.component;
 
+import com.robcio.golf.component.structure.Force;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;

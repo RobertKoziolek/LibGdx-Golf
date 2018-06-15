@@ -15,9 +15,9 @@ public class BodyListenerRegistrar {
 
     private final List<BodyListener> listeners = new LinkedList<>();
 
-    public BodyListenerRegistrar(final Engine engine) {
+    public BodyListenerRegistrar() {
         listeners.add(new BowlListener());
-        listeners.add(new HoleListener(engine));
+        listeners.add(new HoleListener());
         listeners.add(new BumperListener());
     }
 }

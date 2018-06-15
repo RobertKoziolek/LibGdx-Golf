@@ -3,12 +3,9 @@ package com.robcio.golf.world;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.robcio.golf.component.Dimension;
-import com.robcio.golf.component.Position;
-import com.robcio.golf.utils.Maths;
-import javafx.geometry.Pos;
+import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.structure.Position;
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

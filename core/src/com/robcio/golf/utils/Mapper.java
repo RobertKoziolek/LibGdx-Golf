@@ -1,7 +1,10 @@
 package com.robcio.golf.utils;
 
 import com.badlogic.ashley.core.ComponentMapper;
-import com.robcio.golf.component.*;
+import com.robcio.golf.component.flag.InBowl;
+import com.robcio.golf.component.flag.Renderable;
+import com.robcio.golf.component.flag.Selected;
+import com.robcio.golf.component.structure.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

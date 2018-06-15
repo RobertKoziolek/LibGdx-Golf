@@ -1,16 +1,19 @@
 package com.robcio.golf.entity;
 
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.robcio.golf.component.*;
+import com.robcio.golf.component.flag.Kickable;
+import com.robcio.golf.component.flag.Renderable;
+import com.robcio.golf.component.structure.Box2dBody;
+import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.component.structure.Tinted;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.utils.Log;
 import com.robcio.golf.world.BodyFactory;
 
 //TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec

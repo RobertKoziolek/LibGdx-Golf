@@ -1,5 +1,6 @@
 package com.robcio.golf.component;
 
+import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.utils.Maths;
 import org.junit.Test;
 

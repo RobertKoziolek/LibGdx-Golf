@@ -1,5 +1,6 @@
 package com.robcio.golf.component;
 
+import com.robcio.golf.component.structure.Box2dBody;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;

@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
-import com.robcio.golf.component.ToRemove;
+import com.robcio.golf.component.flag.ToRemove;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

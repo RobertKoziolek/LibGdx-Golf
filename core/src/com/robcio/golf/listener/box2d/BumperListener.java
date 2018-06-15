@@ -3,7 +3,7 @@ package com.robcio.golf.listener.box2d;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.Force;
+import com.robcio.golf.component.structure.Force;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
 import com.robcio.golf.utils.Mapper;
