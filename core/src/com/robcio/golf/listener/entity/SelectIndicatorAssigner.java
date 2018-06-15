@@ -12,6 +12,7 @@ import com.robcio.golf.utils.Assets;
 import com.robcio.golf.utils.Mapper;
 
 public class SelectIndicatorAssigner implements EntityListener {
+
     final public static Family family = Family.all(Renderable.class, Dimension.class, Selected.class).get();
 
     @Override

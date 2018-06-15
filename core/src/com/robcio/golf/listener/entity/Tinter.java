@@ -11,6 +11,7 @@ import com.robcio.golf.component.structure.Tinted;
 import com.robcio.golf.utils.Mapper;
 
 public class Tinter implements EntityListener {
+
     final public static Family family = Family.all(Renderable.class, Dimension.class, Tinted.class).get();
 
     @Override

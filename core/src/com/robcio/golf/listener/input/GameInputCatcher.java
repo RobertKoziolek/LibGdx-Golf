@@ -10,16 +10,12 @@ import lombok.Getter;
 
 public class GameInputCatcher implements InputProcessor {
 
-    private final Camera camera;
-    private final Engine engine;
     @Getter
     private MouseMode currentMouseMode;
     private final MouseModeRegistrar mouseModeRegistrar;
     private final PointerPosition pointerPosition;
 
     public GameInputCatcher(final Camera camera, final Engine engine) {
-        this.camera = camera;
-        this.engine = engine;
         pointerPosition = new PointerPosition(camera);
         mouseModeRegistrar = new MouseModeRegistrar(engine, pointerPosition);
         currentMouseMode = mouseModeRegistrar.getMouseModes().get(0);

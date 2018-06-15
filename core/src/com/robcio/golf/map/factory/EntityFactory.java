@@ -6,6 +6,8 @@ import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Rectangle;
+import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.*;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.TextureId;
@@ -26,9 +28,7 @@ public class EntityFactory {
                 case "bumper":
                     return new Bumper(ellipse);
                 case "hole":
-                    return new Bowl(ellipse, TextureId.HOLE);
-                    //TODO wypadaloby cos ogarnac zeby jednak dwa obiekty sie pojawialy
-//                return new Hole(Position.of(ellipse.x, ellipse.y), Dimension.of(1f));
+                    return new Hole(ellipse);
                 default:
                     throw new IllegalArgumentException(
                             String.format("MapReader has an unknown Ellipse object type '%s'", type));

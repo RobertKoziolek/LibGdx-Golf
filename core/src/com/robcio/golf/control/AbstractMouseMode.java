@@ -41,7 +41,6 @@ public abstract class AbstractMouseMode implements MouseMode {
 
     @Override
     public void changeSystemProcessing(final boolean processing) {
-        //TODO to moze nie tu tylko w mousemodzie? +1 na klase abstrakcyjna
         final Class<? extends EntitySystem> systemClass = getSystemClass();
         if (systemClass != null) {
             final EntitySystem system = engine.getSystem(systemClass);

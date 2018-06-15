@@ -14,5 +14,6 @@ public class EntityListenerRegistrar {
         engine.addEntityListener(Tinter.family, new Tinter());
         engine.addEntityListener(EntityRemover.family, new EntityRemover(engine));
         engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(bodyDestroyer));
+        engine.addEntityListener(HoleCreationListener.family, new HoleCreationListener(engine));
     }
 }

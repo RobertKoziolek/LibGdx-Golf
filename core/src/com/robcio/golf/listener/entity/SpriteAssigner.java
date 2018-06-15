@@ -9,6 +9,7 @@ import com.robcio.golf.component.flag.Renderable;
 import com.robcio.golf.utils.Mapper;
 
 public class SpriteAssigner implements EntityListener {
+
     final public static Family family = Family.all(Renderable.class, Dimension.class).get();
 
     @Override

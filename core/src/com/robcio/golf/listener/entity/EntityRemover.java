@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class EntityRemover implements EntityListener {
+    
     final public static Family family = Family.all(ToRemove.class).get();
 
     final private Engine engine;

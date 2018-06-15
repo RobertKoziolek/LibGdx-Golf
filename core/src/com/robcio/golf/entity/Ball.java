@@ -30,7 +30,7 @@ public class Ball extends Entity {
         fixture.setDensity(0.4f);
 
         //TODO bardzo potrzebny damping predkosci, plywaja po stole
-        //TODO moze na mape inny damping? 
+        //TODO moze na mape inny damping? generalnie powierzchnie dodac
         body.setLinearDamping(0.3f);
         body.setAngularDamping(0.3f);
 

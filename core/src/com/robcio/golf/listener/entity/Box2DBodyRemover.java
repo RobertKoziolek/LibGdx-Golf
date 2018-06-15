@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class Box2DBodyRemover implements EntityListener {
+
     final public static Family family = Family.all(Box2dBody.class).get();
 
     final private BodyDestroyer bodyDestroyer;

@@ -24,7 +24,6 @@ public class ImpulseSystem extends IteratingSystem {
         final Vector2 impulse = Mapper.impulse.get(entity).impulse;
         final Box2dBody box2dBody = Mapper.box2dBody.get(entity);
         box2dBody.body.applyForceToCenter(impulse, true);
-        //Dzieki nieusuwaniu kickto dziala na wszystko, nie polowe, czemu?
         entity.remove(Impulse.class);
     }
 }
