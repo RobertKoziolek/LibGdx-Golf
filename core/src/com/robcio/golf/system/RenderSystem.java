@@ -20,8 +20,9 @@ public class RenderSystem extends SortedIteratingSystem {
 
     final private SpriteBatch batch;
 
-    public RenderSystem(final SpriteBatch batch) {
-        super(Family.all(Box2dBody.class, Renderable.class, Position.class, Dimension.class).get(), new ZComparator());
+    public RenderSystem(final int priority, final SpriteBatch batch) {
+        super(Family.all(Box2dBody.class, Renderable.class, Position.class, Dimension.class).get(), new ZComparator(),
+              priority);
         this.batch = batch;
     }
 
@@ -53,11 +54,12 @@ public class RenderSystem extends SortedIteratingSystem {
         sprite.setPosition(position.x - radius, position.y - radius2);
         sprite.draw(batch);
 
+        //TODO znaczek pojawia sie krzywo przy niestandardowych ksztaltach, moze wyciagnac do osobnego systemu
         final Selected selected = Mapper.selected.get(entity);
         if (selected == null) return;
         final Sprite selection = selected.sprite;
         if (selection == null) return;
-        selection.setPosition(position.x - radius/2, position.y - radius2/2);
+        selection.setPosition(position.x - radius / 2, position.y - radius2 / 2);
         selection.setRotation(selection.getRotation() + 5f);
         selection.draw(batch);
     }

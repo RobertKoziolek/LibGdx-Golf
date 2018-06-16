@@ -13,8 +13,8 @@ import com.robcio.golf.utils.Maths;
 
 public class InBowlSystem extends IteratingSystem {
 
-    public InBowlSystem() {
-        super(Family.all(InBowl.class, Box2dBody.class).get());
+    public InBowlSystem(final int priority) {
+        super(Family.all(InBowl.class, Box2dBody.class).get(), priority);
     }
 
     @Override

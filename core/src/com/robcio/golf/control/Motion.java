@@ -22,7 +22,7 @@ public class Motion extends AbstractMouseMode {
     public boolean touchDown() {
         final Family moveFamily = Family.all(Position.class).exclude(Selected.class).get();
         //TODO select one na false nie dziala tak ze chwyta dwa
-        return select(moveFamily, true);
+        return select(moveFamily, false);
     }
 
     @Override

@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class ImpulseSystem extends IteratingSystem {
 
-    public ImpulseSystem() {
-        super(Family.all(Impulse.class, Box2dBody.class).get());
+    public ImpulseSystem(final int priority) {
+        super(Family.all(Impulse.class, Box2dBody.class).get(), priority);
         setProcessing(false);
     }
 

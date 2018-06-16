@@ -28,6 +28,7 @@ public class HoleCreationListener implements EntityListener {
 
     @Override
     public void entityRemoved(Entity entity) {
-
+        //TODO przebadac czy nie wypada usuwac tego bowla z kilku linijek wyzej
+        //nothing to do here
     }
 }

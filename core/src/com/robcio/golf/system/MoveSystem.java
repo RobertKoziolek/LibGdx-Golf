@@ -14,8 +14,8 @@ public class MoveSystem extends IteratingSystem {
 
     private Position position;
 
-    public MoveSystem() {
-        super(Family.all(Selected.class, Box2dBody.class).get());
+    public MoveSystem(final int priority) {
+        super(Family.all(Selected.class, Box2dBody.class).get(), priority);
         setProcessing(false);
     }
 

@@ -16,8 +16,8 @@ import com.robcio.golf.utils.Maths;
 
 public class KickingSystem extends IteratingSystem {
 
-    public KickingSystem() {
-        super(Family.all(Selected.class, Kickable.class, Box2dBody.class).get());
+    public KickingSystem(final int priority) {
+        super(Family.all(Selected.class, Kickable.class, Box2dBody.class).get(), priority);
         setProcessing(false);
     }
 

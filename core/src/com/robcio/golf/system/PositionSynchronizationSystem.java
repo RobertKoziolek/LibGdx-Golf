@@ -13,8 +13,8 @@ import com.robcio.golf.utils.Maths;
 public class PositionSynchronizationSystem extends IteratingSystem {
 
 
-    public PositionSynchronizationSystem() {
-        super(Family.all(Box2dBody.class, Position.class).get());
+    public PositionSynchronizationSystem(final int priority) {
+        super(Family.all(Box2dBody.class, Position.class).get(), priority);
     }
 
     @Override
