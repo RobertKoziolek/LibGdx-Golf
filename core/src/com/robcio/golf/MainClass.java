@@ -67,7 +67,7 @@ public class MainClass extends Game {
 
     private void initializeRegistrars() {
         new EntityListenerRegistrar(engine, bodyDestroyer);
-        new EntitySystemRegistrar(engine, batch);
+        new EntitySystemRegistrar(engine, batch, camera);
         screenRegistrar = new ScreenRegistrar(this, world, engine, bodyDestroyer, camera);
     }
 

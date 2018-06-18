@@ -7,14 +7,17 @@ import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selected;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.listener.input.PointerPosition;
-import com.robcio.golf.system.ImpulseSystem;
 import com.robcio.golf.system.KickingSystem;
-import com.robcio.golf.system.MoveSystem;
 
 public class Kick extends AbstractMouseMode {
 
     public Kick(final Engine engine, final PointerPosition pointerPosition) {
         super(engine, pointerPosition);
+    }
+
+    @Override
+    public void after() {
+        deselectEverything();
     }
 
     @Override
@@ -25,15 +28,15 @@ public class Kick extends AbstractMouseMode {
 
     @Override
     public boolean touchUp() {
-        engine.getSystem(ImpulseSystem.class).update(100f);
+        pointerPosition.updateSelectionPoint();
+        engine.getSystem(KickingSystem.class).update(100f);
         deselectEverything();
         return true;
     }
 
     @Override
     public boolean touchDragged() {
-        pointerPosition.updateSelectionPoint();
-        return true;
+        return false;
     }
 
     @Override

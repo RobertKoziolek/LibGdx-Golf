@@ -22,6 +22,11 @@ public class KickingSystem extends IteratingSystem {
     }
 
     @Override
+    public void setProcessing (boolean processing) {
+        super.setProcessing(false);
+    }
+
+    @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Selected.position;

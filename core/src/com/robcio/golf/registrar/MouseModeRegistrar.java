@@ -14,10 +14,10 @@ public class MouseModeRegistrar {
     private final List<MouseMode> mouseModes = new ArrayList<>();
 
     public MouseModeRegistrar(final Engine engine, final PointerPosition pointerPosition) {
-        add(new Creation(engine, pointerPosition));
-        add(new Motion(engine, pointerPosition));
         add(new Kick(engine, pointerPosition));
         add(new KickTo(engine, pointerPosition));
+        add(new Creation(engine, pointerPosition));
+        add(new Motion(engine, pointerPosition));
     }
 
     public MouseMode next(final MouseMode mouseMode) {

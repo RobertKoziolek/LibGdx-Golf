@@ -12,7 +12,7 @@ public class EntityListenerRegistrar {
         engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner());
         engine.addEntityListener(SelectIndicatorAssigner.family, new SelectIndicatorAssigner());
         engine.addEntityListener(Tinter.family, new Tinter());
-        engine.addEntityListener(EntityRemover.family, new EntityRemover(engine));
+        engine.addEntityListener(Remover.family, new Remover(engine));
         engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(bodyDestroyer));
         engine.addEntityListener(HoleCreationListener.family, new HoleCreationListener(engine));
     }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Renderable;
+import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -34,6 +35,7 @@ public class Ball extends Entity {
         body.setLinearDamping(0.3f);
         body.setAngularDamping(0.3f);
 
+        add(new Selectable());
         add(position);
         add(dimension);
         add(new Box2dBody(body));
