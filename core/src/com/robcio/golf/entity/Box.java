@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Renderable;
+import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -21,6 +22,8 @@ public class Box extends Entity {
         body.getFixtureList().get(0).setDensity(2f);
         body.setLinearDamping(0.99f);
         body.setAngularDamping(0.99f);
+        
+        add(new Selectable());
         add(new Box2dBody(body));
         add(position);
         add(dimension);

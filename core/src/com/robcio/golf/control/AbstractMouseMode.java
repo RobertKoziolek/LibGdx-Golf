@@ -5,8 +5,10 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.flag.Selected;
+import com.robcio.golf.component.flag.ToRemove;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.listener.input.PointerPosition;
 import com.robcio.golf.utils.Mapper;
@@ -34,7 +36,7 @@ public abstract class AbstractMouseMode implements MouseMode {
     }
 
     protected void selectEverything() {
-        final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class).get());
+        final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class, Kickable.class).get());
         for (final Entity entity : entities) {
             entity.add(new Selected());
         }
@@ -43,7 +45,7 @@ public abstract class AbstractMouseMode implements MouseMode {
     protected void deselectEverything() {
         final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class).get());
         for (final Entity entity : entities) {
-            entity.remove(Selected.class);
+            entity.add(new ToRemove(Selected.class));
         }
     }
 

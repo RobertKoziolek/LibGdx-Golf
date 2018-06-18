@@ -2,10 +2,6 @@ package com.robcio.golf.control;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
-import com.badlogic.ashley.core.Family;
-import com.robcio.golf.component.flag.Kickable;
-import com.robcio.golf.component.flag.Selected;
-import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.listener.input.PointerPosition;
 import com.robcio.golf.system.KickToSystem;
 
@@ -27,8 +23,7 @@ public class KickTo extends AbstractMouseMode {
 
     @Override
     public boolean touchDown() {
-        final Family family = Family.all(Position.class, Kickable.class).exclude(Selected.class).get();
-        return select(family, true);
+        return false;
     }
 
     @Override
