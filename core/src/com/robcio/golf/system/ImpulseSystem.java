@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.robcio.golf.component.flag.ToRemove;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Impulse;
-import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 
 public class ImpulseSystem extends IteratingSystem {
@@ -23,7 +22,6 @@ public class ImpulseSystem extends IteratingSystem {
         final Box2dBody box2dBody = Mapper.box2dBody.get(entity);
 
         box2dBody.body.applyForceToCenter(impulse, true);
-        Log.i("jeblem i sie usuwam");
         entity.add(new ToRemove(Impulse.class));
     }
 }
