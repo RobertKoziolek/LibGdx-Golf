@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Force implements Component {
-    public float value = 0.0f;
+    public float value;
 
     public static Force of(final float value) {
         return new Force(value);

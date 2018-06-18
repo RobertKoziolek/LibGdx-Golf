@@ -22,7 +22,7 @@ public class KickingSystem extends IteratingSystem {
     }
 
     @Override
-    public void setProcessing (boolean processing) {
+    public void setProcessing(boolean processing) {
         super.setProcessing(false);
     }
 
@@ -34,6 +34,6 @@ public class KickingSystem extends IteratingSystem {
         final Vector2 impulse = Maths.getDistance(body.getPosition(), new Vector2(position.x, position.y));
 
         //TODO moze trzeba bedzie uzyc logarytmicznej funkcji log() w celu wyrownania sily, dodac wizualizacje
-        entity.add(new Impulse(impulse.scl(MathUtils.clamp(impulse.len()*9f, 0f, 20f))));
+        entity.add(new Impulse(impulse.scl(MathUtils.clamp(impulse.len() * 9f, 0f, 20f))));
     }
 }

@@ -15,6 +15,7 @@ public class EntitySystemRegistrar {
     public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch, final Camera camera) {
         int priority = 0;
         engine.addSystem(new InBowlSystem(priority++));
+        engine.addSystem(new TimerSystem(priority++));
         engine.addSystem(new ImpulseSystem(priority++));
         engine.addSystem(new MoveSystem(priority++));
         engine.addSystem(new KickingSystem(priority++));

@@ -23,5 +23,6 @@ public class Mapper {
     final public static ComponentMapper<Renderable> renderable = ComponentMapper.getFor(Renderable.class);
     final public static ComponentMapper<Tinted> tinted = ComponentMapper.getFor(Tinted.class);
     final public static ComponentMapper<ToRemove> toRemove = ComponentMapper.getFor(ToRemove.class);
+    final public static ComponentMapper<Timer> timer = ComponentMapper.getFor(Timer.class);
 
 }

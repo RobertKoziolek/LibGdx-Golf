@@ -11,7 +11,6 @@ import com.robcio.golf.component.flag.Selected;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Impulse;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
