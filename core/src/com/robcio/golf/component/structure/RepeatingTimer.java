@@ -1,10 +1,7 @@
 package com.robcio.golf.component.structure;
 
 import com.badlogic.ashley.core.Component;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 
-//TODO pomysly: dispenser wyrzucajacy to co u gory
 public class RepeatingTimer implements Component {
 
     private final float resetTime;

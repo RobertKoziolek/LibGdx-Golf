@@ -32,6 +32,8 @@ public class Dispenser extends Entity {
         add(dimension);
         add(force);
         add(Renderable.of(TextureId.BOX));
+
+        //TODO moze zamiast chamsko klonowac zrobic interfejs typu Recipe ktory by okreslal jak tworzyc obiekty, lekko jak fabryka
         add(new Dispensing(new Ball(position, dimension, BallType.GREEN)));
     }
 

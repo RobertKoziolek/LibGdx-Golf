@@ -7,9 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.robcio.golf.component.flag.Dispensing;
 import com.robcio.golf.component.flag.ToRemove;
 import com.robcio.golf.component.structure.*;
-import com.robcio.golf.entity.Ball;
 import com.robcio.golf.entity.CloneableEntity;
-import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 

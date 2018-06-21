@@ -17,7 +17,7 @@ public class Creation extends AbstractMouseMode {
     @Override
     public boolean touchDown() {
 //        engine.addEntity(new Ball(pointerPosition.getUnprojectedPosition(), Dimension.of(30), BallType.WHITE));
-        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(9f), Force.of(50f)));
+        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(15f), Force.of(50f)));
         return true;
     }
 
