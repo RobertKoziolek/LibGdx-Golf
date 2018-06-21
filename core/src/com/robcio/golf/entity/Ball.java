@@ -15,12 +15,21 @@ import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
+import com.robcio.golf.utils.Maths;
 import com.robcio.golf.world.BodyFactory;
 
 //TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
-public class Ball extends Entity {
+public class Ball extends CloneableEntity {
+
+    private final Position position;
+    private final Dimension dimension;
+    private final BallType ballType;
 
     public Ball(final Position position, final Dimension dimension, final BallType ballType) {
+        this.position = position;
+        this.dimension = dimension;
+        this.ballType = ballType;
+
         final Body body = BodyFactory
                 .createCircular(position, dimension, false, false, Bits.C.BALL, Bits.M.BALL_WILL_HIT);
         body.setUserData(this);
@@ -50,5 +59,10 @@ public class Ball extends Entity {
 
     public Ball(final Ellipse ellipse, final BallType ballType) {
         this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), ballType);
+    }
+
+    @Override
+    public Entity clone() {
+        return new Ball(position.clone(), dimension.clone(), Maths.getRandom(BallType.values()));
     }
 }

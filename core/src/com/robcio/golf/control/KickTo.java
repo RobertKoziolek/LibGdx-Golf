@@ -22,20 +22,10 @@ public class KickTo extends AbstractMouseMode {
     }
 
     @Override
-    public boolean touchDown() {
-        return false;
-    }
-
-    @Override
     public boolean touchUp() {
         pointerPosition.updateSelectionPoint();
         engine.getSystem(KickToSystem.class).update(100f);
         return true;
-    }
-
-    @Override
-    public boolean touchDragged() {
-        return false;
     }
 
     @Override

@@ -12,7 +12,6 @@ import lombok.Getter;
 
 import java.util.Map;
 
-//TODO jesli pilka uderzy z mala energia to sie przykleja i nie ma endContact ;c
 @Getter
 public class BumperListener implements BodyListener {
 
@@ -20,7 +19,8 @@ public class BumperListener implements BodyListener {
     private final EntityFlags entityFlagsB = EntityFlags.BALL;
 
     public void beginContact(final Map<Integer, Body> map) {
-        //nothing to do here
+        //TODO rozwiazuje problem lepienia sie do tego, ale moze odbija 2x
+        endContact(map);
     }
 
     @Override

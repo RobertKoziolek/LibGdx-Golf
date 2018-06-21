@@ -16,6 +16,7 @@ public class EntitySystemRegistrar {
         int priority = 0;
         engine.addSystem(new InBowlSystem(priority++));
         engine.addSystem(new TimerSystem(priority++));
+        engine.addSystem(new DispensingSystem(priority++));
         engine.addSystem(new ImpulseSystem(priority++));
         engine.addSystem(new MoveSystem(priority++));
         engine.addSystem(new KickingSystem(priority++));

@@ -1,10 +1,7 @@
 package com.robcio.golf.utils;
 
 import com.badlogic.ashley.core.ComponentMapper;
-import com.robcio.golf.component.flag.InBowl;
-import com.robcio.golf.component.flag.Renderable;
-import com.robcio.golf.component.flag.Selected;
-import com.robcio.golf.component.flag.ToRemove;
+import com.robcio.golf.component.flag.*;
 import com.robcio.golf.component.structure.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -20,9 +17,10 @@ public class Mapper {
     final public static ComponentMapper<Force> force = ComponentMapper.getFor(Force.class);
     final public static ComponentMapper<Impulse> impulse = ComponentMapper.getFor(Impulse.class);
     final public static ComponentMapper<InBowl> inBowl = ComponentMapper.getFor(InBowl.class);
+    final public static ComponentMapper<Dispensing> dispensing = ComponentMapper.getFor(Dispensing.class);
     final public static ComponentMapper<Renderable> renderable = ComponentMapper.getFor(Renderable.class);
     final public static ComponentMapper<Tinted> tinted = ComponentMapper.getFor(Tinted.class);
     final public static ComponentMapper<ToRemove> toRemove = ComponentMapper.getFor(ToRemove.class);
     final public static ComponentMapper<Timer> timer = ComponentMapper.getFor(Timer.class);
-
+    final public static ComponentMapper<RepeatingTimer> repeatingTimer = ComponentMapper.getFor(RepeatingTimer.class);
 }

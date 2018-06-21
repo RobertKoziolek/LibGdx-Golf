@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.flag.Renderable;
+import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 
 public class SpriteAssigner implements EntityListener {

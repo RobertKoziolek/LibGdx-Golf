@@ -2,6 +2,7 @@ package com.robcio.golf.utils;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.robcio.golf.enumeration.BallType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -35,5 +36,9 @@ public class Maths {
 
     public static float getVectorSum(final Vector2 vector) {
         return Math.abs(vector.x) + Math.abs(vector.y);
+    }
+
+    public static <T> T getRandom(T[] values) {
+        return values[random.nextInt(values.length)];
     }
 }

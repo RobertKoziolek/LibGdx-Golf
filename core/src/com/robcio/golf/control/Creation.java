@@ -2,7 +2,9 @@ package com.robcio.golf.control;
 
 import com.badlogic.ashley.core.Engine;
 import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.structure.Force;
 import com.robcio.golf.entity.Ball;
+import com.robcio.golf.entity.Dispenser;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.listener.input.PointerPosition;
 
@@ -14,7 +16,8 @@ public class Creation extends AbstractMouseMode {
 
     @Override
     public boolean touchDown() {
-        engine.addEntity(new Ball(pointerPosition.getUnprojectedPosition(), Dimension.of(30), BallType.WHITE));
+//        engine.addEntity(new Ball(pointerPosition.getUnprojectedPosition(), Dimension.of(30), BallType.WHITE));
+        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(9f), Force.of(50f)));
         return true;
     }
 

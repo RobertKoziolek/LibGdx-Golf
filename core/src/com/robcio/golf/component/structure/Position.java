@@ -2,14 +2,15 @@ package com.robcio.golf.component.structure;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.Vector2;
+import com.robcio.golf.component.CloneableComponent;
 import com.robcio.golf.utils.Maths;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Position implements Component {
-    public float x = 0.0f;
-    public float y = 0.0f;
+public class Position implements CloneableComponent<Position> {
+    public float x;
+    public float y;
 
     public static Position of(final float x, final float y) {
         return new Position(x, y);
@@ -29,7 +30,7 @@ public class Position implements Component {
         return Position.of(position.x / Maths.PPM, position.y / Maths.PPM);
     }
 
-    public static Position fromBox2D(final Position position){
+    public static Position fromBox2D(final Position position) {
         return Position.of(position.x * Maths.PPM, position.y * Maths.PPM);
     }
 
@@ -40,5 +41,10 @@ public class Position implements Component {
 
     public Vector2 getVector2() {
         return new Vector2(x, y);
+    }
+
+    @Override
+    public Position clone() {
+        return Position.of(x, y);
     }
 }
