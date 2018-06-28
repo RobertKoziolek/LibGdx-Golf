@@ -14,6 +14,7 @@ import java.util.Map;
 public enum TextureId {
 
     GOLFBALL("golfball.png"),
+    BUBBLE("bubble.png"),
     HOLE("hole.png"),
     BUMPER("bumper.png"),
     BOWL("bowl.png"),

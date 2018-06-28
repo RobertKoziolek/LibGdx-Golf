@@ -75,6 +75,7 @@ public class GameInputCatcher implements InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
+        changeMouseMode();
         return false;
     }
 }

@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 //TODO moznaby zrobic abstrakcyjne klasy dla encji i ToRemove moglby byc dodawany niejawnie
-//TODO moze byc tibia jesli sie nalozy usuwanie componentu i calego obiektu bo component jest jeden na entity
+//TODO moze byc tibia jesli sie nalozy usuwanie componentu i calego obiektu bo component jest jeden na recipe
 //TODO moze dodac ToRemove2, dzialajacy w systemie na OR i tyle
 @AllArgsConstructor
 public class ToRemove implements Component {
