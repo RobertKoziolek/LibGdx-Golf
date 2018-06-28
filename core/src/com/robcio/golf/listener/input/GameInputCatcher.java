@@ -68,6 +68,10 @@ public class GameInputCatcher implements InputProcessor {
         return currentMouseMode.touchDragged();
     }
 
+    public void update() {
+        currentMouseMode.update();
+    }
+
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
         return false;

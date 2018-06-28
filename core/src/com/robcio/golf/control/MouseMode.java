@@ -8,6 +8,8 @@ public interface MouseMode {
 
     void after();
 
+    void update();
+
     boolean touchDown();
 
     boolean touchUp();

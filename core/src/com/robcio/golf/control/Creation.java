@@ -8,18 +8,30 @@ import com.robcio.golf.entity.Dispenser;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.listener.input.PointerPosition;
 
-public class Creation extends AbstractMouseMode {
+public class Creation extends HoldableMouseMode {
 
-    public Creation(final Engine engine, final PointerPosition pointerPosition){
+    private short timer;
+
+    public Creation(final Engine engine, final PointerPosition pointerPosition) {
         super(engine, pointerPosition);
     }
 
     @Override
-    public boolean touchDown() {
-//        engine.addEntity(new Ball(pointerPosition.getUnprojectedPosition(), Dimension.of(30), BallType.WHITE));
-        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(25f), Force.of(2f)));
-        return true;
+    protected void doWhenHolding() {
+        timer++;
+        if (timer > 4) {
+            engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(25f), Force.of(2f)));
+            timer = 0;
+        }
     }
+
+    //TODO tworzeenie dispensera jak w RiverD z katem, moze dodac ten komponent z rotacja albo sam vector2 (nie przewiduje ten funkcjonalnosci tworzenia)
+//    @Override
+//    public boolean touchDown() {
+////        engine.addEntity(new Ball(pointerPosition.getUnprojectedPosition(), Dimension.of(30), BallType.WHITE));
+////        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(25f), Force.of(2f)));
+////        return true;
+//    }
 
     @Override
     public String getTooltip() {

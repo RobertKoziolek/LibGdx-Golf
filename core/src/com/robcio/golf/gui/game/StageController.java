@@ -38,6 +38,12 @@ public class StageController extends Stage {
         setUp();
     }
 
+    @Override
+    public void act (final float delta) {
+        super.act(delta);
+        gameInputCatcher.update();
+    }
+
     private void setUp() {
         final TextButton leftClickButton = addButton(gameInputCatcher.getCurrentMouseMode().getTooltip());
         leftClickButton.addListener(new ClickListener() {

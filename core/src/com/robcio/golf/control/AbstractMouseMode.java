@@ -24,7 +24,7 @@ public abstract class AbstractMouseMode implements MouseMode {
     protected boolean select(final Family family, final boolean selectOne) {
         final ImmutableArray<Entity> moveEntities = engine
                 .getEntitiesFor(family);
-        for (final Entity entity : moveEntities) {
+        for (final Entity entity: moveEntities) {
             final Position position = Mapper.position.get(entity);
             if (Position.distance(pointerPosition.getUnprojectedPosition(), position) < 30f) {
                 pointerPosition.updateSelectionPoint();
@@ -36,15 +36,16 @@ public abstract class AbstractMouseMode implements MouseMode {
     }
 
     protected void selectEverything() {
-        final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class, Kickable.class).get());
-        for (final Entity entity : entities) {
+        final ImmutableArray<Entity> entities = engine
+                .getEntitiesFor(Family.all(Selectable.class, Kickable.class).get());
+        for (final Entity entity: entities) {
             entity.add(new Selected());
         }
     }
 
     protected void deselectEverything() {
         final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class).get());
-        for (final Entity entity : entities) {
+        for (final Entity entity: entities) {
             entity.add(new ToRemove(Selected.class));
         }
     }
@@ -61,6 +62,10 @@ public abstract class AbstractMouseMode implements MouseMode {
         } else {
             after();
         }
+    }
+
+    @Override
+    public void update() {
     }
 
     @Override
