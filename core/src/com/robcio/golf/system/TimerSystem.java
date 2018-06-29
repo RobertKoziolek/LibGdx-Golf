@@ -22,9 +22,10 @@ public class TimerSystem extends IteratingSystem {
 
     private void processTimer(final Entity entity, final float deltaTime) {
         final Timer timer = Mapper.timer.get(entity);
-        if (timer == null) return;
+        if (timer == null || timer.done) return;
         if (timer.time <= 0f) {
             //TODO jesli nie bedzie usuwac to bedzie dodawac non stop ten komponent, zwykly bool by to zalatwil ale pomyslec
+            timer.done = true;
             entity.add(timer.component);
         } else {
             timer.time -= deltaTime;

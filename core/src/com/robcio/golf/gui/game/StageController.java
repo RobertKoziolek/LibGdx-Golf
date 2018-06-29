@@ -39,9 +39,9 @@ public class StageController extends Stage {
     }
 
     @Override
-    public void act (final float delta) {
-        super.act(delta);
-        gameInputCatcher.update();
+    public void act (final float deltaTime) {
+        super.act(deltaTime);
+        gameInputCatcher.update(deltaTime);
     }
 
     private void setUp() {
@@ -61,7 +61,7 @@ public class StageController extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 for (final Entity entity : entities) {
                     if (entity instanceof Ball){
-                        entity.add(new ToRemove());
+                        entity.add(ToRemove.self());
                     }
                 }
             }

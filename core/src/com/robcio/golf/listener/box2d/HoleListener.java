@@ -1,6 +1,5 @@
 package com.robcio.golf.listener.box2d;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.ToRemove;
@@ -20,7 +19,7 @@ public class HoleListener implements BodyListener {
 
     public void beginContact(final Map<Integer, Body> map) {
         final Entity ballEntity = (Entity) map.get(EntityFlags.BALL.getId()).getUserData();
-        ballEntity.add(new ToRemove());
+        ballEntity.add(ToRemove.self());
     }
 
     @Override

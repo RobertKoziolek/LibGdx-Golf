@@ -22,6 +22,6 @@ public class ImpulseSystem extends IteratingSystem {
         final Box2dBody box2dBody = Mapper.box2dBody.get(entity);
 
         box2dBody.body.applyForceToCenter(impulse, true);
-        entity.add(new ToRemove(Impulse.class));
+        entity.add(ToRemove.of(Impulse.class));
     }
 }

@@ -8,7 +8,7 @@ public interface MouseMode {
 
     void after();
 
-    void update();
+    void update(final float deltaTime);
 
     boolean touchDown();
 

@@ -12,23 +12,23 @@ public abstract class HoldableMouseMode extends AbstractMouseMode {
     }
 
     @Override
-    public void update() {
+    public void update(final float deltaTime) {
         if (holding) {
-            doWhenHolding();
+            doWhenHolding(deltaTime);
         }
     }
 
-    protected abstract void doWhenHolding();
+    protected abstract void doWhenHolding(final float deltaTime);
 
     @Override
     public boolean touchDown() {
         holding = true;
-        return false;
+        return super.touchDown();
     }
 
     @Override
     public boolean touchUp() {
         holding = false;
-        return false;
+        return super.touchUp();
     }
 }

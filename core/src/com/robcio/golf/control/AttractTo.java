@@ -3,12 +3,18 @@ package com.robcio.golf.control;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.robcio.golf.listener.input.PointerPosition;
-import com.robcio.golf.system.KickToSystem;
+import com.robcio.golf.system.AttractToSystem;
 
-public class KickTo extends AbstractMouseMode {
+public class AttractTo extends HoldableMouseMode {
 
-    public KickTo(final Engine engine, final PointerPosition pointerPosition) {
+    public AttractTo(final Engine engine, final PointerPosition pointerPosition) {
         super(engine, pointerPosition);
+    }
+
+    @Override
+    protected void doWhenHolding(final float deltaTime) {
+        pointerPosition.updateSelectionPoint();
+        engine.getSystem(AttractToSystem.class).update(deltaTime);
     }
 
     @Override
@@ -22,20 +28,12 @@ public class KickTo extends AbstractMouseMode {
     }
 
     @Override
-    public boolean touchUp() {
-        pointerPosition.updateSelectionPoint();
-        //TODO bzdura ze deltaTime podaje here zfixowany
-        engine.getSystem(KickToSystem.class).update(100f);
-        return true;
-    }
-
-    @Override
     public Class<? extends EntitySystem> getSystemClass() {
-        return KickToSystem.class;
+        return AttractToSystem.class;
     }
 
     @Override
     public String getTooltip() {
-        return "KickTo";
+        return "AttractTo";
     }
 }

@@ -68,8 +68,8 @@ public class GameInputCatcher implements InputProcessor {
         return currentMouseMode.touchDragged();
     }
 
-    public void update() {
-        currentMouseMode.update();
+    public void update(final float deltaTime) {
+        currentMouseMode.update(deltaTime);
     }
 
     @Override

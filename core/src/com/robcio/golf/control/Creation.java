@@ -17,15 +17,15 @@ public class Creation extends HoldableMouseMode {
     }
 
     @Override
-    protected void doWhenHolding() {
+    protected void doWhenHolding(final float deltaTime) {
         timer++;
         if (timer > 4) {
-            engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(25f), Force.of(2f)));
+            engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(18f), Force.of(2f)));
             timer = 0;
         }
     }
 
-    //TODO tworzeenie dispensera jak w RiverD z katem, moze dodac ten komponent z rotacja albo sam vector2 (nie przewiduje ten funkcjonalnosci tworzenia)
+    //TODO tworzenie dispensera jak w RiverD z katem, moze dodac ten komponent z rotacja albo sam vector2 (nie przewiduje ten funkcjonalnosci tworzenia)
 //    @Override
 //    public boolean touchDown() {
 ////        engine.addEntity(new Ball(pointerPosition.getUnprojectedPosition(), Dimension.of(30), BallType.WHITE));

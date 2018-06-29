@@ -12,6 +12,7 @@ import com.robcio.golf.system.graphics.RenderSystem;
 
 public class EntitySystemRegistrar {
 
+    //TODO czy na pewno chce wszystkie dodawac? niby nie chodza ale musza byc?
     public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch, final Camera camera) {
         int priority = 0;
         engine.addSystem(new InBowlSystem(priority++));
@@ -21,6 +22,7 @@ public class EntitySystemRegistrar {
         engine.addSystem(new MoveSystem(priority++));
         engine.addSystem(new KickingSystem(priority++));
         engine.addSystem(new KickToSystem(priority++));
+        engine.addSystem(new AttractToSystem(priority++));
         engine.addSystem(new PositionSynchronizationSystem(priority++));
         engine.addSystem(new RenderSystem(priority++, batch));
         engine.addSystem(new LineRenderSystem(priority++, camera));

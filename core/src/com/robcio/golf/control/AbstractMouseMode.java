@@ -32,6 +32,7 @@ public abstract class AbstractMouseMode implements MouseMode {
                 if (selectOne) return true;
             }
         }
+        //TODO tu te returny sa zle przemyslane, jesli w kliknieciu zlapie kilka to wysle false
         return false;
     }
 
@@ -46,7 +47,7 @@ public abstract class AbstractMouseMode implements MouseMode {
     protected void deselectEverything() {
         final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class).get());
         for (final Entity entity: entities) {
-            entity.add(new ToRemove(Selected.class));
+            entity.add(ToRemove.of(Selected.class));
         }
     }
 
@@ -65,7 +66,7 @@ public abstract class AbstractMouseMode implements MouseMode {
     }
 
     @Override
-    public void update() {
+    public void update(final float deltaTime) {
     }
 
     @Override

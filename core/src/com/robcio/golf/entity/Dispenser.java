@@ -29,7 +29,7 @@ public class Dispenser extends Entity {
         add(dimension);
         add(force);
         add(Renderable.of(TextureId.STAR));
-        add(Timer.of(2f, new ToRemove()));
+        add(Timer.of(1f, ToRemove.self()));
 
         //TODO te chamskie klonowanie tworzy wpierw balla, ktorego body sie nie usuwa z box2d world
         //TODO moze zamiast chamsko klonowac zrobic interfejs typu Recipe ktory by okreslal jak tworzyc obiekty, lekko jak fabryka

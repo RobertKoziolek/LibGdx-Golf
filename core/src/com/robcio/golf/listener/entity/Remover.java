@@ -16,8 +16,13 @@ public class Remover implements EntityListener {
     final private Engine engine;
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         final ToRemove toRemove = Mapper.toRemove.get(entity);
+        remove(entity, toRemove);
+    }
+
+    private void remove(final Entity entity, final ToRemove toRemove) {
+        if (toRemove == null) return;
         if (toRemove.component != null) {
             entity.remove(toRemove.component);
             entity.remove(ToRemove.class);
@@ -27,7 +32,7 @@ public class Remover implements EntityListener {
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         //nothing to do here
     }
 }

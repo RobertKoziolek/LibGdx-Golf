@@ -7,11 +7,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Timer implements Component {
 
+    public boolean done;
+
     public float time;
 
     public Component component;
 
     public static Timer of(final float time, final Component component) {
-        return new Timer(time, component);
+        return new Timer(false, time, component);
     }
 }
