@@ -5,13 +5,9 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.flag.Selected;
-import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.entity.Ball;
-import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.listener.input.PointerPosition;
-import com.robcio.golf.system.MoveSystem;
-import lombok.AllArgsConstructor;
+import com.robcio.golf.system.control.MoveSystem;
 
 public class Motion extends AbstractMouseMode {
 

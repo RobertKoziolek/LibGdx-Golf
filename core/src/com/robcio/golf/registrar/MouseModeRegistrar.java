@@ -15,8 +15,8 @@ public class MouseModeRegistrar {
 
     public MouseModeRegistrar(final Engine engine, final PointerPosition pointerPosition) {
         //TODO pierwszy jesli ma do zrobienie before to go nie robi
-        add(new Creation(engine, pointerPosition));
         add(new Kick(engine, pointerPosition));
+        add(new Creation(engine, pointerPosition));
         add(new KickTo(engine, pointerPosition));
         add(new AttractTo(engine, pointerPosition));
         add(new Motion(engine, pointerPosition));

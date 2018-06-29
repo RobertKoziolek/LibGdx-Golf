@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class Mapper {
 
     final public static ComponentMapper<Selected> selected = ComponentMapper.getFor(Selected.class);
+    final public static ComponentMapper<Trailing> trailing = ComponentMapper.getFor(Trailing.class);
     final public static ComponentMapper<Box2dBody> box2dBody = ComponentMapper.getFor(Box2dBody.class);
     final public static ComponentMapper<Dimension> dimension = ComponentMapper.getFor(Dimension.class);
     final public static ComponentMapper<Position> position = ComponentMapper.getFor(Position.class);

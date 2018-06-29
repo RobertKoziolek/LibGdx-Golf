@@ -18,6 +18,10 @@ public class Maths {
         return random.nextFloat();
     }
 
+    public static int nextInt(final int bound) {
+        return random.nextInt(bound);
+    }
+
     public static float radiansToDegrees(final float angle) {
         return angle * MathUtils.radiansToDegrees;
     }

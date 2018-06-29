@@ -1,4 +1,4 @@
-package com.robcio.golf.system;
+package com.robcio.golf.system.control;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

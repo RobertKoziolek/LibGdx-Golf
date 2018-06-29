@@ -7,7 +7,7 @@ import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selected;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.listener.input.PointerPosition;
-import com.robcio.golf.system.KickingSystem;
+import com.robcio.golf.system.control.KickingSystem;
 
 public class Kick extends AbstractMouseMode {
 

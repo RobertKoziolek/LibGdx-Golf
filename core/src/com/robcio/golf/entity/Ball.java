@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Renderable;
 import com.robcio.golf.component.flag.Selectable;
+import com.robcio.golf.component.flag.Trailing;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -43,11 +44,15 @@ public class Ball extends Entity {
         add(new Box2dBody(body));
         add(Renderable.of(TextureId.GOLFBALL, 20));
 
-        if (ballType == BallType.WHITE) {
-            add(new Kickable());
-        } else {
-            add(Tinted.of(ballType.getColor()));
+        if (ballType != null) {
+            add(Trailing.of(new Recipe(position, Dimension.of(dimension.getRadius1()), BallType.WHITE), 6f));
+            if (ballType == BallType.WHITE) {
+                add(new Kickable());
+            } else {
+                add(Tinted.of(ballType.getColor()));
+            }
         }
+
     }
 
     public Ball(final Ellipse ellipse, final BallType ballType) {

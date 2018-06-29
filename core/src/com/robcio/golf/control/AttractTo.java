@@ -3,7 +3,7 @@ package com.robcio.golf.control;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.robcio.golf.listener.input.PointerPosition;
-import com.robcio.golf.system.AttractToSystem;
+import com.robcio.golf.system.control.AttractToSystem;
 
 public class AttractTo extends HoldableMouseMode {
 

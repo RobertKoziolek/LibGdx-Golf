@@ -18,18 +18,18 @@ import com.robcio.golf.world.BodyFactory;
 //TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
 public class Bubble extends Ball {
 
-    private Bubble(final Position position, final Dimension dimension, final BallType ballType) {
-        super(position, dimension, ballType);
+    private Bubble(final Position position, final Dimension dimension) {
+        super(position, dimension, null);
         add(Renderable.of(TextureId.BUBBLE, 20));
         add(Timer.of(0.3f, ToRemove.self()));
 
     }
 
-    public Bubble(final Ellipse ellipse, final BallType ballType) {
-        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), ballType);
+    public Bubble(final Ellipse ellipse) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height));
     }
 
     public static Bubble of(final Recipe recipe) {
-        return new Bubble(recipe.getPosition().clone(), recipe.getDimension().clone(), recipe.getBallType());
+        return new Bubble(recipe.getPosition().clone(), recipe.getDimension().clone());
     }
 }
