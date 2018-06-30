@@ -37,6 +37,8 @@ public class GameInputCatcher implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        //TODO registar z obserwatorem moze na mapie dla klawiszy, do wymyslenia jak ogarnac Command wzorca
+        //TODO pierwsze klawiszy jak cos to 1..5 dla trybow myszki, esc dla menu
         return false;
     }
 

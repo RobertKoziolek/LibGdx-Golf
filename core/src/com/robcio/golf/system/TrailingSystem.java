@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.robcio.golf.component.flag.Trailing;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Impulse;
-import com.robcio.golf.entity.Bubble;
+import com.robcio.golf.entity.recipe.EntityFactory;
 import com.robcio.golf.entity.recipe.Recipe;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
@@ -34,7 +34,7 @@ public class TrailingSystem extends IteratingSystem {
                 trailing.counter = 0;
                 return;
             }
-            final Entity newEntity = Bubble.of(recipe);
+            final Entity newEntity = EntityFactory.createFrom(recipe);
             newEntity.add(new Impulse(velocity.rotate(130+ Maths.nextInt(100))));
             getEngine().addEntity(newEntity);
         }
