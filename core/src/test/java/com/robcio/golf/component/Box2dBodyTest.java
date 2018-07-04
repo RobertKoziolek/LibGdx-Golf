@@ -10,7 +10,7 @@ public class Box2dBodyTest {
     @Test
     public void shouldThrowWhenInitializedWithNull() {
         try {
-            new Box2dBody(null);
+            Box2dBody.of(null);
             fail("should have thrown exception");
         } catch (final IllegalArgumentException e) {
             assertThat(e).hasMessage("Body cannot be null");

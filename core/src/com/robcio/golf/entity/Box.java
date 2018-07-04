@@ -24,7 +24,7 @@ public class Box extends Entity {
         body.setAngularDamping(4f);
         
         add(new Selectable());
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
         add(position);
         add(dimension);
         add(Renderable.of(TextureId.BOX));

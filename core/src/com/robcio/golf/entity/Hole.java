@@ -25,7 +25,7 @@ public class Hole extends Entity {
         add(new Selectable());
         add(position);
         add(dimension);
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
         //TODO zmienic nazwy sensownie
         add(new com.robcio.golf.component.flag.Hole());
     }

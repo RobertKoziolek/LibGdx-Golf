@@ -22,7 +22,7 @@ public class Menu extends AbstractScreen {
     public Menu(final MainClass mainClass, final Camera camera, final GameScreen gameScreen) {
         super(camera);
 
-        int position = HEIGHT / 2 - HEIGHT / 6;
+        int position = HEIGHT / 3 - HEIGHT / 6;
         final int step = HEIGHT / 7;
         for (final MapId map : MapId.values()) {
             if (map == MapId.EMPTY) continue;

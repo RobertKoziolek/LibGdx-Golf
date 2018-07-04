@@ -25,6 +25,6 @@ public class Wall extends Entity {
         body.createFixture(fixtureDef);
         body.setUserData(this);
 
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
     }
 }

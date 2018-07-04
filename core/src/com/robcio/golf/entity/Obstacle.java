@@ -20,7 +20,7 @@ public class Obstacle extends Entity {
         add(new Selectable());
         add(position);
         add(dimension);
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
     }
 
     public Obstacle(final Rectangle rectangle) {

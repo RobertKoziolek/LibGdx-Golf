@@ -24,7 +24,7 @@ public class Dispenser extends Entity {
         flags = EntityFlags.BALL.getId();
 
         add(new Selectable());
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
         add(position);
         add(dimension);
         add(force);

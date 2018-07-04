@@ -26,7 +26,7 @@ public class Bowl extends Entity {
         add(new Selectable());
         add(position);
         add(dimension);
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
         add(Renderable.of(textureId, 5));
     }
 

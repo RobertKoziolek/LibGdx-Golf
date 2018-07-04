@@ -20,8 +20,8 @@ public class MapReader {
     private final TmxMapLoader loader;
     @Getter
     private TiledMap current;
-    private final com.robcio.golf.map.factory.EntityFactory entityFactory;
-    private final com.robcio.golf.map.factory.ShapeFactory shapeFactory;
+    private final EntityFactory entityFactory;
+    private final ShapeFactory shapeFactory;
 
     public MapReader(final Engine engine) {
         this.engine = engine;

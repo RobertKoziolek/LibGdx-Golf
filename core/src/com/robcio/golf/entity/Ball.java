@@ -41,7 +41,7 @@ public class Ball extends Entity {
         add(new Selectable());
         add(position);
         add(dimension);
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
         add(Renderable.of(TextureId.GOLFBALL, 20));
 
         if (ballType != null) {

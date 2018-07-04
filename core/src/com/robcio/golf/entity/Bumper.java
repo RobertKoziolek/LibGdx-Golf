@@ -27,7 +27,7 @@ public class Bumper extends Entity {
         add(position);
         add(dimension);
         add(Force.of(55));
-        add(new Box2dBody(body));
+        add(Box2dBody.of(body));
         add(Renderable.of(TextureId.BUMPER));
     }
 

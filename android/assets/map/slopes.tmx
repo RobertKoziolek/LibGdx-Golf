@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="72">
+ <tileset firstgid="1" source="golf.tsx"/>
+ <layer name="tile" width="16" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,2,3,0,0,0,0,0,2,3,0,0,0,0,0,0,
+0,10,11,0,0,0,0,2,11,0,0,0,2,3,0,0,
+0,0,0,0,0,0,2,11,0,0,0,0,10,11,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+</data>
+ </layer>
+ <objectgroup name="coll">
+  <object id="62" x="0" y="0">
+   <polyline points="0,0 1024,0 1024,512 0,512 0,0"/>
+  </object>
+  <object id="63" x="128" y="64">
+   <polyline points="0,0 -64,64 0,128 64,64 0,0"/>
+  </object>
+  <object id="64" x="384" y="256">
+   <polyline points="0,0 64,0 192,-128 192,-192 0,0"/>
+  </object>
+  <object id="65" x="576" y="64">
+   <polyline points="0,0 64,64 0,64 0,0"/>
+  </object>
+  <object id="66" x="768" y="192">
+   <polyline points="0,0 64,-64 128,0 64,64 0,0"/>
+  </object>
+  <object id="67" x="128" y="384">
+   <polyline points="0,0 0,64 768,64 768,0 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="entity">
+  <object id="42" type="box" x="407" y="359" width="39" height="24"/>
+  <object id="54" type="hole" x="518" y="201" width="50" height="50">
+   <ellipse/>
+  </object>
+  <object id="55" type="hole" x="583" y="133" width="50" height="50">
+   <ellipse/>
+  </object>
+  <object id="56" type="ball" x="977" y="33" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="57" type="ball" x="27" y="30" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="58" type="ball" x="950" y="307" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="59" type="ball" x="45" y="449" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="60" type="box" x="454.5" y="359" width="39" height="24"/>
+  <object id="68" type="box" x="516.5" y="361" width="39" height="24"/>
+  <object id="69" type="box" x="429.5" y="332" width="39" height="24"/>
+  <object id="70" type="box" x="488.5" y="334" width="39" height="24"/>
+  <object id="71" type="box" x="459.5" y="305" width="39" height="24"/>
+ </objectgroup>
+</map>
