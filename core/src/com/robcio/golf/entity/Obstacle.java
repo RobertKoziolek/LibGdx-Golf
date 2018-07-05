@@ -12,9 +12,9 @@ import com.robcio.golf.world.BodyFactory;
 
 public class Obstacle extends Entity {
 
-    public Obstacle(final Position position, final Dimension dimension) {
+    public Obstacle(final Position position, final Dimension dimension, final float angle) {
         final Body body = BodyFactory
-                .createBox(position, dimension, true, true, Bits.C.WALL, Bits.M.FREE_OBJECT_WILL_HIT);
+                .createBox(position, dimension, true, true, angle, Bits.C.WALL, Bits.M.FREE_OBJECT_WILL_HIT);
         body.setUserData(this);
 
         add(new Selectable());
@@ -23,7 +23,7 @@ public class Obstacle extends Entity {
         add(Box2dBody.of(body));
     }
 
-    public Obstacle(final Rectangle rectangle) {
-        this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height));
+    public Obstacle(final Rectangle rectangle, final float angle) {
+        this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height), angle);
     }
 }

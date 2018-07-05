@@ -16,7 +16,7 @@ public class Dispenser extends Entity {
 
     public Dispenser(final Position position, final Dimension dimension, final Force force) {
         final Body body = BodyFactory
-                .createCircular(position, dimension, false, false, Bits.C.FREE_OBJECT, Bits.M.FREE_OBJECT_WILL_HIT);
+                .createCircular(position, dimension, false, false, 0f, Bits.C.FREE_OBJECT, Bits.M.FREE_OBJECT_WILL_HIT);
         body.setUserData(this);
         body.getFixtureList().get(0).setDensity(55.3f);
         body.setLinearDamping(4f);

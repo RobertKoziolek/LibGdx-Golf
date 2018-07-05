@@ -15,9 +15,9 @@ import com.robcio.golf.world.BodyFactory;
 //TODO dodac jakis vortex czy cos, zabawa z fizyka
 public class Hole extends Entity {
 
-    public Hole(final Position position, final Dimension dimension) {
+    public Hole(final Position position, final Dimension dimension, final float angle) {
         final Body body = BodyFactory
-                .createCircular(position, Dimension.of(1f), true, true, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
+                .createCircular(position, Dimension.of(1f), true, true, angle, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
 
         body.setUserData(this);
         flags = EntityFlags.HOLE.getId();
@@ -30,7 +30,7 @@ public class Hole extends Entity {
         add(new com.robcio.golf.component.flag.Hole());
     }
 
-    public Hole(final Ellipse ellipse) {
-        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height));
+    public Hole(final Ellipse ellipse, final float angle) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), angle);
     }
 }

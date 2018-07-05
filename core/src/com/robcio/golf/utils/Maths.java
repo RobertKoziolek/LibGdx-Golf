@@ -25,6 +25,9 @@ public class Maths {
     public static float radiansToDegrees(final float angle) {
         return angle * MathUtils.radiansToDegrees;
     }
+    public static float degreesToRadians(final float angle) {
+        return angle * MathUtils.degreesToRadians;
+    }
 
     //TODO kolejnosc ma znaczenie, pomyslec czy to ma sens
     public static Vector2 getDistance(final Vector2 vector1, final Vector2 vector2) {

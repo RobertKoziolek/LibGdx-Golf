@@ -5,6 +5,7 @@ import com.robcio.golf.listener.BodyListener;
 import com.robcio.golf.listener.box2d.BowlListener;
 import com.robcio.golf.listener.box2d.BumperListener;
 import com.robcio.golf.listener.box2d.HoleListener;
+import com.robcio.golf.listener.box2d.SlopeListener;
 import lombok.Getter;
 
 import java.util.LinkedList;
@@ -19,5 +20,6 @@ public class BodyListenerRegistrar {
         listeners.add(new BowlListener());
         listeners.add(new HoleListener());
         listeners.add(new BumperListener());
+        listeners.add(new SlopeListener());
     }
 }

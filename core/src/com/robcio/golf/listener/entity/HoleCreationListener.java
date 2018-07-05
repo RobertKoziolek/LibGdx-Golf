@@ -23,7 +23,7 @@ public class HoleCreationListener implements EntityListener {
     public void entityAdded(Entity entity) {
         final Position position = Mapper.position.get(entity);
         final Dimension dimension = Mapper.dimension.get(entity);
-        engine.addEntity(new Bowl(position, dimension, TextureId.HOLE));
+        engine.addEntity(new Bowl(position, dimension, 0f, TextureId.HOLE));
     }
 
     @Override

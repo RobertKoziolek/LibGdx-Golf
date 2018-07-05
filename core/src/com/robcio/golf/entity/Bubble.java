@@ -19,7 +19,7 @@ import com.robcio.golf.world.BodyFactory;
 public class Bubble extends Ball {
 
     private Bubble(final Position position, final Dimension dimension) {
-        super(position, dimension, null);
+        super(position, dimension, 0f, null);
         add(Renderable.of(TextureId.BUBBLE, 20));
         add(Timer.of(0.3f, ToRemove.self()));
 

@@ -22,10 +22,10 @@ import com.robcio.golf.world.BodyFactory;
 //TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
 public class Ball extends Entity {
 
-    public Ball(final Position position, final Dimension dimension, final BallType ballType) {
+    public Ball(final Position position, final Dimension dimension, final float angle, final BallType ballType) {
 
         final Body body = BodyFactory
-                .createCircular(position, dimension, false, false, Bits.C.BALL, Bits.M.BALL_WILL_HIT);
+                .createCircular(position, dimension, false, false, angle, Bits.C.BALL, Bits.M.BALL_WILL_HIT);
         body.setUserData(this);
         flags = EntityFlags.BALL.getId();
 
@@ -55,11 +55,11 @@ public class Ball extends Entity {
 
     }
 
-    public Ball(final Ellipse ellipse, final BallType ballType) {
-        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), ballType);
+    public Ball(final Ellipse ellipse, final float angle, final BallType ballType) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), angle, ballType);
     }
 
     public static Ball of(final Recipe recipe) {
-        return new Ball(recipe.getPosition().clone(), recipe.getDimension().clone(), recipe.getBallType());
+        return new Ball(recipe.getPosition().clone(), recipe.getDimension().clone(), 0f, recipe.getBallType());
     }
 }

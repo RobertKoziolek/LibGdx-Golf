@@ -15,9 +15,9 @@ import com.robcio.golf.world.BodyFactory;
 
 public class Bowl extends Entity {
 
-    public Bowl(final Position position, final Dimension dimension, final TextureId textureId) {
+    public Bowl(final Position position, final Dimension dimension, final float angle, final TextureId textureId) {
         final Body body = BodyFactory
-                .createCircular(position, dimension, true, true, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
+                .createCircular(position, dimension, true, true, angle, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
 
         body.setUserData(this);
         body.getFixtureList().get(0).setSensor(true);
@@ -30,7 +30,7 @@ public class Bowl extends Entity {
         add(Renderable.of(textureId, 5));
     }
 
-    public Bowl(final Ellipse ellipse, final TextureId textureId) {
-        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), textureId);
+    public Bowl(final Ellipse ellipse, final float angle, final TextureId textureId) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), angle, textureId);
     }
 }

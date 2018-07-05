@@ -15,14 +15,14 @@ import com.robcio.golf.world.BodyFactory;
 
 public class Box extends Entity {
 
-    public Box(final Position position, final Dimension dimension) {
+    public Box(final Position position, final Dimension dimension, final float angle) {
         final Body body = BodyFactory
-                .createBox(position, dimension, false, false, Bits.C.FREE_OBJECT, Bits.M.FREE_OBJECT_WILL_HIT);
+                .createBox(position, dimension, false, false, angle, Bits.C.FREE_OBJECT, Bits.M.FREE_OBJECT_WILL_HIT);
         body.setUserData(this);
         body.getFixtureList().get(0).setDensity(2f);
         body.setLinearDamping(4f);
         body.setAngularDamping(4f);
-        
+
         add(new Selectable());
         add(Box2dBody.of(body));
         add(position);
@@ -31,7 +31,7 @@ public class Box extends Entity {
         add(new Kickable());
     }
 
-    public Box(final Rectangle rectangle) {
-        this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height));
+    public Box(final Rectangle rectangle, final float angle) {
+        this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height), angle);
     }
 }

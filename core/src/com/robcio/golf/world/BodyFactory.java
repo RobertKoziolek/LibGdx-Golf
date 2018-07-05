@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.utils.Maths;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -22,35 +23,38 @@ public class BodyFactory {
     }
 
     public static Body createBox(Position position, Dimension dimension, boolean isStatic,
-                                 boolean isRotationFixed, short cbits, short mbits) {
+                                 boolean isRotationFixed, float angle, short cbits, short mbits) {
         final PolygonShape shape = new PolygonShape();
         dimension = Dimension.radiusToBox2D(dimension);
         shape.setAsBox(dimension.width, dimension.height);
 
-        return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
+        return getBody(position, shape, isStatic, isRotationFixed, angle, cbits, mbits);
     }
 
     public static Body createCircular(Position position, Dimension dimension, boolean isStatic,
-                                      boolean isRotationFixed, short cbits, short mbits) {
+                                      boolean isRotationFixed, float angle, short cbits, short mbits) {
         dimension = Dimension.radiusToBox2D(dimension);
         if (dimension.isSquare()) {
-            return createCircle(position, dimension.width, isStatic, isRotationFixed, cbits, mbits);
+            return createCircle(position, dimension.width, isStatic, isRotationFixed, angle, cbits, mbits);
         } else {
-            return createOval(position, dimension.width, dimension.height, isStatic, isRotationFixed, cbits, mbits);
+            return createOval(position, dimension.width, dimension.height, isStatic, isRotationFixed, angle, cbits,
+                              mbits);
         }
     }
 
     private static Body createCircle(Position position, float radius, boolean isStatic, boolean isRotationFixed,
+                                     float angle,
                                      short cbits,
                                      short mbits) {
         final CircleShape shape = new CircleShape();
         shape.setRadius(radius);
-        return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
+        return getBody(position, shape, isStatic, isRotationFixed, angle, cbits, mbits);
     }
 
     //TODO byc moze nalezaloby zwiekszyc ilosc verticesow w zaleznosci od wielkosci, bo kanciaste jest strasznie
     private static Body createOval(Position position, float radius1, float radius2, boolean isStatic,
                                    boolean isRotationFixed,
+                                   float angle,
                                    short cbits, short mbits) {
         final PolygonShape shape = new PolygonShape();
         final Vector2 vertices[] = new Vector2[8];
@@ -66,13 +70,16 @@ public class BodyFactory {
         vertices[6].set(0, -radius2);
         vertices[7].set(dent * -radius1, dent * -radius2);
         shape.set(vertices);
-        return getBody(position, shape, isStatic, isRotationFixed, cbits, mbits);
+        return getBody(position, shape, isStatic, isRotationFixed, angle, cbits, mbits);
     }
 
-    private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, short cbits,
+    private static Body getBody(Position position, Shape shape, boolean isStatic, boolean isRotationFixed, float angle,
+                                short cbits,
                                 short mbits) {
+        //TODO rotacja sprawia ze zmienia sie pozycja, w zwiazku z tym mapa z Tiled nie jest taka jak w grze
         final BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = isRotationFixed;
+        bodyDef.angle = Maths.degreesToRadians(angle);
         position = Position.toBox2D(position);
         bodyDef.position.set(position.x, position.y);
         bodyDef.type = isStatic ? BodyType.StaticBody : BodyType.DynamicBody;

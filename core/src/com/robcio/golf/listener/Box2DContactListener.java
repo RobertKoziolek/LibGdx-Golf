@@ -1,6 +1,5 @@
 package com.robcio.golf.listener;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.*;
 import com.robcio.golf.enumeration.EntityFlags;
@@ -9,7 +8,7 @@ import com.robcio.golf.registrar.BodyListenerRegistrar;
 import java.util.HashMap;
 import java.util.Map;
 
-
+//TODO do zrobienia gravityField
 public class Box2DContactListener implements ContactListener {
 
     final private BodyListenerRegistrar registrar;

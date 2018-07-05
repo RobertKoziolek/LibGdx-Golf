@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="72">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="76">
  <tileset firstgid="1" source="golf.tsx"/>
  <layer name="tile" width="16" height="9">
   <data encoding="csv">
@@ -58,6 +58,24 @@
   <object id="68" type="box" x="516.5" y="361" width="39" height="24"/>
   <object id="69" type="box" x="429.5" y="332" width="39" height="24"/>
   <object id="70" type="box" x="488.5" y="334" width="39" height="24"/>
-  <object id="71" type="box" x="459.5" y="305" width="39" height="24"/>
+  <object id="71" type="box" x="506.5" y="265" width="39" height="24" rotation="90"/>
+  <object id="72" type="slope" x="192" y="448" width="64" height="64" rotation="90">
+   <properties>
+    <property name="direction" value="right"/>
+    <property name="force" type="float" value="5"/>
+   </properties>
+  </object>
+  <object id="74" type="slope" x="384" y="448" width="64" height="64" rotation="90">
+   <properties>
+    <property name="direction" value="right"/>
+    <property name="force" type="float" value="5"/>
+   </properties>
+  </object>
+  <object id="75" type="slope" x="896" y="384" width="129" height="129" rotation="-90">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="force" type="float" value="5"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

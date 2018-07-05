@@ -16,9 +16,9 @@ import com.robcio.golf.world.BodyFactory;
 
 public class Bumper extends Entity {
 
-    public Bumper(final Position position, final Dimension dimension) {
+    public Bumper(final Position position, final Dimension dimension, final float angle) {
         final Body body = BodyFactory
-                .createCircular(position, dimension, true, true, Bits.C.BALL_MANIPULANT, Bits.M.FREE_OBJECT_WILL_HIT);
+                .createCircular(position, dimension, true, true, angle, Bits.C.BALL_MANIPULANT, Bits.M.FREE_OBJECT_WILL_HIT);
 
         body.setUserData(this);
         flags = EntityFlags.BUMPER.getId();
@@ -31,7 +31,7 @@ public class Bumper extends Entity {
         add(Renderable.of(TextureId.BUMPER));
     }
 
-    public Bumper(final Ellipse ellipse) {
-        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height));
+    public Bumper(final Ellipse ellipse, final float angle) {
+        this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), angle);
     }
 }

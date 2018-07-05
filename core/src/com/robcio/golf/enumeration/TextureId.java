@@ -19,6 +19,7 @@ public enum TextureId {
     BUMPER("bumper.png"),
     BOWL("bowl.png"),
     BOX("box.png"),
+    SLOPE("slope.png"),
     STAR("star.png");
 
     private String filename;

@@ -5,6 +5,9 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.robcio.golf.system.*;
+import com.robcio.golf.system.control.AttractToSystem;
+import com.robcio.golf.system.control.KickToSystem;
+import com.robcio.golf.system.control.KickingSystem;
 import com.robcio.golf.system.control.MoveSystem;
 import com.robcio.golf.system.graphics.LineRenderSystem;
 import com.robcio.golf.system.graphics.PositionSynchronizationSystem;
@@ -19,14 +22,16 @@ public class EntitySystemRegistrar {
         engine.addSystem(new TimerSystem(priority++));
 
         engine.addSystem(new InBowlSystem(priority++));
+        engine.addSystem(new SlopeSystem(priority++));
+
         engine.addSystem(new DispensingSystem(priority++));
         engine.addSystem(new ImpulseSystem(priority++));
         engine.addSystem(new TrailingSystem(priority++));
 
         engine.addSystem(new MoveSystem(priority++));
-        engine.addSystem(new com.robcio.golf.system.control.KickingSystem(priority++));
-        engine.addSystem(new com.robcio.golf.system.control.KickToSystem(priority++));
-        engine.addSystem(new com.robcio.golf.system.control.AttractToSystem(priority++));
+        engine.addSystem(new KickingSystem(priority++));
+        engine.addSystem(new KickToSystem(priority++));
+        engine.addSystem(new AttractToSystem(priority++));
 
         engine.addSystem(new PositionSynchronizationSystem(priority++));
 
