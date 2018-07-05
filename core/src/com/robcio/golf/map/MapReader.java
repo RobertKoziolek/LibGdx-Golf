@@ -36,11 +36,11 @@ public class MapReader {
         this.current = loader.load("map/" + map.getFilename());
         if (map != MapId.EMPTY) {
             parseTileMapLayerCollisions(this.current.getLayers().get("coll").getObjects());
-            parseTileMapBallObjects(this.current.getLayers().get("entity").getObjects());
+            parseTileMapEntityObjects(this.current.getLayers().get("entity").getObjects());
         }
     }
 
-    private void parseTileMapBallObjects(final MapObjects mapObjects) {
+    private void parseTileMapEntityObjects(final MapObjects mapObjects) {
         for (final MapObject object : mapObjects) {
             final Entity entity = entityFactory.create(object);
             engine.addEntity(entity);

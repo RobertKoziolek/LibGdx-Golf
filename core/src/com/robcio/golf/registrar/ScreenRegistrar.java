@@ -9,6 +9,7 @@ import com.robcio.golf.enumeration.ScreenId;
 import com.robcio.golf.gui.AbstractScreen;
 import com.robcio.golf.gui.game.GameScreen;
 import com.robcio.golf.gui.menu.Menu;
+import com.robcio.golf.utils.Command;
 import com.robcio.golf.world.BodyDestroyer;
 
 import java.util.HashMap;
@@ -19,12 +20,15 @@ public class ScreenRegistrar {
     private final Map<ScreenId, AbstractScreen> map;
     private AbstractScreen current;
 
-    public ScreenRegistrar(final MainClass mainClass, final World world, final Engine engine,
+    public ScreenRegistrar(final MainClass mainClass,
+                           final Command menuCallback,
+                           final World world,
+                           final Engine engine,
                            final BodyDestroyer bodyDestroyer,
                            final Camera camera) {
         map = new HashMap<>();
 
-        final GameScreen gameScreen = new GameScreen(world, engine, bodyDestroyer, camera);
+        final GameScreen gameScreen = new GameScreen(menuCallback, world, engine, bodyDestroyer, camera);
         map.put(ScreenId.GAME, gameScreen);
         map.put(ScreenId.MENU, new Menu(mainClass, camera, gameScreen));
     }

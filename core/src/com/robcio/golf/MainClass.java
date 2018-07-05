@@ -14,6 +14,7 @@ import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;
 import com.robcio.golf.registrar.ScreenRegistrar;
 import com.robcio.golf.utils.Assets;
+import com.robcio.golf.utils.Command;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
 import com.robcio.golf.world.BodyDestroyer;
@@ -37,7 +38,7 @@ public class MainClass extends Game {
     private ScreenRegistrar screenRegistrar;
 
     public MainClass(final boolean isDebugOn) {
-        DEBUG = isDebugOn;
+        DEBUG = true;
     }
 
     @Override
@@ -68,7 +69,17 @@ public class MainClass extends Game {
     private void initializeRegistrars() {
         new EntityListenerRegistrar(engine, bodyDestroyer);
         new EntitySystemRegistrar(engine, batch, camera);
-        screenRegistrar = new ScreenRegistrar(this, world, engine, bodyDestroyer, camera);
+        screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), world, engine, bodyDestroyer, camera);
+    }
+
+    private Command getMenuCallback() {
+        return new Command() {
+            @Override
+            public void execute() {
+                engine.removeAllEntities();
+                setScreen(ScreenId.MENU);
+            }
+        };
     }
 
     private void initializeEngine() {

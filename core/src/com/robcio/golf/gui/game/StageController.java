@@ -19,6 +19,7 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.utils.Assets;
+import com.robcio.golf.utils.Command;
 
 import static com.robcio.golf.MainClass.HEIGHT;
 import static com.robcio.golf.MainClass.WIDTH;
@@ -29,22 +30,23 @@ public class StageController extends Stage {
     final private GameInputCatcher gameInputCatcher;
     final private Engine engine;
 
-    StageController(final Camera camera,
+    StageController(final Command menuCallback,
+                    final Camera camera,
                     final GameInputCatcher gameInputCatcher,
                     final Engine engine) {
         super(new FillViewport(WIDTH, HEIGHT, camera));
         this.gameInputCatcher = gameInputCatcher;
         this.engine = engine;
-        setUp();
+        setUp(menuCallback);
     }
 
     @Override
-    public void act (final float deltaTime) {
+    public void act(final float deltaTime) {
         super.act(deltaTime);
         gameInputCatcher.update(deltaTime);
     }
 
-    private void setUp() {
+    private void setUp(final Command callback) {
         final TextButton leftClickButton = addButton(gameInputCatcher.getCurrentMouseMode().getTooltip());
         leftClickButton.addListener(new ClickListener() {
             @Override
@@ -59,16 +61,24 @@ public class StageController extends Stage {
         clearBallsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                for (final Entity entity : entities) {
-                    if (entity instanceof Ball){
+                for (final Entity entity: entities) {
+                    if (entity instanceof Ball) {
                         entity.add(ToRemove.self());
                     }
                 }
             }
         });
+        final Button callbackButton = addButton("menu");
+        callbackButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                callback.execute();
+            }
+        });
         final Table table = new Table(Assets.getSkin());
         table.add(leftClickButton);
-        table.add(clearBallsButton).row();
+        table.add(clearBallsButton);
+        table.add(callbackButton).row();
         final ScrollPane debugPane = new ScrollPane(table, Assets.getSkin());
         debugPane.setSize(WIDTH / 3, HEIGHT / 10);
         debugPane.setScrollingDisabled(true, false);
