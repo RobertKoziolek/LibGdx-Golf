@@ -38,7 +38,7 @@ public class MainClass extends Game {
     private ScreenRegistrar screenRegistrar;
 
     public MainClass(final boolean isDebugOn) {
-        DEBUG = true;
+        DEBUG = isDebugOn;
     }
 
     @Override

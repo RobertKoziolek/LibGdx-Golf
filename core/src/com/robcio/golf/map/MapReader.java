@@ -7,9 +7,9 @@ import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.Shape;
-import com.robcio.golf.entity.*;
+import com.robcio.golf.entity.Wall;
 import com.robcio.golf.enumeration.MapId;
-import com.robcio.golf.map.factory.EntityFactory;
+import com.robcio.golf.map.factory.EntityFactoryFacade;
 import com.robcio.golf.map.factory.ShapeFactory;
 import com.robcio.golf.utils.Log;
 import lombok.Getter;
@@ -20,14 +20,14 @@ public class MapReader {
     private final TmxMapLoader loader;
     @Getter
     private TiledMap current;
-    private final EntityFactory entityFactory;
+    private final EntityFactoryFacade entityFactoryFacade;
     private final ShapeFactory shapeFactory;
 
     public MapReader(final Engine engine) {
         this.engine = engine;
         this.loader = new TmxMapLoader();
         load(MapId.EMPTY);
-        this.entityFactory = new EntityFactory();
+        this.entityFactoryFacade = new EntityFactoryFacade();
         this.shapeFactory = new ShapeFactory();
     }
 
@@ -42,7 +42,7 @@ public class MapReader {
 
     private void parseTileMapEntityObjects(final MapObjects mapObjects) {
         for (final MapObject object : mapObjects) {
-            final Entity entity = entityFactory.create(object);
+            final Entity entity = entityFactoryFacade.create(object);
             engine.addEntity(entity);
         }
     }
