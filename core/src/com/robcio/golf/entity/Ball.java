@@ -19,7 +19,6 @@ import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
 import com.robcio.golf.world.BodyFactory;
 
-//TODO dwa systemy ruchu pilki/pilek - naciaganie jak golf/proca, oraz do celu - klikam dokad ma poleciec
 public class Ball extends Entity {
 
     public Ball(final Position position, final Dimension dimension, final float angle, final BallType ballType) {
@@ -33,7 +32,6 @@ public class Ball extends Entity {
         fixture.setRestitution(0.5f);
         fixture.setDensity(0.4f);
 
-        //TODO bardzo potrzebny damping predkosci, plywaja po stole
         //TODO moze na mape inny damping? generalnie powierzchnie dodac
         body.setLinearDamping(0.3f);
         body.setAngularDamping(0.3f);
@@ -45,7 +43,7 @@ public class Ball extends Entity {
         add(Renderable.of(TextureId.GOLFBALL, 20));
 
         if (ballType != null) {
-            add(Trailing.of(new Recipe(position, Dimension.of(dimension.getRadius1()), BallType.WHITE), 6f));
+            add(Trailing.of(new Recipe(position, Dimension.of(dimension.getRadiusX()), BallType.WHITE), 6f));
             if (ballType == BallType.WHITE) {
                 add(new Kickable());
             } else {

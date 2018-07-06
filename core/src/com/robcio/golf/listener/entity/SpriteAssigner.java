@@ -6,7 +6,6 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.flag.Renderable;
-import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 
 public class SpriteAssigner implements EntityListener {
@@ -18,7 +17,7 @@ public class SpriteAssigner implements EntityListener {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
         final Dimension dimension = Mapper.dimension.get(entity);
 
-        sprite.setOrigin(dimension.getRadius1(), dimension.getRadius2());
+        sprite.setOrigin(dimension.getRadiusX(), dimension.getRadiusY());
         sprite.setSize(dimension.width, dimension.height);
     }
 

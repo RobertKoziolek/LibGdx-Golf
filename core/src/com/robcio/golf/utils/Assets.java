@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.robcio.golf.enumeration.TextureId;
@@ -12,7 +11,14 @@ import lombok.Getter;
 
 public class Assets {
 
-    final static private AssetManager assetManager = new AssetManager();
+    private static final AssetManager assetManager = new AssetManager();
+
+    private static final String UISKIN_ATLAS = "ui/uiskin.atlas";
+    private static final String UISKIN_JSON = "ui/uiskin.json";
+    private static final String FONT = "default-font";
+    private static final String FONT_FNT = "font/modak32.fnt";
+    private static final String FONT_PNG = "font/modak32.png";
+
     @Getter
     static private Skin skin;
     static private BitmapFont font;
@@ -26,16 +32,16 @@ public class Assets {
     }
 
     private static void loadFont() {
-        font = new BitmapFont(Gdx.files.internal("font/modak32.fnt"), Gdx.files.internal("font/modak32.png"),
+        font = new BitmapFont(Gdx.files.internal(FONT_FNT), Gdx.files.internal(FONT_PNG),
                               false);
     }
 
     private static void loadSkin() {
-        assetManager.load("ui/uiskin.atlas", TextureAtlas.class);
+        assetManager.load(UISKIN_ATLAS, TextureAtlas.class);
         assetManager.finishLoading();
-        skin = new Skin(assetManager.get("ui/uiskin.atlas", TextureAtlas.class));
-        skin.add("default-font", font);
-        skin.load(Gdx.files.internal("ui/uiskin.json"));
+        skin = new Skin(assetManager.get(UISKIN_ATLAS, TextureAtlas.class));
+        skin.add(FONT, font);
+        skin.load(Gdx.files.internal(UISKIN_JSON));
     }
 
     public static void dispose() {

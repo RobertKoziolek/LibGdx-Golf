@@ -23,6 +23,5 @@ public class EntityFactoryFacade {
             return ellipseEntityFactory.create(mapObject);
         }
         throw new IllegalArgumentException("MapReader does not recognize map object type");
-        //TODO zastanowic sie nad systemem bledow, zebrane w jednym miejscu, moze jakis log
     }
 }

@@ -2,7 +2,6 @@ package com.robcio.golf.utils;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.robcio.golf.enumeration.BallType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -29,7 +28,6 @@ public class Maths {
         return angle * MathUtils.degreesToRadians;
     }
 
-    //TODO kolejnosc ma znaczenie, pomyslec czy to ma sens
     public static Vector2 getDistance(final Vector2 vector1, final Vector2 vector2) {
         Vector2 distance = Vector2.Zero.cpy();
         distance.add(vector1);

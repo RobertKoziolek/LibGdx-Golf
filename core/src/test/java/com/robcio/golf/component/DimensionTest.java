@@ -48,8 +48,8 @@ public class DimensionTest {
         final Dimension dimension = Dimension.of(18f, 20f);
 
         assertThat(dimension).isNotNull();
-        assertThat(dimension.getRadius1()).isEqualTo(9f);
-        assertThat(dimension.getRadius2()).isEqualTo(10f);
+        assertThat(dimension.getRadiusX()).isEqualTo(9f);
+        assertThat(dimension.getRadiusY()).isEqualTo(10f);
     }
 
     @Test

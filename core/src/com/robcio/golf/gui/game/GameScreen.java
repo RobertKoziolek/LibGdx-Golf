@@ -11,14 +11,14 @@ import com.robcio.golf.world.BodyDestroyer;
 
 public class GameScreen extends Box2dScreen {
 
-    final private StageController stageController;
+    final private GameStageController stageController;
     final private GameInputCatcher gameInputCatcher;
 
     public GameScreen(final Command menuCallback, final World world, final Engine engine,
                       final BodyDestroyer bodyDestroyer, final Camera camera) {
         super(world, engine, bodyDestroyer, camera);
         gameInputCatcher = new GameInputCatcher(camera, engine);
-        stageController = new StageController(menuCallback, camera, gameInputCatcher, engine);
+        stageController = new GameStageController(menuCallback, camera, gameInputCatcher, engine);
 
         setStage(stageController);
     }

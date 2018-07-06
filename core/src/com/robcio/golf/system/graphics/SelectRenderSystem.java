@@ -31,7 +31,8 @@ public class SelectRenderSystem extends IteratingSystem {
         final Selected selected = Mapper.selected.get(entity);
 
         final Sprite selection = selected.sprite;
-        selection.setPosition(position.x - selection.getWidth() / 2, position.y - selection.getHeight() / 2);
+        final float radius = Selected.SIZE / 2;
+        selection.setPosition(position.x - radius, position.y - radius);
         selection.setRotation(selection.getRotation() + 5f);
         selection.draw(batch);
     }

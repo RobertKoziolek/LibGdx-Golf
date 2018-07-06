@@ -25,15 +25,15 @@ import static com.robcio.golf.MainClass.HEIGHT;
 import static com.robcio.golf.MainClass.WIDTH;
 
 
-public class StageController extends Stage {
+public class GameStageController extends Stage {
 
     final private GameInputCatcher gameInputCatcher;
     final private Engine engine;
 
-    StageController(final Command menuCallback,
-                    final Camera camera,
-                    final GameInputCatcher gameInputCatcher,
-                    final Engine engine) {
+    GameStageController(final Command menuCallback,
+                        final Camera camera,
+                        final GameInputCatcher gameInputCatcher,
+                        final Engine engine) {
         super(new FillViewport(WIDTH, HEIGHT, camera));
         this.gameInputCatcher = gameInputCatcher;
         this.engine = engine;
@@ -47,6 +47,7 @@ public class StageController extends Stage {
     }
 
     private void setUp(final Command callback) {
+        //TODO moze jakas fabryka na tworzenie buttonow z uzyciem Command czy cos
         final TextButton leftClickButton = addButton(gameInputCatcher.getCurrentMouseMode().getTooltip());
         leftClickButton.addListener(new ClickListener() {
             @Override

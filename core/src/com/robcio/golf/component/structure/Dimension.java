@@ -1,6 +1,5 @@
 package com.robcio.golf.component.structure;
 
-import com.badlogic.ashley.core.Component;
 import com.robcio.golf.component.CloneableComponent;
 import com.robcio.golf.utils.Maths;
 import lombok.AccessLevel;
@@ -23,12 +22,11 @@ public class Dimension implements CloneableComponent<Dimension> {
         return (Math.abs(width - height) < 0.005f);
     }
 
-    //TODO moze nie radiusONE tylko cos innego
-    public float getRadius1() {
+    public float getRadiusX() {
         return width / 2f;
     }
 
-    public float getRadius2() {
+    public float getRadiusY() {
         return height / 2f;
     }
 
@@ -37,7 +35,7 @@ public class Dimension implements CloneableComponent<Dimension> {
     }
 
     public static Dimension radiusToBox2D(final Dimension dimension) {
-        return Dimension.of(dimension.getRadius1() / Maths.PPM, dimension.getRadius2() / Maths.PPM);
+        return Dimension.of(dimension.getRadiusX() / Maths.PPM, dimension.getRadiusY() / Maths.PPM);
     }
 
     @Override

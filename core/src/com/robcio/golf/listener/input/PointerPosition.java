@@ -24,7 +24,6 @@ public class PointerPosition {
         return Position.of(realCoords.x, realCoords.y);
     }
 
-    //TODO moznaby zmienic nazwe tego
     public void updateSelectionPoint() {
         Selected.position = Position.toBox2D(getUnprojectedPosition());
     }

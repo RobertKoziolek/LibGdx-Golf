@@ -8,13 +8,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.robcio.golf.MainClass;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor
 public abstract class AbstractScreen implements Screen {
     private Stage stage;
 //    protected Color backgroundColor = Color.GREEN;
@@ -35,8 +34,7 @@ public abstract class AbstractScreen implements Screen {
         stage.draw();
     }
 
-    //TODO na protected
-    public void update(final float deltaTime) {
+    protected void update(final float deltaTime) {
         stage.act(deltaTime);
     }
 

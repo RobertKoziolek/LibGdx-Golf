@@ -17,7 +17,6 @@ import com.robcio.golf.system.graphics.SelectRenderSystem;
 
 public class EntitySystemRegistrar {
 
-    //TODO czy na pewno chce wszystkie dodawac? niby nie chodza ale musza byc?
     public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch, final Camera camera) {
         int priority = 0;
         engine.addSystem(new TimerSystem(priority++));

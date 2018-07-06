@@ -17,7 +17,6 @@ public class ShapeFactory {
         } else if (mapObject instanceof PolylineMapObject) {
             return createPolyLine(getWorldVertices((PolylineMapObject) mapObject));
         }
-        //TODO jesli nie bedzie tylko wall trzebaby tu zmienic
         throw new IllegalArgumentException("Map reader can not recognize wall object type");
     }
 
