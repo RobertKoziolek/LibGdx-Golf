@@ -16,6 +16,9 @@ import lombok.Getter;
 
 public class MapReader {
 
+    private final static String COLLISION_LAYER = "coll";
+    private final static String ENTITY_LAYER = "entity";
+
     private final Engine engine;
     private final TmxMapLoader loader;
     @Getter
@@ -35,8 +38,8 @@ public class MapReader {
         Log.i("Map loading", map.getName());
         this.current = loader.load("map/" + map.getFilename());
         if (map != MapId.EMPTY) {
-            parseTileMapLayerCollisions(this.current.getLayers().get("coll").getObjects());
-            parseTileMapEntityObjects(this.current.getLayers().get("entity").getObjects());
+            parseTileMapLayerCollisions(this.current.getLayers().get(COLLISION_LAYER).getObjects());
+            parseTileMapEntityObjects(this.current.getLayers().get(ENTITY_LAYER).getObjects());
         }
     }
 

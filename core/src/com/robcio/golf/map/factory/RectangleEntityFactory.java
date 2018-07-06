@@ -10,18 +10,24 @@ import com.robcio.golf.entity.*;
 
 public class RectangleEntityFactory extends EntityFactory {
 
+    private final static String BOX = "box";
+    private final static String OBSTACLE = "obstacle";
+    private final static String SLOPE = "slope";
+    private final static String DIRECTION = "direction";
+    private final static String FORCE = "force";
+
     public Entity create(final MapObject mapObject) {
         final Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
         rectangle.x += rectangle.width / 2;
         rectangle.y += rectangle.height / 2;
-        final String type = (String) mapObject.getProperties().get("type");
+        final String type = (String) mapObject.getProperties().get(TYPE);
         final float rotation = getRotation(mapObject);
         switch (type) {
-            case "box":
+            case BOX:
                 return new Box(rectangle, rotation);
-            case "obstacle":
+            case OBSTACLE:
                 return new Obstacle(rectangle, rotation);
-            case "slope":
+            case SLOPE:
                 return new Slope(rectangle, rotation, getDirection(mapObject), getForce(mapObject));
             default:
                 throw new IllegalArgumentException(
@@ -30,7 +36,7 @@ public class RectangleEntityFactory extends EntityFactory {
     }
 
     private Direction getDirection(final MapObject object) {
-        final Object direction = object.getProperties().get("direction");
+        final Object direction = object.getProperties().get(DIRECTION);
         if (direction != null) {
             final String directionString = direction.toString();
             return Direction.of(directionString);
@@ -39,7 +45,7 @@ public class RectangleEntityFactory extends EntityFactory {
     }
 
     private Force getForce(final MapObject object) {
-        final Object force = object.getProperties().get("force");
+        final Object force = object.getProperties().get(FORCE);
         if (force != null) {
             final float forceValue = (float) force;
             return Force.of(forceValue);

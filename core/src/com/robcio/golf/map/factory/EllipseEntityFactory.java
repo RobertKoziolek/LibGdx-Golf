@@ -13,20 +13,26 @@ import com.robcio.golf.enumeration.TextureId;
 
 public class EllipseEntityFactory extends EntityFactory {
 
+    private final static String BOWL = "bowl";
+    private final static String BALL = "ball";
+    private final static String BUMPER = "bumper";
+    private final static String HOLE = "hole";
+    private final static String BALL_TYPE = "ballType";
+
     public Entity create(final MapObject mapObject) {
         final Ellipse ellipse = ((EllipseMapObject) mapObject).getEllipse();
         ellipse.x += ellipse.width / 2;
         ellipse.y += ellipse.height / 2;
-        final String type = (String) mapObject.getProperties().get("type");
+        final String type = (String) mapObject.getProperties().get(TYPE);
         final float rotation = getRotation(mapObject);
         switch (type) {
-            case "bowl":
+            case BOWL:
                 return new Bowl(ellipse, rotation, TextureId.BOWL);
-            case "ball":
+            case BALL:
                 return new Ball(ellipse, rotation, getBallType(mapObject));
-            case "bumper":
+            case BUMPER:
                 return new Bumper(ellipse, rotation);
-            case "hole":
+            case HOLE:
                 return new Hole(ellipse, rotation);
             default:
                 throw new IllegalArgumentException(
@@ -35,7 +41,7 @@ public class EllipseEntityFactory extends EntityFactory {
     }
 
     private BallType getBallType(final MapObject object) {
-        final Object ballTypeProperty = object.getProperties().get("ballType");
+        final Object ballTypeProperty = object.getProperties().get(BALL_TYPE);
         if (ballTypeProperty != null) {
             final String ballTypeString = ballTypeProperty.toString();
             final BallType ballType = BallType.valueOf(ballTypeString);
