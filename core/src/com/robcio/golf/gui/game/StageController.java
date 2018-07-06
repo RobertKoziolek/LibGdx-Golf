@@ -80,7 +80,7 @@ public class StageController extends Stage {
         table.add(clearBallsButton);
         table.add(callbackButton).row();
         final ScrollPane debugPane = new ScrollPane(table, Assets.getSkin());
-        debugPane.setSize(WIDTH / 3, HEIGHT / 10);
+        debugPane.setSize(WIDTH / 2, HEIGHT / 10);
         debugPane.setScrollingDisabled(true, false);
         debugPane.setupFadeScrollBars(0f, 0f);
         debugPane.setupOverscroll(15, 10, 55);

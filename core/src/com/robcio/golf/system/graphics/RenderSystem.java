@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Renderable;
-import com.robcio.golf.component.flag.Selected;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -53,13 +52,5 @@ public class RenderSystem extends SortedIteratingSystem {
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.setPosition(position.x - radius, position.y - radius2);
         sprite.draw(batch);
-
-        final Selected selected = Mapper.selected.get(entity);
-        if (selected == null) return;
-        final Sprite selection = selected.sprite;
-        if (selection == null) return;
-        selection.setPosition(position.x - selection.getWidth() / 2, position.y - selection.getHeight() / 2);
-        selection.setRotation(selection.getRotation() + 5f);
-        selection.draw(batch);
     }
 }

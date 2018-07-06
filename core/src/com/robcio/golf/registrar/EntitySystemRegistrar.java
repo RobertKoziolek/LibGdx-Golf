@@ -12,6 +12,7 @@ import com.robcio.golf.system.control.MoveSystem;
 import com.robcio.golf.system.graphics.LineRenderSystem;
 import com.robcio.golf.system.graphics.PositionSynchronizationSystem;
 import com.robcio.golf.system.graphics.RenderSystem;
+import com.robcio.golf.system.graphics.SelectRenderSystem;
 
 
 public class EntitySystemRegistrar {
@@ -36,6 +37,7 @@ public class EntitySystemRegistrar {
         engine.addSystem(new PositionSynchronizationSystem(priority++));
 
         engine.addSystem(new RenderSystem(priority++, batch));
+        engine.addSystem(new SelectRenderSystem(priority++, batch));
         engine.addSystem(new LineRenderSystem(priority++, camera));
     }
 }
