@@ -45,7 +45,6 @@ public abstract class Box2dScreen extends AbstractScreen {
     }
 
     public void setMap(final MapId map) {
-        //TODO jesli bedzie jakis powrot do menu nalezoloby czyscic pozostalosci po poprzednio zaladowanej mapie
         mapReader.load(map);
         mapRenderer.setMap(mapReader.getCurrent());
     }

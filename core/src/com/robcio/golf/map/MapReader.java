@@ -19,10 +19,10 @@ public class MapReader {
     private final static String COLLISION_LAYER = "coll";
     private final static String ENTITY_LAYER = "entity";
 
-    private final Engine engine;
-    private final TmxMapLoader loader;
     @Getter
     private TiledMap current;
+    private final Engine engine;
+    private final TmxMapLoader loader;
     private final EntityFactoryFacade entityFactoryFacade;
     private final ShapeFactory shapeFactory;
 

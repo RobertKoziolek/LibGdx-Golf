@@ -28,7 +28,6 @@ public class TrailingSystem extends IteratingSystem {
         final Box2dBody box2dBody = Mapper.box2dBody.get(entity);
         final Vector2 velocity = box2dBody.body.getLinearVelocity();
 
-
         if (velocity.len() > triggerSpeed) {
             if (trailing.counter++ > 10) {
                 trailing.counter = 0;

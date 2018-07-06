@@ -54,12 +54,11 @@ public class RenderSystem extends SortedIteratingSystem {
         sprite.setPosition(position.x - radius, position.y - radius2);
         sprite.draw(batch);
 
-        //TODO znaczek pojawia sie krzywo przy niestandardowych ksztaltach, moze wyciagnac do osobnego systemu
         final Selected selected = Mapper.selected.get(entity);
         if (selected == null) return;
         final Sprite selection = selected.sprite;
         if (selection == null) return;
-        selection.setPosition(position.x - radius / 2, position.y - radius2 / 2);
+        selection.setPosition(position.x - selection.getWidth() / 2, position.y - selection.getHeight() / 2);
         selection.setRotation(selection.getRotation() + 5f);
         selection.draw(batch);
     }
