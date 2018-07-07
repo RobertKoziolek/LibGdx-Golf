@@ -14,6 +14,7 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
+//TODO dodac lancuch oparty na jointach, easy jira z box2d here
 //TODO dodac component AttractTo do ktorego bedzie ten system przyciagal, myszka dodaje tylko component
 public class AttractToSystem extends IteratingSystem {
 
@@ -33,8 +34,6 @@ public class AttractToSystem extends IteratingSystem {
         final Position position = Selected.position;
 
         //TODO to jest gupie bo w kazdo klatke robi to samo a nie musi ;c, anex 29.06.18 - ee chyba
-
-        //TODO moze trzeba bedzie uzyc logarytmicznej funkcji log() w celu wyrownania sily, dodac wizualizacje
         final Vector2 impulse = Maths.getDistance(new Vector2(position.x, position.y), body.getPosition());
         if (Mapper.selected.has(entity)) {
             //TODO pomyslec czy nie zrobic brata impulsu ktory absolutnie zmienia predkosc a nie tylko dodaje swoje

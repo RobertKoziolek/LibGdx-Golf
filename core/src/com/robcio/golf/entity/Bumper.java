@@ -12,21 +12,26 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class Bumper extends Entity {
 
     public Bumper(final Position position, final Dimension dimension, final float angle) {
-        final Body body = BodyFactory
-                .createCircular(position, dimension, true, true, angle, Bits.C.BALL_MANIPULANT, Bits.M.FREE_OBJECT_WILL_HIT);
-
-        body.setUserData(this);
+        final Body body = BodyAssembler.circular(dimension)
+                                       .withUserData(this)
+                                       .withPosition(position)
+                                       .withAngle(angle)
+                                       .withCategoryBits(Bits.C.BALL_MANIPULANT)
+                                       .withMaskBits(Bits.M.FREE_OBJECT_WILL_HIT)
+                                       .withStatic(true)
+                                       .withFixedRotation(true)
+                                       .assemble();
         flags = EntityFlags.BUMPER.getId();
 
         add(new Selectable());
         add(position);
         add(dimension);
-        add(Force.of(55));
+        add(Force.of(55f));
         add(Box2dBody.of(body));
         add(Renderable.of(TextureId.BUMPER));
     }

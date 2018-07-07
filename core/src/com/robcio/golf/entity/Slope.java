@@ -8,18 +8,25 @@ import com.robcio.golf.component.structure.*;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.utils.Log;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class Slope extends Entity {
 
-    public Slope(final Position position, final Dimension dimension, final float angle, final Direction direction,
+    public Slope(final Position position,
+                 final Dimension dimension,
+                 final float angle,
+                 final Direction direction,
                  final Force force) {
-        final Body body = BodyFactory
-                .createBox(position, dimension, true, true, angle, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
-
-        body.setUserData(this);
-        body.getFixtureList().get(0).setSensor(true);
+        final Body body = BodyAssembler.box(dimension)
+                                       .withSensor(true)
+                                       .withUserData(this)
+                                       .withPosition(position)
+                                       .withAngle(angle)
+                                       .withCategoryBits(Bits.C.BALL_MANIPULANT)
+                                       .withMaskBits(Bits.C.BALL)
+                                       .withStatic(true)
+                                       .withFixedRotation(true)
+                                       .assemble();
         flags = EntityFlags.SLOPE.getId();
 
 //        add(new Selectable());
@@ -33,7 +40,10 @@ public class Slope extends Entity {
         add(renderable);
     }
 
-    public Slope(final Rectangle rectangle, final float angle, final Direction direction, final Force force) {
+    public Slope(final Rectangle rectangle,
+                 final float angle,
+                 final Direction direction,
+                 final Force force) {
         this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height), angle, direction,
              force);
     }

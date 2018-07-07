@@ -3,7 +3,6 @@ package com.robcio.golf.entity;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Renderable;
 import com.robcio.golf.component.flag.Selectable;
@@ -17,24 +16,26 @@ import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class Ball extends Entity {
 
     public Ball(final Position position, final Dimension dimension, final float angle, final BallType ballType) {
-
-        final Body body = BodyFactory
-                .createCircular(position, dimension, false, false, angle, Bits.C.BALL, Bits.M.BALL_WILL_HIT);
-        body.setUserData(this);
-        flags = EntityFlags.BALL.getId();
-
-        final Fixture fixture = body.getFixtureList().get(0);
-        fixture.setRestitution(0.5f);
-        fixture.setDensity(0.4f);
-
+        final Body body = BodyAssembler.circular(dimension)
+                                       .withUserData(this)
+                                       .withPosition(position)
+                                       .withAngle(angle)
+                                       .withRestitution(0.5f)
+                                       .withDensity(0.8f)
+                                       .withCategoryBits(Bits.C.BALL)
+                                       .withMaskBits(Bits.M.BALL_WILL_HIT)
+                                       .withStatic(false)
+                                       .withFixedRotation(false)
+                                       .withLinearDamping(0.6f)
+                                       .withAngularDamping(0.6f)
+                                       .assemble();
         //TODO moze na mape inny damping? generalnie powierzchnie dodac
-        body.setLinearDamping(0.3f);
-        body.setAngularDamping(0.3f);
+        flags = EntityFlags.BALL.getId();
 
         add(new Selectable());
         add(position);
@@ -58,6 +59,8 @@ public class Ball extends Entity {
     }
 
     public static Ball of(final Recipe recipe) {
-        return new Ball(recipe.getPosition().clone(), recipe.getDimension().clone(), 0f, recipe.getBallType());
+        return new Ball(recipe.getPosition()
+                              .clone(), recipe.getDimension()
+                                              .clone(), 0f, recipe.getBallType());
     }
 }

@@ -18,7 +18,7 @@ import com.robcio.golf.utils.Command;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
 import com.robcio.golf.world.BodyDestroyer;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class MainClass extends Game {
     //TODO lepszy system zalaczania debuga
@@ -90,7 +90,7 @@ public class MainClass extends Game {
     private void initializeWorld() {
         world = new World(Vector2.Zero.cpy(), false);
         world.setContactListener(new Box2DContactListener());
-        BodyFactory.setWorld(world);
+        BodyAssembler.setWorld(world);
         bodyDestroyer = new BodyDestroyer(world);
     }
 

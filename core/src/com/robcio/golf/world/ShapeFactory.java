@@ -1,0 +1,52 @@
+package com.robcio.golf.world;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
+import com.robcio.golf.component.structure.Dimension;
+
+public class ShapeFactory {
+
+    public Shape createBox(Dimension dimension) {
+        final PolygonShape shape = new PolygonShape();
+        dimension = Dimension.radiusToBox2D(dimension);
+        shape.setAsBox(dimension.width, dimension.height);
+
+        return shape;
+    }
+
+    public Shape createCircular(Dimension dimension) {
+        dimension = Dimension.radiusToBox2D(dimension);
+        if (dimension.isSquare()) {
+            return createCircle(dimension.width);
+        } else {
+            return createOval(dimension.width, dimension.height);
+        }
+    }
+
+    private Shape createCircle(float radius) {
+        final CircleShape shape = new CircleShape();
+        shape.setRadius(radius);
+        return shape;
+    }
+
+    //TODO byc moze nalezaloby zwiekszyc ilosc verticesow w zaleznosci od wielkosci, bo kanciaste jest strasznie
+    private Shape createOval(float radius1, float radius2) {
+        final PolygonShape shape = new PolygonShape();
+        final Vector2 vertices[] = new Vector2[8];
+        for (int i = 0; i < 8; ++i)
+            vertices[i] = new Vector2();
+        final float dent = 0.7f;
+        vertices[0].set(-radius1, 0);
+        vertices[1].set(dent * -radius1, dent * radius2);
+        vertices[2].set(0, radius2);
+        vertices[3].set(dent * radius1, dent * radius2);
+        vertices[4].set(radius1, 0);
+        vertices[5].set(dent * radius1, dent * -radius2);
+        vertices[6].set(0, -radius2);
+        vertices[7].set(dent * -radius1, dent * -radius2);
+        shape.set(vertices);
+        return shape;
+    }
+}

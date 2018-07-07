@@ -8,14 +8,20 @@ import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.enumeration.Bits;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class Obstacle extends Entity {
 
     public Obstacle(final Position position, final Dimension dimension, final float angle) {
-        final Body body = BodyFactory
-                .createBox(position, dimension, true, true, angle, Bits.C.WALL, Bits.M.FREE_OBJECT_WILL_HIT);
-        body.setUserData(this);
+        final Body body = BodyAssembler.box(dimension)
+                                       .withUserData(this)
+                                       .withPosition(position)
+                                       .withAngle(angle)
+                                       .withCategoryBits(Bits.C.WALL)
+                                       .withMaskBits(Bits.M.FREE_OBJECT_WILL_HIT)
+                                       .withStatic(true)
+                                       .withFixedRotation(true)
+                                       .assemble();
 
         add(new Selectable());
         add(position);

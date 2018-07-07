@@ -10,17 +10,23 @@ import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class Dispenser extends Entity {
 
     public Dispenser(final Position position, final Dimension dimension, final Force force) {
-        final Body body = BodyFactory
-                .createCircular(position, dimension, false, false, 0f, Bits.C.FREE_OBJECT, Bits.M.FREE_OBJECT_WILL_HIT);
-        body.setUserData(this);
-        body.getFixtureList().get(0).setDensity(55.3f);
-        body.setLinearDamping(4f);
-        body.setAngularDamping(4f);
+        final Body body = BodyAssembler.circular(dimension)
+                                       .withUserData(this)
+                                       .withPosition(position)
+                                       .withAngle(0f)
+                                       .withDensity(55.3f)
+                                       .withLinearDamping(4f)
+                                       .withAngularDamping(4f)
+                                       .withCategoryBits(Bits.C.FREE_OBJECT)
+                                       .withMaskBits(Bits.M.FREE_OBJECT_WILL_HIT)
+                                       .withStatic(false)
+                                       .withFixedRotation(false)
+                                       .assemble();
         flags = EntityFlags.BALL.getId();
 
         add(new Selectable());

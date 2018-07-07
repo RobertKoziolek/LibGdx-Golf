@@ -11,16 +11,21 @@ import com.robcio.golf.component.flag.Renderable;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class Bowl extends Entity {
 
     public Bowl(final Position position, final Dimension dimension, final float angle, final TextureId textureId) {
-        final Body body = BodyFactory
-                .createCircular(position, dimension, true, true, angle, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
-
-        body.setUserData(this);
-        body.getFixtureList().get(0).setSensor(true);
+        final Body body = BodyAssembler.circular(dimension)
+                                       .withSensor(true)
+                                       .withUserData(this)
+                                       .withPosition(position)
+                                       .withAngle(angle)
+                                       .withCategoryBits(Bits.C.BALL_MANIPULANT)
+                                       .withMaskBits(Bits.C.BALL)//TODO dlaczego mask bits jest z CategoryBitow?
+                                       .withStatic(true)
+                                       .withFixedRotation(true)
+                                       .assemble();
         flags = EntityFlags.BOWL.getId();
 
         add(new Selectable());

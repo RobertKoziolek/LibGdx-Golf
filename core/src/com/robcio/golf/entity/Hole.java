@@ -9,17 +9,21 @@ import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 //TODO dodac jakis vortex czy cos, zabawa z fizyka
 public class Hole extends Entity {
 
     public Hole(final Position position, final Dimension dimension, final float angle) {
-        final Body body = BodyFactory
-                .createCircular(position, Dimension.of(1f), true, true, angle, Bits.C.BALL_MANIPULANT, Bits.C.BALL);
-
-        body.setUserData(this);
+        final Body body = BodyAssembler.circular(Dimension.of(1f))
+                                       .withUserData(this)
+                                       .withPosition(position)
+                                       .withAngle(angle)
+                                       .withCategoryBits(Bits.C.BALL_MANIPULANT)
+                                       .withMaskBits(Bits.C.BALL)
+                                       .withStatic(true)
+                                       .withFixedRotation(true)
+                                       .assemble();
         flags = EntityFlags.HOLE.getId();
 
         add(new Selectable());

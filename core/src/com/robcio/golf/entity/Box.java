@@ -11,17 +11,23 @@ import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.TextureId;
-import com.robcio.golf.world.BodyFactory;
+import com.robcio.golf.world.BodyAssembler;
 
 public class Box extends Entity {
 
     public Box(final Position position, final Dimension dimension, final float angle) {
-        final Body body = BodyFactory
-                .createBox(position, dimension, false, false, angle, Bits.C.FREE_OBJECT, Bits.M.FREE_OBJECT_WILL_HIT);
+        final Body body = BodyAssembler.box(dimension)
+                                       .withPosition(position)
+                                       .withAngle(angle)
+                                       .withDensity(2f)
+                                       .withLinearDamping(4f)
+                                       .withAngularDamping(4f)
+                                       .withCategoryBits(Bits.C.FREE_OBJECT)
+                                       .withMaskBits(Bits.M.FREE_OBJECT_WILL_HIT)
+                                       .withStatic(false)
+                                       .withFixedRotation(false)
+                                       .assemble();
         body.setUserData(this);
-        body.getFixtureList().get(0).setDensity(2f);
-        body.setLinearDamping(4f);
-        body.setAngularDamping(4f);
 
         add(new Selectable());
         add(Box2dBody.of(body));
