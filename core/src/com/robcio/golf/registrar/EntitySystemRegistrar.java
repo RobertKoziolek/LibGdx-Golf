@@ -26,6 +26,7 @@ public class EntitySystemRegistrar {
 
         engine.addSystem(new DispensingSystem(priority++));
         engine.addSystem(new ImpulseSystem(priority++));
+        engine.addSystem(new HardImpulseSystem(priority++));
         engine.addSystem(new TrailingSystem(priority++));
 
         engine.addSystem(new MoveSystem(priority++));

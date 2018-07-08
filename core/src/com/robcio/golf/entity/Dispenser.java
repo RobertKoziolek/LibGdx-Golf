@@ -19,7 +19,7 @@ public class Dispenser extends Entity {
                                        .withUserData(this)
                                        .withPosition(position)
                                        .withAngle(0f)
-                                       .withDensity(55.3f)
+                                       .withDensity(0.3f)
                                        .withLinearDamping(4f)
                                        .withAngularDamping(4f)
                                        .withCategoryBits(Bits.C.FREE_OBJECT)

@@ -22,6 +22,7 @@ public abstract class Box2dScreen extends AbstractScreen {
     private final BodyDestroyer bodyDestroyer;
     private final Camera camera;
 
+    //TODO te renderery tez raczej do systemow wywalic, nieladnie ze sa tu
     private final Box2DDebugRenderer box2DDebugRenderer;
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final MapReader mapReader;

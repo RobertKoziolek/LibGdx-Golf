@@ -54,7 +54,8 @@ public class MapReader {
         for (MapObject object : mapObjects) {
             final Shape shape = shapeFactory.createShape(object);
             engine.addEntity(new Wall(shape));
-            shape.dispose();
+            //TODO shape.dispose() jest chyba poczebny ale powoduje problemy, moze zbierac je i usuwac po tym forze
+//            shape.dispose();
         }
     }
 }

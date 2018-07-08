@@ -51,6 +51,27 @@ public class BodyAssembler {
         return withShape(circular);
     }
 
+    public Body assemble() {
+        //TODO rotacja sprawia ze zmienia sie pozycja, w zwiazku z tym mapa z Tiled nie jest taka jak w grze
+        final BodyDef bodyDef = new BodyDef();
+        bodyDef.fixedRotation = isRotationFixed;
+        bodyDef.angle = Maths.degreesToRadians(angle);
+        bodyDef.type = isStatic ? BodyType.StaticBody : BodyType.DynamicBody;
+
+        if (position != null) {
+            position = Position.toBox2D(position);
+            bodyDef.position.set(position.x, position.y);
+        }
+
+        final Body body = world.createBody(bodyDef);
+        body.createFixture(fixtureDef);
+        body.setLinearDamping(linearDamping);
+        body.setAngularDamping(angularDamping);
+        body.setUserData(userData);
+        fixtureDef.shape.dispose();
+        return body;
+    }
+
     public BodyAssembler withUserData(final Object object) {
         this.userData = object;
         return this;
@@ -109,26 +130,5 @@ public class BodyAssembler {
     public BodyAssembler withFixedRotation(final boolean isRotationFixed) {
         this.isRotationFixed = isRotationFixed;
         return this;
-    }
-
-    public Body assemble() {
-        //TODO rotacja sprawia ze zmienia sie pozycja, w zwiazku z tym mapa z Tiled nie jest taka jak w grze
-        final BodyDef bodyDef = new BodyDef();
-        bodyDef.fixedRotation = isRotationFixed;
-        bodyDef.angle = Maths.degreesToRadians(angle);
-        bodyDef.type = isStatic ? BodyType.StaticBody : BodyType.DynamicBody;
-
-        if (position != null) {
-            position = Position.toBox2D(position);
-            bodyDef.position.set(position.x, position.y);
-        }
-
-        final Body body = world.createBody(bodyDef);
-        body.createFixture(fixtureDef);
-        body.setLinearDamping(linearDamping);
-        body.setAngularDamping(angularDamping);
-        body.setUserData(userData);
-        fixtureDef.shape.dispose();
-        return body;
     }
 }

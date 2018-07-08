@@ -31,6 +31,8 @@ public class SelectRenderSystem extends IteratingSystem {
         final Selected selected = Mapper.selected.get(entity);
 
         final Sprite selection = selected.sprite;
+        //TODO ogarnac sensowniej dla rzeczy ktore sa zaznaczalne, ale nie pokazuja gwiazdki (jak dziura)
+        if (selection == null) return;
         final float radius = Selected.SIZE / 2;
         selection.setPosition(position.x - radius, position.y - radius);
         selection.setRotation(selection.getRotation() + 5f);

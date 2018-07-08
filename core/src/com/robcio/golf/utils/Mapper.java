@@ -18,6 +18,7 @@ public class Mapper {
     final public static ComponentMapper<Line> line = ComponentMapper.getFor(Line.class);
     final public static ComponentMapper<Force> force = ComponentMapper.getFor(Force.class);
     final public static ComponentMapper<Impulse> impulse = ComponentMapper.getFor(Impulse.class);
+    final public static ComponentMapper<HardImpulse> hardImpulse = ComponentMapper.getFor(HardImpulse.class);
     final public static ComponentMapper<InBowl> inBowl = ComponentMapper.getFor(InBowl.class);
     final public static ComponentMapper<OnSlope> onSlope = ComponentMapper.getFor(OnSlope.class);
     final public static ComponentMapper<Dispensing> dispensing = ComponentMapper.getFor(Dispensing.class);

@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.robcio.golf.utils.Maths;
 
+//TODO sa dwie ShapeFactory, dla czytania mapy i tworzenia obiektu, wypadaloby je polaczyc raczej
 public class ShapeFactory {
 
     public Shape createShape(final MapObject mapObject) {
