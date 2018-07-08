@@ -1,4 +1,4 @@
-package com.robcio.golf.gui.utils;
+package com.robcio.golf.utils;
 
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import lombok.AllArgsConstructor;

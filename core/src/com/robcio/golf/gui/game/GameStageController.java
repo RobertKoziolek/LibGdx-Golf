@@ -6,10 +6,11 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.robcio.golf.component.flag.Renderable;
 import com.robcio.golf.component.flag.ToRemove;
@@ -17,10 +18,11 @@ import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.Ball;
-import com.robcio.golf.gui.utils.ButtonListener;
+import com.robcio.golf.gui.GuiAssembler;
 import com.robcio.golf.listener.input.GameInputCatcher;
-import com.robcio.golf.utils.Assets;
 import com.robcio.golf.utils.Command;
+
+import java.util.Observable;
 
 import static com.robcio.golf.MainClass.HEIGHT;
 import static com.robcio.golf.MainClass.WIDTH;
@@ -48,60 +50,62 @@ public class GameStageController extends Stage {
     }
 
     private void setUp(final Command callback) {
-        //TODO moze jakas fabryka na tworzenie buttonow z uzyciem Command czy cos
-        final TextButton leftClickButton = addButton(gameInputCatcher.getCurrentMouseMode().getTooltip());
-        leftClickButton.addListener(new ClickListener() {
+        final TextButton changeMouseModeButton = getButton(gameInputCatcher.getCurrentMouseMode()
+                                                                           .getTooltip(), getChangeMouseModeCommand(),
+                                                           gameInputCatcher);
+        final Button clearBallsButton = getButton("Clear balls", getClearBallsCommand());
+        final Button callbackButton = getButton("menu", callback);
+
+        final Table table = GuiAssembler.tableOf(changeMouseModeButton, clearBallsButton, callbackButton);
+        final ScrollPane debugPane = GuiAssembler.paneOf(table)
+                                                 .withSize(WIDTH / 2, HEIGHT / 10)
+                                                 .withScrollingDisabled(true, false)
+                                                 .withFadeScrollBars(0f, 0f)
+                                                 .withOverscroll(15f, 10f, 55f)
+                                                 .assemble();
+        addActor(debugPane);
+    }
+
+    private TextButton getButton(final String text, final Command command) {
+        return getButton(text, command, null);
+    }
+
+    private TextButton getButton(final String text, final Command command, final Observable observable) {
+        final int index = getActors().size;
+        final float width = WIDTH / 3;
+        final float height = HEIGHT / 12;
+        return GuiAssembler.textButtonOf(text)
+                           .withSize(width, height)
+                           .withPosition(width + width * ((index - 1) % 3),
+                                         HEIGHT - height)
+                           .withCommand(command)
+                           .observing(observable)
+                           .assemble();
+    }
+
+    private Command getChangeMouseModeCommand() {
+        return new Command() {
             @Override
-            public void clicked(InputEvent event, float x, float y) {
+            public void execute() {
                 gameInputCatcher.changeMouseMode();
             }
-        });
-        gameInputCatcher.addObserver(new ButtonListener(leftClickButton));
+        };
+    }
+
+    private Command getClearBallsCommand() {
         final ImmutableArray<Entity> entities = engine
-                .getEntitiesFor(Family.all(Position.class, Dimension.class, Renderable.class, Box2dBody.class).get());
-        final Button clearBallsButton = addButton("Clear balls");
-        clearBallsButton.addListener(new ClickListener() {
+                .getEntitiesFor(Family.all(Position.class, Dimension.class, Renderable.class, Box2dBody.class)
+                                      .get());
+        return new Command() {
             @Override
-            public void clicked(InputEvent event, float x, float y) {
+            public void execute() {
                 for (final Entity entity: entities) {
                     if (entity instanceof Ball) {
                         entity.add(ToRemove.self());
                     }
                 }
             }
-        });
-        final Button callbackButton = addButton("menu");
-        callbackButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                callback.execute();
-            }
-        });
-        final Table table = new Table(Assets.getSkin());
-        table.add(leftClickButton);
-        table.add(clearBallsButton);
-        table.add(callbackButton).row();
-        final ScrollPane debugPane = new ScrollPane(table, Assets.getSkin());
-        debugPane.setSize(WIDTH / 2, HEIGHT / 10);
-        debugPane.setScrollingDisabled(true, false);
-        debugPane.setupFadeScrollBars(0f, 0f);
-        debugPane.setupOverscroll(15, 10, 55);
-        addActor(debugPane);
-    }
-
-    private TextButton addButton(final String text) {
-        final int index = getActors().size;
-        final TextButton button = new TextButton(text, Assets.getSkin());
-        final float width = WIDTH / numberOfButtonsInRow();
-        final float height = HEIGHT / 12;
-        button.setSize(width, height);
-        button.setPosition(width + width * ((index - 1) % numberOfButtonsInRow()),
-                           HEIGHT - height);
-        return button;
-    }
-
-    private int numberOfButtonsInRow() {
-        return 3;
+        };
     }
 
     @Override
