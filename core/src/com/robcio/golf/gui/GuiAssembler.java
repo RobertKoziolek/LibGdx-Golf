@@ -45,6 +45,7 @@ public class GuiAssembler {
         public TextButton assemble() {
             button.setSize(width, height);
             button.setPosition(x, y);
+            if (command == null) throw new IllegalArgumentException("Cannot assemble a button without any action");
             button.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
@@ -78,8 +79,6 @@ public class GuiAssembler {
             this.observable = observable;
             return this;
         }
-
-
     }
 
     public static class PaneAssembler {

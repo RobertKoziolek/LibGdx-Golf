@@ -11,6 +11,7 @@ public class Bits {
 
     static public class M {
         //TODO wymyslic cos sensowniejszego w kwestii nie-pilek
+        public final static short BALL = C.BALL;
         public final static short FREE_OBJECT_WILL_HIT = 15;
         public final static short BALL_WILL_HIT = 15;
     }

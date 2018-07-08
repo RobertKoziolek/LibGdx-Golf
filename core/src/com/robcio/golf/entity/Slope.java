@@ -23,7 +23,7 @@ public class Slope extends Entity {
                                        .withPosition(position)
                                        .withAngle(angle)
                                        .withCategoryBits(Bits.C.BALL_MANIPULANT)
-                                       .withMaskBits(Bits.C.BALL)
+                                       .withMaskBits(Bits.M.BALL)
                                        .withStatic(true)
                                        .withFixedRotation(true)
                                        .assemble();

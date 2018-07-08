@@ -22,7 +22,7 @@ public class Bowl extends Entity {
                                        .withPosition(position)
                                        .withAngle(angle)
                                        .withCategoryBits(Bits.C.BALL_MANIPULANT)
-                                       .withMaskBits(Bits.C.BALL)//TODO dlaczego mask bits jest z CategoryBitow?
+                                       .withMaskBits(Bits.M.BALL)
                                        .withStatic(true)
                                        .withFixedRotation(true)
                                        .assemble();
