@@ -1,10 +1,15 @@
 package com.robcio.golf.world;
 
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.utils.Maths;
 
 public class ShapeFactory {
 
@@ -29,6 +34,37 @@ public class ShapeFactory {
         final CircleShape shape = new CircleShape();
         shape.setRadius(radius);
         return shape;
+    }
+
+    public Shape createShape(final MapObject mapObject) {
+        if (mapObject instanceof PolygonMapObject) {
+            return createPolygon(getWorldVertices((PolygonMapObject) mapObject));
+        } else if (mapObject instanceof PolylineMapObject) {
+            return createPolyLine(getWorldVertices((PolylineMapObject) mapObject));
+        }
+        throw new IllegalArgumentException("Map reader can not recognize wall object type");
+    }
+
+    private Shape createPolygon(final Vector2[] worldVertices) {
+        final PolygonShape shape = new PolygonShape();
+        shape.set(worldVertices);
+        return shape;
+    }
+
+    private ChainShape createPolyLine(final Vector2[] worldVertices) {
+        final ChainShape shape = new ChainShape();
+        shape.createChain(worldVertices);
+        return shape;
+    }
+
+    private Vector2[] getWorldVertices(final PolylineMapObject object) {
+        final float[] vertices = object.getPolyline().getTransformedVertices();
+        return Maths.getWorldVertices(vertices);
+    }
+
+    private Vector2[] getWorldVertices(final PolygonMapObject object) {
+        final float[] vertices = object.getPolygon().getTransformedVertices();
+        return Maths.getWorldVertices(vertices);
     }
 
     //TODO byc moze nalezaloby zwiekszyc ilosc verticesow w zaleznosci od wielkosci, bo kanciaste jest strasznie

@@ -86,7 +86,6 @@ public class MainClass extends Game {
         engine = new Engine();
     }
 
-    //TODO world i engine do wspolnej klasy bo w sumie tak pracuja, fasada here sie przyda
     private void initializeWorld() {
         world = new World(Vector2.Zero.cpy(), false);
         world.setContactListener(new Box2DContactListener());

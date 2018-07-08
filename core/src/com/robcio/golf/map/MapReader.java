@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.robcio.golf.entity.Wall;
 import com.robcio.golf.enumeration.MapId;
 import com.robcio.golf.map.factory.EntityFactoryFacade;
-import com.robcio.golf.map.factory.ShapeFactory;
 import com.robcio.golf.utils.Log;
+import com.robcio.golf.world.ShapeFactory;
 import lombok.Getter;
 
 public class MapReader {
@@ -38,24 +38,26 @@ public class MapReader {
         Log.i("Map loading", map.getName());
         this.current = loader.load("map/" + map.getFilename());
         if (map != MapId.EMPTY) {
-            parseTileMapLayerCollisions(this.current.getLayers().get(COLLISION_LAYER).getObjects());
-            parseTileMapEntityObjects(this.current.getLayers().get(ENTITY_LAYER).getObjects());
+            parseTileMapLayerCollisions(this.current.getLayers()
+                                                    .get(COLLISION_LAYER)
+                                                    .getObjects());
+            parseTileMapEntityObjects(this.current.getLayers()
+                                                  .get(ENTITY_LAYER)
+                                                  .getObjects());
         }
     }
 
     private void parseTileMapEntityObjects(final MapObjects mapObjects) {
-        for (final MapObject object : mapObjects) {
+        for (final MapObject object: mapObjects) {
             final Entity entity = entityFactoryFacade.create(object);
             engine.addEntity(entity);
         }
     }
 
     private void parseTileMapLayerCollisions(final MapObjects mapObjects) {
-        for (MapObject object : mapObjects) {
+        for (MapObject object: mapObjects) {
             final Shape shape = shapeFactory.createShape(object);
             engine.addEntity(new Wall(shape));
-            //TODO shape.dispose() jest chyba poczebny ale powoduje problemy, moze zbierac je i usuwac po tym forze
-//            shape.dispose();
         }
     }
 }

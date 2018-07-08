@@ -35,6 +35,15 @@ public class Maths {
         return distance;
     }
 
+    public static Vector2[] getWorldVertices(final float[] vertices) {
+        final Vector2[] worldVertices = new Vector2[vertices.length / 2];
+        for (int i = 0; i < worldVertices.length; ++i) {
+            final Vector2 vector = new Vector2(vertices[i * 2], vertices[i * 2 + 1]);
+            worldVertices[i] = vector.scl(1f / Maths.PPM);
+        }
+        return worldVertices;
+    }
+
     public static Vector2 inverse(final Vector2 vector) {
         return vector.scl(-1f);
     }

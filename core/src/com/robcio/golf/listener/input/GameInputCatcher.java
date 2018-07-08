@@ -8,7 +8,9 @@ import com.robcio.golf.registrar.MouseModeRegistrar;
 import com.robcio.golf.utils.Log;
 import lombok.Getter;
 
-public class GameInputCatcher implements InputProcessor {
+import java.util.Observable;
+
+public class GameInputCatcher extends Observable implements InputProcessor {
 
     @Getter
     private MouseMode currentMouseMode;
@@ -22,12 +24,13 @@ public class GameInputCatcher implements InputProcessor {
         currentMouseMode.changeSystemProcessing(true);
     }
 
-    public String changeMouseMode() {
+    public void changeMouseMode() {
         currentMouseMode.changeSystemProcessing(false);
         currentMouseMode = mouseModeRegistrar.next(currentMouseMode);
         currentMouseMode.changeSystemProcessing(true);
         Log.i("Mouse mode", currentMouseMode.getTooltip());
-        return currentMouseMode.getTooltip();
+        setChanged();
+        notifyObservers(currentMouseMode.getTooltip());
     }
 
     private void updatePointerPosition(int screenX, int screenY) {

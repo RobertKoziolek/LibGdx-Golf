@@ -17,6 +17,7 @@ import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.Ball;
+import com.robcio.golf.gui.utils.ButtonListener;
 import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.utils.Assets;
 import com.robcio.golf.utils.Command;
@@ -52,10 +53,10 @@ public class GameStageController extends Stage {
         leftClickButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                final String mouseModeTooltip = gameInputCatcher.changeMouseMode();
-                leftClickButton.setText(mouseModeTooltip);
+                gameInputCatcher.changeMouseMode();
             }
         });
+        gameInputCatcher.addObserver(new ButtonListener(leftClickButton));
         final ImmutableArray<Entity> entities = engine
                 .getEntitiesFor(Family.all(Position.class, Dimension.class, Renderable.class, Box2dBody.class).get());
         final Button clearBallsButton = addButton("Clear balls");
