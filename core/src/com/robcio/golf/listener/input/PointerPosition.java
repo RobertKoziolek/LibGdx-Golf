@@ -2,7 +2,7 @@ package com.robcio.golf.listener.input;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
-import com.robcio.golf.component.flag.Selected;
+import com.robcio.golf.component.util.Selected;
 import com.robcio.golf.component.structure.Position;
 import lombok.Getter;
 import lombok.Setter;

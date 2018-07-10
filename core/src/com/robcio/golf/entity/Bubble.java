@@ -1,11 +1,11 @@
 package com.robcio.golf.entity;
 
 import com.badlogic.gdx.math.Ellipse;
-import com.robcio.golf.component.flag.Renderable;
-import com.robcio.golf.component.flag.ToRemove;
+import com.robcio.golf.component.graphics.Renderable;
+import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.component.structure.Timer;
+import com.robcio.golf.component.util.Timer;
 import com.robcio.golf.entity.recipe.Recipe;
 import com.robcio.golf.enumeration.TextureId;
 

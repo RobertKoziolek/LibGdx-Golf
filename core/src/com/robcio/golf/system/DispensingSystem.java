@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
-import com.robcio.golf.component.flag.Dispensing;
+import com.robcio.golf.component.util.Dispensing;
 import com.robcio.golf.component.structure.*;
 import com.robcio.golf.entity.recipe.EntityFactory;
 import com.robcio.golf.entity.recipe.Recipe;

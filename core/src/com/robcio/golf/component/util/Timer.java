@@ -1,4 +1,4 @@
-package com.robcio.golf.component.structure;
+package com.robcio.golf.component.util;
 
 import com.badlogic.ashley.core.Component;
 import lombok.AccessLevel;

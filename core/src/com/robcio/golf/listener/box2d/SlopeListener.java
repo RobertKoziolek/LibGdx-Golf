@@ -2,7 +2,7 @@ package com.robcio.golf.listener.box2d;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.flag.OnSlope;
+import com.robcio.golf.component.physics.OnSlope;
 import com.robcio.golf.component.structure.Direction;
 import com.robcio.golf.component.structure.Force;
 import com.robcio.golf.enumeration.EntityFlags;

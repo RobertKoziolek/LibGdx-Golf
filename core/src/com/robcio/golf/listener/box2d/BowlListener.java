@@ -2,7 +2,7 @@ package com.robcio.golf.listener.box2d;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.*;
-import com.robcio.golf.component.flag.InBowl;
+import com.robcio.golf.component.physics.InBowl;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
 import com.robcio.golf.utils.Mapper;

@@ -23,8 +23,10 @@ public class EllipseEntityFactory extends EntityFactory {
         final Ellipse ellipse = ((EllipseMapObject) mapObject).getEllipse();
         ellipse.x += ellipse.width / 2;
         ellipse.y += ellipse.height / 2;
-        final String type = (String) mapObject.getProperties().get(TYPE);
+        final String type = (String) mapObject.getProperties()
+                                              .get(TYPE);
         final float rotation = getRotation(mapObject);
+        //TODO moznaby wprowadzic zeby klasa obiektu deklarowala chec bycia zczytana i tu tylko abstrakcyjny bebech
         switch (type) {
             case BOWL:
                 return new Bowl(ellipse, rotation, TextureId.BOWL);
@@ -41,12 +43,16 @@ public class EllipseEntityFactory extends EntityFactory {
     }
 
     private BallType getBallType(final MapObject object) {
-        final Object ballTypeProperty = object.getProperties().get(BALL_TYPE);
+        final Object ballTypeProperty = object.getProperties()
+                                              .get(BALL_TYPE);
         if (ballTypeProperty != null) {
             final String ballTypeString = ballTypeProperty.toString();
-            final BallType ballType = BallType.valueOf(ballTypeString);
-            if (ballType == null) throw new IllegalArgumentException("Ball type is not supported");
-            return ballType;
+            try {
+                final BallType ballType = BallType.valueOf(ballTypeString);
+                return ballType;
+            } catch (final IllegalArgumentException e) {
+                throw new IllegalArgumentException("Ball type is not supported");
+            }
         }
         return BallType.WHITE;
     }

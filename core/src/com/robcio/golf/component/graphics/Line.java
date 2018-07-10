@@ -1,8 +1,7 @@
-package com.robcio.golf.component.structure;
+package com.robcio.golf.component.graphics;
 
 import com.badlogic.ashley.core.Component;
-import com.badlogic.gdx.math.Vector2;
-import com.robcio.golf.utils.Maths;
+import com.robcio.golf.component.structure.Position;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 

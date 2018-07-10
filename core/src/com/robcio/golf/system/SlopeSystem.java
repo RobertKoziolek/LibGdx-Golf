@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.flag.OnSlope;
+import com.robcio.golf.component.physics.OnSlope;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.utils.Mapper;
 

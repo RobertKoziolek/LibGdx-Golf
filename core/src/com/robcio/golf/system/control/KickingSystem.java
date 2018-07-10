@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Kickable;
-import com.robcio.golf.component.flag.Selected;
+import com.robcio.golf.component.util.Selected;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Impulse;
 import com.robcio.golf.component.structure.Position;

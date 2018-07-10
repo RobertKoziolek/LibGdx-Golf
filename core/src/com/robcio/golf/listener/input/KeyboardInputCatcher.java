@@ -9,19 +9,26 @@ import java.util.Map;
 public class KeyboardInputCatcher {
 
     private final MouseModeController mouseModeController;
+    //TODO w razie pojawienia sie wiekszej ilosci rzeczy mozna byc zrobic obiekt przechowujacy tylko mape
     private final Map<Integer, Command> keyMap;
 
     public KeyboardInputCatcher(final MouseModeController mouseModeController) {
         this.mouseModeController = mouseModeController;
-        this.keyMap = getKeyMap();
+        this.keyMap = new HashMap<>();
+        setKeyMapForMouseModes();
     }
 
-    private Map<Integer, Command> getKeyMap() {
-        final Map<Integer, Command> map = new HashMap<>();
+    private void setKeyMapForMouseModes() {
         for (final MouseMode mode: mouseModeController.getMouseModes()) {
-            map.put(mode.getShortcutKey(), getMouseModeCommandFor(mode));
+            put(mode.getShortcutKey(), getMouseModeCommandFor(mode));
         }
-        return map;
+    }
+
+    private void put(final Integer shortcutKey, final Command mouseMode) {
+        if (keyMap.containsKey(shortcutKey)) {
+            throw new IllegalArgumentException(String.format("Key code %d already assigned", shortcutKey));
+        }
+        keyMap.put(shortcutKey, mouseMode);
     }
 
     private Command getMouseModeCommandFor(final MouseMode mouseMode) {

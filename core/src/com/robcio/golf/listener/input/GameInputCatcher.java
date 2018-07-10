@@ -37,6 +37,7 @@ public class GameInputCatcher implements InputProcessor {
                                 .getTooltip();
     }
 
+    //TODO przy wiekszej ilosci takie rozwiazywanie tego bedzie przezeralo sie przez caly kod
     public Observable getMouseModeButtonObservable() {
         return mouseInputCatcher.getMouseModeController();
     }

@@ -7,7 +7,7 @@ import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.component.flag.Renderable;
+import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;

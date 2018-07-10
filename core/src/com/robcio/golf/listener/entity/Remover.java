@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
-import com.robcio.golf.component.flag.ToRemove;
+import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.utils.Mapper;
 import lombok.AllArgsConstructor;
 
@@ -22,7 +22,6 @@ public class Remover implements EntityListener {
     }
 
     private void remove(final Entity entity, final ToRemove toRemove) {
-        if (toRemove == null) return;
         if (toRemove.component != null) {
             entity.remove(toRemove.component);
             entity.remove(ToRemove.class);

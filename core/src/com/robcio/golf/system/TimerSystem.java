@@ -3,8 +3,8 @@ package com.robcio.golf.system;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.robcio.golf.component.structure.RepeatingTimer;
-import com.robcio.golf.component.structure.Timer;
+import com.robcio.golf.component.util.RepeatingTimer;
+import com.robcio.golf.component.util.Timer;
 import com.robcio.golf.utils.Mapper;
 
 public class TimerSystem extends IteratingSystem {

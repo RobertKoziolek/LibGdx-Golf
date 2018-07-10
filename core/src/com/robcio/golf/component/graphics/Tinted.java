@@ -1,4 +1,4 @@
-package com.robcio.golf.component.structure;
+package com.robcio.golf.component.graphics;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.Color;

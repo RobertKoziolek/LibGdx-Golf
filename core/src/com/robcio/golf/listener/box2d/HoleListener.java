@@ -2,7 +2,7 @@ package com.robcio.golf.listener.box2d;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.flag.ToRemove;
+import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.robcio.golf.component;
 
 import com.badlogic.gdx.graphics.Color;
-import com.robcio.golf.component.structure.Tinted;
+import com.robcio.golf.component.graphics.Tinted;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
