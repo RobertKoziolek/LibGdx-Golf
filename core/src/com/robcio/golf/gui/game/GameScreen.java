@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.physics.box2d.World;
+import com.robcio.golf.enumeration.MapId;
 import com.robcio.golf.gui.Box2dScreen;
 import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.utils.Command;
@@ -25,7 +26,12 @@ public class GameScreen extends Box2dScreen {
 
     @Override
     public void show() {
+    }
 
+    @Override
+    public void setMap(final MapId map) {
+        super.setMap(map);
+        gameInputCatcher.doFirstForNewMap();
     }
 
     @Override

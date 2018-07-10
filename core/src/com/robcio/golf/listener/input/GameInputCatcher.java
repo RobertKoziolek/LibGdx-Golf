@@ -60,4 +60,9 @@ public class GameInputCatcher implements InputProcessor {
     public boolean scrolled(final int amount) {
         return mouseController.scrolled(amount);
     }
+
+    public void doFirstForNewMap() {
+        mouseController.doFirstForNewMap();
+        keyboardController.doFirstForNewMap();
+    }
 }

@@ -89,4 +89,8 @@ public class MouseController extends Observable {
             }
         };
     }
+
+    public void doFirstForNewMap() {
+        currentMouseMode.before();
+    }
 }
