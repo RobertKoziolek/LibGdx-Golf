@@ -20,13 +20,24 @@ public class GameInputCatcher extends Observable implements InputProcessor {
     public GameInputCatcher(final Camera camera, final Engine engine) {
         pointerPosition = new PointerPosition(camera);
         mouseModeRegistrar = new MouseModeRegistrar(engine, pointerPosition);
-        currentMouseMode = mouseModeRegistrar.getMouseModes().get(0);
+        currentMouseMode = mouseModeRegistrar.getMouseModes()
+                                             .get(0);
         currentMouseMode.changeSystemProcessing(true);
     }
 
-    public void changeMouseMode() {
+    public void changeMouseModeNext() {
         currentMouseMode.changeSystemProcessing(false);
         currentMouseMode = mouseModeRegistrar.next(currentMouseMode);
+        mouseModeChanged();
+    }
+
+    public void changeMouseModePrevious() {
+        currentMouseMode.changeSystemProcessing(false);
+        currentMouseMode = mouseModeRegistrar.previous(currentMouseMode);
+        mouseModeChanged();
+    }
+
+    private void mouseModeChanged(){
         currentMouseMode.changeSystemProcessing(true);
         Log.i("Mouse mode", currentMouseMode.getTooltip());
         setChanged();
@@ -84,7 +95,10 @@ public class GameInputCatcher extends Observable implements InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
-        changeMouseMode();
+        if (amount < 0)
+            changeMouseModePrevious();
+        else
+            changeMouseModeNext();
         return false;
     }
 }

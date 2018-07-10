@@ -87,7 +87,7 @@ public class GameStageController extends Stage {
         return new Command() {
             @Override
             public void execute() {
-                gameInputCatcher.changeMouseMode();
+                gameInputCatcher.changeMouseModeNext();
             }
         };
     }
