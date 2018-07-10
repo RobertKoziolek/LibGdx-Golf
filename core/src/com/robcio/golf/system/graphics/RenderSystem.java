@@ -20,7 +20,8 @@ public class RenderSystem extends SortedIteratingSystem {
     final private SpriteBatch batch;
 
     public RenderSystem(final int priority, final SpriteBatch batch) {
-        super(Family.all(Box2dBody.class, Renderable.class, Position.class, Dimension.class).get(), new ZComparator(),
+        super(Family.all(Box2dBody.class, Renderable.class, Position.class, Dimension.class)
+                    .get(), new ZComparator(),
               priority);
         this.batch = batch;
     }
@@ -46,8 +47,10 @@ public class RenderSystem extends SortedIteratingSystem {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Mapper.position.get(entity);
 
-        final float radius = Mapper.dimension.get(entity).getRadiusX();
-        final float radius2 = Mapper.dimension.get(entity).getRadiusY();
+        final float radius = Mapper.dimension.get(entity)
+                                             .getRadiusX();
+        final float radius2 = Mapper.dimension.get(entity)
+                                              .getRadiusY();
 
         sprite.setRotation(Maths.radiansToDegrees(body.getAngle()));
         sprite.setPosition(position.x - radius, position.y - radius2);

@@ -88,7 +88,7 @@ public class MainClass extends Game {
 
     private void initializeWorld() {
         world = new World(Vector2.Zero.cpy(), false);
-        world.setContactListener(new Box2DContactListener());
+        world.setContactListener(new Box2DContactListener(engine));
         BodyAssembler.setWorld(world);
         bodyDestroyer = new BodyDestroyer(world);
     }

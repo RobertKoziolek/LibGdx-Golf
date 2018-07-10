@@ -1,5 +1,6 @@
 package com.robcio.golf.listener;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.*;
 import com.robcio.golf.enumeration.EntityFlags;
@@ -12,8 +13,8 @@ public class Box2DContactListener implements ContactListener {
 
     final private BodyListenerRegistrar registrar;
 
-    public Box2DContactListener() {
-        this.registrar = new BodyListenerRegistrar();
+    public Box2DContactListener(final Engine engine) {
+        this.registrar = new BodyListenerRegistrar(engine);
     }
 
     @Override

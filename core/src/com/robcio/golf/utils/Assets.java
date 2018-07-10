@@ -21,6 +21,7 @@ public class Assets {
 
     @Getter
     static private Skin skin;
+    @Getter
     static private BitmapFont font;
 
     public static void initialize() {
