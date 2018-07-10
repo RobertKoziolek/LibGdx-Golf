@@ -7,8 +7,8 @@ import com.robcio.golf.system.control.AttractToSystem;
 
 public class AttractTo extends HoldableMouseMode {
 
-    public AttractTo(final Engine engine, final PointerPosition pointerPosition) {
-        super(engine, pointerPosition);
+    public AttractTo(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {
+        super(shortcutKey, engine, pointerPosition);
     }
 
     @Override

@@ -7,8 +7,8 @@ import com.robcio.golf.system.control.KickToSystem;
 
 public class KickTo extends AbstractMouseMode {
 
-    public KickTo(final Engine engine, final PointerPosition pointerPosition) {
-        super(engine, pointerPosition);
+    public KickTo(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {
+        super(shortcutKey, engine, pointerPosition);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.robcio.golf.registrar;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.gdx.Input;
 import com.robcio.golf.control.*;
 import com.robcio.golf.listener.input.PointerPosition;
 import lombok.Getter;
@@ -14,11 +15,11 @@ public class MouseModeRegistrar {
     private final List<MouseMode> mouseModes = new ArrayList<>();
 
     public MouseModeRegistrar(final Engine engine, final PointerPosition pointerPosition) {
-        add(new AttractTo(engine, pointerPosition));
-        add(new Kick(engine, pointerPosition));
-        add(new Creation(engine, pointerPosition));
-        add(new KickTo(engine, pointerPosition));
-        add(new Motion(engine, pointerPosition));
+        add(new AttractTo(Input.Keys.NUM_1, engine, pointerPosition));
+        add(new Kick(Input.Keys.NUM_2, engine, pointerPosition));
+        add(new Creation(Input.Keys.NUM_3, engine, pointerPosition));
+        add(new KickTo(Input.Keys.NUM_4, engine, pointerPosition));
+        add(new Motion(Input.Keys.NUM_5, engine, pointerPosition));
     }
 
     public MouseMode next(final MouseMode mouseMode) {

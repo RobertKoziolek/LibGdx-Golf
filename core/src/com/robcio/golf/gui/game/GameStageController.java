@@ -50,12 +50,10 @@ public class GameStageController extends Stage {
     }
 
     private void setUp(final Command callback) {
-        final TextButton changeMouseModeButton = getButton(gameInputCatcher.getMouseController()
-                                                                           .getCurrentMouseMode()
-                                                                           .getTooltip(),
-                                                           gameInputCatcher.getMouseController()
+        final TextButton changeMouseModeButton = getButton(gameInputCatcher.getCurrentMouseModeTooltip(),
+                                                           gameInputCatcher.getMouseInputCatcher()
                                                                            .getChangeMouseModeCommand(),
-                                                           gameInputCatcher.getMouseController());
+                                                           gameInputCatcher.getMouseModeButtonObservable());
         final Button clearBallsButton = getButton("Clear balls", getClearBallsCommand());
         final Button callbackButton = getButton("menu", callback);
 

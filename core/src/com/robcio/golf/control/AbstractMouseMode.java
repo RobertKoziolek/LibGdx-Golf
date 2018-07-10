@@ -13,9 +13,13 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.listener.input.PointerPosition;
 import com.robcio.golf.utils.Mapper;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 public abstract class AbstractMouseMode implements MouseMode {
+
+    @Getter
+    private final Integer shortcutKey;
 
     protected final Engine engine;
 

@@ -11,8 +11,8 @@ import com.robcio.golf.system.control.KickingSystem;
 
 public class Kick extends AbstractMouseMode {
 
-    public Kick(final Engine engine, final PointerPosition pointerPosition) {
-        super(engine, pointerPosition);
+    public Kick(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {
+        super(shortcutKey, engine, pointerPosition);
     }
 
     @Override

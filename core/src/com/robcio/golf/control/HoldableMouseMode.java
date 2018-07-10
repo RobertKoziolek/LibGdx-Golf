@@ -7,8 +7,8 @@ public abstract class HoldableMouseMode extends AbstractMouseMode {
 
     private boolean holding;
 
-    public HoldableMouseMode(final Engine engine, final PointerPosition pointerPosition) {
-        super(engine, pointerPosition);
+    public HoldableMouseMode(final Integer shorcutKey, final Engine engine, final PointerPosition pointerPosition) {
+        super(shorcutKey, engine, pointerPosition);
     }
 
     @Override

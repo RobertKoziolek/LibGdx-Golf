@@ -21,4 +21,6 @@ public interface MouseMode {
     Class<? extends EntitySystem> getSystemClass();
 
     String getTooltip();
+
+    Integer getShortcutKey();
 }

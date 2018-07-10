@@ -11,13 +11,15 @@ import com.robcio.golf.system.control.MoveSystem;
 
 public class Motion extends AbstractMouseMode {
 
-    public Motion(final Engine engine, final PointerPosition pointerPosition) {
-        super(engine, pointerPosition);
+    public Motion(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {
+        super(shortcutKey, engine, pointerPosition);
     }
 
     @Override
     public boolean touchDown() {
-        final Family moveFamily = Family.all(Position.class, Selectable.class).exclude(Selected.class).get();
+        final Family moveFamily = Family.all(Position.class, Selectable.class)
+                                        .exclude(Selected.class)
+                                        .get();
         return select(moveFamily, false);
     }
 

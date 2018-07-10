@@ -3,17 +3,15 @@ package com.robcio.golf.control;
 import com.badlogic.ashley.core.Engine;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Force;
-import com.robcio.golf.entity.Ball;
 import com.robcio.golf.entity.Dispenser;
-import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.listener.input.PointerPosition;
 
 public class Creation extends HoldableMouseMode {
 
     private short timer;
 
-    public Creation(final Engine engine, final PointerPosition pointerPosition) {
-        super(engine, pointerPosition);
+    public Creation(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {
+        super(shortcutKey, engine, pointerPosition);
     }
 
     @Override
