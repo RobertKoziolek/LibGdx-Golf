@@ -1,15 +1,17 @@
 package com.robcio.golf.listener.input;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.Input;
+import com.badlogic.ashley.core.EntitySystem;
 import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.control.MouseMode;
+import com.robcio.golf.system.graphics.*;
 import com.robcio.golf.utils.Command;
 import com.robcio.golf.utils.Log;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.badlogic.gdx.Input.Keys.*;
 import static com.robcio.golf.MainClass.DEBUG_INFO;
 
 public class KeyboardInputCatcher {
@@ -25,10 +27,30 @@ public class KeyboardInputCatcher {
         this.keyMap = new HashMap<>();
         setKeyMapForMouseModes();
         setDebugKey();
+        setSystemKeys();
+    }
+
+    private void setSystemKeys() {
+        setSystemKey(F1, RenderSystem.class, "Object rendering");
+        setSystemKey(F2, MapRenderSystem.class, "Map rendering");
+        setSystemKey(F3, SelectRenderSystem.class, "Selection indicator rendering");
+        setSystemKey(F4, NotificationRenderSystem.class, "Notification rendering");
+        setSystemKey(F5, LineRenderSystem.class, "Line rendering");
+    }
+
+    private void setSystemKey(final Integer key, final Class<? extends EntitySystem> systemClass, final String name) {
+        put(key, new Command() {
+            @Override
+            public void execute() {
+                final EntitySystem system = engine.getSystem(systemClass);
+                system.setProcessing(!system.checkProcessing());
+                Log.i(name + (system.checkProcessing() ? " On" : " Off"));
+            }
+        });
     }
 
     private void setDebugKey() {
-        put(Input.Keys.GRAVE, new Command() {
+        put(GRAVE, new Command() {
             @Override
             public void execute() {
                 if (engine.getEntities()
