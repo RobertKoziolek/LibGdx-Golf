@@ -11,7 +11,7 @@ import java.util.Random;
 public class Maths {
 
     final static private Random random = new Random();
-    public static final float PPM = 64;
+    public static final float PPM = 64f;
 
     public static float nextFloat() {
         return random.nextFloat();
