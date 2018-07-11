@@ -12,6 +12,7 @@ import com.robcio.golf.system.control.KickingSystem;
 import com.robcio.golf.system.control.MoveSystem;
 import com.robcio.golf.system.graphics.*;
 import com.robcio.golf.system.util.LateCommandExecuter;
+import com.robcio.golf.system.util.TimerSystem;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,8 +26,9 @@ public class EntitySystemRegistrar {
     public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch, final Camera camera) {
         this.engine = engine;
         int priority = 0;
-        add(new LateCommandExecuter(priority++));
         add(new TimerSystem(priority++));
+        //TODO lateCommand musi byc po tajmerze, chce wiedziec czemu?
+        add(new LateCommandExecuter(priority++));
 
         add(new InBowlSystem(priority++));
         add(new SlopeSystem(priority++));
@@ -43,12 +45,12 @@ public class EntitySystemRegistrar {
 
         add(new PositionSynchronizationSystem(priority++));
 
-       add(new RenderSystem(priority++, batch));
-       add(new SelectRenderSystem(priority++, batch));
-       add(new LineRenderSystem(priority++, camera));
-       add(new MapRenderSystem(priority++, camera));
-       add(new DebugRenderSystem(priority++));
-       add(new NotificationRenderSystem(priority++, batch));
+        add(new RenderSystem(priority++, batch));
+        add(new SelectRenderSystem(priority++, batch));
+        add(new LineRenderSystem(priority++, camera));
+        add(new MapRenderSystem(priority++, camera));
+        add(new DebugRenderSystem(priority++));
+        add(new NotificationRenderSystem(priority++, batch));
     }
 
     public void add(final EntitySystem system) {

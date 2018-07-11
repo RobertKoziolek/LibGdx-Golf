@@ -1,4 +1,4 @@
-package com.robcio.golf.entity;
+package com.robcio.golf.entity.util;
 
 import com.badlogic.ashley.core.Entity;
 import com.robcio.golf.component.graphics.Map;

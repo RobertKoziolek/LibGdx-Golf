@@ -10,7 +10,8 @@ public enum MapId {
     MAP2("Paramour", "paramour.tmx"),
     MAP3("Nine in nine", "nineinnine.tmx"),
     POOL("Pool", "pool.tmx"),
-    SLOPES("Slopes", "slopes.tmx");
+    SLOPES("Slopes", "slopes.tmx"),
+    TEST_GROUND("Test grounds", "testground.tmx");
 
     private String name;
     private String filename;

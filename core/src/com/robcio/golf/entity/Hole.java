@@ -15,7 +15,7 @@ import com.robcio.golf.world.BodyAssembler;
 public class Hole extends Entity {
 
     public Hole(final Position position, final Dimension dimension, final float angle) {
-        final Body body = BodyAssembler.circular(Dimension.of(1f))
+        final Body body = BodyAssembler.circular(Dimension.of(dimension.width / 4))
                                        .withUserData(this)
                                        .withPosition(position)
                                        .withAngle(angle)

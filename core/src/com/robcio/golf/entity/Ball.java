@@ -4,13 +4,12 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Kickable;
-import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.flag.Selectable;
-import com.robcio.golf.component.util.Trailing;
+import com.robcio.golf.component.graphics.Renderable;
+import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.entity.recipe.Recipe;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.Bits;
@@ -25,7 +24,7 @@ public class Ball extends Entity {
                                        .withUserData(this)
                                        .withPosition(position)
                                        .withAngle(angle)
-                                       .withRestitution(0.5f)
+                                       .withRestitution(0.7f)
                                        .withDensity(0.8f)
                                        .withCategoryBits(Bits.C.BALL)
                                        .withMaskBits(Bits.M.BALL_WILL_HIT)
@@ -44,7 +43,7 @@ public class Ball extends Entity {
         add(Renderable.of(TextureId.GOLFBALL, 20));
 
         if (ballType != null) {
-            add(Trailing.of(new Recipe(position, Dimension.of(dimension.getRadiusX()), BallType.WHITE), 6f));
+//            add(Trailing.of(new Recipe(position, Dimension.of(dimension.getRadiusX()), BallType.WHITE), 6f));
             if (ballType == BallType.WHITE) {
                 add(new Kickable());
             } else {

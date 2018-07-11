@@ -13,10 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.robcio.golf.component.graphics.Renderable;
-import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.entity.Ball;
 import com.robcio.golf.gui.GuiAssembler;
 import com.robcio.golf.listener.input.GameInputCatcher;
@@ -88,6 +88,7 @@ public class GameStageController extends Stage {
         final ImmutableArray<Entity> entities = engine
                 .getEntitiesFor(Family.all(Position.class, Dimension.class, Renderable.class, Box2dBody.class)
                                       .get());
+        //TODO z jakiegos powodu znowu usuwa tylko polowicznie na mapie bilarda, na reszcie ok
         return new Command() {
             @Override
             public void execute() {

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.robcio.golf.entity.DebugInfo;
+import com.robcio.golf.entity.util.DebugInfo;
 import com.robcio.golf.enumeration.ScreenId;
 import com.robcio.golf.listener.Box2DContactListener;
 import com.robcio.golf.registrar.EntityListenerRegistrar;

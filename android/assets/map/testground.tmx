@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="73">
+ <tileset firstgid="1" source="golf.tsx"/>
+ <layer name="tile" width="16" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+</data>
+ </layer>
+ <objectgroup name="coll">
+  <object id="61" x="0" y="0">
+   <polyline points="0,0 0,512 256,512 1024,512 1024,0 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="entity">
+  <object id="18" type="bowl" x="18" y="135" width="304" height="304">
+   <ellipse/>
+  </object>
+  <object id="56" type="ball" x="425" y="41" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="57" type="ball" x="150" y="94" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="58" type="ball" x="413" y="332" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="59" type="ball" x="845" y="166" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="62" type="bowl" x="345" y="84" width="193" height="193">
+   <ellipse/>
+  </object>
+  <object id="65" type="bowl" x="579.5" y="71.5" width="141" height="141">
+   <ellipse/>
+  </object>
+  <object id="66" type="bowl" x="376.5" y="373.5" width="106" height="106">
+   <ellipse/>
+  </object>
+  <object id="67" type="bowl" x="592" y="373" width="82" height="82">
+   <ellipse/>
+  </object>
+  <object id="68" type="bowl" x="733" y="323" width="58" height="58">
+   <ellipse/>
+  </object>
+  <object id="69" type="bowl" x="843" y="218" width="38" height="38">
+   <ellipse/>
+  </object>
+  <object id="70" type="ball" x="633" y="35" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="71" type="ball" x="615" y="335" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="72" type="ball" x="744" y="279" width="30" height="30">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

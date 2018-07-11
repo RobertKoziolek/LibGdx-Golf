@@ -19,7 +19,7 @@ public class MenuStageController extends Stage {
     public MenuStageController(final MainClass mainClass, final Camera camera, final GameScreen gameScreen) {
         super(new FillViewport(WIDTH, HEIGHT, camera));
 
-        int positionY = HEIGHT / 3 - HEIGHT / 6;
+        int positionY = HEIGHT / 4 - HEIGHT / 6;
         final int step = HEIGHT / 7;
         for (final MapId map: MapId.values()) {
             final Button button = GuiAssembler.textButtonOf(map.getName())

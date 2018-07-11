@@ -15,9 +15,9 @@ import com.robcio.golf.utils.Maths;
 
 import java.util.Comparator;
 
+//TODO ogarnac do BatchedIteratingSystem z sortem, tylko jak?
 public class RenderSystem extends SortedIteratingSystem {
 
-    //TODO te systemy co wykorzystuja z batchem mozna wyabstraktowac, tylko co z sortem
     final private SpriteBatch batch;
 
     public RenderSystem(final int priority, final SpriteBatch batch) {

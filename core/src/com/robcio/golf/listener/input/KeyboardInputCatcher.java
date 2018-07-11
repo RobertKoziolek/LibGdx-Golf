@@ -66,6 +66,7 @@ public class KeyboardInputCatcher {
     }
 
     public void update(final float deltaTime) {
+        //nothing to do here right now
     }
 
     public boolean keyDown(final int keycode) {
