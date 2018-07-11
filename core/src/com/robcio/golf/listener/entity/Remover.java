@@ -11,7 +11,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Remover implements EntityListener {
 
-    final public static Family family = Family.all(ToRemove.class).get();
+    final public static Family family = Family.all(ToRemove.class)
+                                              .get();
 
     final private Engine engine;
 
@@ -22,9 +23,9 @@ public class Remover implements EntityListener {
     }
 
     private void remove(final Entity entity, final ToRemove toRemove) {
+        entity.remove(ToRemove.class);
         if (toRemove.component != null) {
             entity.remove(toRemove.component);
-            entity.remove(ToRemove.class);
         } else {
             engine.removeEntity(entity);
         }

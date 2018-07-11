@@ -1,6 +1,7 @@
 package com.robcio.golf;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.robcio.golf.entity.DebugInfo;
 import com.robcio.golf.enumeration.ScreenId;
 import com.robcio.golf.listener.Box2DContactListener;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
@@ -17,12 +19,11 @@ import com.robcio.golf.utils.Assets;
 import com.robcio.golf.utils.Command;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Maths;
-import com.robcio.golf.world.BodyDestroyer;
 import com.robcio.golf.world.BodyAssembler;
+import com.robcio.golf.world.BodyDestroyer;
 
 public class MainClass extends Game {
-    //TODO lepszy system zalaczania debuga
-    public static boolean DEBUG;
+    public static Entity DEBUG_INFO;
 
     public static final int WIDTH = (int) (16 * Maths.PPM);
     public static final int HEIGHT = (int) (9 * Maths.PPM);
@@ -36,9 +37,9 @@ public class MainClass extends Game {
     private BodyDestroyer bodyDestroyer;
 
     private ScreenRegistrar screenRegistrar;
+    private EntitySystemRegistrar entitySystemRegistrar;
 
-    public MainClass(final boolean isDebugOn) {
-        DEBUG = isDebugOn;
+    public MainClass() {
     }
 
     @Override
@@ -50,25 +51,28 @@ public class MainClass extends Game {
         initializeWorld();
         initializeRegistrars();
 
+        DEBUG_INFO = new DebugInfo(camera, world);
+
         setScreen(ScreenId.MENU);
 
         //TODO moze sie zmienic jesli w menu ma byc fizyka
         Log.i("World body count *should be 0 now", Integer.toString(world.getBodyCount()));
     }
 
-    public void setScreen(final ScreenId screenId){
+    public void setScreen(final ScreenId screenId) {
         setScreen(screenRegistrar.get(screenId));
         setUpInput();
     }
 
     private void setUpInput() {
-        final InputMultiplexer multiplexer = new InputMultiplexer(screenRegistrar.getCurrent().getInputs());
+        final InputMultiplexer multiplexer = new InputMultiplexer(screenRegistrar.getCurrent()
+                                                                                 .getInputs());
         Gdx.input.setInputProcessor(multiplexer);
     }
 
     private void initializeRegistrars() {
         new EntityListenerRegistrar(engine, bodyDestroyer);
-        new EntitySystemRegistrar(engine, batch, camera);
+        entitySystemRegistrar = new EntitySystemRegistrar(engine, batch, camera);
         screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), world, engine, bodyDestroyer, camera);
     }
 
@@ -112,10 +116,11 @@ public class MainClass extends Game {
 
     @Override
     public void dispose() {
+        Log.i("Disposing");
         screenRegistrar.dispose();
+        entitySystemRegistrar.dispose();
         batch.dispose();
         world.dispose();
         Assets.dispose();
-        Log.i("Disposing");
     }
 }

@@ -2,6 +2,7 @@ package com.robcio.golf.registrar;
 
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.robcio.golf.system.*;
@@ -11,31 +12,50 @@ import com.robcio.golf.system.control.KickingSystem;
 import com.robcio.golf.system.control.MoveSystem;
 import com.robcio.golf.system.graphics.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class EntitySystemRegistrar {
 
+    private final Engine engine;
+    private final List<EntitySystem> systems = new LinkedList<>();
+
     public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch, final Camera camera) {
+        this.engine = engine;
         int priority = 0;
-        engine.addSystem(new TimerSystem(priority++));
+       add(new TimerSystem(priority++));
 
-        engine.addSystem(new InBowlSystem(priority++));
-        engine.addSystem(new SlopeSystem(priority++));
+       add(new InBowlSystem(priority++));
+       add(new SlopeSystem(priority++));
 
-        engine.addSystem(new DispensingSystem(priority++));
-        engine.addSystem(new ImpulseSystem(priority++));
-        engine.addSystem(new HardImpulseSystem(priority++));
-        engine.addSystem(new TrailingSystem(priority++));
+       add(new DispensingSystem(priority++));
+       add(new ImpulseSystem(priority++));
+       add(new HardImpulseSystem(priority++));
+       add(new TrailingSystem(priority++));
 
-        engine.addSystem(new MoveSystem(priority++));
-        engine.addSystem(new KickingSystem(priority++));
-        engine.addSystem(new KickToSystem(priority++));
-        engine.addSystem(new AttractToSystem(priority++));
+       add(new MoveSystem(priority++));
+       add(new KickingSystem(priority++));
+       add(new KickToSystem(priority++));
+       add(new AttractToSystem(priority++));
 
-        engine.addSystem(new PositionSynchronizationSystem(priority++));
+       add(new PositionSynchronizationSystem(priority++));
 
-        engine.addSystem(new RenderSystem(priority++, batch));
-        engine.addSystem(new SelectRenderSystem(priority++, batch));
-        engine.addSystem(new LineRenderSystem(priority++, camera));
-        engine.addSystem(new NotificationRenderSystem(priority++, batch));
+       add(new RenderSystem(priority++, batch));
+       add(new SelectRenderSystem(priority++, batch));
+       add(new LineRenderSystem(priority++, camera));
+       add(new DebugRenderSystem(priority++));
+       add(new NotificationRenderSystem(priority++, batch));
+    }
+
+    public void add(final EntitySystem system) {
+        systems.add(system);
+        engine.addSystem(system);
+    }
+
+    public void dispose() {
+        for (final EntitySystem system: systems) {
+            engine.removeSystem(system);
+        }
     }
 }

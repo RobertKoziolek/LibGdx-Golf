@@ -17,7 +17,7 @@ public class GameInputCatcher implements InputProcessor {
         final PointerPosition pointerPosition = new PointerPosition(camera);
         final MouseModeController mouseModeController = new MouseModeController(engine, pointerPosition);
         this.mouseInputCatcher = new MouseInputCatcher(pointerPosition, mouseModeController);
-        this.keyboardInputCatcher = new KeyboardInputCatcher(mouseModeController);
+        this.keyboardInputCatcher = new KeyboardInputCatcher(mouseModeController, engine);
     }
 
     public void update(final float deltaTime) {

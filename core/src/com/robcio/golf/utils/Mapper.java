@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.robcio.golf.component.graphics.Line;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
+import com.robcio.golf.component.graphics.WorldAndCamera;
 import com.robcio.golf.component.physics.InBowl;
 import com.robcio.golf.component.physics.OnSlope;
 import com.robcio.golf.component.structure.*;
@@ -33,4 +34,5 @@ public class Mapper {
     final public static ComponentMapper<Timer> timer = ComponentMapper.getFor(Timer.class);
     final public static ComponentMapper<RepeatingTimer> repeatingTimer = ComponentMapper.getFor(RepeatingTimer.class);
     final public static ComponentMapper<NotificationData> notificationData = ComponentMapper.getFor(NotificationData.class);
+    final public static ComponentMapper<WorldAndCamera> worldAndCamera = ComponentMapper.getFor(WorldAndCamera.class);
 }

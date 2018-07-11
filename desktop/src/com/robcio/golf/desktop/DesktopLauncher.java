@@ -16,6 +16,6 @@ public class DesktopLauncher {
 		} else{
 			debug = Boolean.parseBoolean(arg[0]);
 		}
-		new LwjglApplication(new MainClass(debug), config);
+		new LwjglApplication(new MainClass(), config);
 	}
 }
