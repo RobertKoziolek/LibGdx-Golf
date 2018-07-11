@@ -9,11 +9,13 @@ import com.robcio.golf.world.BodyDestroyer;
 public class EntityListenerRegistrar {
 
     public EntityListenerRegistrar(final Engine engine, final BodyDestroyer bodyDestroyer) {
-        engine.addEntityListener(SpriteAssigner.family, new SpriteAssigner());
-        engine.addEntityListener(SelectIndicatorAssigner.family, new SelectIndicatorAssigner());
-        engine.addEntityListener(Tinter.family, new Tinter());
-        engine.addEntityListener(Remover.family, new Remover(engine));
-        engine.addEntityListener(Box2DBodyRemover.family, new Box2DBodyRemover(bodyDestroyer));
-        engine.addEntityListener(HoleCreationListener.family, new HoleCreationListener(engine));
+        int priority = 0;
+        engine.addEntityListener(MapLoader.family, priority++, new MapLoader(engine));
+        engine.addEntityListener(SpriteAssigner.family, priority++, new SpriteAssigner());
+        engine.addEntityListener(SelectIndicatorAssigner.family, priority++, new SelectIndicatorAssigner());
+        engine.addEntityListener(Tinter.family, priority++, new Tinter());
+        engine.addEntityListener(Remover.family, priority++, new Remover(engine));
+        engine.addEntityListener(Box2DBodyRemover.family, priority++, new Box2DBodyRemover(bodyDestroyer));
+        engine.addEntityListener(HoleCreationListener.family, priority++, new HoleCreationListener(engine));
     }
 }

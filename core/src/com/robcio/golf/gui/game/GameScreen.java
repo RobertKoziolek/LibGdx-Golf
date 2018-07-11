@@ -17,7 +17,7 @@ public class GameScreen extends Box2dScreen {
 
     public GameScreen(final Command menuCallback, final World world, final Engine engine,
                       final BodyDestroyer bodyDestroyer, final Camera camera) {
-        super(world, engine, bodyDestroyer, camera);
+        super(world, engine, bodyDestroyer);
         gameInputCatcher = new GameInputCatcher(camera, engine);
         stageController = new GameStageController(menuCallback, camera, gameInputCatcher, engine);
 
@@ -28,10 +28,13 @@ public class GameScreen extends Box2dScreen {
     public void show() {
     }
 
-    @Override
     public void setMap(final MapId map) {
-        super.setMap(map);
-        gameInputCatcher.doFirstForNewMap();
+        loadMap(map, new Command() {
+            @Override
+            public void execute() {
+                gameInputCatcher.doFirstForNewMap();
+            }
+        });
     }
 
     @Override

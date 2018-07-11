@@ -11,6 +11,7 @@ import com.robcio.golf.system.control.KickToSystem;
 import com.robcio.golf.system.control.KickingSystem;
 import com.robcio.golf.system.control.MoveSystem;
 import com.robcio.golf.system.graphics.*;
+import com.robcio.golf.system.util.LateCommandExecuter;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -40,10 +41,12 @@ public class EntitySystemRegistrar {
        add(new AttractToSystem(priority++));
 
        add(new PositionSynchronizationSystem(priority++));
+       add(new LateCommandExecuter(priority++));
 
        add(new RenderSystem(priority++, batch));
        add(new SelectRenderSystem(priority++, batch));
        add(new LineRenderSystem(priority++, camera));
+       add(new MapRenderSystem(priority++, camera));
        add(new DebugRenderSystem(priority++));
        add(new NotificationRenderSystem(priority++, batch));
     }

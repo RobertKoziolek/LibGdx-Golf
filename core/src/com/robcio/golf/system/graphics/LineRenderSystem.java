@@ -1,5 +1,6 @@
 package com.robcio.golf.system.graphics;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -7,6 +8,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.robcio.golf.component.graphics.Line;
 import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 
 public class LineRenderSystem extends IteratingSystem {
@@ -34,5 +36,11 @@ public class LineRenderSystem extends IteratingSystem {
 
         //TODO tworzenie nowego obiektu w kazdej klatce jest raczej be
         shapeRenderer.line(start.getVector2(), end.getVector2());
+    }
+
+    @Override
+    public void removedFromEngine(final Engine engine) {
+        Log.i("Disposing of line renderer");
+        shapeRenderer.dispose();
     }
 }

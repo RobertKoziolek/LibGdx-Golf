@@ -12,15 +12,12 @@ import com.robcio.golf.enumeration.MapId;
 import com.robcio.golf.map.factory.EntityFactoryFacade;
 import com.robcio.golf.utils.Log;
 import com.robcio.golf.world.ShapeFactory;
-import lombok.Getter;
 
 public class MapReader {
 
     private final static String COLLISION_LAYER = "coll";
     private final static String ENTITY_LAYER = "entity";
 
-    @Getter
-    private TiledMap current;
     private final Engine engine;
     private final TmxMapLoader loader;
     private final EntityFactoryFacade entityFactoryFacade;
@@ -29,22 +26,20 @@ public class MapReader {
     public MapReader(final Engine engine) {
         this.engine = engine;
         this.loader = new TmxMapLoader();
-        load(MapId.EMPTY);
         this.entityFactoryFacade = new EntityFactoryFacade();
         this.shapeFactory = new ShapeFactory();
     }
 
-    public void load(final MapId map) {
+    public TiledMap load(final MapId map) {
         Log.i("Map loading", map.getName());
-        this.current = loader.load("map/" + map.getFilename());
-        if (map != MapId.EMPTY) {
-            parseTileMapLayerCollisions(this.current.getLayers()
-                                                    .get(COLLISION_LAYER)
-                                                    .getObjects());
-            parseTileMapEntityObjects(this.current.getLayers()
-                                                  .get(ENTITY_LAYER)
-                                                  .getObjects());
-        }
+        final TiledMap loadedMap = loader.load("map/" + map.getFilename());
+        parseTileMapLayerCollisions(loadedMap.getLayers()
+                                             .get(COLLISION_LAYER)
+                                             .getObjects());
+        parseTileMapEntityObjects(loadedMap.getLayers()
+                                           .get(ENTITY_LAYER)
+                                           .getObjects());
+        return loadedMap;
     }
 
     private void parseTileMapEntityObjects(final MapObjects mapObjects) {

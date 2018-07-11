@@ -22,7 +22,6 @@ public class MenuStageController extends Stage {
         int positionY = HEIGHT / 3 - HEIGHT / 6;
         final int step = HEIGHT / 7;
         for (final MapId map: MapId.values()) {
-            if (map == MapId.EMPTY) continue;
             final Button button = GuiAssembler.textButtonOf(map.getName())
                                               .withSize(WIDTH / 3, HEIGHT / 9)
                                               .withPosition(WIDTH / 2, positionY)
