@@ -25,23 +25,23 @@ public class EntitySystemRegistrar {
     public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch, final Camera camera) {
         this.engine = engine;
         int priority = 0;
-       add(new TimerSystem(priority++));
+        add(new LateCommandExecuter(priority++));
+        add(new TimerSystem(priority++));
 
-       add(new InBowlSystem(priority++));
-       add(new SlopeSystem(priority++));
+        add(new InBowlSystem(priority++));
+        add(new SlopeSystem(priority++));
 
-       add(new DispensingSystem(priority++));
-       add(new ImpulseSystem(priority++));
-       add(new HardImpulseSystem(priority++));
-       add(new TrailingSystem(priority++));
+        add(new DispensingSystem(priority++));
+        add(new ImpulseSystem(priority++));
+        add(new HardImpulseSystem(priority++));
+        add(new TrailingSystem(priority++));
 
-       add(new MoveSystem(priority++));
-       add(new KickingSystem(priority++));
-       add(new KickToSystem(priority++));
-       add(new AttractToSystem(priority++));
+        add(new MoveSystem(priority++));
+        add(new KickingSystem(priority++));
+        add(new KickToSystem(priority++));
+        add(new AttractToSystem(priority++));
 
-       add(new PositionSynchronizationSystem(priority++));
-       add(new LateCommandExecuter(priority++));
+        add(new PositionSynchronizationSystem(priority++));
 
        add(new RenderSystem(priority++, batch));
        add(new SelectRenderSystem(priority++, batch));

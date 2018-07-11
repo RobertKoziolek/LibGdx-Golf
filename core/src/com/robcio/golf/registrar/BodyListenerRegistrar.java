@@ -19,7 +19,7 @@ public class BodyListenerRegistrar {
     //TODO NOTIF zastanowic sie czy w ten sposob chcemy zalaczac notyfikacje, glupio tak przerzucac engine wszedzie
     public BodyListenerRegistrar(final Engine engine) {
         listeners.add(new BowlListener());
-        listeners.add(new HoleListener());
+        listeners.add(new HoleListener(engine));
         listeners.add(new BumperListener(engine));
         listeners.add(new SlopeListener());
     }
