@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.utils.Log;
 import com.robcio.golf.utils.Mapper;
 
 public class ParticleRenderSystem extends BatchIteratingSystem {
@@ -25,6 +24,5 @@ public class ParticleRenderSystem extends BatchIteratingSystem {
 
         particleEffect.setPosition(position.x, position.y);
         particleEffect.draw(getBatch(), deltaTime);
-        Log.i("Ti");
     }
 }

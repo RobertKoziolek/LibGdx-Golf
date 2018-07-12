@@ -7,6 +7,7 @@ import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
+import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -46,6 +47,7 @@ public class Ball extends Entity {
 //            add(Trailing.of(new Recipe(position, Dimension.of(dimension.getRadiusX()), BallType.WHITE), 6f));
             if (ballType == BallType.WHITE) {
                 add(new Kickable());
+                add(Particle.onFire());
             } else {
                 add(Tinted.of(ballType.getColor()));
             }
