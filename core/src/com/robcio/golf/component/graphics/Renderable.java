@@ -18,7 +18,7 @@ public class Renderable implements Component {
 
     public static Renderable of(final TextureId textureId, final int z) {
         final Renderable renderable = new Renderable();
-        renderable.sprite = new Sprite(Assets.Textures.get(textureId));
+        renderable.sprite = Assets.getSprite(textureId);
         renderable.z = z;
         return renderable;
     }

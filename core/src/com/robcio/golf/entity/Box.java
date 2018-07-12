@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.flag.Selectable;
+import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -35,6 +36,7 @@ public class Box extends Entity {
         add(dimension);
         add(Renderable.of(TextureId.BOX));
         add(new Kickable());
+        add(Particle.onFire());
     }
 
     public Box(final Rectangle rectangle, final float angle) {

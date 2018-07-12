@@ -46,6 +46,7 @@ public class EntitySystemRegistrar {
         add(new PositionSynchronizationSystem(priority++));
 
         add(new RenderSystem(priority++, batch));
+        add(new ParticleRenderSystem(priority++, batch));
         add(new SelectRenderSystem(priority++, batch));
         add(new LineRenderSystem(priority++, camera));
         add(new MapRenderSystem(priority++, camera));

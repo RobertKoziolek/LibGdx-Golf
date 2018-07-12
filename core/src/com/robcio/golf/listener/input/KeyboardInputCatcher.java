@@ -71,13 +71,6 @@ public class KeyboardInputCatcher {
         }
     }
 
-    private void put(final Integer shortcutKey, final Command mouseMode) {
-        if (keyMap.containsKey(shortcutKey)) {
-            throw new IllegalArgumentException(String.format("Key code %d already assigned", shortcutKey));
-        }
-        keyMap.put(shortcutKey, mouseMode);
-    }
-
     private Command getMouseModeCommandFor(final MouseMode mouseMode) {
         return new Command() {
             @Override
@@ -89,6 +82,13 @@ public class KeyboardInputCatcher {
 
     public void update(final float deltaTime) {
         //nothing to do here right now
+    }
+
+    private void put(final Integer shortcutKey, final Command mouseMode) {
+        if (keyMap.containsKey(shortcutKey)) {
+            throw new IllegalArgumentException(String.format("Key code %d already assigned", shortcutKey));
+        }
+        keyMap.put(shortcutKey, mouseMode);
     }
 
     public boolean keyDown(final int keycode) {

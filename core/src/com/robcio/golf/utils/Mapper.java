@@ -2,6 +2,7 @@ package com.robcio.golf.utils;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.robcio.golf.component.graphics.*;
+import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.physics.InBowl;
 import com.robcio.golf.component.physics.OnSlope;
 import com.robcio.golf.component.structure.*;
@@ -26,6 +27,7 @@ public class Mapper {
     final public static ComponentMapper<OnSlope> onSlope = ComponentMapper.getFor(OnSlope.class);
     final public static ComponentMapper<Dispensing> dispensing = ComponentMapper.getFor(Dispensing.class);
     final public static ComponentMapper<Renderable> renderable = ComponentMapper.getFor(Renderable.class);
+    final public static ComponentMapper<Particle> particle = ComponentMapper.getFor(Particle.class);
     final public static ComponentMapper<Tinted> tinted = ComponentMapper.getFor(Tinted.class);
     final public static ComponentMapper<ToRemove> toRemove = ComponentMapper.getFor(ToRemove.class);
     final public static ComponentMapper<Timer> timer = ComponentMapper.getFor(Timer.class);

@@ -2,8 +2,8 @@ package com.robcio.golf.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.robcio.golf.enumeration.TextureId;
@@ -14,6 +14,7 @@ public class Assets {
     private static final AssetManager assetManager = new AssetManager();
 
     private static final String UISKIN_ATLAS = "ui/uiskin.atlas";
+    private static final String TEXTURE_ATLAS = "texture/texture.atlas";
     private static final String UISKIN_JSON = "ui/uiskin.json";
     private static final String FONT = "default-font";
     private static final String FONT_FNT = "font/modak32.fnt";
@@ -23,13 +24,15 @@ public class Assets {
     static private Skin skin;
     @Getter
     static private BitmapFont font;
+    @Getter
+    static private TextureAtlas textureAtlas;
 
     public static void initialize() {
         loadFont();
         loadSkin();
-        Textures.load();
         //TODO do wyciagniecia pod ekran ladowania czy cos
         assetManager.finishLoading();
+        textureAtlas = assetManager.get(TEXTURE_ATLAS);
     }
 
     private static void loadFont() {
@@ -39,6 +42,7 @@ public class Assets {
 
     private static void loadSkin() {
         assetManager.load(UISKIN_ATLAS, TextureAtlas.class);
+        assetManager.load(TEXTURE_ATLAS, TextureAtlas.class);
         assetManager.finishLoading();
         skin = new Skin(assetManager.get(UISKIN_ATLAS, TextureAtlas.class));
         skin.add(FONT, font);
@@ -51,21 +55,7 @@ public class Assets {
         skin.dispose();
     }
 
-    public static class Textures {
-        final private static String directory = "texture/";
-
-        public static Texture get(final TextureId textureId) {
-            return assetManager.get(getPath(textureId), Texture.class);
-        }
-
-        static void load() {
-            for (TextureId textureId : TextureId.values()) {
-                assetManager.load(getPath(textureId), Texture.class);
-            }
-        }
-
-        private static String getPath(TextureId textureId) {
-            return directory + textureId.getFilename();
-        }
+    public static Sprite getSprite(final TextureId textureId) {
+        return textureAtlas.createSprite(textureId.getFilename());
     }
 }
