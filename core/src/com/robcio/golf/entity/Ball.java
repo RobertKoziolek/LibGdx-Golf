@@ -44,7 +44,6 @@ public class Ball extends Entity {
         add(Renderable.of(TextureId.GOLFBALL, 20));
 
         if (ballType != null) {
-//            add(Trailing.of(new Recipe(position, Dimension.of(dimension.getRadiusX()), BallType.WHITE), 6f));
             if (ballType == BallType.WHITE) {
                 add(new Kickable());
                 add(Particle.onFire());
