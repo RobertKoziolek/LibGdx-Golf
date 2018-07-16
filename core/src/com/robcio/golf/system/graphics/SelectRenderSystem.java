@@ -20,12 +20,12 @@ public class SelectRenderSystem extends BatchIteratingSystem {
         final Position position = Mapper.position.get(entity);
         final Selected selected = Mapper.selected.get(entity);
 
-        final Sprite selection = selected.sprite;
+        final Sprite selectionSprite = selected.sprite;
         //TODO ogarnac sensowniej dla rzeczy ktore sa zaznaczalne, ale nie pokazuja gwiazdki (jak dziura)
-        if (selection == null) return;
+        if (selectionSprite == null) return;
         final float radius = Selected.SIZE / 2;
-        selection.setPosition(position.x - radius, position.y - radius);
-        selection.setRotation(selection.getRotation() + 5f);
-        selection.draw(getBatch());
+        selectionSprite.setPosition(position.x - radius, position.y - radius);
+        selectionSprite.setRotation(selectionSprite.getRotation() + 5f);
+        selectionSprite.draw(getBatch());
     }
 }

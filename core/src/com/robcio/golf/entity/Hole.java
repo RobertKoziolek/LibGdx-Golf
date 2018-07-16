@@ -3,6 +3,7 @@ package com.robcio.golf.entity;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.robcio.golf.component.flag.HoleCenter;
 import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
@@ -30,8 +31,7 @@ public class Hole extends Entity {
         add(position);
         add(dimension);
         add(Box2dBody.of(body));
-        //TODO zmienic nazwy sensownie
-        add(new com.robcio.golf.component.flag.Hole());
+        add(new HoleCenter());
     }
 
     public Hole(final Ellipse ellipse, final float angle) {

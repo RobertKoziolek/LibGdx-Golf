@@ -28,16 +28,17 @@ public abstract class AbstractMouseMode implements MouseMode {
     protected boolean select(final Family family, final boolean selectOne) {
         final ImmutableArray<Entity> moveEntities = engine
                 .getEntitiesFor(family);
+        boolean selectedAtLeastOne = false;
         for (final Entity entity: moveEntities) {
             final Position position = Mapper.position.get(entity);
             if (Position.distance(pointerPosition.getUnprojectedPosition(), position) < 30f) {
                 pointerPosition.updateSelectionPoint();
                 entity.add(new Selected());
                 if (selectOne) return true;
+                selectedAtLeastOne = true;
             }
         }
-        //TODO tu te returny sa zle przemyslane, jesli w kliknieciu zlapie kilka to wysle false
-        return false;
+        return selectedAtLeastOne;
     }
 
     protected void selectEverything() {

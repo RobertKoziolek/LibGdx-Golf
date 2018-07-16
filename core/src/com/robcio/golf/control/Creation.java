@@ -23,14 +23,6 @@ public class Creation extends HoldableMouseMode {
         }
     }
 
-    //TODO tworzenie dispensera jak w RiverD z katem, moze dodac ten komponent z rotacja albo sam vector2 (nie przewiduje ten funkcjonalnosci tworzenia)
-//    @Override
-//    public boolean touchDown() {
-////        engine.addEntity(new Ball(pointerPosition.getUnprojectedPosition(), Dimension.of(30), BallType.WHITE));
-////        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(25f), Force.of(2f)));
-////        return true;
-//    }
-
     @Override
     public String getTooltip() {
         return "Creation";

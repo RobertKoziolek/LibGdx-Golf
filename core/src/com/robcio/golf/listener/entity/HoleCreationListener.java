@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
-import com.robcio.golf.component.flag.Hole;
+import com.robcio.golf.component.flag.HoleCenter;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.Bowl;
@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class HoleCreationListener implements EntityListener {
 
-    final public static Family family = Family.all(Hole.class).get();
+    final public static Family family = Family.all(HoleCenter.class).get();
 
     final private Engine engine;
 

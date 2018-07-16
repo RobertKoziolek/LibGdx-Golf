@@ -24,6 +24,7 @@ public class BowlListener implements BodyListener {
         ballEntity.add(new InBowl(bowl.getPosition(), Mapper.dimension.get(bowlEntity)));
     }
 
+    //TODO dziala niedobrze kiedy beda bowle kolo siebie, wyjsnie ze starego usunie nowe z nowego
     @Override
     public void endContact(Map<Integer, Body> map) {
         final Body ball = map.get(EntityFlags.BALL.getId());

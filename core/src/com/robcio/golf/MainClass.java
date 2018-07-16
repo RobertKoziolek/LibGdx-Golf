@@ -73,7 +73,7 @@ public class MainClass extends Game {
     private void initializeRegistrars() {
         new EntityListenerRegistrar(engine, bodyDestroyer);
         entitySystemRegistrar = new EntitySystemRegistrar(engine, batch, camera);
-        screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), world, engine, bodyDestroyer, camera);
+        screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), engine, bodyDestroyer, camera);
     }
 
     private Command getMenuCallback() {
@@ -111,6 +111,7 @@ public class MainClass extends Game {
     @Override
     public void render() {
         super.render();
+        world.step(1 / 60f, 6, 2);
         camera.update();
     }
 

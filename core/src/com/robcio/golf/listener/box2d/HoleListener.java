@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.util.ToRemove;
-import com.robcio.golf.entity.Notification;
+import com.robcio.golf.entity.util.Notification;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
 import lombok.Getter;
