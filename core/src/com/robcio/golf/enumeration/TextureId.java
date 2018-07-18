@@ -14,7 +14,9 @@ public enum TextureId {
     BOWL("bowl"),
     BOX("box"),
     SLOPE("slope"),
-    STAR("star");
+    STAR("star"),
+    LIGHTNING_END("lightningend"),
+    LIGHTNING("lightning");
 
     private String filename;
 }

@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.robcio.golf.component.graphics.Line;
 import com.robcio.golf.component.structure.Position;
@@ -18,6 +19,7 @@ public class LineRenderSystem extends IteratingSystem {
     public LineRenderSystem(final int priority, final Camera camera) {
         super(Family.all(Line.class).get(), priority);
         this.shapeRenderer = new ShapeRenderer();
+        shapeRenderer.setColor(Color.MAGENTA);
         shapeRenderer.setProjectionMatrix(camera.combined);
     }
 
@@ -32,7 +34,7 @@ public class LineRenderSystem extends IteratingSystem {
     protected void processEntity(final Entity entity, final float deltaTime) {
         final Line line = Mapper.line.get(entity);
         final Position start = line.start;
-        final Position end = Position.fromBox2D(line.end);
+        final Position end = line.end;
 
         //TODO tworzenie nowego obiektu w kazdej klatce jest raczej be
         shapeRenderer.line(start.getVector2(), end.getVector2());

@@ -52,6 +52,7 @@ public class EntitySystemRegistrar {
         add(new MapRenderSystem(priority++, camera));
         add(new DebugRenderSystem(priority++));
         add(new NotificationRenderSystem(priority++, batch));
+        add(new LightningRenderSystem(priority++, batch));
     }
 
     public void add(final EntitySystem system) {

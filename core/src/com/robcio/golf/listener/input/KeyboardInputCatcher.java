@@ -37,6 +37,7 @@ public class KeyboardInputCatcher {
         setSystemKey(F4, SelectRenderSystem.class, "Selection indicator rendering");
         setSystemKey(F5, NotificationRenderSystem.class, "Notification rendering");
         setSystemKey(F6, LineRenderSystem.class, "Line rendering");
+        setSystemKey(F7, LightningRenderSystem.class, "Lightning rendering");
     }
 
     private void setSystemKey(final Integer key, final Class<? extends EntitySystem> systemClass, final String name) {

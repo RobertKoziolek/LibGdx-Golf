@@ -3,7 +3,6 @@ package com.robcio.golf.system.graphics;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.robcio.golf.MainClass;
 import com.robcio.golf.component.util.NotificationData;
 import com.robcio.golf.utils.Assets;
 import com.robcio.golf.utils.Mapper;
@@ -21,9 +20,9 @@ public class NotificationRenderSystem extends BatchIteratingSystem {
     //TODO NOTIF ogarnac jak zrobic to na srodek
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
-        final String text = Mapper.notificationData.get(entity).text;
+        final NotificationData data = Mapper.notificationData.get(entity);
 
         Assets.getFont()
-              .draw(getBatch(), text, MainClass.WIDTH / 4, MainClass.HEIGHT - 80);
+              .draw(getBatch(), data.text, data.x, data.y);
     }
 }

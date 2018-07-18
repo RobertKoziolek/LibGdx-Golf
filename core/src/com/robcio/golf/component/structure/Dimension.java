@@ -30,6 +30,10 @@ public class Dimension implements CloneableComponent<Dimension> {
         return height / 2f;
     }
 
+    public float getLower() {
+        return Math.min(width, height);
+    }
+
     public static Dimension toBox2D(final Dimension dimension) {
         return Dimension.of(dimension.width / Maths.PPM, dimension.height / Maths.PPM);
     }

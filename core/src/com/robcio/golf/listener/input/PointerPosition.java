@@ -11,16 +11,17 @@ import lombok.Setter;
 @Setter
 public class PointerPosition {
 
-    private int x, y;
+    private final Position position;
 
     private final Camera camera;
 
     public PointerPosition(final Camera camera) {
         this.camera = camera;
+        this.position = Position.of(0f, 0f);
     }
 
     public Position getUnprojectedPosition() {
-        final Vector3 realCoords = camera.unproject(new Vector3(x, y, 0f));
+        final Vector3 realCoords = camera.unproject(new Vector3(position.x, position.y, 0f));
         return Position.of(realCoords.x, realCoords.y);
     }
 
@@ -28,4 +29,8 @@ public class PointerPosition {
         Selected.position = Position.toBox2D(getUnprojectedPosition());
     }
 
+    public void set(int screenX, int screenY) {
+        position.x = screenX;
+        position.y = screenY;
+    }
 }

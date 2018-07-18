@@ -5,7 +5,7 @@ import com.robcio.golf.component.structure.Position;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Line implements Component {
     public Position start;
     public Position end;

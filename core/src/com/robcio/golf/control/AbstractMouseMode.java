@@ -43,14 +43,16 @@ public abstract class AbstractMouseMode implements MouseMode {
 
     protected void selectEverything() {
         final ImmutableArray<Entity> entities = engine
-                .getEntitiesFor(Family.all(Selectable.class, Kickable.class).get());
+                .getEntitiesFor(Family.all(Selectable.class, Kickable.class)
+                                      .get());
         for (final Entity entity: entities) {
             entity.add(new Selected());
         }
     }
 
     protected void deselectEverything() {
-        final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class).get());
+        final ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.all(Selectable.class)
+                                                                            .get());
         for (final Entity entity: entities) {
             entity.add(ToRemove.of(Selected.class));
         }

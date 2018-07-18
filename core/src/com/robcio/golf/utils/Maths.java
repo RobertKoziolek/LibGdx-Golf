@@ -24,10 +24,12 @@ public class Maths {
     public static float radiansToDegrees(final float angle) {
         return angle * MathUtils.radiansToDegrees;
     }
+
     public static float degreesToRadians(final float angle) {
         return angle * MathUtils.degreesToRadians;
     }
 
+    //TODO eee to jest tylko po to by pierwszy vector sei nei zmnienil
     public static Vector2 getDistance(final Vector2 vector1, final Vector2 vector2) {
         Vector2 distance = Vector2.Zero.cpy();
         distance.add(vector1);
@@ -54,5 +56,9 @@ public class Maths {
 
     public static <T> T getRandom(T[] values) {
         return values[random.nextInt(values.length)];
+    }
+
+    public static float random(float min, float max) {
+        return (random.nextFloat() * (max - min)) + min;
     }
 }

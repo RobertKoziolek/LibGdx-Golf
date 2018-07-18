@@ -18,5 +18,6 @@ public class EntityListenerRegistrar {
         engine.addEntityListener(Box2DBodyRemover.family, priority++, new Box2DBodyRemover(bodyDestroyer));
         engine.addEntityListener(HoleCreationListener.family, priority++, new HoleCreationListener(engine));
         engine.addEntityListener(ParticleLoader.family, priority++, new ParticleLoader());
+        engine.addEntityListener(LightningSplitter.family, priority++, new LightningSplitter(engine));
     }
 }

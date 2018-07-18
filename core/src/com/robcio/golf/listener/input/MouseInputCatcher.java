@@ -19,8 +19,7 @@ public class MouseInputCatcher {
     }
 
     private void updatePointerPosition(final int screenX, final int screenY) {
-        pointerPosition.setX(screenX);
-        pointerPosition.setY(screenY);
+        pointerPosition.set(screenX, screenY);
     }
 
     public boolean touchDown(final int screenX, final int screenY, final int pointer, final int button) {

@@ -58,4 +58,8 @@ public class Assets {
     public static Sprite getSprite(final TextureId textureId) {
         return textureAtlas.createSprite(textureId.getFilename());
     }
+
+    public static TextureAtlas.AtlasRegion getRegion(final TextureId textureId) {
+        return textureAtlas.findRegion(textureId.getFilename());
+    }
 }
