@@ -5,7 +5,9 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
 import com.robcio.golf.component.graphics.LightningInfo;
+import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.entity.graphics.LightningLine;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
@@ -23,23 +25,24 @@ public class LightningSplitter implements EntityListener {
 
     @Override
     public void entityAdded(Entity entity) {
-        final LightningInfo line = Mapper.lightningInfo.get(entity);
-        final Position start = line.source;
-        final Position end = line.destination;
+        final LightningInfo lightningInfo = Mapper.lightningInfo.get(entity);
+        final Position start = lightningInfo.source;
+        final Position end = lightningInfo.destination;
+        final Tinted tinted = lightningInfo.color == null ? null : Tinted.of(lightningInfo.color);
 
         final Position tangent = Position.sub(end, start);
         final Position normal = Position.nor(Position.of(tangent.y, -tangent.x));
         float length = Position.len(tangent);
 
-        final float[] positions = new float[(int) (length/9)];
-        for (int i = 1; i < positions.length-1; i++) {
+        final float[] positions = new float[(int) (length / 9)];
+        for (int i = 1; i < positions.length - 1; i++) {
             positions[i] = Maths.nextFloat();
         }
         Arrays.sort(positions);
         final float sway = 5;
         final float jaggedness = 1 / sway;
 
-        Position prevPoint  = start.clone();
+        Position prevPoint = start.clone();
         float prevDisplacement = 0;
 
 
@@ -54,20 +57,29 @@ public class LightningSplitter implements EntityListener {
             displacement -= (displacement - prevDisplacement) * (1 - scale);
             displacement *= envelope;
 
-            final Position displacementVector = Position.mul(normal, displacement*255 );
+            final Position displacementVector = Position.mul(normal, displacement * 255);
 
 
             final Position movedPosition = Position.mul(tangent, pos);
             Position tempPoint = Position.add(start, movedPosition);
             Position point = Position.add(tempPoint, displacementVector);
 
-            engine.addEntity(new LightningLine(prevPoint, point));
+            addLightningLine(point, prevPoint, tinted);
 
             prevPoint = point;
             prevDisplacement = displacement;
 
         }
-        engine.addEntity(new LightningLine(prevPoint, end));
+        addLightningLine(end, prevPoint, tinted);
+        entity.add(ToRemove.self());
+    }
+
+    private void addLightningLine(final Position prevPoint, final Position point, final Tinted tinted) {
+        final LightningLine lightningLine = new LightningLine(prevPoint, point);
+        if (tinted != null) {
+            lightningLine.add(tinted);
+        }
+        engine.addEntity(lightningLine);
     }
 
     @Override

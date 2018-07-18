@@ -1,6 +1,7 @@
 package com.robcio.golf.control;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.gdx.graphics.Color;
 import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.graphics.Lightning;
 import com.robcio.golf.listener.input.PointerPosition;
@@ -25,7 +26,7 @@ public class LightningCreator extends HoldableMouseMode {
     protected void doWhenHolding(final float deltaTime) {
         timer++;
         if (timer > 2) {
-            engine.addEntity(new Lightning(firstPosition, pointerPosition.getUnprojectedPosition()));
+            engine.addEntity(Lightning.of(firstPosition, pointerPosition.getUnprojectedPosition(), Color.SALMON));
             timer = 0;
         }
     }

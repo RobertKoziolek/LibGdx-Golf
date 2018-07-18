@@ -10,6 +10,6 @@ public class LightningLine extends Entity {
 
     public LightningLine(final Position start, final Position end) {
         add(LightningSingleLine.of(start, end));
-        add(FadeOut.of(0.2f));
+        add(FadeOut.of(0.6f));
     }
 }

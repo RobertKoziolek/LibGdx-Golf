@@ -1,15 +1,23 @@
 package com.robcio.golf.entity.graphics;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.Color;
 import com.robcio.golf.component.graphics.LightningInfo;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.component.util.Timer;
-import com.robcio.golf.component.util.ToRemove;
+import lombok.NonNull;
 
 public class Lightning extends Entity {
 
-    public Lightning(final Position start, final Position end) {
-        add(LightningInfo.of(start, end));
-        add(Timer.of(0.4f, ToRemove.self()));
+    private Lightning(final Position start, final Position end, final Color color) {
+        add(LightningInfo.of(start, end, color));
     }
+
+    public static Lightning of(@NonNull final Position start, @NonNull final Position end, @NonNull final Color color) {
+        return new Lightning(start, end, color);
+    }
+
+    public static Lightning of(@NonNull final Position start, @NonNull final Position end) {
+        return new Lightning(start, end, null);
+    }
+
 }

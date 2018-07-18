@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.robcio.golf.component.graphics.FadeOut;
 import com.robcio.golf.component.graphics.LightningSingleLine;
 import com.robcio.golf.component.graphics.Line;
+import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.enumeration.TextureId;
 import com.robcio.golf.utils.Assets;
 import com.robcio.golf.utils.Mapper;
@@ -26,7 +27,10 @@ public class LightningRenderSystem extends BatchIteratingSystem {
 
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
-        //TODO component Fading, system ktory tylko odpowiednio zmniejsza alphe, renderery same wykorzystuja te dane
+        final Tinted tinted = Mapper.tinted.get(entity);
+        if (tinted != null) {
+            setColor(tinted.color);
+        }
         setAlpha(Mapper.fadeOut.get(entity).alpha);
 
         final Line line = Mapper.lightningSingleLine.get(entity);
@@ -57,6 +61,6 @@ public class LightningRenderSystem extends BatchIteratingSystem {
                         lightningEnd.getRegionWidth(), lightningEnd.getRegionHeight() / 2f,
                         lightningEnd.getRegionWidth(), lightningEnd.getRegionHeight(),
                         thicknessScale, thicknessScale, angle + 180);
-        resetAlpha();
+        resetColor();
     }
 }

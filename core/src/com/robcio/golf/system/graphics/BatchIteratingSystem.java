@@ -11,7 +11,7 @@ public abstract class BatchIteratingSystem extends IteratingSystem {
 
     @Getter(AccessLevel.PROTECTED)
     final private SpriteBatch batch;
-    private Color originalColor;
+    private boolean changed;
 
     public BatchIteratingSystem(final Family family, final int priority, final SpriteBatch batch) {
         super(family, priority);
@@ -22,22 +22,28 @@ public abstract class BatchIteratingSystem extends IteratingSystem {
     final public void update(float deltaTime) {
         batch.begin();
         super.update(deltaTime);
-        if(originalColor != null){
-            throw new IllegalStateException("Alpha was not reset after change");
+        if (changed) {
+            throw new IllegalStateException("Color was not reset after change");
         }
         batch.end();
     }
 
-    final protected void setAlpha(final float a) {
-        originalColor = batch.getColor();
-        getBatch().setColor(originalColor.r, originalColor.g, originalColor.b, a);
+    final protected void setColor(final Color color) {
+        changed=true;
+        batch.setColor(color);
     }
 
-    final protected void resetAlpha() {
-        if (originalColor == null) {
-            throw new IllegalStateException("Trying to reset alpha when there was no change to it beforehand");
+    final protected void setAlpha(final float a) {
+        changed=true;
+        final Color color = batch.getColor();
+        batch.setColor(color.r, color.g, color.b, a);
+    }
+
+    final protected void resetColor() {
+        if (!changed) {
+            throw new IllegalStateException("Trying to reset color when there was no change to it beforehand");
         }
-        batch.setColor(originalColor);
-        originalColor = null;
+        batch.setColor(Color.WHITE);
+        changed = false;
     }
 }
