@@ -45,14 +45,15 @@ public class EntitySystemRegistrar {
 
         add(new PositionSynchronizationSystem(priority++));
 
+        add(new FadeOutSystem(priority++));
         add(new RenderSystem(priority++, batch));
         add(new ParticleRenderSystem(priority++, batch));
+        add(new LightningRenderSystem(priority++, batch));
         add(new SelectRenderSystem(priority++, batch));
-        add(new LineRenderSystem(priority++, camera));
         add(new MapRenderSystem(priority++, camera));
         add(new DebugRenderSystem(priority++));
+        add(new LineRenderSystem(priority++, camera));
         add(new NotificationRenderSystem(priority++, batch));
-        add(new LightningRenderSystem(priority++, batch));
     }
 
     public void add(final EntitySystem system) {

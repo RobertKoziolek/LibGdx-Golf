@@ -21,8 +21,7 @@ public class SelectRenderSystem extends BatchIteratingSystem {
         final Selected selected = Mapper.selected.get(entity);
 
         final Sprite selectionSprite = selected.sprite;
-        //TODO ogarnac sensowniej dla rzeczy ktore sa zaznaczalne, ale nie pokazuja gwiazdki (jak dziura)
-        if (selectionSprite == null) return;
+        //TODO dziura, ta mala, pokazuje sprita selected na diurze, pewnie przez to ze pozycja jest jedna a nie ma synchro dla box2d
         final float radius = Selected.SIZE / 2;
         selectionSprite.setPosition(position.x - radius, position.y - radius);
         selectionSprite.setRotation(selectionSprite.getRotation() + 5f);

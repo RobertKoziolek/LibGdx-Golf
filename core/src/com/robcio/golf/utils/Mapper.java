@@ -34,6 +34,7 @@ public class Mapper {
     final public static ComponentMapper<Tinted> tinted = ComponentMapper.getFor(Tinted.class);
     final public static ComponentMapper<ToRemove> toRemove = ComponentMapper.getFor(ToRemove.class);
     final public static ComponentMapper<Timer> timer = ComponentMapper.getFor(Timer.class);
+    final public static ComponentMapper<FadeOut> fadeOut = ComponentMapper.getFor(FadeOut.class);
     final public static ComponentMapper<RepeatingTimer> repeatingTimer = ComponentMapper.getFor(RepeatingTimer.class);
     final public static ComponentMapper<NotificationData> notificationData = ComponentMapper.getFor(NotificationData.class);
     final public static ComponentMapper<WorldAndCamera> worldAndCamera = ComponentMapper.getFor(WorldAndCamera.class);

@@ -41,7 +41,6 @@ public class RenderSystem extends SortedIteratingSystem {
         batch.end();
     }
 
-    //TODO moze ten angle wyciagnac do pozycji? albo calkowicie osobny component
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;

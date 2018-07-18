@@ -4,9 +4,9 @@ import com.badlogic.ashley.core.Entity;
 import com.robcio.golf.component.util.CommandComponent;
 import com.robcio.golf.utils.Command;
 
-public class Do extends Entity {
+public class DoNextUpdate extends Entity {
 
-    public Do(final Command command) {
+    public DoNextUpdate(final Command command) {
         add(new CommandComponent(command));
     }
 }

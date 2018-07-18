@@ -22,6 +22,9 @@ public abstract class BatchIteratingSystem extends IteratingSystem {
     final public void update(float deltaTime) {
         batch.begin();
         super.update(deltaTime);
+        if(originalColor != null){
+            throw new IllegalStateException("Alpha was not reset after change");
+        }
         batch.end();
     }
 
@@ -32,7 +35,7 @@ public abstract class BatchIteratingSystem extends IteratingSystem {
 
     final protected void resetAlpha() {
         if (originalColor == null) {
-            throw new IllegalArgumentException("Trying to reset alpha when there was no change to it beforehand");
+            throw new IllegalStateException("Trying to reset alpha when there was no change to it beforehand");
         }
         batch.setColor(originalColor);
         originalColor = null;
