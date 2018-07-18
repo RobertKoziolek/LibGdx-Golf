@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selectable;
+import com.robcio.golf.component.flag.Tether;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.component.particle.Particle;
@@ -42,6 +43,7 @@ public class Ball extends Entity {
         add(dimension);
         add(Box2dBody.of(body));
         add(Renderable.of(TextureId.GOLFBALL, 20));
+        add(new Tether(position, Position.of(300f, 300f)));
 
         if (ballType != null) {
             if (ballType == BallType.WHITE) {

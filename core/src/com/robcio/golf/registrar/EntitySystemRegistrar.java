@@ -33,6 +33,7 @@ public class EntitySystemRegistrar {
         add(new InBowlSystem(priority++));
         add(new SlopeSystem(priority++));
 
+        add(new LightningTetherSystem(priority++));
         add(new DispensingSystem(priority++));
         add(new ImpulseSystem(priority++));
         add(new HardImpulseSystem(priority++));

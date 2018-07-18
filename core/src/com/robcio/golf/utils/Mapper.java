@@ -1,6 +1,7 @@
 package com.robcio.golf.utils;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import com.robcio.golf.component.flag.Tether;
 import com.robcio.golf.component.graphics.LightningInfo;
 import com.robcio.golf.component.graphics.*;
 import com.robcio.golf.component.particle.Particle;
@@ -19,6 +20,7 @@ public class Mapper {
     final public static ComponentMapper<Box2dBody> box2dBody = ComponentMapper.getFor(Box2dBody.class);
     final public static ComponentMapper<Dimension> dimension = ComponentMapper.getFor(Dimension.class);
     final public static ComponentMapper<Position> position = ComponentMapper.getFor(Position.class);
+    final public static ComponentMapper<Tether> tether = ComponentMapper.getFor(Tether.class);
     final public static ComponentMapper<Direction> direction = ComponentMapper.getFor(Direction.class);
     final public static ComponentMapper<Line> line = ComponentMapper.getFor(Line.class);
     final public static ComponentMapper<LightningInfo> lightningInfo = ComponentMapper.getFor(LightningInfo.class);
