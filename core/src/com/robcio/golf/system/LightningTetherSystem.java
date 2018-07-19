@@ -34,9 +34,10 @@ public class LightningTetherSystem extends IteratingSystem {
             final Tether tether = Mapper.tether.get(entity);
             addLightning(entity, tether);
         } else {
+            //TODO to w sumie ladnie wyszlo, mozna zrobic cala abstrakcje na to czy cos
             final Tetherable tetherable = Mapper.tetherable.get(entity);
             if (tetherable != null){
-                for (final Tether tether : tetherable.tethers){
+                for (final Tether tether : tetherable.set){
                     addLightning(entity, tether);
                 }
             }

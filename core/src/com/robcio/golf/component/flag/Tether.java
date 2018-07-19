@@ -1,12 +1,15 @@
 package com.robcio.golf.component.flag;
 
-import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 import com.robcio.golf.component.structure.Position;
-import lombok.AllArgsConstructor;
+import com.robcio.golf.component.util.InGroup;
 
-@AllArgsConstructor
-public class Tether implements Component {
+public class Tether extends InGroup {
     final public Position position1, position2;
-    final public Entity tetheredBy;
+
+    public Tether(final Position position1, final Position position2, final Entity groupedBy) {
+        super(groupedBy);
+        this.position1 = position1;
+        this.position2 = position2;
+    }
 }
