@@ -17,6 +17,7 @@ public class NotificationRenderSystem extends BatchIteratingSystem {
                     .get(), priority, batch);
     }
 
+    //TODO notyfikacja jako komponent moze wyskakiwac z entity, jak dymki obrazen itd
     //TODO NOTIF ogarnac jak zrobic to na srodek
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {

@@ -9,10 +9,11 @@ public class InBowl implements Component {
     public Vector2 bowlCenter;
     public Dimension bowlDimension;
     public final float deepness;
+    public int wasInAnother;
 
-    public InBowl(@NonNull final Vector2 bowlCenter, @NonNull final Dimension bowlDimension){
+    public InBowl(@NonNull final Vector2 bowlCenter, @NonNull final Dimension bowlDimension) {
         this.bowlCenter = bowlCenter;
         this.bowlDimension = bowlDimension;
-        this.deepness =  bowlDimension.width / 9f;
+        this.deepness = bowlDimension.width / 9f;
     }
 }
