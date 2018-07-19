@@ -41,7 +41,7 @@ public class LightningRenderSystem extends BatchIteratingSystem {
         float rotation = (float) Math.atan2(tangent.y, tangent.x);
         float angle = Maths.radiansToDegrees(rotation);
 
-        float ImageThickness = 4;
+        float ImageThickness = 12;
         float thicknessScale = 1 / ImageThickness;
 
         float lightningHalfHeight = lightning.getRegionHeight() / 2f;

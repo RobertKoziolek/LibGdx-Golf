@@ -20,7 +20,7 @@ public class LightningTetherSystem extends IteratingSystem {
 
     @Override
     public void update(float deltaTime) {
-        if ((time += deltaTime) > 0.6f) {
+        if ((time += deltaTime) > 0.03f) {
             super.update(deltaTime);
             time = 0f;
         }
