@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selectable;
+import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.component.particle.Particle;
@@ -38,6 +39,7 @@ public class Ball extends Entity {
         flags = EntityFlags.BALL.getId();
 
         add(new Selectable());
+        add(new Tetherable());
         add(position);
         add(dimension);
         add(Box2dBody.of(body));
