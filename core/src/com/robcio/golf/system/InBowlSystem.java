@@ -5,9 +5,8 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.physics.InBowl;
-import com.robcio.golf.component.structure.Box2dBody;
+import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
@@ -15,14 +14,26 @@ import com.robcio.golf.utils.Maths;
 public class InBowlSystem extends IteratingSystem {
 
     public InBowlSystem(final int priority) {
-        super(Family.all(Renderable.class, InBowl.class, Box2dBody.class)
+        super(Family.one(InBowlable.class, InBowl.class)
                     .get(), priority);
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+        if (Mapper.inBowl.get(entity) != null) {
+            processInBowl(entity, Mapper.inBowl.get(entity));
+        } else {
+            final InBowlable inBowlable = Mapper.inBowlable.get(entity);
+            if (inBowlable != null) {
+                for (final InBowl inBowl: inBowlable.set) {
+                    processInBowl(entity, inBowl);
+                }
+            }
+        }
+    }
+
+    private void processInBowl(final Entity entity, final InBowl inBowl) {
         final Body ball = Mapper.box2dBody.get(entity).body;
-        final InBowl inBowl = Mapper.inBowl.get(entity);
         final Dimension bowlDimension = Dimension.radiusToBox2D(inBowl.bowlDimension);
         final Dimension ballDimension = Dimension.radiusToBox2D(Mapper.dimension.get(entity));
         final float bowlRadius = bowlDimension.width;

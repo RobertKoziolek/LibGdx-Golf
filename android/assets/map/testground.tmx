@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="108">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="120">
  <tileset firstgid="1" source="golf.tsx"/>
  <layer name="tile" width="16" height="9">
   <data encoding="csv">
@@ -20,9 +20,6 @@
   </object>
  </objectgroup>
  <objectgroup name="entity">
-  <object id="18" type="rod" x="457" y="164" width="304" height="304">
-   <ellipse/>
-  </object>
   <object id="56" type="ball" x="53" y="11" width="30" height="30">
    <ellipse/>
   </object>
@@ -83,19 +80,43 @@
   <object id="102" type="ball" x="19" y="130" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="103" type="rod" x="549" y="-32" width="304" height="304">
+  <object id="103" type="bowl" x="683" y="13" width="304" height="304">
    <ellipse/>
   </object>
-  <object id="104" type="rod" x="657" y="185" width="304" height="304">
+  <object id="108" type="bowl" x="330" y="-30" width="304" height="304">
    <ellipse/>
   </object>
-  <object id="105" type="rod" x="28" y="170" width="161" height="161">
+  <object id="109" type="bowl" x="49" y="243" width="304" height="304">
    <ellipse/>
   </object>
-  <object id="106" type="rod" x="204.5" y="182.5" width="161" height="161">
+  <object id="110" type="bowl" x="504" y="277" width="304" height="304">
    <ellipse/>
   </object>
-  <object id="107" type="rod" x="110.5" y="327.5" width="161" height="161">
+  <object id="111" type="bowl" x="341" y="260" width="127" height="127">
+   <ellipse/>
+  </object>
+  <object id="112" type="bowl" x="850.5" y="385.5" width="127" height="127">
+   <ellipse/>
+  </object>
+  <object id="113" type="bowl" x="57.5" y="125.5" width="127" height="127">
+   <ellipse/>
+  </object>
+  <object id="114" type="bowl" x="215.5" y="148.5" width="88" height="88">
+   <ellipse/>
+  </object>
+  <object id="115" type="bowl" x="350" y="385" width="88" height="88">
+   <ellipse/>
+  </object>
+  <object id="116" type="bowl" x="800" y="319" width="88" height="88">
+   <ellipse/>
+  </object>
+  <object id="117" type="bowl" x="603" y="187" width="88" height="88">
+   <ellipse/>
+  </object>
+  <object id="118" type="bowl" x="626" y="13" width="88" height="88">
+   <ellipse/>
+  </object>
+  <object id="119" type="bowl" x="889" y="296" width="88" height="88">
    <ellipse/>
   </object>
  </objectgroup>

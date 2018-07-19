@@ -37,6 +37,14 @@ public abstract class GroupedBodyListener implements BodyListener {
         }
     }
 
+    protected Body getBodyA(final Map<Integer, Body> map) {
+        return getBody(map, getEntityFlagsA());
+    }
+
+    protected Body getBodyB(final Map<Integer, Body> map) {
+        return getBody(map, getEntityFlagsB());
+    }
+
     protected Entity getEntityA(final Map<Integer, Body> map) {
         return getEntity(map, getEntityFlagsA());
     }
@@ -46,8 +54,12 @@ public abstract class GroupedBodyListener implements BodyListener {
     }
 
     private Entity getEntity(final Map<Integer, Body> map, final EntityFlags entityFlags) {
-        final Body body = map.get(entityFlags.getId());
+        final Body body = getBody(map, entityFlags);
         return (Entity) body.getUserData();
+    }
+
+    private Body getBody(Map<Integer, Body> map, EntityFlags entityFlags) {
+        return map.get(entityFlags.getId());
     }
 
 }

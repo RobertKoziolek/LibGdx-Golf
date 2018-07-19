@@ -9,6 +9,7 @@ import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.component.particle.Particle;
+import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -40,6 +41,7 @@ public class Ball extends Entity {
 
         add(new Selectable());
         add(new Tetherable());
+        add(new InBowlable());
         add(position);
         add(dimension);
         add(Box2dBody.of(body));

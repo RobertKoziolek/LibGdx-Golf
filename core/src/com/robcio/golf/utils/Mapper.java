@@ -7,6 +7,7 @@ import com.robcio.golf.component.graphics.LightningInfo;
 import com.robcio.golf.component.graphics.*;
 import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.physics.InBowl;
+import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.physics.OnSlope;
 import com.robcio.golf.component.structure.*;
 import com.robcio.golf.component.util.*;
@@ -31,6 +32,7 @@ public class Mapper {
     final public static ComponentMapper<Impulse> impulse = ComponentMapper.getFor(Impulse.class);
     final public static ComponentMapper<HardImpulse> hardImpulse = ComponentMapper.getFor(HardImpulse.class);
     final public static ComponentMapper<InBowl> inBowl = ComponentMapper.getFor(InBowl.class);
+    final public static ComponentMapper<InBowlable> inBowlable = ComponentMapper.getFor(InBowlable.class);
     final public static ComponentMapper<OnSlope> onSlope = ComponentMapper.getFor(OnSlope.class);
     final public static ComponentMapper<Dispensing> dispensing = ComponentMapper.getFor(Dispensing.class);
     final public static ComponentMapper<Renderable> renderable = ComponentMapper.getFor(Renderable.class);
