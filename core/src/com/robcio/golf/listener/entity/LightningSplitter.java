@@ -34,7 +34,7 @@ public class LightningSplitter implements EntityListener {
         final Position normal = Position.nor(Position.of(tangent.y, -tangent.x));
         float length = Position.len(tangent);
 
-        final float[] positions = new float[(int) (length / 9)];
+        final float[] positions = new float[(int) (length / 5)];
         for (int i = 1; i < positions.length - 1; i++) {
             positions[i] = Maths.nextFloat();
         }
@@ -45,11 +45,8 @@ public class LightningSplitter implements EntityListener {
         Position prevPoint = start.clone();
         float prevDisplacement = 0;
 
-
-        //TODO bliskie maja za duzy rozrzut
         for (int i = 1; i < positions.length; i++) {
             float pos = positions[i];
-
             float scale = (Position.len(normal) * jaggedness) * (pos - positions[i - 1]);
             float envelope = pos > 0.95f ? 22 * (1 - pos) : 1;
 
@@ -57,7 +54,7 @@ public class LightningSplitter implements EntityListener {
             displacement -= (displacement - prevDisplacement) * (1 - scale);
             displacement *= envelope;
 
-            final Position displacementVector = Position.mul(normal, displacement * 255);
+            final Position displacementVector = Position.mul(normal, displacement * length/2);
 
 
             final Position movedPosition = Position.mul(tangent, pos);
