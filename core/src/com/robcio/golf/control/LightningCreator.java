@@ -6,13 +6,13 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.graphics.Lightning;
 import com.robcio.golf.listener.input.PointerPosition;
 
-public class LightningCreator extends HoldableMouseMode {
+public class LightningCreator extends TimedHoldableMouseMode {
 
-    private short timer;
-    private Position firstPosition = Position.of(300f,300f);
+    private float time;
+    private Position firstPosition = Position.of(300f, 300f);
 
     public LightningCreator(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {
-        super(shortcutKey, engine, pointerPosition);
+        super(shortcutKey, engine, pointerPosition, 0.03f);
     }
 
     @Override
@@ -23,12 +23,8 @@ public class LightningCreator extends HoldableMouseMode {
     }
 
     @Override
-    protected void doWhenHolding(final float deltaTime) {
-        timer++;
-        if (timer > 2) {
-            engine.addEntity(Lightning.of(firstPosition, pointerPosition.getUnprojectedPosition(), Color.SALMON));
-            timer = 0;
-        }
+    protected void doWhenHolding() {
+        engine.addEntity(Lightning.of(firstPosition, pointerPosition.getUnprojectedPosition(), Color.SALMON));
     }
 
     @Override

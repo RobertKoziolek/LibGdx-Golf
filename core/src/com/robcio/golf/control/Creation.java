@@ -6,21 +6,17 @@ import com.robcio.golf.component.structure.Force;
 import com.robcio.golf.entity.Dispenser;
 import com.robcio.golf.listener.input.PointerPosition;
 
-public class Creation extends HoldableMouseMode {
+public class Creation extends TimedHoldableMouseMode {
 
-    private short timer;
+    private float time;
 
     public Creation(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {
-        super(shortcutKey, engine, pointerPosition);
+        super(shortcutKey, engine, pointerPosition, 0.1f);
     }
 
     @Override
-    protected void doWhenHolding(final float deltaTime) {
-        timer++;
-        if (timer > 4) {
-            engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(18f), Force.of(2f)));
-            timer = 0;
-        }
+    protected void doWhenHolding() {
+        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(18f), Force.of(2f)));
     }
 
     @Override

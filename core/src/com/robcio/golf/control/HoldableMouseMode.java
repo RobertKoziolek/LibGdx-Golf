@@ -3,7 +3,6 @@ package com.robcio.golf.control;
 import com.badlogic.ashley.core.Engine;
 import com.robcio.golf.listener.input.PointerPosition;
 
-//TODO zrobic timer here a nie w implementacjach
 public abstract class HoldableMouseMode extends AbstractMouseMode {
 
     private boolean holding;
