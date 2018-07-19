@@ -35,8 +35,6 @@ public class LineRenderSystem extends IteratingSystem {
         final Line line = Mapper.line.get(entity);
         final Position start = line.start;
         final Position end = line.end;
-
-        //TODO tworzenie nowego obiektu w kazdej klatce jest raczej be
         shapeRenderer.line(start.getVector2(), end.getVector2());
     }
 

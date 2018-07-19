@@ -1,6 +1,5 @@
 package com.robcio.golf.listener.box2d;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.particle.Particle;
@@ -16,10 +15,7 @@ public class BoxFireListener implements BodyListener {
     private final EntityFlags entityFlagsA = EntityFlags.BALL;
     private final EntityFlags entityFlagsB = EntityFlags.BOX;
 
-    private final Engine engine;
-
-    public BoxFireListener(final Engine engine) {
-        this.engine = engine;
+    public BoxFireListener() {
     }
 
     public void beginContact(final Map<Integer, Body> map) {

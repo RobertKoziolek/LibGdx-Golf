@@ -1,14 +1,11 @@
 package com.robcio.golf.utils;
 
 import com.badlogic.ashley.core.ComponentMapper;
-import com.robcio.golf.component.flag.Tether;
 import com.robcio.golf.component.flag.Tetherable;
-import com.robcio.golf.component.graphics.LightningInfo;
 import com.robcio.golf.component.graphics.*;
 import com.robcio.golf.component.particle.Particle;
-import com.robcio.golf.component.physics.InBowl;
 import com.robcio.golf.component.physics.InBowlable;
-import com.robcio.golf.component.physics.OnSlope;
+import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.*;
 import com.robcio.golf.component.util.*;
 import lombok.AccessLevel;
@@ -22,8 +19,9 @@ public class Mapper {
     final public static ComponentMapper<Box2dBody> box2dBody = ComponentMapper.getFor(Box2dBody.class);
     final public static ComponentMapper<Dimension> dimension = ComponentMapper.getFor(Dimension.class);
     final public static ComponentMapper<Position> position = ComponentMapper.getFor(Position.class);
-    final public static ComponentMapper<Tether> tether = ComponentMapper.getFor(Tether.class);
     final public static ComponentMapper<Tetherable> tetherable = ComponentMapper.getFor(Tetherable.class);
+    final public static ComponentMapper<InBowlable> inBowlable = ComponentMapper.getFor(InBowlable.class);
+    final public static ComponentMapper<OnSlopable> onSlopable = ComponentMapper.getFor(OnSlopable.class);
     final public static ComponentMapper<Direction> direction = ComponentMapper.getFor(Direction.class);
     final public static ComponentMapper<Line> line = ComponentMapper.getFor(Line.class);
     final public static ComponentMapper<LightningInfo> lightningInfo = ComponentMapper.getFor(LightningInfo.class);
@@ -31,9 +29,6 @@ public class Mapper {
     final public static ComponentMapper<Force> force = ComponentMapper.getFor(Force.class);
     final public static ComponentMapper<Impulse> impulse = ComponentMapper.getFor(Impulse.class);
     final public static ComponentMapper<HardImpulse> hardImpulse = ComponentMapper.getFor(HardImpulse.class);
-    final public static ComponentMapper<InBowl> inBowl = ComponentMapper.getFor(InBowl.class);
-    final public static ComponentMapper<InBowlable> inBowlable = ComponentMapper.getFor(InBowlable.class);
-    final public static ComponentMapper<OnSlope> onSlope = ComponentMapper.getFor(OnSlope.class);
     final public static ComponentMapper<Dispensing> dispensing = ComponentMapper.getFor(Dispensing.class);
     final public static ComponentMapper<Renderable> renderable = ComponentMapper.getFor(Renderable.class);
     final public static ComponentMapper<Particle> particle = ComponentMapper.getFor(Particle.class);

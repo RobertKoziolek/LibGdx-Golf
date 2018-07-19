@@ -31,7 +31,6 @@ public class KickToSystem extends IteratingSystem {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Selected.position;
 
-        //TODO to jest gupie bo w kazdo klatke robi to samo a nie musi ;c
 
         //TODO moze trzeba bedzie uzyc logarytmicznej funkcji log() w celu wyrownania sily, dodac wizualizacje
         final Vector2 impulse = Maths.getDistance(new Vector2(position.x, position.y), body.getPosition());

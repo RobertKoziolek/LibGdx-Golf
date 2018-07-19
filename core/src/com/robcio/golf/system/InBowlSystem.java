@@ -16,10 +16,9 @@ import lombok.Getter;
 @Getter
 public class InBowlSystem extends GroupedIteratingSystem {
     private final ComponentMapper groupMapper = Mapper.inBowlable;
-    private final ComponentMapper inGroupMapper = Mapper.inBowl;
 
     public InBowlSystem(final int priority) {
-        super(Family.one(InBowlable.class, InBowl.class)
+        super(Family.all(InBowlable.class)
                     .get(), priority);
     }
 

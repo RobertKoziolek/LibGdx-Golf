@@ -33,7 +33,6 @@ public class AttractToSystem extends IteratingSystem {
         final Body body = Mapper.box2dBody.get(entity).body;
         final Position position = Selected.position;
 
-        //TODO to jest gupie bo w kazdo klatke robi to samo a nie musi ;c, anex 29.06.18 - ee chyba
         final Vector2 impulse = Maths.getDistance(new Vector2(position.x, position.y), body.getPosition());
         if (Mapper.selected.has(entity)) {
             entity.add(new HardImpulse(impulse.scl(MathUtils.clamp(impulse.len() * 0.3f, 3f, 6f))));

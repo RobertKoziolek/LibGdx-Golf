@@ -88,7 +88,8 @@ public class GameStageController extends Stage {
         final ImmutableArray<Entity> entities = engine
                 .getEntitiesFor(Family.all(Position.class, Dimension.class, Renderable.class, Box2dBody.class)
                                       .get());
-        //TODO z jakiegos powodu znowu usuwa tylko polowicznie na mapie bilarda, na reszcie ok
+        //TODO z jakiegos powodu znowu usuwa tylko polowicznie
+        //TODO moze zrobic jakas magiczna pierdolke ze daje Removerowi familie i usuwa sam wszystko
         return new Command() {
             @Override
             public void execute() {

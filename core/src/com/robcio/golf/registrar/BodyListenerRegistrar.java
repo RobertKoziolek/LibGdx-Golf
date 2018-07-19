@@ -19,7 +19,7 @@ public class BodyListenerRegistrar {
         listeners.add(new BowlListener());
         listeners.add(new HoleListener(engine));
         listeners.add(new BumperListener(engine));
-        listeners.add(new BoxFireListener(engine));
+        listeners.add(new BoxFireListener());
         listeners.add(new SlopeListener());
     }
 }

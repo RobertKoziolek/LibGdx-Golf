@@ -1,27 +1,34 @@
 package com.robcio.golf.system;
 
+import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.physics.OnSlope;
-import com.robcio.golf.component.structure.Box2dBody;
+import com.robcio.golf.component.util.InGroup;
 import com.robcio.golf.utils.Mapper;
+import lombok.Getter;
 
-public class SlopeSystem extends IteratingSystem {
+@Getter
+public class SlopeSystem extends GroupedIteratingSystem {
+    private final ComponentMapper groupMapper = Mapper.onSlopable;
 
     public SlopeSystem(final int priority) {
-        super(Family.all(OnSlope.class, Box2dBody.class).get(), priority);
+        super(Family.all(OnSlopable.class)
+                    .get(), priority);
     }
 
     @Override
-    protected void processEntity(Entity entity, float deltaTime) {
+    protected void processEntity(final Entity entity, final InGroup inGroup) {
+        processOnSlope(entity, (OnSlope) inGroup);
+    }
+
+    private void processOnSlope(final Entity entity, final OnSlope onSlope) {
         final Body ball = Mapper.box2dBody.get(entity).body;
-        final OnSlope onSlope = Mapper.onSlope.get(entity);
         final Vector2 direction = onSlope.direction.value;
-        //TODO te dzielenie to bzdura
-        final float force = onSlope.force.value/5;
+        final float force = onSlope.force.value;
 
         ball.applyForceToCenter(direction.scl(force), true);
     }

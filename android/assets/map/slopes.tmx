@@ -62,19 +62,19 @@
   <object id="72" type="slope" x="192" y="448" width="64" height="64" rotation="90">
    <properties>
     <property name="direction" value="right"/>
-    <property name="force" type="float" value="5"/>
+    <property name="force" type="float" value="1"/>
    </properties>
   </object>
   <object id="74" type="slope" x="384" y="448" width="64" height="64" rotation="90">
    <properties>
     <property name="direction" value="right"/>
-    <property name="force" type="float" value="5"/>
+    <property name="force" type="float" value="1"/>
    </properties>
   </object>
   <object id="75" type="slope" x="896" y="384" width="129" height="129" rotation="-90">
    <properties>
     <property name="direction" value="left"/>
-    <property name="force" type="float" value="5"/>
+    <property name="force" type="float" value="1"/>
    </properties>
   </object>
   <object id="76" type="rod" x="132" y="383" width="113" height="113">
@@ -86,7 +86,7 @@
   <object id="82" type="rod" x="264.5" y="394.5" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="83" type="rod" x="325.5" y="457.5" width="113" height="113">
+  <object id="83" type="rod" x="321.5" y="464.5" width="113" height="113">
    <ellipse/>
   </object>
   <object id="84" type="rod" x="391.5" y="388.5" width="113" height="113">

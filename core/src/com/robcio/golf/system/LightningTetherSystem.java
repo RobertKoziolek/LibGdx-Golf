@@ -15,13 +15,11 @@ import lombok.Getter;
 public class LightningTetherSystem extends GroupedIteratingSystem {
     @Getter
     private final ComponentMapper groupMapper = Mapper.tetherable;
-    @Getter
-    private final ComponentMapper inGroupMapper = Mapper.tether;
 
     private float time;
 
     public LightningTetherSystem(final int priority) {
-        super(Family.one(Tether.class, Tetherable.class)
+        super(Family.all(Tetherable.class)
                     .get(), priority);
     }
 
