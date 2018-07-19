@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Color;
 import com.robcio.golf.component.flag.Tether;
+import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.entity.graphics.Lightning;
 import com.robcio.golf.utils.Mapper;
 
@@ -19,18 +20,23 @@ public class LightningTetherSystem extends IteratingSystem {
 
     @Override
     public void update(float deltaTime) {
-        if ((time += deltaTime) > 0.5f) {
+        if ((time += deltaTime) > 0.6f) {
             super.update(deltaTime);
             time = 0f;
         }
     }
 
     //TODO jak inne rodzaje tethera to trzeba edzie z tego componentu wyciagac rodzaj i moze color
-    //TODO tether na odleglosc wykrywanie, moze sensory z box2d sie przydadza czy cos
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final Tether tether = Mapper.tether.get(entity);
 
-        getEngine().addEntity(Lightning.of(tether.position1, tether.position2, Color.SALMON));
+        Color color = Color.WHITE;
+        final Tinted tinted = Mapper.tinted.get(entity);
+        if (tinted != null) {
+            color = tinted.color;
+        }
+
+        getEngine().addEntity(Lightning.of(tether.position1, tether.position2, color));
     }
 }

@@ -70,7 +70,7 @@ public class LightningSplitter implements EntityListener {
             prevDisplacement = displacement;
 
         }
-        addLightningLine(end, prevPoint, tinted);
+        addLightningLine(end.clone(), prevPoint, tinted);
         entity.add(ToRemove.self());
     }
 

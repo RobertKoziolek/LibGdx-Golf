@@ -4,10 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.math.Ellipse;
-import com.robcio.golf.entity.Ball;
-import com.robcio.golf.entity.Bowl;
-import com.robcio.golf.entity.Bumper;
-import com.robcio.golf.entity.Hole;
+import com.robcio.golf.entity.*;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.TextureId;
 
@@ -17,6 +14,7 @@ public class EllipseEntityFactory extends EntityFactory {
     private final static String BALL = "ball";
     private final static String BUMPER = "bumper";
     private final static String HOLE = "hole";
+    private final static String ROD = "rod";
     private final static String BALL_TYPE = "ballType";
 
     public Entity create(final MapObject mapObject) {
@@ -36,6 +34,8 @@ public class EllipseEntityFactory extends EntityFactory {
                 return new Bumper(ellipse, rotation);
             case HOLE:
                 return new Hole(ellipse, rotation);
+            case ROD:
+                return new TetherRod(ellipse, rotation);
             default:
                 throw new IllegalArgumentException(
                         String.format("MapReader has an unknown Ellipse object type '%s'", type));

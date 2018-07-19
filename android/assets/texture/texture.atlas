@@ -55,7 +55,7 @@ hole
   index: -1
 lightning
   rotate: false
-  xy: 198, 230
+  xy: 516, 548
   size: 1, 32
   orig: 1, 32
   offset: 0, 0
@@ -67,6 +67,13 @@ lightningend
   orig: 32, 32
   offset: 0, 0
   index: -1
+rodfield
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 slope
   rotate: false
   xy: 516, 648
@@ -76,7 +83,7 @@ slope
   index: -1
 star
   rotate: false
-  xy: 2, 2
+  xy: 198, 198
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
