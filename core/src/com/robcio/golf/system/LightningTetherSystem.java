@@ -1,16 +1,22 @@
 package com.robcio.golf.system;
 
+import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Color;
 import com.robcio.golf.component.flag.Tether;
 import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Tinted;
+import com.robcio.golf.component.util.InGroup;
 import com.robcio.golf.entity.graphics.Lightning;
 import com.robcio.golf.utils.Mapper;
+import lombok.Getter;
 
-public class LightningTetherSystem extends IteratingSystem {
+public class LightningTetherSystem extends GroupedIteratingSystem {
+    @Getter
+    private final ComponentMapper groupMapper = Mapper.tetherable;
+    @Getter
+    private final ComponentMapper inGroupMapper = Mapper.tether;
 
     private float time;
 
@@ -27,21 +33,9 @@ public class LightningTetherSystem extends IteratingSystem {
         }
     }
 
-    //TODO jak inne rodzaje tethera to trzeba edzie z tego componentu wyciagac rodzaj i moze color
     @Override
-    protected void processEntity(final Entity entity, final float deltaTime) {
-        if (Mapper.tether.get(entity) != null) {
-            final Tether tether = Mapper.tether.get(entity);
-            addLightning(entity, tether);
-        } else {
-            //TODO to w sumie ladnie wyszlo, mozna zrobic cala abstrakcje na to czy cos
-            final Tetherable tetherable = Mapper.tetherable.get(entity);
-            if (tetherable != null){
-                for (final Tether tether : tetherable.set){
-                    addLightning(entity, tether);
-                }
-            }
-        }
+    protected void processEntity(final Entity entity, final InGroup inGroup) {
+        addLightning(entity, (Tether) inGroup);
     }
 
     private void addLightning(Entity entity, Tether tether) {

@@ -20,7 +20,7 @@ public class BowlListener extends GroupedBodyListener {
     private final ComponentMapper groupMapper = Mapper.inBowlable;
 
     @Override
-    protected InGroup create(Map<Integer, Body> map) {
+    protected InGroup create(final Map<Integer, Body> map) {
         final Entity bowlEntity = getEntityA(map);
         final Body bowl = getBodyA(map);
         return new InBowl(bowl.getPosition(), Mapper.dimension.get(bowlEntity), bowlEntity);

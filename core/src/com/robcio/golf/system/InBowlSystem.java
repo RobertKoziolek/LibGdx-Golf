@@ -1,17 +1,22 @@
 package com.robcio.golf.system;
 
+import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.physics.InBowl;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.structure.Dimension;
+import com.robcio.golf.component.util.InGroup;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
+import lombok.Getter;
 
-public class InBowlSystem extends IteratingSystem {
+@Getter
+public class InBowlSystem extends GroupedIteratingSystem {
+    private final ComponentMapper groupMapper = Mapper.inBowlable;
+    private final ComponentMapper inGroupMapper = Mapper.inBowl;
 
     public InBowlSystem(final int priority) {
         super(Family.one(InBowlable.class, InBowl.class)
@@ -19,17 +24,8 @@ public class InBowlSystem extends IteratingSystem {
     }
 
     @Override
-    protected void processEntity(Entity entity, float deltaTime) {
-        if (Mapper.inBowl.get(entity) != null) {
-            processInBowl(entity, Mapper.inBowl.get(entity));
-        } else {
-            final InBowlable inBowlable = Mapper.inBowlable.get(entity);
-            if (inBowlable != null) {
-                for (final InBowl inBowl: inBowlable.set) {
-                    processInBowl(entity, inBowl);
-                }
-            }
-        }
+    protected void processEntity(final Entity entity, final InGroup inGroup) {
+        processInBowl(entity, (InBowl) inGroup);
     }
 
     private void processInBowl(final Entity entity, final InBowl inBowl) {
