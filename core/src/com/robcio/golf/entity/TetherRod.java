@@ -22,7 +22,7 @@ public class TetherRod extends Entity {
                                        .withPosition(position)
                                        .withAngle(angle)
                                        .withCategoryBits(Bits.C.BALL_MANIPULANT)
-                                       .withMaskBits(Bits.M.BALL)
+                                       .withMaskBits(Bits.M.FREE_OBJECT_AND_BALL)
                                        .withStatic(true)
                                        .withFixedRotation(true)
                                        .assemble();

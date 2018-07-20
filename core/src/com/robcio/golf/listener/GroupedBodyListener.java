@@ -25,11 +25,11 @@ public abstract class GroupedBodyListener implements BodyListener {
 
     @Override
     public void endContact(final Map<Integer, Body> map) {
-        final Group<? extends InGroup>  group = getGroupMapper().get(getEntityB(map));
+        final Group<? extends InGroup> group = getGroupMapper().get(getEntityB(map));
         if (group != null) {
             final Entity entityA = getEntityA(map);
             for (final InGroup inGroup: group.set) {
-                if(inGroup.groupedBy == entityA){
+                if (inGroup.groupedBy == entityA) {
                     group.set.remove(inGroup);
                     break;
                 }
@@ -53,13 +53,17 @@ public abstract class GroupedBodyListener implements BodyListener {
         return getEntity(map, getEntityFlagsB());
     }
 
-    private Entity getEntity(final Map<Integer, Body> map, final EntityFlags entityFlags) {
+    private Entity getEntity(final Map<Integer, Body> map, final EntityFlags[] entityFlags) {
         final Body body = getBody(map, entityFlags);
         return (Entity) body.getUserData();
     }
 
-    private Body getBody(Map<Integer, Body> map, EntityFlags entityFlags) {
-        return map.get(entityFlags.getId());
+    private Body getBody(final Map<Integer, Body> map, final EntityFlags[] entityFlags) {
+        for (final EntityFlags flag: entityFlags) {
+            final Body body = map.get(flag.getId());
+            if (body!=null) return body;
+        }
+        throw new IllegalArgumentException("Reported collision cannot return collision body");
     }
 
 }

@@ -5,7 +5,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selectable;
+import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Renderable;
+import com.robcio.golf.component.physics.InBowlable;
+import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -32,6 +35,9 @@ public class Box extends Entity {
         flags = EntityFlags.BOX.getId();
 
         add(new Selectable());
+        add(new Tetherable());
+        add(new InBowlable());
+        add(new OnSlopable());
         add(Box2dBody.of(body));
         add(position);
         add(dimension);

@@ -83,7 +83,7 @@
   <object id="103" type="bowl" x="683" y="13" width="304" height="304">
    <ellipse/>
   </object>
-  <object id="108" type="bowl" x="330" y="-30" width="304" height="304">
+  <object id="108" type="hole" x="330" y="-30" width="304" height="304">
    <ellipse/>
   </object>
   <object id="109" type="bowl" x="49" y="243" width="304" height="304">

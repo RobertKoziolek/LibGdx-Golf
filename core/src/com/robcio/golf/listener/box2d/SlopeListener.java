@@ -17,8 +17,8 @@ import java.util.Map;
 @Getter
 public class SlopeListener extends GroupedBodyListener {
 
-    private final EntityFlags entityFlagsA = EntityFlags.SLOPE;
-    private final EntityFlags entityFlagsB = EntityFlags.BALL;
+    private final EntityFlags[] entityFlagsA = {EntityFlags.SLOPE};
+    private final EntityFlags[] entityFlagsB = {EntityFlags.BALL, EntityFlags.BOX};
     private final ComponentMapper groupMapper = Mapper.onSlopable;
 
     @Override

@@ -15,8 +15,8 @@ import java.util.Map;
 @Getter
 public class BowlListener extends GroupedBodyListener {
 
-    private final EntityFlags entityFlagsA = EntityFlags.BOWL;
-    private final EntityFlags entityFlagsB = EntityFlags.BALL;
+    private final EntityFlags[] entityFlagsA = {EntityFlags.BOWL};
+    private final EntityFlags[] entityFlagsB = {EntityFlags.BALL, EntityFlags.BOX};
     private final ComponentMapper groupMapper = Mapper.inBowlable;
 
     @Override

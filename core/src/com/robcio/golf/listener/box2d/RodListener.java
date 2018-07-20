@@ -15,8 +15,8 @@ import java.util.Map;
 @Getter
 public class RodListener extends GroupedBodyListener {
 
-    private final EntityFlags entityFlagsA = EntityFlags.ROD;
-    private final EntityFlags entityFlagsB = EntityFlags.BALL;
+    private final EntityFlags[] entityFlagsA = {EntityFlags.ROD};
+    private final EntityFlags[] entityFlagsB = {EntityFlags.BALL, EntityFlags.BOX};
     private final ComponentMapper groupMapper = Mapper.tetherable;
 
     @Override

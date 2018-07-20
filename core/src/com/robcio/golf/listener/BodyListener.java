@@ -8,6 +8,6 @@ import java.util.Map;
 public interface BodyListener {
     void beginContact(final Map<Integer, Body> map);
     void endContact(final Map<Integer, Body> map);
-    EntityFlags getEntityFlagsA();
-    EntityFlags getEntityFlagsB();
+    EntityFlags[] getEntityFlagsA();
+    EntityFlags[] getEntityFlagsB();
 }

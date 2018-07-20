@@ -3,6 +3,7 @@ package com.robcio.golf.listener;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.registrar.BodyListenerRegistrar;
 
@@ -22,7 +23,7 @@ public class Box2DContactListener implements ContactListener {
         final Map<Integer, Body> map = getIntegerBodyMap(contact);
         if (map == null) return;
 
-        for (BodyListener listener : registrar.getListeners()) {
+        for (BodyListener listener: registrar.getListeners()) {
             if (containsFlags(map, listener.getEntityFlagsA(), listener.getEntityFlagsB())) {
                 listener.beginContact(map);
             }
@@ -34,7 +35,7 @@ public class Box2DContactListener implements ContactListener {
         final Map<Integer, Body> map = getIntegerBodyMap(contact);
         if (map == null) return;
 
-        for (BodyListener listener : registrar.getListeners()) {
+        for (BodyListener listener: registrar.getListeners()) {
             if (containsFlags(map, listener.getEntityFlagsA(), listener.getEntityFlagsB())) {
                 listener.endContact(map);
             }
@@ -52,8 +53,10 @@ public class Box2DContactListener implements ContactListener {
     }
 
     private Map<Integer, Body> getIntegerBodyMap(final Contact contact) {
-        final Body bodyA = contact.getFixtureA().getBody();
-        final Body bodyB = contact.getFixtureB().getBody();
+        final Body bodyA = contact.getFixtureA()
+                                  .getBody();
+        final Body bodyB = contact.getFixtureB()
+                                  .getBody();
         final Entity entityA;
         final Entity entityB;
         try {
@@ -71,7 +74,21 @@ public class Box2DContactListener implements ContactListener {
         return map;
     }
 
-    private boolean containsFlags(final Map<Integer, Body> map, final EntityFlags flagA, final EntityFlags flagB) {
-        return map.containsKey(flagA.getId()) && map.containsKey(flagB.getId());
+    private boolean containsFlags(final Map<Integer, Body> map,
+                                  final EntityFlags[] flagsA,
+                                  final EntityFlags[] flagsB) {
+        final Bits bits = new Bits();
+        for (final Integer flag: map.keySet()) {
+            bits.set(flag);
+        }
+        return bits.intersects(getBits(flagsA)) && bits.intersects(getBits(flagsB));
+    }
+
+    private Bits getBits(final EntityFlags[] flags) {
+        final Bits bits = new Bits();
+        for (EntityFlags flag: flags) {
+            bits.set(flag.getId());
+        }
+        return bits;
     }
 }

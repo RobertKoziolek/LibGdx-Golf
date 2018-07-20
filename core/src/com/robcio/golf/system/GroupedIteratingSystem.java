@@ -17,7 +17,6 @@ public abstract class GroupedIteratingSystem extends IteratingSystem {
 
     protected abstract void processEntity(final Entity entity, final InGroup inGroup);
 
-    //TODO dla singli raczej niepoczebne ale zobaczyc z czasem ~19.07.2018
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final Group<? extends InGroup> group = getGroupMapper().get(entity);

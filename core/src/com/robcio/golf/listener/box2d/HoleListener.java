@@ -14,8 +14,8 @@ import java.util.Map;
 @Getter
 public class HoleListener implements BodyListener {
 
-    private final EntityFlags entityFlagsA = EntityFlags.HOLE;
-    private final EntityFlags entityFlagsB = EntityFlags.BALL;
+    private final EntityFlags[] entityFlagsA = {EntityFlags.HOLE};
+    private final EntityFlags[] entityFlagsB = {EntityFlags.BALL};
 
     private final Engine engine;
 

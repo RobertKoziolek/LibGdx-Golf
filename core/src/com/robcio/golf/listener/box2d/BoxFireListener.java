@@ -12,8 +12,8 @@ import java.util.Map;
 @Getter
 public class BoxFireListener implements BodyListener {
 
-    private final EntityFlags entityFlagsA = EntityFlags.BALL;
-    private final EntityFlags entityFlagsB = EntityFlags.BOX;
+    private final EntityFlags[] entityFlagsA = {EntityFlags.BALL};
+    private final EntityFlags[] entityFlagsB = {EntityFlags.BOX};
 
     public BoxFireListener() {
     }

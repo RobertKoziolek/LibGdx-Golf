@@ -17,12 +17,12 @@ import java.util.Map;
 @Getter
 public class BumperListener implements BodyListener {
 
-    private final EntityFlags entityFlagsA = EntityFlags.BUMPER;
-    private final EntityFlags entityFlagsB = EntityFlags.BALL;
+    private final EntityFlags[] entityFlagsA = {EntityFlags.BUMPER};
+    private final EntityFlags[] entityFlagsB = {EntityFlags.BALL};
 
     private final Engine engine;
 
-    public BumperListener(final Engine engine){
+    public BumperListener(final Engine engine) {
         this.engine = engine;
     }
 

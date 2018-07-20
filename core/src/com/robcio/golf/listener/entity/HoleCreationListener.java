@@ -13,6 +13,7 @@ import com.robcio.golf.utils.Mapper;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+//TODO taki creationListener kiedy dwie rzeczy maja powstac razem mozna wyabstrahowac kiedys, niech sie wpierw potrzea pojawi
 public class HoleCreationListener implements EntityListener {
 
     final public static Family family = Family.all(HoleCenter.class).get();

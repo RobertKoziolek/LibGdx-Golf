@@ -10,9 +10,7 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 
-//TODO dodac motyw laczacy obiekty, tak jak inbowl jest polaczony z holem, zeby przesuwanie lub inne nastepowalo razem
 public class PositionSynchronizationSystem extends IteratingSystem {
-
 
     public PositionSynchronizationSystem(final int priority) {
         super(Family.all(Box2dBody.class, Position.class).get(), priority);
