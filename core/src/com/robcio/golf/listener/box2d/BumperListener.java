@@ -1,18 +1,16 @@
 package com.robcio.golf.listener.box2d;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.structure.Force;
 import com.robcio.golf.entity.util.Notification;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
+import com.robcio.golf.listener.EntityHolder;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 import lombok.Getter;
-
-import java.util.Map;
 
 @Getter
 public class BumperListener implements BodyListener {
@@ -26,17 +24,16 @@ public class BumperListener implements BodyListener {
         this.engine = engine;
     }
 
-    public void beginContact(final Map<Integer, Body> map) {
+    public void beginContact(final EntityHolder entityHolder) {
         //TODO rozwiazuje problem lepienia sie do tego, ale moze odbija 2x
-        endContact(map);
+        endContact(entityHolder);
     }
 
     @Override
-    public void endContact(Map<Integer, Body> map) {
-        final Body ball = map.get(EntityFlags.BALL.getId());
-        final Body bumper = map.get(EntityFlags.BUMPER.getId());
-        final Entity entity = (Entity) bumper.getUserData();
-        final Force force = Mapper.force.get(entity);
+    public void endContact(final EntityHolder entityHolder) {
+        final Body bumper = entityHolder.getBodyA();
+        final Body ball = entityHolder.getBodyB();
+        final Force force = Mapper.force.get(entityHolder.getA());
 
         final Vector2 distance = Maths.getDistance(ball.getPosition(), bumper.getPosition());
         final float finalDistance = distance.len();
