@@ -11,6 +11,7 @@ import com.robcio.golf.utils.Mapper;
 import lombok.Getter;
 
 @Getter
+//TODO kiedy motionem chwyce pilke razem z rodem to wywala sie jakims bledem z box2d
 public class RodListener extends GroupedBodyListener {
 
     private final EntityFlags[] entityFlagsA = {EntityFlags.ROD};
@@ -19,6 +20,7 @@ public class RodListener extends GroupedBodyListener {
 
     @Override
     protected InGroup create(final EntityHolder entityHolder) {
+
         final Entity rodEntity = entityHolder.getA();
         final Entity ballEntity = entityHolder.getB();
         return new Tether(Mapper.position.get(rodEntity), Mapper.position.get(ballEntity), rodEntity);

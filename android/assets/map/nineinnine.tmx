@@ -74,7 +74,7 @@
   <object id="68" type="ball" x="400" y="469" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="69" type="rod" x="81" y="122" width="304" height="304">
+  <object id="69" type="rod" x="85" y="129" width="304" height="304">
    <ellipse/>
   </object>
  </objectgroup>

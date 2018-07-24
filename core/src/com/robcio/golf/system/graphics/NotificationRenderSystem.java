@@ -22,7 +22,6 @@ public class NotificationRenderSystem extends BatchIteratingSystem {
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final NotificationData data = Mapper.notificationData.get(entity);
-
         Assets.getFont()
               .draw(getBatch(), data.text, data.x, data.y);
     }

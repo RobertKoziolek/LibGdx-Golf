@@ -9,7 +9,6 @@ import com.robcio.golf.utils.Mapper;
 import lombok.Getter;
 
 //TODO ogarnac inaczej oznaczanie particlow kiedy bedzie ich wiecej
-//TODO firespreader powinien pracowac na samych componentach, nie na konkretnych typach obiektu
 @Getter
 public class FireSpreaderListener implements BodyListener {
 

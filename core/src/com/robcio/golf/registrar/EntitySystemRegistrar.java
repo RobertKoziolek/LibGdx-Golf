@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.World;
 import com.robcio.golf.system.*;
 import com.robcio.golf.system.control.AttractToSystem;
 import com.robcio.golf.system.control.KickToSystem;
@@ -23,7 +24,10 @@ public class EntitySystemRegistrar {
     private final Engine engine;
     private final List<EntitySystem> systems = new LinkedList<>();
 
-    public EntitySystemRegistrar(final Engine engine, final SpriteBatch batch, final Camera camera) {
+    public EntitySystemRegistrar(final Engine engine,
+                                 final World world,
+                                 final SpriteBatch batch,
+                                 final Camera camera) {
         this.engine = engine;
         int priority = 0;
         add(new TimerSystem(priority++));
@@ -33,7 +37,7 @@ public class EntitySystemRegistrar {
         add(new InBowlSystem(priority++));
         add(new SlopeSystem(priority++));
 
-        add(new LightningTetherSystem(priority++));
+        add(new LightningTetherSystem(priority++, world));
         add(new DispensingSystem(priority++));
         add(new ImpulseSystem(priority++));
         add(new HardImpulseSystem(priority++));

@@ -17,7 +17,7 @@ public class Box2DContactListener implements ContactListener {
         final EntityHolder entityHolder = getEntities(contact);
         if (entityHolder == null) return;
 
-        for (BodyListener listener: registrar.getListeners()) {
+        for (final BodyListener listener: registrar.getListeners()) {
             if (entityHolder.containsFlags(listener.getEntityFlagsA(), listener.getEntityFlagsB())) {
                 listener.beginContact(entityHolder);
             }
@@ -29,7 +29,7 @@ public class Box2DContactListener implements ContactListener {
         final EntityHolder entityHolder = getEntities(contact);
         if (entityHolder == null) return;
 
-        for (BodyListener listener: registrar.getListeners()) {
+        for (final BodyListener listener: registrar.getListeners()) {
             if (entityHolder.containsFlags(listener.getEntityFlagsA(), listener.getEntityFlagsB())) {
                 listener.endContact(entityHolder);
             }
@@ -42,6 +42,7 @@ public class Box2DContactListener implements ContactListener {
         final Body bodyB = contact.getFixtureB()
                                   .getBody();
         try {
+            //TODO moze wymyslic tu cos sprytniejszego niz lapanie i olewanie
             return new EntityHolder(bodyA, bodyB);
         } catch (final ClassCastException | IllegalArgumentException e) {
             return null;
@@ -49,12 +50,13 @@ public class Box2DContactListener implements ContactListener {
     }
 
     @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {
+    public void preSolve(final Contact contact, final Manifold oldManifold) {
         //nothing to do here
     }
 
+    //TODO to moze miec sens to ogarniecia bumpera skoro jest impulsu kontaktu here
     @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
+    public void postSolve(final Contact contact, final ContactImpulse impulse) {
         //nothing to do here
     }
 }

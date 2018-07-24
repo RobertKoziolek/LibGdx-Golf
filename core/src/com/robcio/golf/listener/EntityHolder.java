@@ -15,8 +15,6 @@ public class EntityHolder {
     @Getter
     private Body bodyA, bodyB;
 
-    private final Bits bits;
-
     public EntityHolder(@NonNull final Body bodyA, @NonNull final Body bodyB) {
         this.bodyA = bodyA;
         this.bodyB = bodyB;
@@ -28,9 +26,6 @@ public class EntityHolder {
         }
         if (this.A == null || this.B == null || this.A.flags == FLAG_NONE || this.B.flags == FLAG_NONE)
             throw new IllegalArgumentException("Holder need to hold valid entities");
-        this.bits = new Bits();
-        bits.set(A.flags);
-        bits.set(B.flags);
     }
 
     public boolean containsFlags(final EntityFlags[] flagsA, final EntityFlags[] flagsB) {
@@ -57,7 +52,7 @@ public class EntityHolder {
         return bits;
     }
 
-    public void correct() {
+    private void correct() {
         final Entity temp = A;
         A = B;
         B = temp;

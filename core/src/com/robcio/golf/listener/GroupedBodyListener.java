@@ -13,9 +13,9 @@ public abstract class GroupedBodyListener implements BodyListener {
     @Override
     public void beginContact(final EntityHolder entityHolder) {
         final Group group = getGroupMapper().get(entityHolder.getB());
-        if (group != null) {
-            group.set.add(create(entityHolder));
-        }
+
+        group.set.add(create(entityHolder));
+        //TODO here lapanie custom exceptiona jesli w magicznych powodow nie stworzy componentu
     }
 
     @Override

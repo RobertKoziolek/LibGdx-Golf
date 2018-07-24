@@ -24,6 +24,7 @@ public class ParticleLoader implements EntityListener {
         particle.particleEffect.load(Gdx.files.internal(particle.id.getFilename()),
                                      Assets.getTextureAtlas());
 
+        //TODO ta funkcjonalnosc raczej albo dla kazdego particla ma byc albo wyabstrahowac czy cos, statycznie w sumie mozna
         final ParticleEmitter particleEmitter = particle.particleEffect.getEmitters()
                                                                        .get(0);
         final float lowerSide = Mapper.dimension.get(entity).getLower();
