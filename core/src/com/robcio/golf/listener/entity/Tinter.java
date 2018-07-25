@@ -15,14 +15,14 @@ public class Tinter implements EntityListener {
     final public static Family family = Family.all(Renderable.class, Dimension.class, Tinted.class).get();
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
         final Color tint = Mapper.tinted.get(entity).color;
         sprite.setColor(tint);
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         //nothing to do here
     }
 }

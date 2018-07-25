@@ -13,7 +13,7 @@ public class SpriteAssigner implements EntityListener {
     final public static Family family = Family.all(Renderable.class, Dimension.class).get();
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         final Sprite sprite = Mapper.renderable.get(entity).sprite;
         final Dimension dimension = Mapper.dimension.get(entity);
 
@@ -22,7 +22,7 @@ public class SpriteAssigner implements EntityListener {
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         //nothing to do here
     }
 }

@@ -21,14 +21,14 @@ public class HoleCreationListener implements EntityListener {
     final private Engine engine;
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         final Position position = Mapper.position.get(entity);
         final Dimension dimension = Mapper.dimension.get(entity);
         engine.addEntity(new Bowl(position, dimension, 0f, TextureId.HOLE));
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         //TODO przebadac czy nie wypada usuwac tego bowla z kilku linijek wyzej
         //TODO potrzebne do obadania przy tworzeniu usuwania holi
         //nothing to do here

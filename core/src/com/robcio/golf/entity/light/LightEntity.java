@@ -1,4 +1,4 @@
-package com.robcio.golf.entity;
+package com.robcio.golf.entity.light;
 
 import com.badlogic.ashley.core.Entity;
 import com.robcio.golf.component.light.Light;

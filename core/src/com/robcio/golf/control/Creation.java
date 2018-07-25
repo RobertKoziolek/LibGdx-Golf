@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.robcio.golf.component.structure.Force;
 import com.robcio.golf.component.util.Timer;
 import com.robcio.golf.component.util.ToRemove;
-import com.robcio.golf.entity.LightEntity;
+import com.robcio.golf.entity.light.LightEntity;
 import com.robcio.golf.listener.input.PointerPosition;
 
 public class Creation extends TimedHoldableMouseMode {

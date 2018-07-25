@@ -95,6 +95,7 @@ public class MainClass extends Game {
         screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), engine, bodyDestroyer, camera);
     }
 
+    //TODO world nie jest zczyszczony przy wyjsciu do menu, kolizje ciagle wykrywa
     private Command getMenuCallback() {
         return new Command() {
             @Override

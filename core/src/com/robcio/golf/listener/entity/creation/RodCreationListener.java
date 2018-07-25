@@ -8,7 +8,7 @@ import com.robcio.golf.component.flag.Rod;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Force;
 import com.robcio.golf.component.structure.Position;
-import com.robcio.golf.entity.LightEntity;
+import com.robcio.golf.entity.light.LightEntity;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 import lombok.AllArgsConstructor;

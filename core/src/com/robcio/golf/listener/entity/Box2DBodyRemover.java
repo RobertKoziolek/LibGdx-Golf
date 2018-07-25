@@ -17,12 +17,12 @@ public class Box2DBodyRemover implements EntityListener {
     final private BodyDestroyer bodyDestroyer;
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         //nothing to do here
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         final Body body = Mapper.box2dBody.get(entity).body;
         bodyDestroyer.destroy(body);
     }

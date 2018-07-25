@@ -33,7 +33,7 @@ public class MapLoader implements EntityListener {
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         engine.getSystem(MapRenderSystem.class)
               .setProcessing(false);
     }

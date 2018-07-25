@@ -18,7 +18,7 @@ public class ParticleLoader implements EntityListener {
                                               .get();
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         final Particle particle = Mapper.particle.get(entity);
         particle.particleEffect = new ParticleEffect();
         particle.particleEffect.load(Gdx.files.internal(particle.id.getFilename()),
@@ -35,7 +35,7 @@ public class ParticleLoader implements EntityListener {
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         //TODO zwrocic particla do jakiegos poola czy cos
     }
 }

@@ -15,7 +15,7 @@ public class SelectIndicatorAssigner implements EntityListener {
     final public static Family family = Family.all(Dimension.class, Selected.class).get();
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         final Sprite sprite = Assets.getSprite(TextureId.STAR);
 
         sprite.setOrigin(Selected.SIZE / 2f, Selected.SIZE / 2f);
@@ -25,7 +25,7 @@ public class SelectIndicatorAssigner implements EntityListener {
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
         //nothing to do here
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="120">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="64" tileheight="64" infinite="0" nextobjectid="201">
  <tileset firstgid="1" source="golf.tsx"/>
  <layer name="tile" width="16" height="9">
   <data encoding="csv">
@@ -20,103 +20,292 @@
   </object>
  </objectgroup>
  <objectgroup name="entity">
-  <object id="56" type="ball" x="53" y="11" width="30" height="30">
+  <object id="56" type="ball" x="490" y="189" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="57" type="ball" x="11" y="11" width="30" height="30">
+  <object id="57" type="ball" x="448" y="189" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="58" type="ball" x="267" y="12" width="30" height="30">
+  <object id="58" type="ball" x="704" y="190" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="59" type="ball" x="135" y="7" width="30" height="30">
+  <object id="59" type="ball" x="572" y="185" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="70" type="ball" x="97" y="11" width="30" height="30">
+  <object id="70" type="ball" x="534" y="189" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="71" type="ball" x="216" y="10" width="30" height="30">
+  <object id="71" type="ball" x="653" y="188" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="72" type="ball" x="175" y="13" width="30" height="30">
+  <object id="72" type="ball" x="612" y="191" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="90" type="ball" x="7" y="53" width="30" height="30">
+  <object id="90" type="ball" x="444" y="231" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="91" type="ball" x="51" y="49" width="30" height="30">
+  <object id="91" type="ball" x="488" y="227" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="92" type="ball" x="99" y="48" width="30" height="30">
+  <object id="92" type="ball" x="536" y="226" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="93" type="ball" x="148" y="49" width="30" height="30">
+  <object id="93" type="ball" x="585" y="227" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="94" type="ball" x="198" y="53" width="30" height="30">
+  <object id="94" type="ball" x="635" y="231" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="95" type="ball" x="246" y="54" width="30" height="30">
+  <object id="95" type="ball" x="683" y="232" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="96" type="ball" x="0" y="97" width="30" height="30">
+  <object id="96" type="ball" x="437" y="275" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="97" type="ball" x="52" y="94" width="30" height="30">
+  <object id="97" type="ball" x="489" y="272" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="98" type="ball" x="101" y="90" width="30" height="30">
+  <object id="98" type="ball" x="538" y="268" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="99" type="ball" x="188" y="92" width="30" height="30">
+  <object id="99" type="ball" x="625" y="270" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="100" type="ball" x="241" y="104" width="30" height="30">
+  <object id="100" type="ball" x="664" y="271" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="101" type="ball" x="146" y="92" width="30" height="30">
+  <object id="101" type="ball" x="583" y="270" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="102" type="ball" x="19" y="130" width="30" height="30">
+  <object id="102" type="ball" x="510" y="301" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="103" type="bowl" x="683" y="13" width="304" height="304">
+  <object id="120" type="bumper" x="7" y="244" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="108" type="hole" x="330" y="-30" width="304" height="304">
+  <object id="121" type="bumper" x="6" y="291" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="109" type="bowl" x="49" y="243" width="304" height="304">
+  <object id="122" type="bumper" x="8" y="338" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="110" type="bowl" x="504" y="277" width="304" height="304">
+  <object id="123" type="bumper" x="6" y="381" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="111" type="bowl" x="341" y="260" width="127" height="127">
+  <object id="124" type="bumper" x="5" y="428" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="112" type="bowl" x="850.5" y="385.5" width="127" height="127">
+  <object id="125" type="bumper" x="7" y="475" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="113" type="bowl" x="57.5" y="125.5" width="127" height="127">
+  <object id="126" type="bumper" x="987" y="370" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="114" type="bowl" x="215.5" y="148.5" width="88" height="88">
+  <object id="127" type="bumper" x="986" y="417" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="115" type="bowl" x="350" y="385" width="88" height="88">
+  <object id="128" type="bumper" x="988" y="464" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="116" type="bowl" x="800" y="319" width="88" height="88">
+  <object id="129" type="bumper" x="986" y="226" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="117" type="bowl" x="603" y="187" width="88" height="88">
+  <object id="130" type="bumper" x="985" y="273" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="118" type="bowl" x="626" y="13" width="88" height="88">
+  <object id="131" type="bumper" x="987" y="320" width="30" height="30">
    <ellipse/>
   </object>
-  <object id="119" type="bowl" x="889" y="296" width="88" height="88">
+  <object id="132" type="bumper" x="988" y="70" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="133" type="bumper" x="987" y="117" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="134" type="bumper" x="989" y="164" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="135" type="bumper" x="47" y="477" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="136" type="bumper" x="94" y="477" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="137" type="bumper" x="140.5" y="477.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="138" type="bumper" x="186.5" y="476.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="139" type="bumper" x="233.5" y="476.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="140" type="bumper" x="282.5" y="476.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="141" type="bumper" x="328.5" y="475.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="142" type="bumper" x="375.5" y="475.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="143" type="bumper" x="424.75" y="476.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="144" type="bumper" x="470.75" y="475.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="145" type="bumper" x="517.75" y="475.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="146" type="bumper" x="564.25" y="475.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="147" type="bumper" x="610.25" y="474.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="148" type="bumper" x="657.25" y="474.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="149" type="bumper" x="706.25" y="474.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="150" type="bumper" x="752.25" y="473.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="151" type="bumper" x="827.25" y="473.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="152" type="bumper" x="866" y="473" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="153" type="bumper" x="910" y="474" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="154" type="bumper" x="983" y="22" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="155" type="bumper" x="135" y="105" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="156" type="bumper" x="139" y="226" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="157" type="bumper" x="136" y="368" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="158" type="bumper" x="901" y="252" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="159" type="bumper" x="904" y="105" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="160" type="bumper" x="767" y="258" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="161" type="bumper" x="895" y="381" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="162" type="bumper" x="748" y="383" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="163" type="bumper" x="340" y="107" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="164" type="bumper" x="592" y="301" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="165" type="bumper" x="952" y="472" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="166" type="bumper" x="792" y="473" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="167" type="bumper" x="44.5" y="13.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="168" type="bumper" x="91.5" y="13.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="169" type="bumper" x="138" y="13.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="170" type="bumper" x="184" y="12.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="171" type="bumper" x="231" y="12.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="172" type="bumper" x="280" y="12.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="173" type="bumper" x="326" y="11.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="174" type="bumper" x="373" y="11.75" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="175" type="bumper" x="422.25" y="12.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="176" type="bumper" x="468.25" y="11.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="177" type="bumper" x="515.25" y="11.5" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="178" type="bumper" x="561.75" y="12" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="179" type="bumper" x="607.75" y="11" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="180" type="bumper" x="654.75" y="11" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="181" type="bumper" x="703.75" y="11" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="182" type="bumper" x="749.75" y="10" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="183" type="bumper" x="824.75" y="10" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="184" type="bumper" x="863.5" y="9.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="185" type="bumper" x="907.5" y="10.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="186" type="bumper" x="949.5" y="8.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="187" type="bumper" x="789.5" y="9.25" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="188" type="bumper" x="9.5" y="17" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="189" type="bumper" x="8.5" y="64" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="190" type="bumper" x="10.5" y="111" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="191" type="bumper" x="8.5" y="154" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="192" type="bumper" x="7.5" y="201" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="198" type="bumper" x="341" y="227" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="199" type="bumper" x="330" y="372" width="30" height="30">
+   <ellipse/>
+  </object>
+  <object id="200" type="bumper" x="780" y="113" width="30" height="30">
    <ellipse/>
   </object>
  </objectgroup>

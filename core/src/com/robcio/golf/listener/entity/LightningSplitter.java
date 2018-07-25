@@ -24,7 +24,7 @@ public class LightningSplitter implements EntityListener {
     final private Engine engine;
 
     @Override
-    public void entityAdded(Entity entity) {
+    public void entityAdded(final Entity entity) {
         final LightningInfo lightningInfo = Mapper.lightningInfo.get(entity);
         final Position start = lightningInfo.source;
         final Position end = lightningInfo.destination;
@@ -80,6 +80,6 @@ public class LightningSplitter implements EntityListener {
     }
 
     @Override
-    public void entityRemoved(Entity entity) {
+    public void entityRemoved(final Entity entity) {
     }
 }

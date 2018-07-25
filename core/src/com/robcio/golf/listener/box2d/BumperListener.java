@@ -3,7 +3,10 @@ package com.robcio.golf.listener.box2d;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.robcio.golf.component.graphics.FadeOut;
 import com.robcio.golf.component.structure.Force;
+import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.entity.light.LightEntity;
 import com.robcio.golf.entity.util.Notification;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
@@ -40,5 +43,10 @@ public class BumperListener implements BodyListener {
 
         ball.applyForceToCenter(distance.scl((1 / Maths.getVectorSum(distance)) * force.value / finalDistance), true);
         engine.addEntity(new Notification("A ball hit the bumper here"));
+
+        final Position position = Mapper.position.get(entityHolder.getA());
+        final LightEntity lightEntity = new LightEntity(position, Force.of(2f));
+        lightEntity.add(FadeOut.of(0.4f));
+        engine.addEntity(lightEntity);
     }
 }
