@@ -1,6 +1,9 @@
 package com.robcio.golf.control;
 
 import com.badlogic.ashley.core.Engine;
+import com.robcio.golf.component.structure.Force;
+import com.robcio.golf.component.util.Timer;
+import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.entity.LightEntity;
 import com.robcio.golf.listener.input.PointerPosition;
 
@@ -13,7 +16,9 @@ public class Creation extends TimedHoldableMouseMode {
     @Override
     protected void doWhenHolding() {
 //        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(18f), Force.of(2f)));
-        engine.addEntity(new LightEntity(pointerPosition.getUnprojectedPosition()));
+        final LightEntity lightEntity = new LightEntity(pointerPosition.getUnprojectedPosition(), Force.of(5f));
+        lightEntity.add(Timer.of(3f, ToRemove.self()));
+        engine.addEntity(lightEntity);
     }
 
     @Override

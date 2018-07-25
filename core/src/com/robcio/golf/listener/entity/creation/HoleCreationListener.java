@@ -1,4 +1,4 @@
-package com.robcio.golf.listener.entity;
+package com.robcio.golf.listener.entity.creation;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -13,7 +13,7 @@ import com.robcio.golf.utils.Mapper;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-//TODO taki creationListener kiedy dwie rzeczy maja powstac razem mozna wyabstrahowac kiedys, niech sie wpierw potrzeba pojawi
+//TODO taki creationListener kiedy dwie rzeczy maja powstac razem mozna wyabstrahowac kiedys, niech sie wpierw potrzeba pojawi, swiatlo dla roda
 public class HoleCreationListener implements EntityListener {
 
     final public static Family family = Family.all(HoleCenter.class).get();
