@@ -3,6 +3,7 @@ package com.robcio.golf.utils;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.*;
+import com.robcio.golf.component.light.Light;
 import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.physics.OnSlopable;
@@ -26,6 +27,7 @@ public class Mapper {
     final public static ComponentMapper<Line> line = ComponentMapper.getFor(Line.class);
     final public static ComponentMapper<LightningInfo> lightningInfo = ComponentMapper.getFor(LightningInfo.class);
     final public static ComponentMapper<LightningSingleLine> lightningSingleLine = ComponentMapper.getFor(LightningSingleLine.class);
+    final public static ComponentMapper<Light> light = ComponentMapper.getFor(Light.class);
     final public static ComponentMapper<Force> force = ComponentMapper.getFor(Force.class);
     final public static ComponentMapper<Impulse> impulse = ComponentMapper.getFor(Impulse.class);
     final public static ComponentMapper<HardImpulse> hardImpulse = ComponentMapper.getFor(HardImpulse.class);

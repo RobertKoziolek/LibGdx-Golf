@@ -1,6 +1,7 @@
 package com.robcio.golf.registrar;
 
 
+import box2dLight.RayHandler;
 import com.badlogic.ashley.core.Engine;
 import com.robcio.golf.listener.entity.*;
 import com.robcio.golf.world.BodyDestroyer;
@@ -8,9 +9,12 @@ import com.robcio.golf.world.BodyDestroyer;
 
 public class EntityListenerRegistrar {
 
-    public EntityListenerRegistrar(final Engine engine, final BodyDestroyer bodyDestroyer) {
+    public EntityListenerRegistrar(final Engine engine,
+                                   final BodyDestroyer bodyDestroyer,
+                                   final RayHandler rayHandler) {
         int priority = 0;
         engine.addEntityListener(MapLoader.family, priority++, new MapLoader(engine));
+        engine.addEntityListener(LightListener.family, priority++, new LightListener(engine, rayHandler));
         engine.addEntityListener(SpriteAssigner.family, priority++, new SpriteAssigner());
         engine.addEntityListener(SelectIndicatorAssigner.family, priority++, new SelectIndicatorAssigner());
         engine.addEntityListener(Tinter.family, priority++, new Tinter());

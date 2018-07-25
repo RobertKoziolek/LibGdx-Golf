@@ -9,6 +9,12 @@ public abstract class TimedHoldableMouseMode extends HoldableMouseMode {
 
     private float time;
 
+    @Override
+    public boolean touchDown() {
+        time = thresholdTime;
+        return super.touchDown();
+    }
+
     public TimedHoldableMouseMode(final Integer shorcutKey,
                                   final Engine engine,
                                   final PointerPosition pointerPosition,

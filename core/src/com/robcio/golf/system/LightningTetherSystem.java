@@ -33,7 +33,7 @@ public class LightningTetherSystem extends GroupedIteratingSystem {
 
     @Override
     public void update(final float deltaTime) {
-        if ((time += deltaTime) > 0.03f) {
+        if ((time += deltaTime) > 0.07f) {
             super.update(deltaTime);
             time = 0f;
         }

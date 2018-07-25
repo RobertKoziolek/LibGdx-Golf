@@ -1,5 +1,6 @@
 package com.robcio.golf;
 
+import box2dLight.RayHandler;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Game;
@@ -39,6 +40,9 @@ public class MainClass extends Game {
     private ScreenRegistrar screenRegistrar;
     private EntitySystemRegistrar entitySystemRegistrar;
 
+    private RayHandler rayHandler;
+    private OrthographicCamera b2dCam;
+
     public MainClass() {
     }
 
@@ -49,6 +53,7 @@ public class MainClass extends Game {
         initializeBatch();
         initializeEngine();
         initializeWorld();
+        initializeLights();
         initializeRegistrars();
 
         DEBUG_INFO = new DebugInfo(camera, world);
@@ -57,6 +62,20 @@ public class MainClass extends Game {
 
         //TODO moze sie zmienic jesli w menu ma byc fizyka
         Log.i("World body count *should be 0 now", Integer.toString(world.getBodyCount()));
+    }
+
+    private void initializeLights() {
+        b2dCam = new OrthographicCamera(WIDTH, HEIGHT);
+        b2dCam.setToOrtho(false);
+
+        rayHandler = new RayHandler(world);
+        rayHandler.setBlurNum(9);
+        rayHandler.setCombinedMatrix(b2dCam.combined.scale(Maths.PPM, Maths.PPM, Maths.PPM),
+                                     b2dCam.position.x * 1 / Maths.PPM, b2dCam.position.y * 1 / Maths.PPM,
+                                     b2dCam.viewportWidth * b2dCam.zoom, b2dCam.viewportHeight * b2dCam.zoom);
+        rayHandler.setShadows(true);
+        //TODO ustawianie lightu dla mapy, tak jak grawitacja, generalnie jakies mapinfo przy mapLoaderze
+        rayHandler.setAmbientLight(1f, 1f, 1f, 0.3f);
     }
 
     public void setScreen(final ScreenId screenId) {
@@ -71,7 +90,7 @@ public class MainClass extends Game {
     }
 
     private void initializeRegistrars() {
-        new EntityListenerRegistrar(engine, bodyDestroyer);
+        new EntityListenerRegistrar(engine, bodyDestroyer, rayHandler);
         entitySystemRegistrar = new EntitySystemRegistrar(engine, world, batch, camera);
         screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), engine, bodyDestroyer, camera);
     }
@@ -112,7 +131,9 @@ public class MainClass extends Game {
     public void render() {
         super.render();
         world.step(1 / 60f, 6, 2);
+        rayHandler.updateAndRender();
         camera.update();
+        b2dCam.update();
     }
 
     @Override
@@ -123,5 +144,6 @@ public class MainClass extends Game {
         batch.dispose();
         world.dispose();
         Assets.dispose();
+        rayHandler.dispose();
     }
 }
