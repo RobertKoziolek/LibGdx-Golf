@@ -3,11 +3,13 @@ package com.robcio.golf.registrar;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.physics.box2d.World;
 import com.robcio.golf.MainClass;
 import com.robcio.golf.enumeration.ScreenId;
 import com.robcio.golf.gui.AbstractScreen;
 import com.robcio.golf.gui.game.GameScreen;
 import com.robcio.golf.gui.menu.Menu;
+import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.utils.Command;
 import com.robcio.golf.world.BodyDestroyer;
 
@@ -21,14 +23,16 @@ public class ScreenRegistrar {
 
     public ScreenRegistrar(final MainClass mainClass,
                            final Command menuCallback,
+                           final World world,
                            final Engine engine,
                            final BodyDestroyer bodyDestroyer,
+                           final GameInputCatcher gameInputCatcher,
                            final Camera camera) {
         map = new HashMap<>();
 
-        final GameScreen gameScreen = new GameScreen(menuCallback, engine, bodyDestroyer, camera);
+        final GameScreen gameScreen = new GameScreen(menuCallback, world, engine, gameInputCatcher, bodyDestroyer, camera);
         map.put(ScreenId.GAME, gameScreen);
-        map.put(ScreenId.MENU, new Menu(mainClass, camera, gameScreen));
+        map.put(ScreenId.MENU, new Menu(mainClass, camera));
     }
 
     public AbstractScreen get(final ScreenId screenId) {

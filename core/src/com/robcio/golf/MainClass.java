@@ -6,13 +6,18 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.robcio.golf.entity.util.DebugInfo;
+import com.robcio.golf.entity.util.DoNextUpdate;
+import com.robcio.golf.entity.util.LoadMap;
+import com.robcio.golf.enumeration.MapId;
 import com.robcio.golf.enumeration.ScreenId;
 import com.robcio.golf.listener.Box2DContactListener;
+import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;
 import com.robcio.golf.registrar.ScreenRegistrar;
@@ -42,6 +47,7 @@ public class MainClass extends Game {
 
     private RayHandler rayHandler;
     private OrthographicCamera b2dCam;
+    private GameInputCatcher gameInputCatcher;
 
     public MainClass() {
     }
@@ -54,6 +60,7 @@ public class MainClass extends Game {
         initializeEngine();
         initializeWorld();
         initializeLights();
+        initializeInput();
         initializeRegistrars();
 
         DEBUG_INFO = new DebugInfo(camera, world);
@@ -62,6 +69,10 @@ public class MainClass extends Game {
 
         //TODO moze sie zmienic jesli w menu ma byc fizyka
         Log.i("World body count *should be 0 now", Integer.toString(world.getBodyCount()));
+    }
+
+    private void initializeInput() {
+        gameInputCatcher = new GameInputCatcher(camera, engine);
     }
 
     private void initializeLights() {
@@ -75,12 +86,35 @@ public class MainClass extends Game {
                                      b2dCam.viewportWidth * b2dCam.zoom, b2dCam.viewportHeight * b2dCam.zoom);
         rayHandler.setShadows(true);
         //TODO ustawianie lightu dla mapy, tak jak grawitacja, generalnie jakies mapinfo przy mapLoaderze
-        rayHandler.setAmbientLight(1f, 1f, 1f, 0.3f);
+        rayHandler.setAmbientLight(0.4f, 0.4f, 0.4f, 0.65f);
     }
 
     public void setScreen(final ScreenId screenId) {
         setScreen(screenRegistrar.get(screenId));
         setUpInput();
+    }
+
+    public void setScreenGame(final MapId map) {
+        setScreen(ScreenId.GAME);
+        engine.addEntity(new LoadMap(map));
+        engine.addEntity(new DoNextUpdate(new Command() {
+            @Override
+            public void execute() {
+                gameInputCatcher.doFirstForNewMap();
+            }
+        }));
+    }
+
+    private Command getMenuCallback() {
+        return new Command() {
+            @Override
+            public void execute() {
+                //TODO jesli w tej ostatniej klatce cos powstanie to zostanie do menu
+                engine.removeAllEntities();
+                bodyDestroyer.clear();
+                setScreen(ScreenId.MENU);
+            }
+        };
     }
 
     private void setUpInput() {
@@ -92,18 +126,8 @@ public class MainClass extends Game {
     private void initializeRegistrars() {
         new EntityListenerRegistrar(engine, bodyDestroyer, rayHandler);
         entitySystemRegistrar = new EntitySystemRegistrar(engine, world, batch, camera);
-        screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), engine, bodyDestroyer, camera);
-    }
-
-    //TODO world nie jest zczyszczony przy wyjsciu do menu, kolizje ciagle wykrywa
-    private Command getMenuCallback() {
-        return new Command() {
-            @Override
-            public void execute() {
-                engine.removeAllEntities();
-                setScreen(ScreenId.MENU);
-            }
-        };
+        screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), world, engine, bodyDestroyer, gameInputCatcher,
+                                              camera);
     }
 
     private void initializeEngine() {
@@ -130,11 +154,13 @@ public class MainClass extends Game {
 
     @Override
     public void render() {
-        super.render();
-        world.step(1 / 60f, 6, 2);
+        Gdx.gl.glClearColor(0, 0.6f, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        engine.update(Gdx.graphics.getDeltaTime());
         rayHandler.updateAndRender();
         camera.update();
         b2dCam.update();
+        super.render();
     }
 
     @Override

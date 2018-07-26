@@ -77,40 +77,40 @@
     <property name="force" type="float" value="1"/>
    </properties>
   </object>
-  <object id="76" type="rod" x="132" y="383" width="113" height="113">
+  <object id="76" type="rod" x="136.333" y="394.667" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="81" type="rod" x="199.5" y="458.5" width="113" height="113">
+  <object id="81" type="rod" x="198.167" y="453.5" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="82" type="rod" x="264.5" y="394.5" width="113" height="113">
+  <object id="82" type="rod" x="264.5" y="392.833" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="83" type="rod" x="321.5" y="464.5" width="113" height="113">
+  <object id="83" type="rod" x="327.5" y="453.833" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="84" type="rod" x="391.5" y="388.5" width="113" height="113">
+  <object id="84" type="rod" x="390.833" y="394.5" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="85" type="rod" x="456.5" y="460.5" width="113" height="113">
+  <object id="85" type="rod" x="457.833" y="453.167" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="86" type="rod" x="522.5" y="392.5" width="113" height="113">
+  <object id="86" type="rod" x="520.5" y="394.167" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="87" type="rod" x="583.5" y="460.5" width="113" height="113">
+  <object id="87" type="rod" x="582.167" y="454.167" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="88" type="rod" x="648.5" y="394.5" width="113" height="113">
+  <object id="88" type="rod" x="648.5" y="392.5" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="89" type="rod" x="710.5" y="461.5" width="113" height="113">
+  <object id="89" type="rod" x="709.5" y="453.167" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="90" type="rod" x="778.5" y="392.5" width="113" height="113">
+  <object id="90" type="rod" x="777.833" y="394.5" width="113" height="113">
    <ellipse/>
   </object>
-  <object id="91" type="rod" x="67.5" y="456.5" width="113" height="113">
+  <object id="91" type="rod" x="69.8333" y="453.5" width="113" height="113">
    <ellipse/>
   </object>
   <object id="92" type="slope" x="262.5" y="60.5" width="129" height="129">

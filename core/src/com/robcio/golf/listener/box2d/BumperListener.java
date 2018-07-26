@@ -45,7 +45,7 @@ public class BumperListener implements BodyListener {
         engine.addEntity(new Notification("A ball hit the bumper here"));
 
         final Position position = Mapper.position.get(entityHolder.getA());
-        final LightEntity lightEntity = new LightEntity(position, Force.of(2f));
+        final LightEntity lightEntity = new LightEntity(position, Force.of(1f));
         lightEntity.add(FadeOut.of(0.4f));
         engine.addEntity(lightEntity);
     }
