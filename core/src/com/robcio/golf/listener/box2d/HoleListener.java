@@ -2,7 +2,9 @@ package com.robcio.golf.listener.box2d;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.robcio.golf.component.util.ToRemove;
+import com.robcio.golf.component.graphics.FadeOut;
+import com.robcio.golf.component.physics.ChangeFilter;
+import com.robcio.golf.component.structure.HardImpulse;
 import com.robcio.golf.entity.util.Notification;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.listener.BodyListener;
@@ -23,7 +25,9 @@ public class HoleListener implements BodyListener {
 
     public void beginContact(final EntityHolder entityHolder) {
         final Entity ballEntity = entityHolder.getB();
-        ballEntity.add(ToRemove.self());
+        ballEntity.add(ChangeFilter.noCategory());
+        ballEntity.add(HardImpulse.stop());
+        ballEntity.add(FadeOut.of(0.05f));
         engine.addEntity(new Notification("Ball poted WOOOOAH!!"));
     }
 

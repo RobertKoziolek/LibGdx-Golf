@@ -6,12 +6,15 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
-import com.robcio.golf.system.*;
+import com.robcio.golf.system.DispensingSystem;
+import com.robcio.golf.system.LightningTetherSystem;
+import com.robcio.golf.system.TrailingSystem;
 import com.robcio.golf.system.control.AttractToSystem;
 import com.robcio.golf.system.control.KickToSystem;
 import com.robcio.golf.system.control.KickingSystem;
 import com.robcio.golf.system.control.MoveSystem;
 import com.robcio.golf.system.graphics.*;
+import com.robcio.golf.system.physics.*;
 import com.robcio.golf.system.util.LateCommandExecuter;
 import com.robcio.golf.system.util.TimerSystem;
 
@@ -36,6 +39,8 @@ public class EntitySystemRegistrar {
 
         add(new InBowlSystem(priority++));
         add(new SlopeSystem(priority++));
+
+        add(new BodyFilterChangingSystem(priority++));
 
         add(new LightningTetherSystem(priority++, world));
         add(new DispensingSystem(priority++));

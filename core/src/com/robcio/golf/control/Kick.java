@@ -9,6 +9,7 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.listener.input.PointerPosition;
 import com.robcio.golf.system.control.KickingSystem;
 
+//TODO kreska od myszki dalej, moze raycast by pokazac w jaki obiekt trafi (jak ult Any w hotsie)
 public class Kick extends AbstractMouseMode {
 
     public Kick(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {

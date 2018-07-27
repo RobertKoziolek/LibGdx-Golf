@@ -1,4 +1,4 @@
-package com.robcio.golf.system;
+package com.robcio.golf.system.physics;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -9,6 +9,7 @@ import com.robcio.golf.component.physics.InBowl;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.util.InGroup;
+import com.robcio.golf.system.GroupedIteratingSystem;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 import lombok.Getter;
@@ -51,7 +52,7 @@ public class InBowlSystem extends GroupedIteratingSystem {
     }
 
     private Vector2 getInwardVector(final Vector2 vector1, final Vector2 vector2) {
-        Vector2 distance = Maths.getDistance(vector1, vector2);
+        final Vector2 distance = Maths.getDistance(vector1, vector2);
         return Maths.inverse(distance);
     }
 

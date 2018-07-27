@@ -10,4 +10,8 @@ public class HardImpulse implements Component {
     public HardImpulse(@NonNull final Vector2 impulse) {
         this.impulse = impulse;
     }
+
+    public static HardImpulse stop() {
+        return new HardImpulse(Vector2.Zero);
+    }
 }

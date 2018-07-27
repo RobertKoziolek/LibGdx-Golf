@@ -1,4 +1,4 @@
-package com.robcio.golf.system;
+package com.robcio.golf.system.physics;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.physics.OnSlope;
 import com.robcio.golf.component.util.InGroup;
+import com.robcio.golf.system.GroupedIteratingSystem;
 import com.robcio.golf.utils.Mapper;
 import lombok.Getter;
 

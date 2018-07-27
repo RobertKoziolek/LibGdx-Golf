@@ -31,10 +31,7 @@ public class Maths {
 
     //TODO eee to jest tylko po to by pierwszy vector sei nei zmnienil
     public static Vector2 getDistance(final Vector2 vector1, final Vector2 vector2) {
-        Vector2 distance = Vector2.Zero.cpy();
-        distance.add(vector1);
-        distance.sub(vector2);
-        return distance;
+        return vector1.cpy().sub(vector2);
     }
 
     public static Vector2[] getWorldVertices(final float[] vertices) {

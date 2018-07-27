@@ -5,6 +5,7 @@ import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.*;
 import com.robcio.golf.component.light.Light;
 import com.robcio.golf.component.particle.Particle;
+import com.robcio.golf.component.physics.ChangeFilter;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.*;
@@ -18,6 +19,7 @@ public class Mapper {
     final public static ComponentMapper<Selected> selected = ComponentMapper.getFor(Selected.class);
     final public static ComponentMapper<Trailing> trailing = ComponentMapper.getFor(Trailing.class);
     final public static ComponentMapper<Box2dBody> box2dBody = ComponentMapper.getFor(Box2dBody.class);
+    final public static ComponentMapper<ChangeFilter> changeFilter = ComponentMapper.getFor(ChangeFilter.class);
     final public static ComponentMapper<Dimension> dimension = ComponentMapper.getFor(Dimension.class);
     final public static ComponentMapper<Position> position = ComponentMapper.getFor(Position.class);
     final public static ComponentMapper<Tetherable> tetherable = ComponentMapper.getFor(Tetherable.class);
