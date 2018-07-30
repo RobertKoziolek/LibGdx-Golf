@@ -27,6 +27,7 @@ public class BodyFilterChangingSystem extends IteratingSystem {
         for (final Fixture fixture: body.getFixtureList()) {
             final Filter filterData = fixture.getFilterData();
             filterData.categoryBits = changeFilter.categoryBits;
+            fixture.setFilterData(filterData);
         }
 
         entity.add(ToRemove.of(ChangeFilter.class));

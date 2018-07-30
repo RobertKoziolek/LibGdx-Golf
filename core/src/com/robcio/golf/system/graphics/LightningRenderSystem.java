@@ -5,7 +5,6 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.robcio.golf.component.graphics.FadeOut;
 import com.robcio.golf.component.graphics.LightningSingleLine;
 import com.robcio.golf.component.graphics.Line;
 import com.robcio.golf.component.graphics.Tinted;
@@ -19,7 +18,7 @@ public class LightningRenderSystem extends BatchIteratingSystem {
     final private TextureAtlas.AtlasRegion lightningEnd, lightning;
 
     public LightningRenderSystem(final int priority, final SpriteBatch batch) {
-        super(Family.all(LightningSingleLine.class, FadeOut.class)
+        super(Family.all(LightningSingleLine.class)
                     .get(), priority, batch);
         this.lightning = Assets.getRegion(TextureId.LIGHTNING);
         this.lightningEnd = Assets.getRegion(TextureId.LIGHTNING_END);

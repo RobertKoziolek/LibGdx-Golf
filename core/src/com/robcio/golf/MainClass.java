@@ -46,7 +46,6 @@ public class MainClass extends Game {
     private EntitySystemRegistrar entitySystemRegistrar;
 
     private RayHandler rayHandler;
-    private OrthographicCamera b2dCam;
     private GameInputCatcher gameInputCatcher;
 
     public MainClass() {
@@ -76,17 +75,7 @@ public class MainClass extends Game {
     }
 
     private void initializeLights() {
-        b2dCam = new OrthographicCamera(WIDTH, HEIGHT);
-        b2dCam.setToOrtho(false);
-
         rayHandler = new RayHandler(world);
-        rayHandler.setBlurNum(9);
-        rayHandler.setCombinedMatrix(b2dCam.combined.scale(Maths.PPM, Maths.PPM, Maths.PPM),
-                                     b2dCam.position.x * 1 / Maths.PPM, b2dCam.position.y * 1 / Maths.PPM,
-                                     b2dCam.viewportWidth * b2dCam.zoom, b2dCam.viewportHeight * b2dCam.zoom);
-        rayHandler.setShadows(true);
-        //TODO ustawianie lightu dla mapy, tak jak grawitacja, generalnie jakies mapinfo przy mapLoaderze
-        rayHandler.setAmbientLight(0.4f, 0.4f, 0.4f, 0.65f);
     }
 
     public void setScreen(final ScreenId screenId) {
@@ -125,7 +114,7 @@ public class MainClass extends Game {
 
     private void initializeRegistrars() {
         new EntityListenerRegistrar(engine, bodyDestroyer, rayHandler);
-        entitySystemRegistrar = new EntitySystemRegistrar(engine, world, batch, camera);
+        entitySystemRegistrar = new EntitySystemRegistrar(engine, world, batch, camera, rayHandler);
         screenRegistrar = new ScreenRegistrar(this, getMenuCallback(), world, engine, bodyDestroyer, gameInputCatcher,
                                               camera);
     }
@@ -157,9 +146,6 @@ public class MainClass extends Game {
         Gdx.gl.glClearColor(0, 0.6f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         engine.update(Gdx.graphics.getDeltaTime());
-        rayHandler.updateAndRender();
-        camera.update();
-        b2dCam.update();
         super.render();
     }
 

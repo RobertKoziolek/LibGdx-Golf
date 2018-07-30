@@ -7,27 +7,24 @@ import com.robcio.golf.component.physics.ChangeFilter;
 import com.robcio.golf.component.structure.HardImpulse;
 import com.robcio.golf.entity.util.Notification;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.listener.BodyListener;
 import com.robcio.golf.listener.EntityHolder;
 import lombok.Getter;
 
 @Getter
-public class HoleListener implements BodyListener {
+public class HoleListener extends EngineBodyListener {
 
     private final EntityFlags[] entityFlagsA = {EntityFlags.HOLE};
     private final EntityFlags[] entityFlagsB = {EntityFlags.BALL};
 
-    private final Engine engine;
-
-    public HoleListener(final Engine engine){
-        this.engine = engine;
+    public HoleListener(final Engine engine) {
+        super(engine);
     }
 
     public void beginContact(final EntityHolder entityHolder) {
         final Entity ballEntity = entityHolder.getB();
         ballEntity.add(ChangeFilter.noCategory());
         ballEntity.add(HardImpulse.stop());
-        ballEntity.add(FadeOut.of(0.05f));
+        ballEntity.add(FadeOut.of(0.15f));
         engine.addEntity(new Notification("Ball poted WOOOOAH!!"));
     }
 

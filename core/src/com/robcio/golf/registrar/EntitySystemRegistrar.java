@@ -1,6 +1,7 @@
 package com.robcio.golf.registrar;
 
 
+import box2dLight.RayHandler;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.Camera;
@@ -30,7 +31,8 @@ public class EntitySystemRegistrar {
     public EntitySystemRegistrar(final Engine engine,
                                  final World world,
                                  final SpriteBatch batch,
-                                 final Camera camera) {
+                                 final Camera camera,
+                                 final RayHandler rayHandler) {
         this.engine = engine;
         int priority = 0;
         add(new TimerSystem(priority++));
@@ -64,6 +66,7 @@ public class EntitySystemRegistrar {
         add(new DebugRenderSystem(priority++));
         add(new LineRenderSystem(priority++, camera));
         add(new NotificationRenderSystem(priority++, batch));
+        add(new LightRenderSystem(priority++, rayHandler));
     }
 
     public void add(final EntitySystem system) {

@@ -57,6 +57,7 @@ public class LightningTetherSystem extends GroupedIteratingSystem {
         getEngine().addEntity(Lightning.of(tether.position1, tether.position2, color));
     }
 
+    //TODO raycasting moznaby gdzies indziej dac kiedy bedzie gdzies jeszcze potrzebny
     private boolean assertNoObstaclesBlocking(final Tether tether) {
         final Vector2 position1 = Position.toBox2D(tether.position1)
                                           .getVector2();

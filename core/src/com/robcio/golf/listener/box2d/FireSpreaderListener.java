@@ -9,6 +9,7 @@ import com.robcio.golf.utils.Mapper;
 import lombok.Getter;
 
 //TODO ogarnac inaczej oznaczanie particlow kiedy bedzie ich wiecej
+//TODO moze dodac sensor dla obiektow z ogniem, zeby rozprzestzenialo sie ciut z dystansu
 @Getter
 public class FireSpreaderListener implements BodyListener {
 

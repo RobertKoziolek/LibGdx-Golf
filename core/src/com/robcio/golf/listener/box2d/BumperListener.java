@@ -9,22 +9,19 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.light.LightEntity;
 import com.robcio.golf.entity.util.Notification;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.listener.BodyListener;
 import com.robcio.golf.listener.EntityHolder;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 import lombok.Getter;
 
 @Getter
-public class BumperListener implements BodyListener {
+public class BumperListener extends EngineBodyListener {
 
     private final EntityFlags[] entityFlagsA = {EntityFlags.BUMPER};
     private final EntityFlags[] entityFlagsB = {EntityFlags.BALL};
 
-    private final Engine engine;
-
     public BumperListener(final Engine engine) {
-        this.engine = engine;
+        super(engine);
     }
 
     public void beginContact(final EntityHolder entityHolder) {
