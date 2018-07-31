@@ -25,6 +25,7 @@ public class HoleListener extends EngineBodyListener {
         ballEntity.add(ChangeFilter.noCategory());
         ballEntity.add(HardImpulse.stop());
         ballEntity.add(FadeOut.of(0.15f));
+        //TODO kiedy bedzie jakis log, wysylac moznaby tez obiekt (entity, teksturke czy cos) zeby jego info mozna bylo odczytac
         engine.addEntity(new Notification("Ball poted WOOOOAH!!"));
     }
 

@@ -33,11 +33,12 @@ public class KeyboardInputCatcher {
     private void setSystemKeys() {
         setSystemKey(F1, RenderSystem.class, "Object rendering");
         setSystemKey(F2, ParticleRenderSystem.class, "Particle rendering");
-        setSystemKey(F3, MapRenderSystem.class, "Map rendering");
-        setSystemKey(F4, SelectRenderSystem.class, "Selection indicator rendering");
+        setSystemKey(F3, LightRenderSystem.class, "Light rendering");
+        setSystemKey(F4, MapRenderSystem.class, "Map rendering");
         setSystemKey(F5, NotificationRenderSystem.class, "Notification rendering");
         setSystemKey(F6, LineRenderSystem.class, "Line rendering");
         setSystemKey(F7, LightningRenderSystem.class, "Lightning rendering");
+        setSystemKey(F8, SelectRenderSystem.class, "Selection indicator rendering");
     }
 
     private void setSystemKey(final Integer key, final Class<? extends EntitySystem> systemClass, final String name) {

@@ -64,6 +64,7 @@ public class LightningTetherSystem extends GroupedIteratingSystem {
         final Vector2 position2 = Position.toBox2D(tether.position2)
                                           .getVector2();
         final boolean[] tibia = new boolean[1];
+        //TODO przyszly kontroler do raycastow moze zwracac jakis ladny obiekt do ktorego bym pakowal info
         world.rayCast(new RayCastCallback() {
             int i;
 

@@ -11,9 +11,9 @@ public class TimerSystem extends IteratingSystem {
 
     public TimerSystem(final int priority) {
         super(Family.one(Timer.class, RepeatingTimer.class).get(), priority);
-        setProcessing(true);
     }
 
+    //TODO te timery mozeby polaczyc jednak, chyba ze mozliwosc dwoch tajmerow jest przydatna
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         processTimer(entity, deltaTime);

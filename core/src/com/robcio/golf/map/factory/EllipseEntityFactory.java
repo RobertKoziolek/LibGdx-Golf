@@ -15,6 +15,7 @@ public class EllipseEntityFactory extends EntityFactory {
     private final static String BUMPER = "bumper";
     private final static String HOLE = "hole";
     private final static String ROD = "rod";
+    private final static String LAUNCHPAD = "launchpad";
     private final static String BALL_TYPE = "ballType";
 
     public Entity create(final MapObject mapObject) {
@@ -36,6 +37,8 @@ public class EllipseEntityFactory extends EntityFactory {
                 return new Hole(ellipse, rotation);
             case ROD:
                 return new TetherRod(ellipse, rotation);
+            case LAUNCHPAD:
+                return new LauchPad(ellipse, rotation);
             default:
                 throw new IllegalArgumentException(
                         String.format("MapReader has an unknown Ellipse object type '%s'", type));

@@ -13,7 +13,6 @@ public class ImpulseSystem extends IteratingSystem {
 
     public ImpulseSystem(final int priority) {
         super(Family.all(Impulse.class, Box2dBody.class).get(), priority);
-        setProcessing(true);
     }
 
     @Override

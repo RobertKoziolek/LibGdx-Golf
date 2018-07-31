@@ -16,7 +16,6 @@ public class BodyFilterChangingSystem extends IteratingSystem {
     public BodyFilterChangingSystem(final int priority) {
         super(Family.all(ChangeFilter.class, Box2dBody.class)
                     .get(), priority);
-        setProcessing(true);
     }
 
     @Override

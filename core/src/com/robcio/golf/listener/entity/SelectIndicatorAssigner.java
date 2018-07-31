@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.util.Selected;
 import com.robcio.golf.enumeration.TextureId;
 import com.robcio.golf.utils.Assets;
@@ -12,7 +11,8 @@ import com.robcio.golf.utils.Mapper;
 
 public class SelectIndicatorAssigner implements EntityListener {
 
-    final public static Family family = Family.all(Dimension.class, Selected.class).get();
+    final public static Family family = Family.all(Selected.class)
+                                              .get();
 
     @Override
     public void entityAdded(final Entity entity) {

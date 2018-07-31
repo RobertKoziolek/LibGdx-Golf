@@ -8,5 +8,6 @@ import lombok.AllArgsConstructor;
 public class Dispensing implements Component {
 
     public final Recipe recipe;
+    public boolean active;
 
 }

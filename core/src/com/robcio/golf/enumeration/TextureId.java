@@ -17,6 +17,7 @@ public enum TextureId {
     STAR("star"),
     LIGHTNING_END("lightningend"),
     ROD("rodfield"),
+    LAUNCHPAD("launchpad"),
     LIGHTNING("lightning");
 
     private String filename;

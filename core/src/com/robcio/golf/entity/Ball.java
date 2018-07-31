@@ -8,7 +8,6 @@ import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
-import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.Box2dBody;
@@ -52,7 +51,7 @@ public class Ball extends Entity {
         if (ballType != null) {
             if (ballType == BallType.WHITE) {
                 add(new Kickable());
-                add(Particle.onFire());
+//                add(Particle.onFire());
             } else {
                 add(Tinted.of(ballType.getColor()));
             }
@@ -65,8 +64,10 @@ public class Ball extends Entity {
     }
 
     public static Ball of(final Recipe recipe) {
-        return new Ball(recipe.getPosition()
-                              .clone(), recipe.getDimension()
-                                              .clone(), 0f, recipe.getBallType());
+        final Ball ball = new Ball(recipe.getPosition()
+                                         .clone(), recipe.getDimension()
+                                                         .clone(), 0f, recipe.getBallType());
+        ball.flags = EntityFlags.PAPRIKA_CREATED_BALL.getId();
+        return ball;
     }
 }

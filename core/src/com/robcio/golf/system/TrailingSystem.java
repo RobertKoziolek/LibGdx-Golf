@@ -16,7 +16,6 @@ public class TrailingSystem extends IteratingSystem {
 
     public TrailingSystem(final int priority) {
         super(Family.all(Trailing.class, Box2dBody.class).get(), priority);
-        setProcessing(true);
     }
 
     @Override

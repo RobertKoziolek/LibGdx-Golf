@@ -8,6 +8,8 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.listener.input.PointerPosition;
 import com.robcio.golf.system.control.MoveSystem;
 
+//TODO select jak ze strategi ze zaznaczyc prostokat i z niego rzeczy zaznaczone
+//TODO custom kursory myszki?
 public class Motion extends AbstractMouseMode {
 
     public Motion(final Integer shortcutKey, final Engine engine, final PointerPosition pointerPosition) {

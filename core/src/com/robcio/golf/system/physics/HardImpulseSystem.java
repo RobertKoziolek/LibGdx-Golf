@@ -13,7 +13,6 @@ public class HardImpulseSystem extends IteratingSystem {
 
     public HardImpulseSystem(final int priority) {
         super(Family.all(HardImpulse.class, Box2dBody.class).get(), priority);
-        setProcessing(true);
     }
 
     @Override

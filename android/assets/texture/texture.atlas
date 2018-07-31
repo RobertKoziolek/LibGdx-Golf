@@ -53,9 +53,16 @@ hole
   orig: 64, 64
   offset: 0, 0
   index: -1
+launchpad
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 lightning
   rotate: false
-  xy: 516, 548
+  xy: 582, 614
   size: 1, 32
   orig: 1, 32
   offset: 0, 0
@@ -69,7 +76,7 @@ lightningend
   index: -1
 rodfield
   rotate: false
-  xy: 2, 2
+  xy: 198, 198
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -83,7 +90,7 @@ slope
   index: -1
 star
   rotate: false
-  xy: 198, 198
+  xy: 516, 516
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
