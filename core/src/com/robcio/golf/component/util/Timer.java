@@ -11,9 +11,12 @@ public class Timer implements Component {
 
     public float time;
 
+    public final float startTime;
+
     public Component component;
 
     public static Timer of(final float time, final Component component) {
-        return new Timer(false, time, component);
+        return new Timer(false, time, time, component);
     }
+
 }

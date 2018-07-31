@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Dimension implements CloneableComponent<Dimension> {
+public class Dimension implements CloneableComponent {
     public float width;
     public float height;
 

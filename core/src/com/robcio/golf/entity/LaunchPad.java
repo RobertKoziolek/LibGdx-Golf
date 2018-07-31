@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.graphics.Renderable;
+import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
@@ -16,10 +17,9 @@ import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
 import com.robcio.golf.world.BodyAssembler;
 
-//TODO naprawde zmienic nazwe tego syfu
-public class LauchPad extends Entity {
+public class LaunchPad extends Entity {
 
-    public LauchPad(final Position position, final Dimension dimension, final float angle) {
+    public LaunchPad(final Position position, final Dimension dimension, final float angle) {
         final Body body = BodyAssembler.circular(dimension)
                                        .withUserData(this)
                                        .withPosition(position)
@@ -30,9 +30,15 @@ public class LauchPad extends Entity {
                                        .withSensor(true)
                                        .withFixedRotation(true)
                                        .assemble();
-        flags = EntityFlags.PAPRIKA.getId();
+        flags = EntityFlags.LAUNCHPAD.getId();
 
-        add(new Dispensing(new Recipe(position, Dimension.of(30f), BallType.WHITE), true));
+        add(new Dispensing(Recipe.of(Ball.class)
+                                 .withPosition(position)
+                                 .withDimension(Dimension.of(30f))
+                                 .withBallType(BallType.WHITE)
+                                 .withEntityFlags(EntityFlags.LAUNCHING_BALL)
+                                 .withParticle(Particle.onFire())
+                                 .assemble(), true));
         add(new Selectable());
         add(position);
         add(dimension);
@@ -40,7 +46,7 @@ public class LauchPad extends Entity {
         add(Renderable.of(TextureId.LAUNCHPAD, 5));
     }
 
-    public LauchPad(final Ellipse ellipse, final float angle) {
+    public LaunchPad(final Ellipse ellipse, final float angle) {
         this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), angle);
     }
 }

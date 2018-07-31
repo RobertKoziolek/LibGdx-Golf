@@ -8,6 +8,7 @@ import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
+import com.robcio.golf.component.particle.Particle;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.Box2dBody;
@@ -51,23 +52,25 @@ public class Ball extends Entity {
         if (ballType != null) {
             if (ballType == BallType.WHITE) {
                 add(new Kickable());
-//                add(Particle.onFire());
             } else {
                 add(Tinted.of(ballType.getColor()));
             }
         }
-
     }
 
     public Ball(final Ellipse ellipse, final float angle, final BallType ballType) {
         this(Position.of(ellipse.x, ellipse.y), Dimension.of(ellipse.width, ellipse.height), angle, ballType);
     }
 
-    public static Ball of(final Recipe recipe) {
-        final Ball ball = new Ball(recipe.getPosition()
-                                         .clone(), recipe.getDimension()
-                                                         .clone(), 0f, recipe.getBallType());
-        ball.flags = EntityFlags.PAPRIKA_CREATED_BALL.getId();
-        return ball;
+    public Ball(final Recipe recipe) {
+        this(recipe.getPosition(), recipe.getDimension(), 0f, recipe.getBallType());
+        final EntityFlags entityFlags = recipe.getEntityFlags();
+        if (entityFlags != null) {
+            flags = EntityFlags.LAUNCHING_BALL.getId();
+        }
+        final Particle particle = recipe.getParticle();
+        if (particle != null) {
+            add(particle);
+        }
     }
 }

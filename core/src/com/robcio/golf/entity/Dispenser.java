@@ -43,7 +43,11 @@ public class Dispenser extends Entity {
         add(Renderable.of(TextureId.STAR));
         add(Timer.of(1f, ToRemove.self()));
 
-        add(new Dispensing(new Recipe(position, dimension, BallType.WHITE), true));
+        add(new Dispensing(Recipe.of(Ball.class)
+                                 .withPosition(position)
+                                 .withDimension(dimension)
+                                 .withBallType(BallType.WHITE)
+                                 .assemble(), true));
     }
 
     public Dispenser(final Rectangle rectangle, final Force force) {

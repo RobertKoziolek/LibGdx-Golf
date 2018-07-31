@@ -12,8 +12,8 @@ import lombok.Getter;
 @Getter
 public class LaunchPadListener extends EngineBodyListener {
 
-    private final EntityFlags[] entityFlagsA = {EntityFlags.PAPRIKA};
-    private final EntityFlags[] entityFlagsB = {EntityFlags.PAPRIKA_CREATED_BALL};
+    private final EntityFlags[] entityFlagsA = {EntityFlags.LAUNCHPAD};
+    private final EntityFlags[] entityFlagsB = {EntityFlags.LAUNCHING_BALL};
 
     public LaunchPadListener(final Engine engine) {
         super(engine);

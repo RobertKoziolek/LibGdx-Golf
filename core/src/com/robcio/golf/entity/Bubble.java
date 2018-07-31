@@ -22,6 +22,6 @@ public class Bubble extends Ball {
     }
 
     public static Bubble of(final Recipe recipe) {
-        return new Bubble(recipe.getPosition().clone(), recipe.getDimension().clone());
+        return new Bubble(recipe.getPosition(), recipe.getDimension());
     }
 }

@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.robcio.golf.component.util.RepeatingTimer;
 import com.robcio.golf.component.util.Timer;
+import com.robcio.golf.component.util.ToRemove;
 import com.robcio.golf.utils.Mapper;
 
 public class TimerSystem extends IteratingSystem {
@@ -25,6 +26,7 @@ public class TimerSystem extends IteratingSystem {
         if (timer == null || timer.done) return;
         if (timer.time <= 0f) {
             timer.done = true;
+            entity.add(ToRemove.of(Timer.class));
             entity.add(timer.component);
         } else {
             timer.time -= deltaTime;

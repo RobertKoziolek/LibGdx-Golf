@@ -7,7 +7,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Position implements CloneableComponent<Position> {
+public class Position implements CloneableComponent{
     public float x;
     public float y;
 

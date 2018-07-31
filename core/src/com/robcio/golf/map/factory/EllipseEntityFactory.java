@@ -38,7 +38,7 @@ public class EllipseEntityFactory extends EntityFactory {
             case ROD:
                 return new TetherRod(ellipse, rotation);
             case LAUNCHPAD:
-                return new LauchPad(ellipse, rotation);
+                return new LaunchPad(ellipse, rotation);
             default:
                 throw new IllegalArgumentException(
                         String.format("MapReader has an unknown Ellipse object type '%s'", type));

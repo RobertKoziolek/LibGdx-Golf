@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
 //TODO moze byc tibia jesli sie nalozy usuwanie componentu i calego obiektu bo component jest jeden na recipe
-@AllArgsConstructor( )
+@AllArgsConstructor()
 public class ToRemove implements Component {
 
     public final Class<? extends Component> component;
@@ -21,4 +21,5 @@ public class ToRemove implements Component {
     public static ToRemove self() {
         return new ToRemove();
     }
+
 }
