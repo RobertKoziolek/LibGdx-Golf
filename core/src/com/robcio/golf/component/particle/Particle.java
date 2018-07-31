@@ -16,4 +16,8 @@ public class Particle implements Component {
     public static Particle onFire() {
         return new Particle(ParticleId.FIRE);
     }
+
+    public static Particle onWater() {
+        return new Particle(ParticleId.WATER);
+    }
 }

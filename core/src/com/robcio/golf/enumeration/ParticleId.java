@@ -7,7 +7,8 @@ import lombok.Getter;
 @Getter
 public enum ParticleId {
 
-    FIRE("particles/fire.p");
+    FIRE("particles/fire.p"),
+    WATER("particles/water.p");
 
     private String filename;
 }

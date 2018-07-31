@@ -37,7 +37,7 @@ public class LaunchPad extends Entity {
                                  .withDimension(Dimension.of(30f))
                                  .withBallType(BallType.WHITE)
                                  .withEntityFlags(EntityFlags.LAUNCHING_BALL)
-                                 .withParticle(Particle.onFire())
+                                 .withParticle(Particle.onWater())
                                  .assemble(), true));
         add(new Selectable());
         add(position);
