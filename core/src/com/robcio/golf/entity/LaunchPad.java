@@ -25,7 +25,7 @@ public class LaunchPad extends Entity {
                                        .withPosition(position)
                                        .withAngle(angle)
                                        .withCategoryBits(Bits.C.BALL_MANIPULANT)
-                                       .withMaskBits(Bits.M.BALL)
+                                       .withMaskBits(Bits.M.GHOST_WITH_BALL)
                                        .withStatic(true)
                                        .withSensor(true)
                                        .withFixedRotation(true)
@@ -36,6 +36,7 @@ public class LaunchPad extends Entity {
                                  .withPosition(position)
                                  .withDimension(Dimension.of(30f))
                                  .withBallType(BallType.WHITE)
+                                 .withCategoryBits(Bits.C.GHOST)
                                  .withEntityFlags(EntityFlags.LAUNCHING_BALL)
                                  .withParticle(Particle.onWater())
                                  .assemble(), true));

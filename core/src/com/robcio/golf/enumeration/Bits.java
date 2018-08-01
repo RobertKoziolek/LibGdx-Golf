@@ -7,6 +7,7 @@ public class Bits {
         public final static short BALL = 2;
         public final static short BALL_MANIPULANT = 4;
         public final static short FREE_OBJECT = 8;
+        public final static short GHOST = 16;
     }
 
     static public class M {
@@ -14,6 +15,8 @@ public class Bits {
         public final static short FREE_OBJECT_AND_BALL = C.BALL + C.FREE_OBJECT;
         public final static short FREE_OBJECT_WILL_HIT = 15;
         public final static short BALL_WILL_HIT = 15;
+        public final static short GHOST_WITH_BALL = C.BALL + C.GHOST;
+
     }
 
 }

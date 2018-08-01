@@ -7,10 +7,19 @@ import lombok.AllArgsConstructor;
 //TODO w miare potrzeby do rozwiniecia tu i system
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ChangeFilter implements Component {
-    public short categoryBits;
+    public Short categoryBits;
+    public Short maskBits;
 
     public static ChangeFilter noCategory() {
-        return new ChangeFilter((short) 0);
+        return new ChangeFilter((short) 0, null);
+    }
+
+    public static ChangeFilter ofCategory(final short categoryBits){
+        return new ChangeFilter(categoryBits, null);
+    }
+
+    public static ChangeFilter of(final Short categoryBits, final Short maskBits){
+        return new ChangeFilter(categoryBits, maskBits);
     }
 
 }

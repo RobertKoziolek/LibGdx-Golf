@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class EntityFactory {
 
-    private static final String ILLEGAL_STATE_MESSAGE = "How the hell did the recipe even get a non-recipe build class";
+    private static final String ILLEGAL_STATE_MESSAGE = "There was an error with entity creation from recipe, code: ";
 
     public static Entity createFrom(final Recipe recipe) {
         try {

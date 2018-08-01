@@ -21,11 +21,18 @@ public class BodyFilterChangingSystem extends IteratingSystem {
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final ChangeFilter changeFilter = Mapper.changeFilter.get(entity);
+        final Short categoryBits = changeFilter.categoryBits;
+        final Short maskBits = changeFilter.maskBits;
         final Body body = Mapper.box2dBody.get(entity).body;
 
         for (final Fixture fixture: body.getFixtureList()) {
             final Filter filterData = fixture.getFilterData();
-            filterData.categoryBits = changeFilter.categoryBits;
+            if (categoryBits != null){
+                filterData.categoryBits = categoryBits;
+            }
+            if (maskBits != null){
+                filterData.maskBits = maskBits;
+            }
             fixture.setFilterData(filterData);
         }
 

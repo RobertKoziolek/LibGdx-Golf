@@ -23,6 +23,10 @@ public class Recipe {
     @Getter
     private final EntityFlags entityFlags;
     private final Particle particle;
+    @Getter
+    private final Short categoryBits;
+    @Getter
+    private final Short maskBits;
 
     public Position getPosition(){
         return position.clone();
@@ -49,6 +53,8 @@ public class Recipe {
         private BallType ballType;
         private EntityFlags entityFlags;
         private Particle particle;
+        private Short categoryBits;
+        private Short maskBits;
 
         private Assembler(final Class<? extends Entity> clazz) {
             this.clazz = clazz;
@@ -81,8 +87,18 @@ public class Recipe {
             return this;
         }
 
+        public Assembler withCategoryBits(final short categoryBits) {
+            this.categoryBits = categoryBits;
+            return this;
+        }
+
+        public Assembler withMaskBits(final short maskBits) {
+            this.maskBits = maskBits;
+            return this;
+        }
+
         public Recipe assemble() {
-            return new Recipe(clazz, position, dimension, ballType, entityFlags, particle);
+            return new Recipe(clazz, position, dimension, ballType, entityFlags, particle, categoryBits, maskBits);
         }
 
         private void assertRecipeConstructor() {

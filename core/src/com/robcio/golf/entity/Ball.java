@@ -9,6 +9,7 @@ import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Renderable;
 import com.robcio.golf.component.graphics.Tinted;
 import com.robcio.golf.component.particle.Particle;
+import com.robcio.golf.component.physics.ChangeFilter;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.Box2dBody;
@@ -72,5 +73,6 @@ public class Ball extends Entity {
         if (particle != null) {
             add(particle);
         }
+        add(ChangeFilter.of(recipe.getCategoryBits(), recipe.getMaskBits()));
     }
 }
