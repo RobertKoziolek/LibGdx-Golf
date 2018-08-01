@@ -15,6 +15,7 @@ import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.component.util.Trailing;
 import com.robcio.golf.entity.recipe.Recipe;
 import com.robcio.golf.enumeration.BallType;
 import com.robcio.golf.enumeration.Bits;
@@ -24,6 +25,7 @@ import com.robcio.golf.world.BodyAssembler;
 
 public class Ball extends Entity {
 
+    //TODO balltype moze zawierac te magiczzne typy z mocami (particle, waga itd)
     public Ball(final Position position, final Dimension dimension, final float angle, final BallType ballType) {
         final Body body = BodyAssembler.circular(dimension)
                                        .withUserData(this)
@@ -74,5 +76,11 @@ public class Ball extends Entity {
             add(particle);
         }
         add(ChangeFilter.of(recipe.getCategoryBits(), recipe.getMaskBits()));
+        //TODO takie dodawanie trailingu, do zrobienia z recipa?
+        add(Trailing.of(Recipe.of(Box.class)
+                              .withPosition(getComponent(Position.class))
+                              .withDimension(Dimension.of(14f))
+                              .withCategoryBits(Bits.C.GHOST)
+                              .assemble(), 4.5f));
     }
 }

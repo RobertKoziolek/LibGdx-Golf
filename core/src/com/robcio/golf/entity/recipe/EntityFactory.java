@@ -10,6 +10,7 @@ public class EntityFactory {
 
     private static final String ILLEGAL_STATE_MESSAGE = "There was an error with entity creation from recipe, code: ";
 
+    //TODO czy chce z recipa rozne componenty dodawac od razu tu czy jednak pozostawic decyzje dla indywidualnych entity
     public static Entity createFrom(final Recipe recipe) {
         try {
             final Class<? extends Entity> entityClass = recipe.getEntityClass();

@@ -7,11 +7,13 @@ import com.robcio.golf.component.flag.Kickable;
 import com.robcio.golf.component.flag.Selectable;
 import com.robcio.golf.component.flag.Tetherable;
 import com.robcio.golf.component.graphics.Renderable;
+import com.robcio.golf.component.physics.ChangeFilter;
 import com.robcio.golf.component.physics.InBowlable;
 import com.robcio.golf.component.physics.OnSlopable;
 import com.robcio.golf.component.structure.Box2dBody;
 import com.robcio.golf.component.structure.Dimension;
 import com.robcio.golf.component.structure.Position;
+import com.robcio.golf.entity.recipe.Recipe;
 import com.robcio.golf.enumeration.Bits;
 import com.robcio.golf.enumeration.EntityFlags;
 import com.robcio.golf.enumeration.TextureId;
@@ -47,5 +49,10 @@ public class Box extends Entity {
 
     public Box(final Rectangle rectangle, final float angle) {
         this(Position.of(rectangle.x, rectangle.y), Dimension.of(rectangle.width, rectangle.height), angle);
+    }
+
+    public Box(final Recipe recipe) {
+        this(recipe.getPosition(), recipe.getDimension(), 0f);
+        add(ChangeFilter.of(recipe.getCategoryBits(), recipe.getMaskBits()));
     }
 }

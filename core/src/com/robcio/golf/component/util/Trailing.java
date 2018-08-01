@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Trailing implements Component {
 
-    public int counter;
+    public float time;
 
     public final Recipe recipe;
 
