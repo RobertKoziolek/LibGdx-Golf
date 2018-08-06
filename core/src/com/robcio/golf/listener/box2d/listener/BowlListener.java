@@ -1,4 +1,4 @@
-package com.robcio.golf.listener.box2d;
+package com.robcio.golf.listener.box2d.listener;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -6,8 +6,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.robcio.golf.component.physics.InBowl;
 import com.robcio.golf.component.util.InGroup;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.listener.EntityHolder;
-import com.robcio.golf.listener.GroupedBodyListener;
+import com.robcio.golf.listener.box2d.holder.ContactInfoHolder;
+import com.robcio.golf.listener.box2d.GroupedBodyListener;
 import com.robcio.golf.utils.Mapper;
 import lombok.Getter;
 
@@ -19,9 +19,9 @@ public class BowlListener extends GroupedBodyListener {
     private final ComponentMapper groupMapper = Mapper.inBowlable;
 
     @Override
-    protected InGroup create(final EntityHolder entityHolder) {
-        final Entity bowlEntity = entityHolder.getA();
-        final Body bowl = entityHolder.getBodyA();
+    protected InGroup create(final ContactInfoHolder contactInfoHolder) {
+        final Entity bowlEntity = contactInfoHolder.getA();
+        final Body bowl = contactInfoHolder.getBodyA();
         return new InBowl(bowl.getPosition(), Mapper.dimension.get(bowlEntity), bowlEntity);
     }
 }

@@ -10,6 +10,7 @@ public class Bits {
         public final static short GHOST = 16;
     }
 
+    //TODO sciana na duchy czy cos, zeby sie nie wybieraly w kosmos niepotrzebnie
     static public class M {
         public final static short BALL = C.BALL;
         public final static short FREE_OBJECT_AND_BALL = C.BALL + C.FREE_OBJECT;

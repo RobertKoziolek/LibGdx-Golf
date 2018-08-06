@@ -76,11 +76,11 @@ public class Ball extends Entity {
             add(particle);
         }
         add(ChangeFilter.of(recipe.getCategoryBits(), recipe.getMaskBits()));
-        //TODO takie dodawanie trailingu, do zrobienia z recipa?
-        add(Trailing.of(Recipe.of(Box.class)
-                              .withPosition(getComponent(Position.class))
-                              .withDimension(Dimension.of(14f))
-                              .withCategoryBits(Bits.C.GHOST)
-                              .assemble(), 4.5f));
+            final Recipe trailingRecipe = Recipe.of(Box.class)
+                                                .withPosition(getComponent(Position.class))
+                                                .withDimension(Dimension.of(14f))
+                                                .withCategoryBits(Bits.C.GHOST)
+                                                .assemble();
+            add(Trailing.of(trailingRecipe, 4f));
     }
 }

@@ -20,4 +20,8 @@ public class Particle implements Component {
     public static Particle onWater() {
         return new Particle(ParticleId.WATER);
     }
+
+    public static Particle of(final ParticleId particleId) {
+        return new Particle(particleId);
+    }
 }

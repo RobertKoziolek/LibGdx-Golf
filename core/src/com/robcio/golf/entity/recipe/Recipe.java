@@ -28,17 +28,16 @@ public class Recipe {
     @Getter
     private final Short maskBits;
 
-    public Position getPosition(){
+    public Position getPosition() {
         return position.clone();
     }
 
-    public Dimension getDimension(){
+    public Dimension getDimension() {
         return dimension.clone();
     }
 
-    public Particle getParticle(){
-        //TODO clone particla
-        return particle;
+    public Particle getParticle() {
+        return Particle.of(particle.id);
     }
 
     public static Assembler of(@NonNull final Class<? extends Entity> clazz) {
@@ -83,7 +82,6 @@ public class Recipe {
 
         public Assembler withParticle(final Particle particle) {
             this.particle = particle;
-            //TODO czy tu jakiegos klona nie chce miec?
             return this;
         }
 

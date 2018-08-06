@@ -16,7 +16,7 @@ import com.robcio.golf.entity.util.DoNextUpdate;
 import com.robcio.golf.entity.util.LoadMap;
 import com.robcio.golf.enumeration.MapId;
 import com.robcio.golf.enumeration.ScreenId;
-import com.robcio.golf.listener.Box2DContactListener;
+import com.robcio.golf.listener.box2d.Box2DContactListener;
 import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.registrar.EntityListenerRegistrar;
 import com.robcio.golf.registrar.EntitySystemRegistrar;

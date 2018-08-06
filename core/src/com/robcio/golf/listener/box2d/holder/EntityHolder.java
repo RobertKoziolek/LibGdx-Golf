@@ -1,4 +1,4 @@
-package com.robcio.golf.listener;
+package com.robcio.golf.listener.box2d.holder;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -7,7 +7,7 @@ import com.robcio.golf.enumeration.EntityFlags;
 import lombok.Getter;
 import lombok.NonNull;
 
-public class EntityHolder {
+public class EntityHolder implements ContactInfoHolder{
     private final static int FLAG_NONE = EntityFlags.NONE.getId();
 
     @Getter
@@ -24,8 +24,9 @@ public class EntityHolder {
         } catch (final ClassCastException e) {
             throw e;
         }
-        if (this.A == null || this.B == null || this.A.flags == FLAG_NONE || this.B.flags == FLAG_NONE)
-            throw new IllegalArgumentException("Holder need to hold valid entities");
+        if (this.A == null || this.B == null || this.A.flags == FLAG_NONE || this.B.flags == FLAG_NONE) {
+            throw new IllegalArgumentException("Holder needs to hold valid entities");
+        }
     }
 
     public boolean containsFlags(final EntityFlags[] flagsA, final EntityFlags[] flagsB) {
@@ -41,6 +42,11 @@ public class EntityHolder {
             correct();
             return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean isEmpty() {
         return false;
     }
 

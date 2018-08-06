@@ -1,4 +1,4 @@
-package com.robcio.golf.listener.box2d;
+package com.robcio.golf.listener.box2d.listener;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.math.Vector2;
@@ -9,7 +9,8 @@ import com.robcio.golf.component.structure.Position;
 import com.robcio.golf.entity.light.LightEntity;
 import com.robcio.golf.entity.util.Notification;
 import com.robcio.golf.enumeration.EntityFlags;
-import com.robcio.golf.listener.EntityHolder;
+import com.robcio.golf.listener.box2d.holder.ContactInfoHolder;
+import com.robcio.golf.listener.box2d.EngineBodyListener;
 import com.robcio.golf.utils.Mapper;
 import com.robcio.golf.utils.Maths;
 import lombok.Getter;
@@ -24,26 +25,26 @@ public class BumperListener extends EngineBodyListener {
         super(engine);
     }
 
-    public void beginContact(final EntityHolder entityHolder) {
+    public void beginContact(final ContactInfoHolder contactInfoHolder) {
         //TODO rozwiazuje problem lepienia sie do tego, ale moze odbija 2x
-        endContact(entityHolder);
+        endContact(contactInfoHolder);
     }
 
     @Override
-    public void endContact(final EntityHolder entityHolder) {
-        final Body bumper = entityHolder.getBodyA();
-        final Body ball = entityHolder.getBodyB();
-        final Force force = Mapper.force.get(entityHolder.getA());
+    public void endContact(final ContactInfoHolder contactInfoHolder) {
+        final Body bumper = contactInfoHolder.getBodyA();
+        final Body ball = contactInfoHolder.getBodyB();
+        final Force force = Mapper.force.get(contactInfoHolder.getA());
 
         final Vector2 distance = Maths.getDistance(ball.getPosition(), bumper.getPosition());
         final float finalDistance = distance.len();
-
         ball.applyForceToCenter(distance.scl((1 / Maths.getVectorSum(distance)) * force.value / finalDistance), true);
-        engine.addEntity(new Notification("A ball hit the bumper here"));
 
-        final Position position = Mapper.position.get(entityHolder.getA());
+        addEntity(new Notification("A ball hit the bumper here"));
+
+        final Position position = Mapper.position.get(contactInfoHolder.getA());
         final LightEntity lightEntity = new LightEntity(position, Force.of(1f));
         lightEntity.add(FadeOut.of(0.4f));
-        engine.addEntity(lightEntity);
+        addEntity(lightEntity);
     }
 }

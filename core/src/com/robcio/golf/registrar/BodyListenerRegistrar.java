@@ -1,8 +1,8 @@
 package com.robcio.golf.registrar;
 
 import com.badlogic.ashley.core.Engine;
-import com.robcio.golf.listener.BodyListener;
-import com.robcio.golf.listener.box2d.*;
+import com.robcio.golf.listener.box2d.BodyListener;
+import com.robcio.golf.listener.box2d.listener.*;
 import lombok.Getter;
 
 import java.util.LinkedList;
@@ -18,7 +18,7 @@ public class BodyListenerRegistrar {
         listeners.add(new RodListener());
         listeners.add(new BowlListener());
         listeners.add(new HoleListener(engine));
-        listeners.add(new LaunchPadListener(engine));
+        listeners.add(new LaunchPadListener());
         listeners.add(new BumperListener(engine));
         listeners.add(new FireSpreaderListener());
         listeners.add(new SlopeListener());
