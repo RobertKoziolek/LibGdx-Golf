@@ -18,13 +18,13 @@ public class LightningCreator extends TimedHoldableMouseMode {
     @Override
     public boolean touchUp() {
         super.touchUp();
-        firstPosition = pointerPosition.getUnprojectedPosition();
+        firstPosition = getUnprojectedPosition();
         return true;
     }
 
     @Override
     protected void doWhenHolding() {
-        engine.addEntity(Lightning.of(firstPosition, pointerPosition.getUnprojectedPosition(), Color.SALMON));
+        addEntity(Lightning.of(firstPosition, getUnprojectedPosition(), Color.SALMON));
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Component;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
-//TODO w miare potrzeby do rozwiniecia tu i system
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ChangeFilter implements Component {
     public Short categoryBits;

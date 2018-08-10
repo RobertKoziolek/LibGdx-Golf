@@ -31,7 +31,7 @@ public class Motion extends AbstractMouseMode {
 
     @Override
     public boolean touchDragged() {
-        pointerPosition.updateSelectionPoint();
+        updateSelectionPoint();
         return true;
     }
 

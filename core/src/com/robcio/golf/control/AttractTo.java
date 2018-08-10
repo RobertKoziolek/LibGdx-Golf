@@ -13,8 +13,8 @@ public class AttractTo extends HoldableMouseMode {
 
     @Override
     protected void doWhenHolding(final float deltaTime) {
-        pointerPosition.updateSelectionPoint();
-        engine.getSystem(AttractToSystem.class).update(deltaTime);
+        updateSelectionPoint();
+        updateSystem(AttractToSystem.class);
     }
 
     @Override

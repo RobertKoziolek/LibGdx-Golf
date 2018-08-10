@@ -23,9 +23,8 @@ public class KickTo extends AbstractMouseMode {
 
     @Override
     public boolean touchUp() {
-        pointerPosition.updateSelectionPoint();
-        //TODO bzdura ze deltaTime podaje here zfixowany
-        engine.getSystem(KickToSystem.class).update(100f);
+        updateSelectionPoint();
+        updateSystem(KickToSystem.class);
         return true;
     }
 

@@ -19,7 +19,6 @@ public class FadeOutSystem extends IteratingSystem {
                     .get(), priority);
     }
 
-    //TODO jakos rozbic to?
     @Override
     protected void processEntity(final Entity entity, final float deltaTime) {
         final FadeOut fadeOut = Mapper.fadeOut.get(entity);

@@ -36,7 +36,6 @@ public class EntitySystemRegistrar {
         this.engine = engine;
         int priority = 0;
         add(new TimerSystem(priority++));
-        //TODO lateCommand musi byc po tajmerze, chce wiedziec czemu?
         add(new LateCommandExecuter(priority++));
 
         add(new InBowlSystem(priority++));

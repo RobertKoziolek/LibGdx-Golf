@@ -45,7 +45,7 @@ public class EllipseEntityFactory extends EntityFactory {
         }
     }
 
-    private BallType getBallType(final MapObject object) {
+        private BallType getBallType(final MapObject object) {
         final Object ballTypeProperty = object.getProperties()
                                               .get(BALL_TYPE);
         if (ballTypeProperty != null) {

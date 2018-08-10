@@ -16,9 +16,9 @@ public class Creation extends TimedHoldableMouseMode {
     @Override
     protected void doWhenHolding() {
 //        engine.addEntity(new Dispenser(pointerPosition.getUnprojectedPosition(), Dimension.of(18f), Force.of(2f)));
-        final LightEntity lightEntity = new LightEntity(pointerPosition.getUnprojectedPosition(), Force.of(5f));
+        final LightEntity lightEntity = new LightEntity(getUnprojectedPosition(), Force.of(5f));
         lightEntity.add(Timer.of(3f, ToRemove.self()));
-        engine.addEntity(lightEntity);
+        addEntity(lightEntity);
     }
 
     @Override

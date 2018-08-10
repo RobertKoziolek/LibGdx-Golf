@@ -20,10 +20,8 @@ public abstract class AbstractMouseMode implements MouseMode {
 
     @Getter
     private final Integer shortcutKey;
-
-    protected final Engine engine;
-
-    protected final PointerPosition pointerPosition;
+    private final Engine engine;
+    private final PointerPosition pointerPosition;
 
     protected boolean select(final Family family, final boolean selectOne) {
         final ImmutableArray<Entity> moveEntities = engine
@@ -70,6 +68,23 @@ public abstract class AbstractMouseMode implements MouseMode {
         } else {
             after();
         }
+    }
+
+    protected void addEntity(final Entity entity){
+        engine.addEntity(entity);
+    }
+
+    protected void updateSystem(final Class<? extends EntitySystem> systemClass){
+        //TODO bzdura ze deltaTime podaje here zfixowany
+        engine.getSystem(systemClass).update(100f);
+    }
+
+    public void updateSelectionPoint() {
+        pointerPosition.updateSelectionPoint();
+    }
+
+    public Position getUnprojectedPosition() {
+        return pointerPosition.getUnprojectedPosition();
     }
 
     @Override

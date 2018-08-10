@@ -21,7 +21,6 @@ import com.robcio.golf.entity.Ball;
 import com.robcio.golf.gui.GuiAssembler;
 import com.robcio.golf.listener.input.GameInputCatcher;
 import com.robcio.golf.utils.Command;
-import com.robcio.golf.utils.Log;
 
 import java.util.Observable;
 
@@ -94,13 +93,11 @@ public class GameStageController extends Stage {
         return new Command() {
             @Override
             public void execute() {
-                Log.i(" tibia " + entities.size());
                 for (final Entity entity: entities) {
                     if (entity instanceof Ball) {
                         entity.add(ToRemove.self());
                     }
                 }
-                Log.i(" tibia " + entities.size());
             }
         };
     }

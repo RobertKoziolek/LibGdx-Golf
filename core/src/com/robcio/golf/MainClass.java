@@ -66,7 +66,6 @@ public class MainClass extends Game {
 
         setScreen(ScreenId.MENU);
 
-        //TODO moze sie zmienic jesli w menu ma byc fizyka
         Log.i("World body count *should be 0 now", Integer.toString(world.getBodyCount()));
     }
 

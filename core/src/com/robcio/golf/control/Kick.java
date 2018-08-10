@@ -29,8 +29,8 @@ public class Kick extends AbstractMouseMode {
 
     @Override
     public boolean touchUp() {
-        pointerPosition.updateSelectionPoint();
-        engine.getSystem(KickingSystem.class).update(100f);
+        updateSelectionPoint();
+        updateSystem(KickingSystem.class);
         deselectEverything();
         return true;
     }

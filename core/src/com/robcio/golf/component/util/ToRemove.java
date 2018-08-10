@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Component;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
-//TODO moze byc tibia jesli sie nalozy usuwanie componentu i calego obiektu bo component jest jeden na recipe
 @AllArgsConstructor()
 public class ToRemove implements Component {
 
